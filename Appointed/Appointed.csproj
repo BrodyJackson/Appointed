@@ -55,7 +55,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\ChangeFilterSelectionCommand.cs" />
     <Compile Include="Commands\ChangeMonthCommand.cs" />
     <Compile Include="Commands\ShiftScheduleViewCommand.cs" />
     <Compile Include="Events\ObservableObject.cs" />
@@ -93,6 +92,9 @@
     </Compile>
     <Compile Include="Views\NewAppointmentTabView.xaml.cs">
       <DependentUpon>NewAppointmentTabView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SidebarFrameView.xaml.cs">
+      <DependentUpon>SidebarFrameView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SingleDayView.xaml.cs">
       <DependentUpon>SingleDayView.xaml</DependentUpon>
@@ -156,6 +158,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NewAppointmentTabView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SidebarFrameView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
