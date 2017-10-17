@@ -320,7 +320,7 @@ namespace Appointed.ViewModels
 
 
         // Since empty appointment slots also have a unique key, get that key first to use this function.
-        // The key is automatically bound to the appt.Tag property and is easily accessed in an event handler.
+        // The key is automatically bound to the <appt>.Tag property and is easily accessed in an event handler.
         // In this scenario, the key refers to the key of the slot you would like to create the appointment in.
         // The appointment is the appointment you would like to place in that slot.
         // If the slot is not empty, it returns false and does nothing to the database.
@@ -468,343 +468,30 @@ namespace Appointed.ViewModels
         
 
 
-        // Pearson schedule data as gettable properties
         public List<Appointment> PearsonEmpty
         {
             get { return _pearsonEmpty; }
         }
-        public List<Appointment> PearsonNovember32017
-        {
-            get { return _pearsonNovember032017; }
-
-            set
-            {
-                _pearsonNovember032017 = new List<Appointment>(value);
-                RaisePropertyChangedEvent("PearsonNovember32017");
-            }
-
-        }
-        public List<Appointment> PearsonNovember42017
-        {
-            get { return _pearsonNovember042017; }
-
-            set
-            {
-                _pearsonNovember042017 = new List<Appointment>(value);
-                RaisePropertyChangedEvent("PearsonNovember42017");
-            }
-
-        }
-        public List<Appointment> PearsonNovember52017
-        {
-            get { return _pearsonNovember052017; }
-
-            set
-            {
-                _pearsonNovember052017 = new List<Appointment>(value);
-                RaisePropertyChangedEvent("PearsonNovember52017");
-            }
-
-        }
-        public List<Appointment> PearsonNovember62017
-        {
-            get { return _pearsonNovember062017; }
-
-            set
-            {
-                _pearsonNovember062017 = new List<Appointment>(value);
-                RaisePropertyChangedEvent("PearsonNovember62017");
-            }
-
-        }
-        public List<Appointment> PearsonNovember72017
-        {
-            get { return _pearsonNovember072017; }
-
-            set
-            {
-                _pearsonNovember072017 = new List<Appointment>(value);
-                RaisePropertyChangedEvent("PearsonNovember72017");
-            }
-
-        }
-        public List<Appointment> PearsonNovember82017
-        {
-            get { return _pearsonNovember082017; }
-
-            set
-            {
-                _pearsonNovember082017 = new List<Appointment>(value);
-                RaisePropertyChangedEvent("PearsonNovember82017");
-            }
-
-        }
-        public List<Appointment> PearsonDecember52017
-        {
-            get { return _pearsonDecember052017; }
-
-            set
-            {
-                _pearsonDecember052017 = new List<Appointment>(value);
-                RaisePropertyChangedEvent("PearsonDecember52017");
-            }
-
-        }
-        public List<Appointment> PearsonDecember152017
-        {
-            get { return _pearsonDecember152017; }
-
-            set
-            {
-                _pearsonDecember152017 = new List<Appointment>(value);
-                RaisePropertyChangedEvent("PearsonDecember152017");
-            }
-
-        }
-        public List<Appointment> PearsonDecember162017
-        {
-            get { return _pearsonDecember162017; }
-
-            set
-            {
-                _pearsonDecember162017 = new List<Appointment>(value);
-                RaisePropertyChangedEvent("PearsonDecember162017");
-            }
-
-        }
 
 
-
-
-
-
-
-        // Specter schedule data as gettable properties
         public List<Appointment> SpecterEmpty
         {
             get { return _specterEmpty; }
         }
-        public List<Appointment> SpecterNovember32017
-        {
-            get { return _specterNovember032017; }
-
-            set
-            {
-                _specterNovember032017 = new List<Appointment>(value);
-                RaisePropertyChangedEvent("SpecterNovember32017");
-            }
-
-        }
-        public List<Appointment> SpecterNovember42017
-        {
-            get { return _specterNovember042017; }
-
-            set
-            {
-                _specterNovember042017 = new List<Appointment>(value);
-                RaisePropertyChangedEvent("SpecterNovember42017");
-            }
-
-        }
-        public List<Appointment> SpecterNovember52017
-        {
-            get { return _specterNovember052017; }
-
-            set
-            {
-                _specterNovember052017 = new List<Appointment>(value);
-                RaisePropertyChangedEvent("SpecterNovember52017");
-            }
-
-        }
-        public List<Appointment> SpecterNovember62017
-        {
-            get { return _specterNovember062017; }
-
-            set
-            {
-                _specterNovember062017 = new List<Appointment>(value);
-                RaisePropertyChangedEvent("SpecterNovember62017");
-            }
-
-        }
-        public List<Appointment> SpecterNovember72017
-        {
-            get { return _specterNovember072017; }
-
-            set
-            {
-                _specterNovember072017 = new List<Appointment>(value);
-                RaisePropertyChangedEvent("SpecterNovember72017");
-            }
-
-        }
-        public List<Appointment> SpecterNovember82017
-        {
-            get { return _specterNovember082017; }
-
-            set
-            {
-                _specterNovember082017 = new List<Appointment>(value);
-                RaisePropertyChangedEvent("SpecterNovember82017");
-            }
-
-        }
-        public List<Appointment> SpecterDecember52017
-        {
-            get { return _specterDecember052017; }
-
-            set
-            {
-                _specterDecember052017 = new List<Appointment>(value);
-                RaisePropertyChangedEvent("SpecterDecember52017");
-            }
-
-        }
-        public List<Appointment> SpecterDecember152017
-        {
-            get { return _specterDecember152017; }
-
-            set
-            {
-                _specterDecember152017 = new List<Appointment>(value);
-                RaisePropertyChangedEvent("SpecterDecember152017");
-            }
-
-        }
-        public List<Appointment> SpecterDecember162017
-        {
-            get { return _specterDecember162017; }
-
-            set
-            {
-                _specterDecember162017 = new List<Appointment>(value);
-                RaisePropertyChangedEvent("SpecterDecember162017");
-            }
-
-        }
 
 
 
-
-
-
-
-
-
-
-
-        // Paulsen schedule data as gettable properties
         public List<Appointment> PaulsenEmpty
         {
             get { return _paulsenEmpty; }
         }
-        public List<Appointment> PaulsenNovember32017
-        {
-            get { return _paulsenNovember032017; }
-
-            set
-            {
-                _paulsenNovember032017 = new List<Appointment>(value);
-                RaisePropertyChangedEvent("PaulsenNovember32017");
-            }
-
-        }
-        public List<Appointment> PaulsenNovember42017
-        {
-            get { return _paulsenNovember042017; }
-
-            set
-            {
-                _paulsenNovember042017 = new List<Appointment>(value);
-                RaisePropertyChangedEvent("PaulsenNovember42017");
-            }
-
-        }
-        public List<Appointment> PaulsenNovember52017
-        {
-            get { return _paulsenNovember052017; }
-
-            set
-            {
-                _paulsenNovember052017 = new List<Appointment>(value);
-                RaisePropertyChangedEvent("PaulsenNovember52017");
-            }
-
-        }
-        public List<Appointment> PaulsenNovember62017
-        {
-            get { return _paulsenNovember062017; }
-
-            set
-            {
-                _paulsenNovember062017 = new List<Appointment>(value);
-                RaisePropertyChangedEvent("PaulsenNovember62017");
-            }
-
-        }
-        public List<Appointment> PaulsenNovember72017
-        {
-            get { return _paulsenNovember072017; }
-
-            set
-            {
-                _paulsenNovember072017 = new List<Appointment>(value);
-                RaisePropertyChangedEvent("PaulsenNovember72017");
-            }
-
-        }
-        public List<Appointment> PaulsenNovember82017
-        {
-            get { return _paulsenNovember082017; }
-
-            set
-            {
-                _paulsenNovember082017 = new List<Appointment>(value);
-                RaisePropertyChangedEvent("PaulsenNovember82017");
-            }
-
-        }
-        public List<Appointment> PaulsenDecember52017
-        {
-            get { return _paulsenDecember052017; }
-
-            set
-            {
-                _paulsenDecember052017 = new List<Appointment>(value);
-                RaisePropertyChangedEvent("PaulsenDecember52017");
-            }
-
-        }
-        public List<Appointment> PaulsenDecember152017
-        {
-            get { return _paulsenDecember152017; }
-
-            set
-            {
-                _paulsenDecember152017 = new List<Appointment>(value);
-                RaisePropertyChangedEvent("PaulsenDecember152017");
-            }
-
-        }
-        public List<Appointment> PaulsenDecember162017
-        {
-            get { return _paulsenDecember162017; }
-
-            set
-            {
-                _paulsenDecember162017 = new List<Appointment>(value);
-                RaisePropertyChangedEvent("PaulsenDecember162017");
-            }
-
-        }
-
-
+ 
 
         // END PROPERTIES ====================================================
 
 
     }
+
 
 
 
