@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Appointed.ViewModels
 {
-	public class EmeregencyContact
+	public class EmeregencyContact : ObservableObject
 	{
 		//Constant values for relationship
 		const int OTHER = 0;
@@ -48,13 +48,13 @@ namespace Appointed.ViewModels
 			}
 		}
 
-		public string Phone
+		public string EmergencyPhone
 		{
-			get { return _relation; }
+			get { return _emergencyPhone; }
 
 			set
 			{
-				_phone = value;
+				_emergencyPhone = value;
 				RaisePropertyChangedEvent("EmergencyPhone");
 			}
 		}

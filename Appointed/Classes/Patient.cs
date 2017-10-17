@@ -92,7 +92,7 @@ namespace Appointed.ViewModels
 			}
 		}
 
-		public DateTime birthDate
+		public DateTime BirthDate
 		{
 			get { return _birthDate; }
 

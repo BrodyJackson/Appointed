@@ -55,6 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\Appointment.cs" />
+    <Compile Include="Classes\DayTemplate.cs" />
+    <Compile Include="Classes\Doctor.cs" />
+    <Compile Include="Classes\Time.cs" />
     <Compile Include="Commands\ChangeMonthCommand.cs" />
     <Compile Include="Commands\ShiftScheduleViewCommand.cs" />
     <Compile Include="Events\ObservableObject.cs" />
@@ -63,11 +67,8 @@
     <Compile Include="Models\DayInformationModel.cs" />
     <Compile Include="ViewModels\AppointmentViewModel.cs" />
     <Compile Include="ViewModels\DayInformationViewModel.cs" />
-    <Compile Include="ViewModels\EmeregencyContact.cs" />
-    <Compile Include="ViewModels\Patient.cs" />
-    <Compile Include="Views\AppointmentTimeSlotView.xaml.cs">
-      <DependentUpon>AppointmentTimeSlotView.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Classes\EmeregencyContact.cs" />
+    <Compile Include="Classes\Patient.cs" />
     <Compile Include="Views\DoctorColumnView.xaml.cs">
       <DependentUpon>DoctorColumnView.xaml</DependentUpon>
     </Compile>
@@ -123,10 +124,6 @@
       <DependentUpon>Home.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\AppointmentTimeSlotView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\DoctorColumnView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
