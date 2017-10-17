@@ -38,7 +38,7 @@ namespace Appointed.ViewModels
 
     public class AppointmentViewModel : ObservableObject
     {
-        AppointmentDatabaseModel _adm;
+        private AppointmentDatabaseModel _adm;
         private int _numDaysPopulated = 70;
 
 
@@ -79,7 +79,7 @@ namespace Appointed.ViewModels
         private ObservableCollection<Doctor> _doctorsOnShift;
 
 
-
+/*
         private List<Appointment> _pearsonEmpty;
         private List<Appointment> _pearsonNovember032017;
         private List<Appointment> _pearsonNovember042017;
@@ -114,7 +114,7 @@ namespace Appointed.ViewModels
         private List<Appointment> _paulsenDecember152017;
         private List<Appointment> _paulsenDecember162017;
 
-
+*/
 
         DayTemplate DT;
 
@@ -146,7 +146,7 @@ namespace Appointed.ViewModels
             _numAppointmentsPerDay = 48;
 
 
-
+/*
             // Somewhat unnecessary. Gets info from appointment database and stores it in local variables.
             // Hides and protects information in the database by grabbing this info as a copy.
             _pearsonEmpty = _adm._pearsonEmpty;
@@ -182,7 +182,7 @@ namespace Appointed.ViewModels
             _paulsenDecember152017 = _adm._paulsenDecember152017;
             _paulsenDecember162017 = _adm._paulsenDecember162017;
 
-
+*/
 
 
             // Adding empty Days for each doctor their schedule array where no corresponding fake appointments were made
@@ -193,35 +193,35 @@ namespace Appointed.ViewModels
 
             // Adding the days that are populated with fake appointments to their corresponding slot in the array.
             // 0 is the beginning of time.
-            _pearsonAppointmentListArray[20] = _pearsonNovember032017;
-            _pearsonAppointmentListArray[21] = _pearsonNovember042017;
-            _pearsonAppointmentListArray[22] = _pearsonNovember052017;
-            _pearsonAppointmentListArray[23] = _pearsonNovember062017;
-            _pearsonAppointmentListArray[24] = _pearsonNovember072017;
-            _pearsonAppointmentListArray[25] = _pearsonNovember082017;
-            _pearsonAppointmentListArray[52] = _pearsonDecember052017;
-            _pearsonAppointmentListArray[62] = _pearsonDecember152017;
-            _pearsonAppointmentListArray[63] = _pearsonDecember162017;
+            _pearsonAppointmentListArray[20] = _adm._pearsonNovember032017;
+            _pearsonAppointmentListArray[21] = _adm._pearsonNovember042017;
+            _pearsonAppointmentListArray[22] = _adm._pearsonNovember052017;
+            _pearsonAppointmentListArray[23] = _adm._pearsonNovember062017;
+            _pearsonAppointmentListArray[24] = _adm._pearsonNovember072017;
+            _pearsonAppointmentListArray[25] = _adm._pearsonNovember082017;
+            _pearsonAppointmentListArray[52] = _adm._pearsonDecember052017;
+            _pearsonAppointmentListArray[62] = _adm._pearsonDecember152017;
+            _pearsonAppointmentListArray[63] = _adm._pearsonDecember162017;
 
-            _specterAppointmentListArray[20] = _specterNovember032017;
-            _specterAppointmentListArray[21] = _specterNovember042017;
-            _specterAppointmentListArray[22] = _specterNovember052017;
-            _specterAppointmentListArray[23] = _specterNovember062017;
-            _specterAppointmentListArray[24] = _specterNovember072017;
-            _specterAppointmentListArray[25] = _specterNovember082017;
-            _specterAppointmentListArray[52] = _specterDecember052017;
-            _specterAppointmentListArray[62] = _specterDecember152017;
-            _specterAppointmentListArray[63] = _specterDecember162017;
+            _specterAppointmentListArray[20] = _adm._specterNovember032017;
+            _specterAppointmentListArray[21] = _adm._specterNovember042017;
+            _specterAppointmentListArray[22] = _adm._specterNovember052017;
+            _specterAppointmentListArray[23] = _adm._specterNovember062017;
+            _specterAppointmentListArray[24] = _adm._specterNovember072017;
+            _specterAppointmentListArray[25] = _adm._specterNovember082017;
+            _specterAppointmentListArray[52] = _adm._specterDecember052017;
+            _specterAppointmentListArray[62] = _adm._specterDecember152017;
+            _specterAppointmentListArray[63] = _adm._specterDecember162017;
 
-            _paulsenAppointmentListArray[20] = _paulsenNovember032017;
-            _paulsenAppointmentListArray[21] = _paulsenNovember042017;
-            _paulsenAppointmentListArray[22] = _paulsenNovember052017;
-            _paulsenAppointmentListArray[23] = _paulsenNovember062017;
-            _paulsenAppointmentListArray[24] = _paulsenNovember072017;
-            _paulsenAppointmentListArray[25] = _paulsenNovember082017;
-            _paulsenAppointmentListArray[52] = _paulsenDecember052017;
-            _paulsenAppointmentListArray[62] = _paulsenDecember152017;
-            _paulsenAppointmentListArray[63] = _paulsenDecember162017;
+            _paulsenAppointmentListArray[20] = _adm._paulsenNovember032017;
+            _paulsenAppointmentListArray[21] = _adm._paulsenNovember042017;
+            _paulsenAppointmentListArray[22] = _adm._paulsenNovember052017;
+            _paulsenAppointmentListArray[23] = _adm._paulsenNovember062017;
+            _paulsenAppointmentListArray[24] = _adm._paulsenNovember072017;
+            _paulsenAppointmentListArray[25] = _adm._paulsenNovember082017;
+            _paulsenAppointmentListArray[52] = _adm._paulsenDecember052017;
+            _paulsenAppointmentListArray[62] = _adm._paulsenDecember152017;
+            _paulsenAppointmentListArray[63] = _adm._paulsenDecember162017;
 
 
 
@@ -295,13 +295,13 @@ namespace Appointed.ViewModels
 
         private void AddEmptyDaysToArray(List<Appointment>[] listOfAppointmentsArray, int drID)
         {
-            List<Appointment> emptyDay = _pearsonEmpty;
+            List<Appointment> emptyDay = _adm._pearsonEmpty;
 
             if (drID == 1)
-                emptyDay = _specterEmpty;
+                emptyDay = _adm._specterEmpty;
 
             if (drID == 2)
-                emptyDay = _paulsenEmpty;
+                emptyDay = _adm._paulsenEmpty;
 
             for (int i = 0; i < 20; i++)
                 listOfAppointmentsArray[i] = emptyDay;
@@ -339,10 +339,6 @@ namespace Appointed.ViewModels
             {
                 if (DoctorsOnShift.ElementAt(i).DoctorName.Equals(appointment.DoctorName))
                     doctorColumn = i;
-
-                Console.WriteLine("On Shift Name: " + DoctorsOnShift.ElementAt(i).DoctorName);
-                Console.WriteLine("In Apptm Name: " + appointment.DoctorName);
-                Console.WriteLine("In local Name: " + _pearsonEmpty.ElementAt(0).DoctorName);
             }
 
             InsertAppointment(doctorColumn, appointment);
@@ -470,20 +466,20 @@ namespace Appointed.ViewModels
 
         public List<Appointment> PearsonEmpty
         {
-            get { return _pearsonEmpty; }
+            get { return _adm._pearsonEmpty; }
         }
 
 
         public List<Appointment> SpecterEmpty
         {
-            get { return _specterEmpty; }
+            get { return _adm._specterEmpty; }
         }
 
 
 
         public List<Appointment> PaulsenEmpty
         {
-            get { return _paulsenEmpty; }
+            get { return _adm._paulsenEmpty; }
         }
  
 

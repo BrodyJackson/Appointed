@@ -55,7 +55,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\ChangeFilterSelectionCommand.cs" />
     <Compile Include="Commands\ChangeMonthCommand.cs" />
     <Compile Include="Commands\ShiftScheduleViewCommand.cs" />
     <Compile Include="Events\ObservableObject.cs" />
