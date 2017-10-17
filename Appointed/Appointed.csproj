@@ -63,6 +63,8 @@
     <Compile Include="Models\DayInformationModel.cs" />
     <Compile Include="ViewModels\AppointmentViewModel.cs" />
     <Compile Include="ViewModels\DayInformationViewModel.cs" />
+    <Compile Include="ViewModels\EmeregencyContact.cs" />
+    <Compile Include="ViewModels\Patient.cs" />
     <Compile Include="Views\AppointmentTimeSlotView.xaml.cs">
       <DependentUpon>AppointmentTimeSlotView.xaml</DependentUpon>
     </Compile>
