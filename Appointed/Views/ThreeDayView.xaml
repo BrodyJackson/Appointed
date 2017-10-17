@@ -1,0 +1,175 @@
+﻿<UserControl x:Class="Appointed.Views.ThreeDayView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Appointed.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+
+    <!-- One Row, Four Columns; 
+            The first column is the time column.
+            Each following column is a single day in the three day view separated by a column for styling separators -->
+    <Grid Margin="0,0,25,0" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <!-- First Column for time labels, separator columns for spacing and styling spacing elements -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="15"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="15"/>
+        </Grid.ColumnDefinitions>
+
+
+        <!-- Three Scroll Viewers, each represents a heading containing a list of doctors on shift for one day in the three day view. These sit directly above the single day columns but cannot
+                be within the same scroll viewer for them to remain visible while scrolling.
+             Their scroll event scrolls all three day columns horizontally to view more doctors on shift. -->
+ 
+        <!-- 
+        <ScrollViewer Grid.Row="0" Grid.Column="2" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled" CanContentScroll="True" PreviewMouseWheel="OnDoctorNamesScroll" >
+            <local:DoctorsOnShiftView/>
+        </ScrollViewer>
+
+        <ScrollViewer Grid.Row="0" Grid.Column="4" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled" CanContentScroll="True" PreviewMouseWheel="OnDoctorNamesScroll" >
+            <local:DoctorsOnShiftView/>
+        </ScrollViewer>
+
+        <ScrollViewer Grid.Row="0" Grid.Column="6" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled" CanContentScroll="True" PreviewMouseWheel="OnDoctorNamesScroll" >
+            <local:DoctorsOnShiftView/>
+        </ScrollViewer>
+        -->
+
+        <local:DoctorsOnShiftView Grid.Row="0" Grid.Column="2"/>
+        <local:DoctorsOnShiftView Grid.Row="0" Grid.Column="4"/>
+        <local:DoctorsOnShiftView Grid.Row="0" Grid.Column="6"/>
+
+
+        <ScrollViewer Grid.Row="1" Grid.Column="0" CanContentScroll="True" VerticalScrollBarVisibility="Hidden" PreviewMouseWheel="OnThreeDayViewVerticalScroll">
+            <ItemsControl ItemsSource="{Binding TimeStamps}"
+                                  Foreground="#FF0023FF" FontFamily="Yu Gothic UI Light" FontSize="14">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,1,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height ="*" MinHeight="35" MaxHeight="45"/>
+                            </Grid.RowDefinitions>
+                            
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Separator Grid.Row="0" Foreground="DarkBlue" VerticalAlignment="Top" Margin="0,0,-10,0">
+                                <Separator.Background>
+                                    <SolidColorBrush Color="#FFA0A0A0" Opacity="0.5"/>
+                                </Separator.Background>
+                            </Separator>
+                            
+                            <TextBlock Text="{Binding TimeString}" Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,2,0,0" Foreground="Black" />
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+
+            </ItemsControl>
+        </ScrollViewer>
+        
+        
+        
+        
+        <!-- Rectangular dividers separating scroll viewers. Each scroll viewer represents a single day in the three day view. Each day is composed of 5 doctor columns that could
+                be modified dynamically.
+             Their scroll event scrolls all three day columns vertically to display different times throughout the day. -->
+        
+        
+        <!-- Divider One -->
+        <Rectangle Grid.Column="1" Width="3" Grid.Row="1" HorizontalAlignment="Right" Margin="0,0,6,0">
+            <Rectangle.Stroke>
+                <SolidColorBrush Color="#FFF34D0F" Opacity="0.5"/>
+            </Rectangle.Stroke>
+        </Rectangle>
+
+        <!-- Day One -->
+        <ScrollViewer x:Name="DayOneScroller" Grid.Column="2" Grid.Row="1" VerticalScrollBarVisibility="Hidden"  PreviewMouseWheel="OnThreeDayViewVerticalScroll" 
+                      CanContentScroll="True">
+            <local:SingleDayView x:Name="DayOne"/>
+        </ScrollViewer>
+ 
+
+        <!-- Divider Two -->
+        <Rectangle Grid.Column="3" Width="3" Grid.Row="1" HorizontalAlignment="Left" Margin="6,0,0,0">
+            <Rectangle.Stroke>
+                <SolidColorBrush Color="#FFF34D0F" Opacity="0.5"/>
+            </Rectangle.Stroke>
+        </Rectangle>
+
+        <!-- Divider Two -->
+        <Rectangle Grid.Column="3" Width="3" Grid.Row="1" HorizontalAlignment="Right" Margin="0,0,6,0">
+            <Rectangle.Stroke>
+                <SolidColorBrush Color="#FFF34D0F" Opacity="0.5"/>
+            </Rectangle.Stroke>
+        </Rectangle>
+
+        <!-- Day Two -->
+        <ScrollViewer x:Name ="DayTwoScroller" Grid.Column="4" Grid.Row="1" VerticalScrollBarVisibility="Hidden"  PreviewMouseWheel="OnThreeDayViewVerticalScroll" 
+                      CanContentScroll="True">
+            <local:SingleDayView x:Name="DayTwo"/>
+        </ScrollViewer>
+
+
+        <!-- Divider Three -->
+        <Rectangle Grid.Column="5" Width="3" Grid.Row="1" HorizontalAlignment="Left" Margin="6,0,0,0">
+            <Rectangle.Stroke>
+                <SolidColorBrush Color="#FFF34D0F" Opacity="0.5"/>
+            </Rectangle.Stroke>
+        </Rectangle>
+
+        <!-- Divider Three -->
+        <Rectangle Grid.Column="5" Width="3" Grid.Row="1" HorizontalAlignment="Right" Margin="0,0,6,0">
+            <Rectangle.Stroke>
+                <SolidColorBrush Color="#FFF34D0F" Opacity="0.5"/>
+            </Rectangle.Stroke>
+        </Rectangle>
+
+        <!-- Day Three -->
+        <ScrollViewer x:Name="DayThreeScroller" Grid.Column="6" Grid.Row="1" VerticalScrollBarVisibility="Hidden" PreviewMouseWheel="OnThreeDayViewVerticalScroll" 
+                      CanContentScroll="True">
+            <local:SingleDayView x:Name="DayThree"/>
+        </ScrollViewer>
+ 
+        
+        <!-- Divider Four -->
+        <Rectangle Grid.Column="7" Width="3" Grid.Row="1" HorizontalAlignment="Left" Margin="6,0,0,0">
+            <Rectangle.Stroke>
+                <SolidColorBrush Color="#FFF34D0F" Opacity="0.5"/>
+            </Rectangle.Stroke>
+        </Rectangle>
+
+
+
+        <!--    <Image Grid.Column="2" Margin="0" Source="/Appointed;component/next.png" Stretch="None"
+               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <Image Grid.Column="4" Margin="0" Source="/Appointed;component/next.png" Stretch="None"
+               HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="180"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+-->
+        
+        
+    </Grid>
+</UserControl>

@@ -1,0 +1,104 @@
+﻿<Window x:Class="Appointed.Home"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Appointed"
+        xmlns:Views="clr-namespace:Appointed.Views"
+        xmlns:ViewModels="clr-namespace:Appointed.ViewModels"
+        mc:Ignorable="d"
+ 
+        Title="Home" Height="768" Width="1024" Foreground="{x:Null}"
+        WindowStartupLocation="Manual" 
+        Left="0" Top="0"
+        WindowState="Maximized"
+        SizeToContent="Manual"
+        
+        >
+
+    <Window.DataContext>
+        <ViewModels:DayInformationViewModel/>
+    </Window.DataContext>
+
+
+    <!-- First Row is for switching controls that move between days and months (big shift, little shift, month shift). 
+         Second Row is for the day/month title for each day being displayed.
+         Third Row is for main working views (ThreeDayView and SideBarView). -->
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="35"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="35"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="35"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="35"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <TextBlock Grid.Row="0" Grid.Column="4" FontFamily="Yu Gothic UI Light" FontSize="24"
+                   HorizontalAlignment="Center" VerticalAlignment="Center" 
+                    Text="ShiftView">
+                <TextBlock.Foreground>
+                    <SolidColorBrush Color="#FFFF1E1E" Opacity="0.75"/>
+                </TextBlock.Foreground>
+            </TextBlock>
+
+        </Grid>
+
+
+
+
+
+
+        <Views:ThreeDayHeaderView Grid.Row="1" Grid.Column="1"/>
+        <!-- -->
+        <Views:ThreeDayView Grid.Row="2" Grid.Column="1"/>
+
+
+        <Calendar HorizontalAlignment="Center" Height="168" Margin="0,10,0,0" VerticalAlignment="Top"
+                  Width="184" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                  Grid.Row="2" Grid.Column="0" />
+
+
+
+
+        <Border Grid.Row="1" Grid.Column="0" BorderThickness="1" Margin="1" Padding="1,0,0,0" >
+            <Border.BorderBrush>
+                <SolidColorBrush Color="#FFF34D0F" Opacity="0.6"/>
+            </Border.BorderBrush>
+        </Border>
+
+
+        <Border Grid.Row="2" Grid.Column="0" BorderThickness="1" Margin="1" Padding="1,0,0,0" >
+            <Border.BorderBrush>
+                <SolidColorBrush Color="#FFF34D0F" Opacity="0.6"/>
+            </Border.BorderBrush>
+        </Border>
+
+
+    </Grid>
+</Window>
+
+    
+    <!-- Day Codes are in format <doctor><day><month><year> where -->

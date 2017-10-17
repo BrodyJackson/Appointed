@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{32F10D8D-4AC8-45F1-8916-4BD57BD1F438}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Appointed</RootNamespace>
+    <AssemblyName>Appointed</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Expression.Drawing, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Commands\ChangeFilterSelectionCommand.cs" />
+    <Compile Include="Commands\ChangeMonthCommand.cs" />
+    <Compile Include="Commands\ShiftScheduleViewCommand.cs" />
+    <Compile Include="Events\ObservableObject.cs" />
+    <Compile Include="Events\Schedule.cs" />
+    <Compile Include="Models\AppointmentDatabaseModel.cs" />
+    <Compile Include="Models\DayInformationModel.cs" />
+    <Compile Include="ViewModels\AppointmentViewModel.cs" />
+    <Compile Include="ViewModels\DayInformationViewModel.cs" />
+    <Compile Include="Views\AppointmentTimeSlotView.xaml.cs">
+      <DependentUpon>AppointmentTimeSlotView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DoctorColumnView.xaml.cs">
+      <DependentUpon>DoctorColumnView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DoctorNameSlotView.xaml.cs">
+      <DependentUpon>DoctorNameSlotView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DoctorsOnShiftView.xaml.cs">
+      <DependentUpon>DoctorsOnShiftView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HomeTabAlertsView.xaml.cs">
+      <DependentUpon>HomeTabAlertsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HomeTabFilterView.xaml.cs">
+      <DependentUpon>HomeTabFilterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HomeTabSearchBar.xaml.cs">
+      <DependentUpon>HomeTabSearchBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HomeTabView.xaml.cs">
+      <DependentUpon>HomeTabView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HomeWindowHeaderView.xaml.cs">
+      <DependentUpon>HomeWindowHeaderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewAppointmentTabView.xaml.cs">
+      <DependentUpon>NewAppointmentTabView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SingleDayView.xaml.cs">
+      <DependentUpon>SingleDayView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ThreeDayHeaderView.xaml.cs">
+      <DependentUpon>ThreeDayHeaderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ThreeDayView.xaml.cs">
+      <DependentUpon>ThreeDayView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AppointedResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Home.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Views\AppointmentTimeSlotView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DoctorColumnView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DoctorNameSlotView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DoctorsOnShiftView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HomeTabAlertsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HomeTabFilterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HomeTabSearchBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HomeTabView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HomeWindowHeaderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewAppointmentTabView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SingleDayView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ThreeDayHeaderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ThreeDayView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imgs\right-chevron %281%29.png" />
+    <Resource Include="imgs\right-chevron.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imgs\cancel %281%29.png" />
+    <Resource Include="imgs\cancel.png" />
+    <Resource Include="imgs\edit %281%29.png" />
+    <Resource Include="imgs\edit %282%29.png" />
+    <Resource Include="imgs\edit %283%29.png" />
+    <Resource Include="imgs\edit.png" />
+    <Resource Include="imgs\horizontal-lines-and-a-square %281%29.png" />
+    <Resource Include="imgs\horizontal-lines-and-a-square.png" />
+    <Resource Include="imgs\icon %281%29.png" />
+    <Resource Include="imgs\icon.png" />
+    <Resource Include="imgs\may-15-calendar-page-interface-symbol %281%29.png" />
+    <Resource Include="imgs\may-15-calendar-page-interface-symbol.png" />
+    <Resource Include="imgs\menu %281%29.png" />
+    <Resource Include="imgs\menu.png" />
+    <Resource Include="imgs\next %281%29.png" />
+    <Resource Include="imgs\next %282%29.png" />
+    <Resource Include="imgs\next.png" />
+    <Resource Include="imgs\square.png" />
+    <Resource Include="imgs\squareLg.png" />
+    <Resource Include="imgs\user-image-with-black-background %281%29.png" />
+    <Resource Include="imgs\user-image-with-black-background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="next.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="right-chevron.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="right-chevron %281%29.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

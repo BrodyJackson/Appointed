@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="Appointed.Views.SingleDayView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Appointed.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+
+    <!-- Each Day has as many columns as there are doctors on shift for that day.
+            Each column uses a DoctorColumnView to represent it's information. -->
+    <Grid >
+        
+         <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Default is three for three doctors on shift. -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+
+            <!--
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            -->
+            
+        </Grid.ColumnDefinitions>
+
+        
+        <!-- Could make this an ItemsControl with a uniform grid as a panel type that gets its columns from the AVM.DoctorsOnShiftCount  - See DoctorsOnShiftView for example -->
+
+        
+        <local:DoctorColumnView Grid.Column="0" x:Name="DrColumn0"/>
+        <local:DoctorColumnView Grid.Column="1" x:Name="DrColumn1"/>
+        <local:DoctorColumnView Grid.Column="2" x:Name="DrColumn2"/>
+
+        <!--
+        <local:DoctorColumnView Grid.Column="3" x:Name="DrColumn4"/>
+        <local:DoctorColumnView Grid.Column="4" x:Name="DrColumn5"/>
+        -->
+        
+    </Grid>
+
+</UserControl>
