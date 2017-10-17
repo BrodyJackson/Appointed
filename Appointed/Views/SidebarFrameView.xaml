@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:Appointed.Views"
              mc:Ignorable="d" 
              d:DesignHeight="768" d:DesignWidth="300">
-    <Grid>
+    <Grid
+        Margin="4">
 
         <!--
         Top part is for actual views
@@ -14,17 +15,15 @@
         -->
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        <Frame
-            Name="SidebarContentFrame"
-            Grid.Row="0"
-            Grid.Column="0"
+        <local:HomeTabView 
+           Grid.Column="0"
             Grid.ColumnSpan="1"
-            Grid.RowSpan="1"
-        />
-
+            Grid.Row="0"
+            Grid.RowSpan="1"/>
+        
         <Grid HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" Grid.Row="1">
 
             <Grid.ColumnDefinitions>
@@ -33,6 +32,7 @@
             </Grid.ColumnDefinitions>
 
             <Button
+                Name="LeftQuickNavButton"
                 Grid.Column="0"
                 Grid.ColumnSpan="1" 
                 >
@@ -45,6 +45,7 @@
             </Button>
 
             <Button
+                Name="RightQuickNavButton"
                 Grid.Column="1"
                 Grid.ColumnSpan="1"
                 >

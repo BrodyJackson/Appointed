@@ -76,21 +76,15 @@
         <Views:ThreeDayView Grid.Row="2" Grid.Column="1"/>
 
 
-        <Calendar HorizontalAlignment="Center" Height="168" Margin="0,10,0,0" VerticalAlignment="Top"
-                  Width="184" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                  Grid.Row="2" Grid.Column="0" />
+        <Views:SidebarFrameView
+            Grid.Row="0"
+            Grid.RowSpan="3"
+            Grid.ColumnSpan="1"
+            Grid.Column="0"/>
 
 
 
-
-        <Border Grid.Row="1" Grid.Column="0" BorderThickness="1" Margin="1" Padding="1,0,0,0" >
-            <Border.BorderBrush>
-                <SolidColorBrush Color="#FFF34D0F" Opacity="0.6"/>
-            </Border.BorderBrush>
-        </Border>
-
-
-        <Border Grid.Row="2" Grid.Column="0" BorderThickness="1" Margin="1" Padding="1,0,0,0" >
+        <Border Grid.RowSpan="3" Grid.ColumnSpan="1" Grid.Column="0" BorderThickness="1" Margin="1" Padding="1,0,0,0" >
             <Border.BorderBrush>
                 <SolidColorBrush Color="#FFF34D0F" Opacity="0.6"/>
             </Border.BorderBrush>

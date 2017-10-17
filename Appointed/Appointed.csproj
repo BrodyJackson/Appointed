@@ -243,5 +243,11 @@
   <ItemGroup>
     <Resource Include="imgs\Search_256x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imgs\Home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imgs\Back.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
