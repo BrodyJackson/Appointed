@@ -240,5 +240,8 @@
   <ItemGroup>
     <Resource Include="right-chevron %281%29.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imgs\Search_256x.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,7 +8,7 @@
         xmlns:ViewModels="clr-namespace:Appointed.ViewModels"
         mc:Ignorable="d"
  
-        Title="Home" Height="768" Width="1024" Foreground="{x:Null}"
+        Title="Appointed" Height="768" Width="1024" Foreground="{x:Null}"
         WindowStartupLocation="Manual" 
         Left="0" Top="0"
         WindowState="Maximized"
