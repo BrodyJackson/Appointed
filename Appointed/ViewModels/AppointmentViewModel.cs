@@ -7,38 +7,13 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Appointed.Classes;
 
 namespace Appointed.ViewModels
 {
-
-    public struct AppointmentStruct
-    {
-        public DateTime _dateTime;
-        public string _doctorLastName;
-        public string _type;
-        public string _patient;
-        public string _colour;
-        public string _cursor;
-        public string _rowSpan;
-        public string _opacity;
-        public string _height;
-        public string _margin;
-        public string _ID;        
-        public string _comments;
-
-        public int _startTime;
-        public int _endTime;
-
-        public bool _waitlisted;
-        public bool _missed;
-    }
-
-
-
-
     public class AppointmentViewModel : ObservableObject
     {
-        AppointmentDatabaseModel _adm;
+        private AppointmentDatabaseModel _adm;
         private int _numDaysPopulated = 70;
 
 
@@ -79,44 +54,8 @@ namespace Appointed.ViewModels
         private ObservableCollection<Doctor> _doctorsOnShift;
 
 
-
-        private List<Appointment> _pearsonEmpty;
-        private List<Appointment> _pearsonNovember032017;
-        private List<Appointment> _pearsonNovember042017;
-        private List<Appointment> _pearsonNovember052017;
-        private List<Appointment> _pearsonNovember062017;
-        private List<Appointment> _pearsonNovember072017;
-        private List<Appointment> _pearsonNovember082017;
-        private List<Appointment> _pearsonDecember052017;
-        private List<Appointment> _pearsonDecember152017;
-        private List<Appointment> _pearsonDecember162017;
-
-        private List<Appointment> _specterEmpty;
-        private List<Appointment> _specterNovember032017;
-        private List<Appointment> _specterNovember042017;
-        private List<Appointment> _specterNovember052017;
-        private List<Appointment> _specterNovember062017;
-        private List<Appointment> _specterNovember072017;
-        private List<Appointment> _specterNovember082017;
-        private List<Appointment> _specterDecember052017;
-        private List<Appointment> _specterDecember152017;
-        private List<Appointment> _specterDecember162017;
-
-
-        private List<Appointment> _paulsenEmpty;
-        private List<Appointment> _paulsenNovember032017;
-        private List<Appointment> _paulsenNovember042017;
-        private List<Appointment> _paulsenNovember052017;
-        private List<Appointment> _paulsenNovember062017;
-        private List<Appointment> _paulsenNovember072017;
-        private List<Appointment> _paulsenNovember082017;
-        private List<Appointment> _paulsenDecember052017;
-        private List<Appointment> _paulsenDecember152017;
-        private List<Appointment> _paulsenDecember162017;
-
-
-
         DayTemplate DT;
+
 
 
 
@@ -133,54 +72,15 @@ namespace Appointed.ViewModels
             _paulsenAppointmentListArray = new List<Appointment>[_numDaysPopulated];
 
 
+            _numAppointmentsPerDay = 48;
+
+
             _doctorsOnShift = new ObservableCollection<Doctor>
             {
                 new Doctor { DoctorName = "Dr. Pearson", Position = "0"},
                 new Doctor { DoctorName = "Dr. Specter", Position = "1"},
                 new Doctor { DoctorName = "Dr. Paulsen", Position = "2"}
             };
-
-
-
-
-            _numAppointmentsPerDay = 48;
-
-
-
-            // Somewhat unnecessary. Gets info from appointment database and stores it in local variables.
-            // Hides and protects information in the database by grabbing this info as a copy.
-            _pearsonEmpty = _adm._pearsonEmpty;
-            _pearsonNovember032017 = _adm._pearsonNovember032017;
-            _pearsonNovember042017 = _adm._pearsonNovember042017;
-            _pearsonNovember052017 = _adm._pearsonNovember052017;
-            _pearsonNovember062017 = _adm._pearsonNovember062017;
-            _pearsonNovember072017 = _adm._pearsonNovember072017;
-            _pearsonNovember082017 = _adm._pearsonNovember082017;
-            _pearsonDecember052017 = _adm._pearsonDecember052017;
-            _pearsonDecember152017 = _adm._pearsonDecember152017;
-            _pearsonDecember162017 = _adm._pearsonDecember162017;
-
-            _specterEmpty = _adm._specterEmpty;
-            _specterNovember032017 = _adm._specterNovember032017;
-            _specterNovember042017 = _adm._specterNovember042017;
-            _specterNovember052017 = _adm._specterNovember052017;
-            _specterNovember062017 = _adm._specterNovember062017;
-            _specterNovember072017 = _adm._specterNovember072017;
-            _specterNovember082017 = _adm._specterNovember082017;
-            _specterDecember052017 = _adm._specterDecember052017;
-            _specterDecember152017 = _adm._specterDecember152017;
-            _specterDecember162017 = _adm._specterDecember162017;
-
-            _paulsenEmpty = _adm._paulsenEmpty;
-            _paulsenNovember032017 = _adm._paulsenNovember032017;
-            _paulsenNovember042017 = _adm._paulsenNovember042017;
-            _paulsenNovember052017 = _adm._paulsenNovember052017;
-            _paulsenNovember062017 = _adm._paulsenNovember062017;
-            _paulsenNovember072017 = _adm._paulsenNovember072017;
-            _paulsenNovember082017 = _adm._paulsenNovember082017;
-            _paulsenDecember052017 = _adm._paulsenDecember052017;
-            _paulsenDecember152017 = _adm._paulsenDecember152017;
-            _paulsenDecember162017 = _adm._paulsenDecember162017;
 
 
 
@@ -193,35 +93,35 @@ namespace Appointed.ViewModels
 
             // Adding the days that are populated with fake appointments to their corresponding slot in the array.
             // 0 is the beginning of time.
-            _pearsonAppointmentListArray[20] = _pearsonNovember032017;
-            _pearsonAppointmentListArray[21] = _pearsonNovember042017;
-            _pearsonAppointmentListArray[22] = _pearsonNovember052017;
-            _pearsonAppointmentListArray[23] = _pearsonNovember062017;
-            _pearsonAppointmentListArray[24] = _pearsonNovember072017;
-            _pearsonAppointmentListArray[25] = _pearsonNovember082017;
-            _pearsonAppointmentListArray[52] = _pearsonDecember052017;
-            _pearsonAppointmentListArray[62] = _pearsonDecember152017;
-            _pearsonAppointmentListArray[63] = _pearsonDecember162017;
+            _pearsonAppointmentListArray[20] = _adm._pearsonNovember032017;
+            _pearsonAppointmentListArray[21] = _adm._pearsonNovember042017;
+            _pearsonAppointmentListArray[22] = _adm._pearsonNovember052017;
+            _pearsonAppointmentListArray[23] = _adm._pearsonNovember062017;
+            _pearsonAppointmentListArray[24] = _adm._pearsonNovember072017;
+            _pearsonAppointmentListArray[25] = _adm._pearsonNovember082017;
+            _pearsonAppointmentListArray[52] = _adm._pearsonDecember052017;
+            _pearsonAppointmentListArray[62] = _adm._pearsonDecember152017;
+            _pearsonAppointmentListArray[63] = _adm._pearsonDecember162017;
 
-            _specterAppointmentListArray[20] = _specterNovember032017;
-            _specterAppointmentListArray[21] = _specterNovember042017;
-            _specterAppointmentListArray[22] = _specterNovember052017;
-            _specterAppointmentListArray[23] = _specterNovember062017;
-            _specterAppointmentListArray[24] = _specterNovember072017;
-            _specterAppointmentListArray[25] = _specterNovember082017;
-            _specterAppointmentListArray[52] = _specterDecember052017;
-            _specterAppointmentListArray[62] = _specterDecember152017;
-            _specterAppointmentListArray[63] = _specterDecember162017;
+            _specterAppointmentListArray[20] = _adm._specterNovember032017;
+            _specterAppointmentListArray[21] = _adm._specterNovember042017;
+            _specterAppointmentListArray[22] = _adm._specterNovember052017;
+            _specterAppointmentListArray[23] = _adm._specterNovember062017;
+            _specterAppointmentListArray[24] = _adm._specterNovember072017;
+            _specterAppointmentListArray[25] = _adm._specterNovember082017;
+            _specterAppointmentListArray[52] = _adm._specterDecember052017;
+            _specterAppointmentListArray[62] = _adm._specterDecember152017;
+            _specterAppointmentListArray[63] = _adm._specterDecember162017;
 
-            _paulsenAppointmentListArray[20] = _paulsenNovember032017;
-            _paulsenAppointmentListArray[21] = _paulsenNovember042017;
-            _paulsenAppointmentListArray[22] = _paulsenNovember052017;
-            _paulsenAppointmentListArray[23] = _paulsenNovember062017;
-            _paulsenAppointmentListArray[24] = _paulsenNovember072017;
-            _paulsenAppointmentListArray[25] = _paulsenNovember082017;
-            _paulsenAppointmentListArray[52] = _paulsenDecember052017;
-            _paulsenAppointmentListArray[62] = _paulsenDecember152017;
-            _paulsenAppointmentListArray[63] = _paulsenDecember162017;
+            _paulsenAppointmentListArray[20] = _adm._paulsenNovember032017;
+            _paulsenAppointmentListArray[21] = _adm._paulsenNovember042017;
+            _paulsenAppointmentListArray[22] = _adm._paulsenNovember052017;
+            _paulsenAppointmentListArray[23] = _adm._paulsenNovember062017;
+            _paulsenAppointmentListArray[24] = _adm._paulsenNovember072017;
+            _paulsenAppointmentListArray[25] = _adm._paulsenNovember082017;
+            _paulsenAppointmentListArray[52] = _adm._paulsenDecember052017;
+            _paulsenAppointmentListArray[62] = _adm._paulsenDecember152017;
+            _paulsenAppointmentListArray[63] = _adm._paulsenDecember162017;
 
 
 
@@ -295,13 +195,13 @@ namespace Appointed.ViewModels
 
         private void AddEmptyDaysToArray(List<Appointment>[] listOfAppointmentsArray, int drID)
         {
-            List<Appointment> emptyDay = _pearsonEmpty;
+            List<Appointment> emptyDay = _adm._pearsonEmpty;
 
             if (drID == 1)
-                emptyDay = _specterEmpty;
+                emptyDay = _adm._specterEmpty;
 
             if (drID == 2)
-                emptyDay = _paulsenEmpty;
+                emptyDay = _adm._paulsenEmpty;
 
             for (int i = 0; i < 20; i++)
                 listOfAppointmentsArray[i] = emptyDay;
@@ -339,10 +239,6 @@ namespace Appointed.ViewModels
             {
                 if (DoctorsOnShift.ElementAt(i).DoctorName.Equals(appointment.DoctorName))
                     doctorColumn = i;
-
-                Console.WriteLine("On Shift Name: " + DoctorsOnShift.ElementAt(i).DoctorName);
-                Console.WriteLine("In Apptm Name: " + appointment.DoctorName);
-                Console.WriteLine("In local Name: " + _pearsonEmpty.ElementAt(0).DoctorName);
             }
 
             InsertAppointment(doctorColumn, appointment);
@@ -368,7 +264,7 @@ namespace Appointed.ViewModels
             colour = DoctorsOnShift.ElementAt(doctorColumn).Colour;
 
 
-            emptyAppointment = new Appointment(new AppointmentStruct())
+            emptyAppointment = new Appointment()
             { DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", Colour = colour, Cursor = "Hand", RowSpan = "1", Opacity = "0" };
 
 
@@ -439,8 +335,8 @@ namespace Appointed.ViewModels
         }
 
 
+
         // PROPERTIES ====================================================
-        // Shouldn't need these anymore since im binding to collections in the dictionary.
 
         public DateTime BeginningOfAllTime
         {
@@ -470,20 +366,20 @@ namespace Appointed.ViewModels
 
         public List<Appointment> PearsonEmpty
         {
-            get { return _pearsonEmpty; }
+            get { return _adm._pearsonEmpty; }
         }
 
 
         public List<Appointment> SpecterEmpty
         {
-            get { return _specterEmpty; }
+            get { return _adm._specterEmpty; }
         }
 
 
 
         public List<Appointment> PaulsenEmpty
         {
-            get { return _paulsenEmpty; }
+            get { return _adm._paulsenEmpty; }
         }
  
 
@@ -493,325 +389,5 @@ namespace Appointed.ViewModels
     }
 
 
-
-
-    public class DayTemplate : ObservableObject
-    {
-        int _startTime;
-        int _hoursInScope;
-        int daysInView;
-
-        public int StartTime
-        {
-            get { return _startTime; }
-
-            set
-            {
-                _startTime = value;
-                RaisePropertyChangedEvent("StartTime");
-            }
-        }
-    }
-
-
-
-
-    public class Doctor : ObservableObject
-    {
-        string _doctorName;
-        string _position;
-        string _colour;
-
-        public string DoctorName
-        {
-            get { return _doctorName; }
-            set
-            {
-                _doctorName = value;
-                RaisePropertyChangedEvent("DoctorName");
-            }
-        }
-
-        public string Position
-        {
-            get { return _position; }
-            set
-            {
-                _position = value;
-                RaisePropertyChangedEvent("Position");
-            }
-        }
-
-        public string Colour
-        {
-            get { return _colour; }
-
-            set
-            {
-                _colour = value;
-                RaisePropertyChangedEvent("Colour");
-            }
-        }
-
-    }
-
     
-
-    public class Appointment : ObservableObject
-    {
-        DateTime _dateTime;
-        string _doctorName;
-        string _type;
-        string _patient;
-        string _colour;
-        string _cursor;
-        string _rowSpan;
-        string _opacity;
-        string _height;
-        string _margin;
-        string _visibility;
-        string _ID;
-        string _comments;
-        int _startTime;
-        int _endTime;
-        bool _missed;
-        bool _waitlisted;
-        
-
-
-        public Appointment(AppointmentStruct apt)
-        {
-
-
-
-        }
-
-
-        public Appointment(Appointment toCopy)
-        {
-            this.Colour = toCopy.Colour;
-            this.Comments = toCopy.Comments;
-            this.Cursor = toCopy.Cursor;
-            this.DateTime = toCopy.DateTime;
-            this.DoctorName = toCopy.DoctorName;
-            this.EndTime = toCopy.EndTime;
-            this.Height = toCopy.Height;
-            this.ID = toCopy.ID;
-            this.Margin = toCopy.Margin;
-            this.Missed = toCopy.Missed;
-            this.Opacity = toCopy.Opacity;
-            this.Patient = toCopy.Patient;
-            this.RowSpan = toCopy.RowSpan;
-            this.StartTime = toCopy.StartTime;
-            this.Type = toCopy.Type;
-            this.Waitlisted = toCopy.Waitlisted;
-        }
-
-
-        public DateTime DateTime
-        {
-            get { return _dateTime; }
-            set
-            {
-                _dateTime = value;
-                RaisePropertyChangedEvent("DateTime");
-            }
-        }
-
-        public string DoctorName
-        {
-            get { return _doctorName; }
-
-            set
-            {
-                _doctorName = value;
-                RaisePropertyChangedEvent("DoctorName");
-            }
-
-        }
-
-        public string Type
-        {
-            get { return _type; }
-            set
-            {
-                _type = value;
-                RaisePropertyChangedEvent("Type");
-                RaisePropertyChangedEvent("AppointmentInfo");
-            }
-        }
-
-        public string Patient
-        {
-            get { return _patient; }
-            set
-            {
-                _patient = value;
-                RaisePropertyChangedEvent("Patient");
-                RaisePropertyChangedEvent("AppointmentInfo");
-            }
-
-        }
-
-        public string Colour
-        {
-            get { return _colour; }
-            set
-            {
-                _colour = value;
-                RaisePropertyChangedEvent("Colour");
-            }
-        }
-
-        public string Cursor
-        {
-            get { return _cursor; }
-            set
-            {
-                _cursor = value;
-                RaisePropertyChangedEvent("Cursor");
-            }
-        }
-
-        public string RowSpan
-        {
-            get { return _rowSpan; }
-            set
-            {
-                _rowSpan = value;
-                RaisePropertyChangedEvent("RowSpan");
-            }
-        }
-
-        public string Opacity
-        {
-            get { return _opacity; }
-            set
-            {
-                _opacity = value;
-                RaisePropertyChangedEvent("Opacity");
-            }
-        }
-
-
-        public string Height
-        {
-            get { return _height; }
-            set
-            {
-                _height = value;
-                RaisePropertyChangedEvent("Height");
-            }
-        }
-
-
-        public string AppointmentInfo
-        {
-            get
-            {
-                if (Patient.Length != 0 && Type.Length != 0)
-                {
-                    if (Patient.Length > 15)
-                    {
-                        int whiteSpaceIndex = Patient.IndexOf(' ');
-                        string shortenedInfo = Patient.ElementAt(0).ToString() + "." + Patient.Substring(whiteSpaceIndex);
-                        return shortenedInfo + ":\n" + Type;
-                    }
-                    else
-                        return Patient + ":\n" + Type;
-                }
-                else
-                    return "";
-            }
-        }
-
-
-        public string Margin
-        {
-            get { return _margin; }
-            set
-            {
-                _margin = value;
-                RaisePropertyChangedEvent("Margin");
-            }
-
-        }
-
-        public string Visibility
-        {
-            get { return _visibility; }
-
-            set
-            {
-                _visibility = value;
-                RaisePropertyChangedEvent("Visibility");
-            }
-        }
-
-        public string ID
-        {
-            get { return _ID; }
-            set
-            {
-                _ID = value;
-                RaisePropertyChangedEvent("ID");
-            }
-        }
-
-        public string Comments
-        {
-            get { return _comments; }
-
-            set
-            {
-                _comments = value;
-                RaisePropertyChangedEvent("Comments");
-            }
-        }
-
-        public int StartTime
-        {
-            get { return _startTime; }
-
-            set
-            {
-                _startTime = value;
-                RaisePropertyChangedEvent("StartTime");
-            }
-        }
-
-        public int EndTime
-        {
-            get { return _endTime; }
-
-            set
-            {
-                _endTime = value;
-                RaisePropertyChangedEvent("EndTime");
-            }
-        }
-
-        public bool Missed
-        {
-            get { return _missed; }
-
-            set
-            {
-                _missed = value;
-                RaisePropertyChangedEvent("Missed");
-            }
-        }
-
-        public bool Waitlisted
-        {
-            get { return _waitlisted; }
-
-            set
-            {
-                _waitlisted = value;
-                RaisePropertyChangedEvent("Waitlisted");
-            }
-            
-        }
-    }
 }

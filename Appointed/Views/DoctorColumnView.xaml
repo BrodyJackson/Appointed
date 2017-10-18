@@ -37,7 +37,7 @@
 
         <ItemsControl.ItemTemplate>
             <DataTemplate>
-                <Grid Margin="{Binding Margin}" AllowDrop="True" Drop="OnItemDropped" Cursor="Hand" Visibility="{Binding Visibility}">
+                <Grid Margin="{Binding Margin}" AllowDrop="True" Cursor="Hand" Visibility="{Binding Visibility}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height ="{Binding Height}"/>
                     </Grid.RowDefinitions>

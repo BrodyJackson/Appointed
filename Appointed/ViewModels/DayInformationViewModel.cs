@@ -8,6 +8,7 @@ using System.Windows.Input;
 using Appointed.Events;
 using Appointed.Models;
 using Appointed.Commands;
+using Appointed.Classes;
 
 namespace Appointed.ViewModels
 {
@@ -17,16 +18,12 @@ namespace Appointed.ViewModels
     {
         // Delegate -- Classes can subscribe their methods to this event to be called when event is raised. 
         public event EventHandler<EventArgs> ScheduleShifted;
-
-
-
         
         private DayInformationModel _dim;
 
         public AppointmentViewModel AVM { get; set; }
 
-  
-   
+ 
         private ObservableCollection<Time> _timeOfDayStringsTwelveHour;
         private ObservableCollection<Time> _timeOfDayStringsTwentyFourHour;
         public  List<int> _dayCodes;
@@ -35,9 +32,6 @@ namespace Appointed.ViewModels
         private string _firstDay;
         private string _secondDay;
         private string _thirdDay;
-
-
-   
 
         private int _numAppointmentsPerDay;
 
@@ -60,7 +54,6 @@ namespace Appointed.ViewModels
             _dayCodes = _dim.DayCodes;
 
             InitDayInformation();
-
         
             InitTimeOfDayStrings();
 
@@ -68,39 +61,6 @@ namespace Appointed.ViewModels
         }
 
 
-
-
-        public void InitTimeOfDayStrings()
-        {
-            int time = 700;
-            string timeString = "";
-
-            for (int i = 0; i < _numAppointmentsPerDay; i++)
-            {
-                int length = time.ToString().Length;
-                int timeTwelveHour;
-
-                timeString = time.ToString().Substring(0, length - 2) + ':' + time.ToString().Substring(length - 2);
-                _timeOfDayStringsTwelveHour.Add(new Time() { TimeString = timeString});
-
-
-                if (time >= 1300)
-                {
-                    timeTwelveHour = time - 1200;
-
-                    length = timeTwelveHour.ToString().Length;
-                    timeString = timeTwelveHour.ToString().Substring(0, length - 2) + ':' + timeTwelveHour.ToString().Substring(length - 2);
-                    _timeOfDayStringsTwentyFourHour.Add(new Time() { TimeString = timeString});
-                }
-
-
-                if (time % 100 == 45)
-                    time += 55;
-                else
-                    time += 15;
-            }
-
-        }
 
 
 
@@ -117,12 +77,11 @@ namespace Appointed.ViewModels
             if (ScheduleShifted != null)
                 ScheduleShifted(this, new EventArgs());
         }
+
         public ShiftScheduleViewCommand ShiftView
         {
             get { return new ShiftScheduleViewCommand(ChangeDaysInScope); }
         }
-
-
 
 
         // END COMMANDS ====================================================
@@ -249,6 +208,39 @@ namespace Appointed.ViewModels
         }
 
 
+        public void InitTimeOfDayStrings()
+        {
+            int time = 700;
+            string timeString = "";
+
+            for (int i = 0; i < _numAppointmentsPerDay; i++)
+            {
+                int length = time.ToString().Length;
+                int timeTwelveHour;
+
+                timeString = time.ToString().Substring(0, length - 2) + ':' + time.ToString().Substring(length - 2);
+                _timeOfDayStringsTwelveHour.Add(new Time() { TimeString = timeString });
+
+
+                if (time >= 1300)
+                {
+                    timeTwelveHour = time - 1200;
+
+                    length = timeTwelveHour.ToString().Length;
+                    timeString = timeTwelveHour.ToString().Substring(0, length - 2) + ':' + timeTwelveHour.ToString().Substring(length - 2);
+                    _timeOfDayStringsTwentyFourHour.Add(new Time() { TimeString = timeString });
+                }
+
+
+                if (time % 100 == 45)
+                    time += 55;
+                else
+                    time += 15;
+            }
+
+        }
+
+
 
         // END FUNCTIONS ====================================================
 
@@ -258,20 +250,6 @@ namespace Appointed.ViewModels
 
 
 
-    public class Time : ObservableObject
-    {
-        string _timeString;
-
-        public string TimeString
-        {
-            get { return _timeString; }
-            set
-            {
-                _timeString = value;
-                RaisePropertyChangedEvent("TimeString");
-            }
-        }
-    }
 
 
 

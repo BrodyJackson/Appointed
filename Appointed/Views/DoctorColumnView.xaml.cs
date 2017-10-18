@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Appointed.ViewModels;
+using Appointed.Classes;
 
 
 
@@ -223,10 +224,8 @@ namespace Appointed.Views
             textBlock.Foreground = Brushes.Black;
         }
 
-        private void OnItemDropped(object sender, DragEventArgs e)
-        {
 
-        }
+
 
         private void OnMouseUpAppointmentSlot(object sender, MouseButtonEventArgs e)
         {
@@ -243,11 +242,14 @@ namespace Appointed.Views
             //      that contains information for the last clicked appointment, either in the search bar or
             //      schedule view.
             Console.WriteLine(appt.Patient);
-          
-
-
 
         }
+
+
+
+
+// =========================  Next three functions for drag and drop. ==================
+
 
         // Used to detect a click and drag combination
         private void OnMouseMoveAppointmentSlot(object sender, MouseEventArgs e)
@@ -260,7 +262,8 @@ namespace Appointed.Views
                 // Refresh slot that was dragged to..
             }
         }
-
+        
+        // If there was data from the source appt slot and the target is not itself, show drag icon near mouse pointer
         private void OnDragEnterAppointmentSlot(object sender, DragEventArgs e)
         {
             if (!e.Data.GetDataPresent(DataFormats.StringFormat) || sender == e.Source)
@@ -269,6 +272,7 @@ namespace Appointed.Views
                 e.Effects = DragDropEffects.All;
         }
 
+        // Logic for when an item is dropped (mouse released after drag onto appt slot).
         private void OnDropInAppointmentSlot(object sender, DragEventArgs e)
         {
             DayInformationViewModel DIVM = (DayInformationViewModel)this.DataContext;
@@ -292,6 +296,8 @@ namespace Appointed.Views
                 if (targetAppointment.Type.Length != 0)
                     return;
 
+                // Collapse the empty appointment following the target to make room for two appointments.
+                // Expand the collapsed (by default) appointment following the source appointment.
                 if (sourceAppointment.Type.Equals("Consultation"))
                 {
                     apptFollowingTarget = DIVM.AVM.FindAppointmentThatFollows(targetAppointment);
