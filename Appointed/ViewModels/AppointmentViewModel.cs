@@ -168,6 +168,9 @@ namespace Appointed.ViewModels
                         hashCode = listOfAppointments[k].DateTime.GetHashCode();
                         listOfAppointments[k].ID = (hashCode+i).ToString();
 
+                        Console.WriteLine("Appt Date: " + listOfAppointments[k].DateTime);
+                        Console.WriteLine("Hash Code: " + (hashCode+i));
+
                         _appointmentLookup.Add(hashCode+i, listOfAppointments[k]);
 
                         listOfAppointments[k].StartTime = time;
@@ -195,26 +198,51 @@ namespace Appointed.ViewModels
 
         private void AddEmptyDaysToArray(List<Appointment>[] listOfAppointmentsArray, int drID)
         {
-            List<Appointment> emptyDay = _adm._pearsonEmpty;
+            List<Appointment> emptyDay;
 
-            if (drID == 1)
+            if (drID == 0)
+                emptyDay = _adm._pearsonEmpty;
+            else if (drID == 1)
                 emptyDay = _adm._specterEmpty;
-
-            if (drID == 2)
+            else if (drID == 2)
                 emptyDay = _adm._paulsenEmpty;
+            else
+            {
+                Console.WriteLine("ERROR in AddEmptyDaysToArray: drID does not exist.");
+                return;
+            }
 
             for (int i = 0; i < 20; i++)
-                listOfAppointmentsArray[i] = emptyDay;
+            {
+                listOfAppointmentsArray[i] = new List<Appointment>();
+                listOfAppointmentsArray[i].AddRange(emptyDay.Select(a => new Appointment(a)));
+            }
 
             for (int i = 26; i < 52; i++)
-                listOfAppointmentsArray[i] = emptyDay;
+            {
+                listOfAppointmentsArray[i] = new List<Appointment>();
+                listOfAppointmentsArray[i].AddRange(emptyDay.Select(a => new Appointment(a)));
+            }
 
             for (int i = 53; i < 62; i++)
-                listOfAppointmentsArray[i] = emptyDay;
+            {
+                listOfAppointmentsArray[i] = new List<Appointment>();
+                listOfAppointmentsArray[i].AddRange(emptyDay.Select(a => new Appointment(a)));
+            }
 
             for (int i = 64; i < _numDaysPopulated; i++)
-                listOfAppointmentsArray[i] = emptyDay;
+            {
+                listOfAppointmentsArray[i] = new List<Appointment>();
+                listOfAppointmentsArray[i].AddRange(emptyDay.Select(a => new Appointment(a)));
+            }
 
+            /*
+                        for (int j = 0; j < _numAppointmentsPerDay; j++)
+                        {
+                            Appointment a = new Appointment(emptyDay.ElementAt(0));
+                            listOfAppointmentsArray[i].Add(a);
+                        }
+            */
         }
 
 

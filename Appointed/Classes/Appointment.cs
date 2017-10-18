@@ -56,6 +56,7 @@ namespace Appointed.Classes
             this.StartTime = toCopy.StartTime;
             this.Type = toCopy.Type;
             this.Waitlisted = toCopy.Waitlisted;
+            this.Visibility = toCopy.Visibility;
         }
 
 
