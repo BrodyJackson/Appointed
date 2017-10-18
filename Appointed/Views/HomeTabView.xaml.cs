@@ -25,6 +25,5 @@ namespace Appointed.Views
             InitializeComponent();
         }
 
-        
     }
 }

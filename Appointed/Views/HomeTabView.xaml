@@ -8,16 +8,14 @@
              d:DesignHeight="718" d:DesignWidth="300">
 
     <Canvas>
-
-        <TextBox 
-            HorizontalAlignment="Left" 
+        <local:InputText
+            Hint="Search by name or health care id"
+            Forground="Black"
+            HintForground="Gray"
             Height="23" 
-            TextWrapping="NoWrap" 
-            VerticalAlignment="Top" 
-            Width="239" 
             Canvas.Left="12" 
-            Canvas.Top="12"
-            Text="Search by Name or health care id..." TextChanged="TextBox_TextChanged"/>
+            Canvas.Top="12" 
+            Width="250"/>
     </Canvas>
 
 

@@ -90,6 +90,9 @@
     <Compile Include="Views\HomeWindowHeaderView.xaml.cs">
       <DependentUpon>HomeWindowHeaderView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\InputText.xaml.cs">
+      <DependentUpon>InputText.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\NewAppointmentTabView.xaml.cs">
       <DependentUpon>NewAppointmentTabView.xaml</DependentUpon>
     </Compile>
@@ -154,6 +157,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\HomeWindowHeaderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\InputText.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
