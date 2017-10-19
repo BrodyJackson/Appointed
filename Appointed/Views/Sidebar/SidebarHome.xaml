@@ -10,8 +10,9 @@
     <Grid
         Margin="12">
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="27"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
@@ -23,46 +24,25 @@
 
 
         <local:SearchBarView
+            Grid.Row="0"
             FontFamily="Yu Gothic UI Light"/>
         <Separator
             Grid.Row="1"
             VerticalAlignment="Top"
-            HorizontalAlignment="Stretch" Margin="0,2,0,0" Height="1"/>
+            HorizontalAlignment="Stretch" Margin="0,4,0,4" Height="1"/>
 
-        <TextBlock 
-            Grid.Column="0"
-            Grid.Row="1"
-            FontFamily="Yu Gothic UI Light" 
-            FontSize="24"
-            HorizontalAlignment="Center" 
-            VerticalAlignment="Center" 
-            Text="Jump to Date" Height="32"
-            >
-            <TextBlock.Foreground>
-                <SolidColorBrush Color="#FFFF1E1E" Opacity="0.75"/>
-            </TextBlock.Foreground>
-        </TextBlock>
-
-        <Calendar 
-            Name="JumpCalendar"
-            HorizontalAlignment="Center" 
-            Grid.Row="2" 
-            VerticalAlignment="Center"  
-            />
-        <Button 
-            Content="Today" 
-            HorizontalAlignment="Center"
-            Width="180"
-            Grid.Row="3" 
-            VerticalAlignment="Stretch"
-            />
+        <local:JumpCalendarView
+            Grid.Row="1"/>
 
         <Separator
             Grid.Row="4"
             VerticalAlignment="Top"
             HorizontalAlignment="Stretch" 
-            Margin="0,2,0,0" 
+            Margin="0,4,0,4" 
             Height="1"/>
+
+        <local:FilterView
+            Grid.Row="4"/>
 
         <!--<Border 
             Grid.Column="0"

@@ -78,14 +78,8 @@
     <Compile Include="Views\DoctorsOnShiftView.xaml.cs">
       <DependentUpon>DoctorsOnShiftView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\HomeTabAlertsView.xaml.cs">
-      <DependentUpon>HomeTabAlertsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\HomeTabFilterView.xaml.cs">
-      <DependentUpon>HomeTabFilterView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\HomeTabSearchBar.xaml.cs">
-      <DependentUpon>HomeTabSearchBar.xaml</DependentUpon>
+    <Compile Include="Views\FilterView.xaml.cs">
+      <DependentUpon>FilterView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HomeTabView.xaml.cs">
       <DependentUpon>HomeTabView.xaml</DependentUpon>
@@ -93,14 +87,17 @@
     <Compile Include="Views\HomeWindowHeaderView.xaml.cs">
       <DependentUpon>HomeWindowHeaderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\InputText.xaml.cs">
+    <Compile Include="Views\Controls\InputText.xaml.cs">
       <DependentUpon>InputText.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\JumpCalendarView.xaml.cs">
+      <DependentUpon>JumpCalendarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewAppointmentTabView.xaml.cs">
       <DependentUpon>NewAppointmentTabView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SearchBarView.xaml.cs">
-      <DependentUpon>SearchBarView.xaml</DependentUpon>
+    <Compile Include="Views\Controls\SearchBar.xaml.cs">
+      <DependentUpon>SearchBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SidebarFrameView.xaml.cs">
       <DependentUpon>SidebarFrameView.xaml</DependentUpon>
@@ -142,15 +139,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\HomeTabAlertsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\HomeTabFilterView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\HomeTabSearchBar.xaml">
+    <Page Include="Views\FilterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -162,7 +151,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\InputText.xaml">
+    <Page Include="Views\Controls\InputText.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\JumpCalendarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -170,7 +163,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SearchBarView.xaml">
+    <Page Include="Views\Controls\SearchBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
