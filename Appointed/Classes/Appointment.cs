@@ -37,7 +37,8 @@ namespace Appointed.Classes
 
         }
 
-
+        // Make sure to add to this as fields are added to appointment class.
+        // If not done, bindings will not resolve.
         public Appointment(Appointment toCopy)
         {
             this.Colour = toCopy.Colour;
