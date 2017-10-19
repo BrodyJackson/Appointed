@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Appointed.Views.SearchBarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Appointed.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="34"/>
+        </Grid.ColumnDefinitions>
+        
+        <local:InputText
+            Grid.Column="0"
+            Grid.Row="0"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch"
+            Height="30"
+            Hint="Search by name or id"
+            HintForground="DarkGray"
+            Forground="Black"
+            FontSize="20"
+            />
+        <Button
+            Grid.Column="1"
+            Grid.Row="0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Height="30">
+            <Image
+                Height="Auto"
+                Source="/Appointed;component/imgs/Search_256x.png"
+            />
+        </Button>
+    </Grid>
+</UserControl>

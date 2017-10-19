@@ -16,15 +16,13 @@ using System.Windows.Shapes;
 namespace Appointed.Views
 {
     /// <summary>
-    /// Interaction logic for HomeTabView.xaml
+    /// Interaction logic for SearchBarView.xaml
     /// </summary>
-    public partial class HomeTabView : UserControl
+    public partial class SearchBarView : UserControl
     {
-        public HomeTabView()
+        public SearchBarView()
         {
             InitializeComponent();
         }
-
-
     }
 }

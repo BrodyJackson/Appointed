@@ -7,16 +7,72 @@
              mc:Ignorable="d" 
              d:DesignHeight="718" d:DesignWidth="300">
 
-    <Canvas>
-        <local:InputText
-            Hint="Search by name or health care id"
-            Forground="Black"
-            HintForground="Gray"
-            Height="23" 
-            Canvas.Left="12" 
-            Canvas.Top="12" 
-            Width="250"/>
-    </Canvas>
+    <Grid
+        Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="27"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+
+        </Grid.ColumnDefinitions>
+
+
+        <local:SearchBarView
+            FontFamily="Yu Gothic UI Light"/>
+        <Separator
+            Grid.Row="1"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Stretch" Margin="0,2,0,0" Height="1"/>
+
+        <TextBlock 
+            Grid.Column="0"
+            Grid.Row="1"
+            FontFamily="Yu Gothic UI Light" 
+            FontSize="24"
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center" 
+            Text="Jump to Date" Height="32"
+            >
+            <TextBlock.Foreground>
+                <SolidColorBrush Color="#FFFF1E1E" Opacity="0.75"/>
+            </TextBlock.Foreground>
+        </TextBlock>
+
+        <Calendar 
+            Name="JumpCalendar"
+            HorizontalAlignment="Center" 
+            Grid.Row="2" 
+            VerticalAlignment="Center"  
+            />
+        <Button 
+            Content="Today" 
+            HorizontalAlignment="Center"
+            Width="180"
+            Grid.Row="3" 
+            VerticalAlignment="Stretch"
+            />
+
+        <Separator
+            Grid.Row="4"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Stretch" 
+            Margin="0,2,0,0" 
+            Height="1"/>
+
+        <!--<Border 
+            Grid.Column="0"
+            Grid.Row="1"
+            BorderBrush="Black"
+            BorderThickness="1"
+            />-->
+
+
+    </Grid>
 
 
 </UserControl>
