@@ -293,6 +293,9 @@ namespace Appointed.Views
                 keyForTargetAppointment = ((Rectangle)sender).Tag.ToString();
                 targetAppointment = DIVM.AVM._appointmentLookup[Int32.Parse(keyForTargetAppointment)];
 
+                Console.WriteLine("Source Appointment Date: " + sourceAppointment.DateTime);
+                Console.WriteLine("Target Appointment Date: " + targetAppointment.DateTime);
+
                 if (targetAppointment.Type.Length != 0)
                     return;
 
