@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Appointed.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="190" d:DesignWidth="300">
+             d:DesignHeight="150" d:DesignWidth="300">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -28,8 +28,6 @@
                 <SolidColorBrush Color="#FFFF1E1E" Opacity="0.75"/>
             </TextBlock.Foreground>
         </TextBlock>
-
-
 
         <StackPanel 
             Grid.Row="1"

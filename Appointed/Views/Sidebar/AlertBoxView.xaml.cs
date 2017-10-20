@@ -13,16 +13,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Appointed.Views
+namespace Appointed.Views.Sidebar
 {
     /// <summary>
-    /// Interaction logic for FilterView.xaml
+    /// Interaction logic for AlertBoxView.xaml
     /// </summary>
-    public partial class FilterView : UserControl
+    public partial class AlertBoxView : UserControl
     {
-        public FilterView()
+        public AlertBoxView()
         {
             InitializeComponent();
+        }
+
+        private void ScrollViewer_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+        {
 
         }
     }
