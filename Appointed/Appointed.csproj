@@ -84,8 +84,8 @@
     <Compile Include="Views\Sidebar\FilterView.xaml.cs">
       <DependentUpon>FilterView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Sidebar\SidebarHome.xaml.cs">
-      <DependentUpon>SidebarHome.xaml</DependentUpon>
+    <Compile Include="Views\Sidebar\HomeSidebar.xaml.cs">
+      <DependentUpon>HomeSidebar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HomeWindowHeaderView.xaml.cs">
       <DependentUpon>HomeWindowHeaderView.xaml</DependentUpon>
@@ -150,7 +150,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Sidebar\SidebarHome.xaml">
+    <Page Include="Views\Sidebar\HomeSidebar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

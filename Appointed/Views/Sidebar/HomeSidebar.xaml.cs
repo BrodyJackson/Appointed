@@ -18,9 +18,9 @@ namespace Appointed.Views
     /// <summary>
     /// Interaction logic for HomeTabView.xaml
     /// </summary>
-    public partial class HomeTabView : UserControl
+    public partial class HomeSidebar : UserControl
     {
-        public HomeTabView()
+        public HomeSidebar()
         {
             InitializeComponent();
         }

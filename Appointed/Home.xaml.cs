@@ -13,6 +13,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Appointed.Views;
 
 namespace Appointed
 {
@@ -24,6 +25,10 @@ namespace Appointed
         public Home()
         {
             InitializeComponent();
+
+            SidebarView.SetSidebarView(new HomeSidebar());
+            //TODO: SET SIDEBAR NAV BUTTONS
         }
+
     }
 }

@@ -24,5 +24,15 @@ namespace Appointed.Views
         {
             InitializeComponent();
         }
+
+        public void SetSidebarView(UserControl view)
+        {
+            SidebarGirdLayout.Children.Add(view);
+            Grid.SetColumn(view, 0);
+            Grid.SetRow(view, 0);
+            view.VerticalAlignment = VerticalAlignment.Stretch;
+            view.HorizontalAlignment = HorizontalAlignment.Stretch;
+        }
     }
+
 }
