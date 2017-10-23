@@ -231,7 +231,7 @@
     <Resource Include="imgs\horizontal-lines-and-a-square %281%29.png" />
     <Resource Include="imgs\horizontal-lines-and-a-square.png" />
     <Resource Include="imgs\icon %281%29.png" />
-    <Resource Include="imgs\icon.png" />
+    <Resource Include="imgs\NewApptIcon.png" />
     <Resource Include="imgs\may-15-calendar-page-interface-symbol %281%29.png" />
     <Resource Include="imgs\may-15-calendar-page-interface-symbol.png" />
     <Resource Include="imgs\menu %281%29.png" />
@@ -241,7 +241,7 @@
     <Resource Include="imgs\next.png" />
     <Resource Include="imgs\square.png" />
     <Resource Include="imgs\squareLg.png" />
-    <Resource Include="imgs\user-image-with-black-background %281%29.png" />
+    <Resource Include="imgs\PatientIcon.png" />
     <Resource Include="imgs\user-image-with-black-background.png" />
   </ItemGroup>
   <ItemGroup>

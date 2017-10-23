@@ -20,6 +20,9 @@ namespace Appointed.Views
     /// </summary>
     public partial class SidebarFrameView : UserControl
     {
+        Button _leftQuickNavButton;
+        Button _rightQuickNavButton;
+
         public SidebarFrameView()
         {
             InitializeComponent();
@@ -33,6 +36,49 @@ namespace Appointed.Views
             view.VerticalAlignment = VerticalAlignment.Stretch;
             view.HorizontalAlignment = HorizontalAlignment.Stretch;
         }
+
+        /// <summary>
+        /// Replaces the left Quick Nav Button.
+        /// > Will rename button to "LeftQuickNavButton"
+        /// </summary>
+        /// <param name="btn">Button to replace left quick nav button</param>
+        public void SetLeftQuickNavButton(Button btn)
+        {
+            QuickNavArea.Children.Remove(LeftQuickNavButton);
+            btn.Name = "LeftQuickNavButton";
+            QuickNavArea.Children.Add(btn);
+            Grid.SetColumn(btn, 0);
+            Grid.SetRow(btn, 0);
+
+            _leftQuickNavButton = btn;
+        }
+
+        /// <summary>
+        /// Replaces the Right Quick Nav Button.
+        /// > Will rename button to "RightQuickNavButton"
+        /// </summary>
+        /// <param name="btn">Button to replace Right quick nav button</param>
+        public void SetRightQuickNavButton(Button btn)
+        {
+            QuickNavArea.Children.Remove(LeftQuickNavButton);
+            btn.Name = "RightQuickNavButton";
+            QuickNavArea.Children.Add(btn);
+            Grid.SetColumn(btn, 1);
+            Grid.SetRow(btn, 0);
+
+            _rightQuickNavButton = btn;
+        }
+
+        public Button GetLeftQuickNavButton()
+        {
+            return _leftQuickNavButton;
+        }
+
+        public Button GetRightQuickNavButton()
+        {
+            return _rightQuickNavButton;
+        }
+
     }
 
 }

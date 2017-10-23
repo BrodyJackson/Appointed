@@ -27,7 +27,35 @@ namespace Appointed
             InitializeComponent();
 
             SidebarView.SetSidebarView(new HomeSidebar());
-            //TODO: SET SIDEBAR NAV BUTTONS
+
+            //TODO: Replace these icons with black versions
+
+            Button newApptBtn = new Button
+            {
+                Content = new Image()
+                {
+                    Source = new BitmapImage(new Uri("pack://application:,,,/Appointed;component/imgs/NewApptIcon.png")),
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Margin = new Thickness(8d)
+                }
+            };
+
+            Button newPatientBtn = new Button
+            {
+                Content = new Image()
+                {
+                    Source = new BitmapImage(new Uri("pack://application:,,,/Appointed;component/imgs/PatientIcon.png")),
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Margin = new Thickness(8d)
+                }
+            };
+
+            SidebarView.SetLeftQuickNavButton(newApptBtn);
+            SidebarView.SetRightQuickNavButton(newPatientBtn);
+
+            //TODO: Add event listeners
         }
 
     }
