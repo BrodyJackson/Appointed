@@ -78,10 +78,19 @@
     <Compile Include="Views\DoctorsOnShiftView.xaml.cs">
       <DependentUpon>DoctorsOnShiftView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Sidebar\AlertBoxView.xaml.cs">
+    <Compile Include="Views\Sidebar\ListItems\Alert.xaml.cs">
+      <DependentUpon>Alert.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sidebar\ListItems\SearchResult.xaml.cs">
+      <DependentUpon>SearchResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sidebar\SearchResultsSidebar.xaml.cs">
+      <DependentUpon>SearchResultsSidebar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sidebar\Widgets\AlertBoxView.xaml.cs">
       <DependentUpon>AlertBoxView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Sidebar\FilterView.xaml.cs">
+    <Compile Include="Views\Sidebar\Widgets\FilterView.xaml.cs">
       <DependentUpon>FilterView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Sidebar\HomeSidebar.xaml.cs">
@@ -93,7 +102,7 @@
     <Compile Include="Views\Controls\InputText.xaml.cs">
       <DependentUpon>InputText.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Sidebar\JumpCalendarView.xaml.cs">
+    <Compile Include="Views\Sidebar\Widgets\JumpCalendarView.xaml.cs">
       <DependentUpon>JumpCalendarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewAppointmentTabView.xaml.cs">
@@ -142,11 +151,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Sidebar\AlertBoxView.xaml">
+    <Page Include="Views\Sidebar\ListItems\Alert.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Sidebar\FilterView.xaml">
+    <Page Include="Views\Sidebar\ListItems\SearchResult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\SearchResultsSidebar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\Widgets\AlertBoxView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\Widgets\FilterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -162,7 +183,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Sidebar\JumpCalendarView.xaml">
+    <Page Include="Views\Sidebar\Widgets\JumpCalendarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

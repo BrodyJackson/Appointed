@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Appointed.Views
+namespace Appointed.Views.Sidebar.ListItems
 {
     /// <summary>
-    /// Interaction logic for SearchBarView.xaml
+    /// Interaction logic for SearchResult.xaml
     /// </summary>
-    public partial class SearchBar : UserControl
+    public partial class SearchResult : UserControl
     {
-        public SearchBar()
+        public SearchResult()
         {
             InitializeComponent();
         }

@@ -16,7 +16,8 @@
         Margin="12"
         LastChildFill="True">
 
-        <local:SearchBarView
+        <local:SearchBar
+            x:Name="SearchInput"
             DockPanel.Dock="Top" />
 
         <Separator

@@ -23,6 +23,7 @@ namespace Appointed.Views
         public HomeSidebar()
         {
             InitializeComponent();
+
         }
 
 
