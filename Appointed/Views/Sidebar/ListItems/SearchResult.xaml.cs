@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Appointed.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,28 @@ namespace Appointed.Views.Sidebar.ListItems
     /// </summary>
     public partial class SearchResult : UserControl
     {
-        public SearchResult()
+        private Patient patient;
+        public Patient Patient
+        {
+            get => patient;
+            set
+            {
+                patient = value;
+                PatientName.Text = patient.LastName + ", " + patient.FirstName + ", " + patient.MiddleName[0];
+                PatientID.Text = patient.GetHealthIdAsString();
+                PatientSex.Text = "Sex: " + patient.GetSexAsString();
+                PatientBirthday.Text = "Birthdate: " + patient.BirthDate.ToShortDateString();
+            }
+        }
+
+
+        public SearchResult(Patient p)
         {
             InitializeComponent();
+
+            Patient = p;
         }
+
+        
     }
 }

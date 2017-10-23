@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Appointed.ViewModels
 {
+
 	public class Patient : ObservableObject
 	{
 		//Constant values
@@ -42,8 +43,8 @@ namespace Appointed.ViewModels
 		int _sex;               //Use constant values
 		int _healthID;
 
-		//Address
-		string _street;
+        //Address
+        string _street;
 		string _suite;
 		string _city;
 		int _province;          //Use constant values
@@ -92,6 +93,8 @@ namespace Appointed.ViewModels
 			}
 		}
 
+        //TODO: Add GetFullName() function er something
+
 		public DateTime BirthDate
 		{
 			get { return _birthDate; }
@@ -114,6 +117,19 @@ namespace Appointed.ViewModels
 			}
 		}
 
+        public String GetSexAsString()
+        {
+            switch(Sex)
+            {
+                case 1:
+                    return "Male";
+                case 2:
+                    return "Female";
+                default:
+                    return "Other";
+            }
+        }
+
 		public int HealthID
 		{
 			get { return _healthID; }
@@ -125,7 +141,13 @@ namespace Appointed.ViewModels
 			}
 		}
 
-		public string Street
+        internal string GetHealthIdAsString()
+        {
+            return _healthID.ToString().Take(5) + "-" + _healthID.ToString().Substring(5);
+        }
+
+
+        public string Street
 		{
 			get { return _street; }
 

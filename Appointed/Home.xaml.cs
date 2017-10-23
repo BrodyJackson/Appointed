@@ -28,6 +28,8 @@ namespace Appointed
             InitializeComponent();
 
             SidebarView.SetSidebarView(new HomeSidebar());
+            //SidebarView.SetSidebarView(new SearchResultsSidebar());
+
 
             //TODO: Replace these icons with black versions
 
