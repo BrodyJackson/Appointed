@@ -27,8 +27,13 @@ namespace Appointed
         {
             InitializeComponent();
 
+            ShowHomeSidebar();
+
+        }
+
+        private void ShowHomeSidebar()
+        {
             SidebarView.SetSidebarView(new HomeSidebar());
-            //SidebarView.SetSidebarView(new SearchResultsSidebar());
 
 
             //TODO: Replace these icons with black versions
@@ -60,6 +65,5 @@ namespace Appointed
 
             //TODO: Add event listeners
         }
-
     }
 }

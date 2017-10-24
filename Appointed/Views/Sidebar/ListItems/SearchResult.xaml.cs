@@ -28,7 +28,7 @@ namespace Appointed.Views.Sidebar.ListItems
             set
             {
                 patient = value;
-                PatientName.Text = patient.LastName + ", " + patient.FirstName + ", " + patient.MiddleName[0];
+                PatientName.Text = patient.LastName + ", " + patient.FirstName + " " + patient.MiddleName[0] + ".";
                 PatientID.Text = patient.GetHealthIdAsString();
                 PatientSex.Text = "Sex: " + patient.GetSexAsString();
                 PatientBirthday.Text = "Birthdate: " + patient.BirthDate.ToShortDateString();

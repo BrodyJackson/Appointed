@@ -81,6 +81,9 @@
     <Compile Include="Views\Sidebar\ListItems\Alert.xaml.cs">
       <DependentUpon>Alert.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Sidebar\ListItems\CreateNewPatientResultItem.xaml.cs">
+      <DependentUpon>CreateNewPatientResultItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Sidebar\ListItems\SearchResult.xaml.cs">
       <DependentUpon>SearchResult.xaml</DependentUpon>
     </Compile>
@@ -152,6 +155,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Sidebar\ListItems\Alert.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\ListItems\CreateNewPatientResultItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
