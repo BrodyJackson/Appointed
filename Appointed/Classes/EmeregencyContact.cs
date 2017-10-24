@@ -12,13 +12,7 @@ namespace Appointed.ViewModels
 {
 	public class EmeregencyContact : ObservableObject
 	{
-		//Constant values for relationship
-		const int OTHER = 0;
-		const int SPOUSE = 1;
-		const int PARENT = 2;
-		const int CHILD = 3;
-		const int EXTENDED_FAMILY = 4;
-		const int FRIEND = 5;
+		enum relationship { Other, Spouse, Parent, Child, Extended_Family, Friend}
 
 		string _emergencyName;
 		int _emergencyRelation;          //Use constant values

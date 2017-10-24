@@ -14,10 +14,9 @@ namespace Appointed.ViewModels
 	{
 		//Constant values
 
-		//Sex
-		const int OTHER = 0;
-		const int MALE = 1;
-		const int FEMALE = 2;
+		enum SEX {Other, Male, Female };
+
+		enum PROVINCE {AB, BC, MB, NB, NL, NT, NS, NU, ON, PE, QC, SK, YT };
 
 		//Provinces (and territories)
 		const int AB = 0;
