@@ -26,6 +26,7 @@
             DockPanel.Dock="Top" />
 
         <local:JumpCalendarView
+            x:Name="JumpCalendar"
             DockPanel.Dock="Top" />
 
         <Separator
@@ -34,6 +35,7 @@
             DockPanel.Dock="Top" />
 
         <local:FilterView
+            x:Name="Filters"
             DockPanel.Dock="Top" />
         <Separator
             Height="1"
@@ -41,6 +43,7 @@
             DockPanel.Dock="Top" />
 
         <localSidebar:AlertBoxView
+            x:Name="AlertBox"
             DockPanel.Dock="Top" />
 
     </DockPanel>

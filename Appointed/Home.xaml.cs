@@ -27,7 +27,9 @@ namespace Appointed
         {
             InitializeComponent();
 
-            ShowHomeSidebar();
+            //ShowHomeSidebar();
+            SidebarView.SetSidebarView(new PatientInfoSidebar());
+            //SidebarView.SetSidebarView(new SearchResultsSidebar());
 
         }
 
@@ -60,8 +62,10 @@ namespace Appointed
                 }
             };
 
-            SidebarView.SetLeftQuickNavButton(newApptBtn);
-            SidebarView.SetRightQuickNavButton(newPatientBtn);
+            SidebarView.SetLeftQuickNavButton(newPatientBtn);
+            //SidebarView.SetRightQuickNavButton(newApptBtn);
+            SidebarView.SetRightQuickNavButton(null);
+            Grid.SetColumnSpan(newPatientBtn, 2);
 
             //TODO: Add event listeners
         }

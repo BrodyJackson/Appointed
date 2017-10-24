@@ -40,7 +40,8 @@
             HorizontalAlignment="Stretch"
             VerticalScrollBarVisibility="Auto">
 
-            <StackPanel Name="AlertsList">
+            <StackPanel Name="AlertsList"
+                        Margin="4">
                 <!--Insert Alerts here as list items er whatever-->
             </StackPanel>
             

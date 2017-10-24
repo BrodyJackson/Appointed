@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\Alert.cs" />
     <Compile Include="Classes\Appointment.cs" />
     <Compile Include="Classes\DayTemplate.cs" />
     <Compile Include="Classes\Doctor.cs" />
@@ -87,6 +88,9 @@
     <Compile Include="Views\Sidebar\ListItems\SearchResult.xaml.cs">
       <DependentUpon>SearchResult.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Sidebar\PatientInfoSidebar.xaml.cs">
+      <DependentUpon>PatientInfoSidebar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Sidebar\SearchResultsSidebar.xaml.cs">
       <DependentUpon>SearchResultsSidebar.xaml</DependentUpon>
     </Compile>
@@ -116,6 +120,9 @@
     </Compile>
     <Compile Include="Views\Sidebar\SidebarFrameView.xaml.cs">
       <DependentUpon>SidebarFrameView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sidebar\Widgets\PatientBasicInfoView.xaml.cs">
+      <DependentUpon>PatientBasicInfoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SingleDayView.xaml.cs">
       <DependentUpon>SingleDayView.xaml</DependentUpon>
@@ -166,6 +173,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Sidebar\PatientInfoSidebar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Sidebar\SearchResultsSidebar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -203,6 +214,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Sidebar\SidebarFrameView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\Widgets\PatientBasicInfoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -289,6 +304,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="imgs\Back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imgs\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imgs\Info-Blue.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

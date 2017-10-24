@@ -45,11 +45,13 @@ namespace Appointed.Views
         public void SetLeftQuickNavButton(Button btn)
         {
             QuickNavArea.Children.Remove(LeftQuickNavButton);
-            btn.Name = "LeftQuickNavButton";
-            QuickNavArea.Children.Add(btn);
-            Grid.SetColumn(btn, 0);
-            Grid.SetRow(btn, 0);
-
+            if (btn != null)
+            {
+                btn.Name = "LeftQuickNavButton";
+                QuickNavArea.Children.Add(btn);
+                Grid.SetColumn(btn, 0);
+                Grid.SetRow(btn, 0);
+            }
             _leftQuickNavButton = btn;
         }
 
@@ -61,11 +63,13 @@ namespace Appointed.Views
         public void SetRightQuickNavButton(Button btn)
         {
             QuickNavArea.Children.Remove(LeftQuickNavButton);
-            btn.Name = "RightQuickNavButton";
-            QuickNavArea.Children.Add(btn);
-            Grid.SetColumn(btn, 1);
-            Grid.SetRow(btn, 0);
-
+            if (btn != null)
+            {
+                btn.Name = "RightQuickNavButton";
+                QuickNavArea.Children.Add(btn);
+                Grid.SetColumn(btn, 1);
+                Grid.SetRow(btn, 0);
+            }
             _rightQuickNavButton = btn;
         }
 

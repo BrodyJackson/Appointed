@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Appointed.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,14 +21,32 @@ namespace Appointed.Views.Sidebar
     /// </summary>
     public partial class AlertBoxView : UserControl
     {
+        List<Alert> _alerts = new List<Alert>();
+
         public AlertBoxView()
         {
             InitializeComponent();
         }
 
-        private void ScrollViewer_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+        public void AddAlert(Alert a)
         {
+            _alerts.Insert(_alerts.Count, a);
+        }
 
+        public void RemoveAlert(Alert a)
+        {
+            _alerts.Remove(a);
+        }
+
+        public void UpdateAlertsBox()
+        {
+            AlertsList.Children.Clear();
+
+            foreach(Alert a in _alerts)
+            {
+                ListItems.Alert alert = new ListItems.Alert(a, this);
+                AlertsList.Children.Add(alert);
+            }
         }
     }
 }

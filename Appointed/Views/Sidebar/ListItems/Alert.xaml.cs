@@ -20,9 +20,23 @@ namespace Appointed.Views.Sidebar.ListItems
     /// </summary>
     public partial class Alert : UserControl
     {
-        public Alert()
+
+        private AlertBoxView _parent;
+        private Classes.Alert _alert;
+
+        public Alert(Classes.Alert alert, AlertBoxView parent)
         {
             InitializeComponent();
+            _parent = parent;
+            _alert = alert;
+            AlertTitle.Text = alert.Title;
+            AlertActionBtn.Content = alert.ButtonText;
+        }
+
+        private void AlertDeleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            _parent.RemoveAlert(_alert);
+            _parent.UpdateAlertsBox();
         }
     }
 }
