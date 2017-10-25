@@ -82,6 +82,9 @@
     <Compile Include="Views\Sidebar\ListItems\Alert.xaml.cs">
       <DependentUpon>Alert.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Sidebar\ListItems\ApptHistoryDetail.xaml.cs">
+      <DependentUpon>ApptHistoryDetail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Sidebar\ListItems\CreateNewPatientResultItem.xaml.cs">
       <DependentUpon>CreateNewPatientResultItem.xaml</DependentUpon>
     </Compile>
@@ -121,8 +124,23 @@
     <Compile Include="Views\Sidebar\SidebarFrameView.xaml.cs">
       <DependentUpon>SidebarFrameView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Sidebar\Widgets\PatientAddressInfoView.xaml.cs">
+      <DependentUpon>PatientAddressInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sidebar\Widgets\PatientApptHistoryView.xaml.cs">
+      <DependentUpon>PatientApptHistoryView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Sidebar\Widgets\PatientBasicInfoView.xaml.cs">
       <DependentUpon>PatientBasicInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sidebar\Widgets\PatientContactInfoView.xaml.cs">
+      <DependentUpon>PatientContactInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sidebar\Widgets\PatientEmergencyContactInfoView.xaml.cs">
+      <DependentUpon>PatientEmergencyContactInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sidebar\Widgets\PatientUpcomingApptView.xaml.cs">
+      <DependentUpon>PatientUpcomingApptView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SingleDayView.xaml.cs">
       <DependentUpon>SingleDayView.xaml</DependentUpon>
@@ -162,6 +180,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Sidebar\ListItems\Alert.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\ListItems\ApptHistoryDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -217,7 +239,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Sidebar\Widgets\PatientAddressInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\Widgets\PatientApptHistoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Sidebar\Widgets\PatientBasicInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\Widgets\PatientContactInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\Widgets\PatientEmergencyContactInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\Widgets\PatientUpcomingApptView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

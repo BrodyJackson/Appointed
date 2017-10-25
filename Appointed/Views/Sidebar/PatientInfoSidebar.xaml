@@ -9,10 +9,75 @@
     mc:Ignorable="d"
     d:DesignHeight="700"
     d:DesignWidth="300">
-    <DockPanel>
+    <Grid
+        Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="auto" />
+            <RowDefinition
+                Height="*" />
+        </Grid.RowDefinitions>
 
-        <Widgets:PatientBasicInfoView
-            VerticalAlignment="Top" />
+        <TextBlock
+            Grid.Row="0"
+            Margin="0,0,0,4"
+            Text="Patient Information"
+            FontSize="24"
+            Grid.ColumnSpan="2"
+            TextAlignment="Center">
+            <TextBlock.Foreground>
+                <SolidColorBrush
+                    Color="#FFFF1E1E"
+                    Opacity="0.75" />
+            </TextBlock.Foreground>
+        </TextBlock>
 
-    </DockPanel>
+        <ScrollViewer
+            Grid.Row="1"
+            VerticalScrollBarVisibility="Hidden">
+
+            <DockPanel
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                LastChildFill="False">
+
+                <Widgets:PatientBasicInfoView
+                    DockPanel.Dock="Top"
+                    Margin="0,4,0,0"
+                    Height="auto" />
+
+                <Widgets:PatientAddressInfoView
+                    DockPanel.Dock="Top"
+                    Margin="0,4,0,0"
+                    Height="auto" />
+
+                <Widgets:PatientContactInfoView
+                    DockPanel.Dock="Top"
+                    Margin="0,4,0,0"
+                    Height="auto" />
+
+                <Widgets:PatientEmergencyContactInfoView
+                    DockPanel.Dock="Top"
+                    Margin="0,4,0,0"
+                    Height="auto" />
+
+                <Widgets:PatientUpcomingApptView
+                    DockPanel.Dock="Top"
+                    Margin="0,4,0,0"
+                    MaxHeight="150"
+                    Height="auto" />
+
+                <Widgets:PatientApptHistoryView
+                    DockPanel.Dock="Top"
+                    Margin="0,4,0,0"
+                    MaxHeight="300"
+                    Height="auto" />
+
+            </DockPanel>
+
+        </ScrollViewer>
+        
+
+
+    </Grid>
 </UserControl>
