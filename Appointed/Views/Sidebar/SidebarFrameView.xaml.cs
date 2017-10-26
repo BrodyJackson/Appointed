@@ -22,6 +22,7 @@ namespace Appointed.Views
     {
         Button _leftQuickNavButton;
         Button _rightQuickNavButton;
+        UserControl _sidebarView;
 
         public SidebarFrameView()
         {
@@ -30,6 +31,8 @@ namespace Appointed.Views
 
         public void SetSidebarView(UserControl view)
         {
+            SidebarGirdLayout.Children.Remove(_sidebarView);
+            _sidebarView = view;
             SidebarGirdLayout.Children.Add(view);
             Grid.SetColumn(view, 0);
             Grid.SetRow(view, 0);

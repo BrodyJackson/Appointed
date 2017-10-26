@@ -61,6 +61,11 @@
                     Margin="0,4,0,0"
                     Height="auto" />
 
+                <Widgets:PatientNotesView
+                    DockPanel.Dock="Top"
+                    Margin="0,4,0,0"
+                    Height="auto" />
+
                 <Widgets:PatientUpcomingApptView
                     DockPanel.Dock="Top"
                     Margin="0,4,0,0"

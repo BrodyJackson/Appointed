@@ -139,6 +139,9 @@
     <Compile Include="Views\Sidebar\Widgets\PatientEmergencyContactInfoView.xaml.cs">
       <DependentUpon>PatientEmergencyContactInfoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Sidebar\Widgets\PatientNotesView.xaml.cs">
+      <DependentUpon>PatientNotesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Sidebar\Widgets\PatientUpcomingApptView.xaml.cs">
       <DependentUpon>PatientUpcomingApptView.xaml</DependentUpon>
     </Compile>
@@ -256,6 +259,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Sidebar\Widgets\PatientEmergencyContactInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\Widgets\PatientNotesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
