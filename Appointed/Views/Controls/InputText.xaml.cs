@@ -24,7 +24,7 @@ namespace Appointed.Views
 
         public string Hint
         {
-            get => _hint;
+            get {return  _hint; }
 
             set
             {
@@ -39,7 +39,7 @@ namespace Appointed.Views
         private Brush _hintForground = Brushes.Gray;
         public Brush Forground
         {
-            get => _forground;
+            get { return _forground; }
 
             set
             {
@@ -48,7 +48,7 @@ namespace Appointed.Views
         }
         public Brush HintForground
         {
-            get => _hintForground;
+            get { return _hintForground; }
 
             set
             {
