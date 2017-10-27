@@ -37,6 +37,7 @@
     <Reference Include="Microsoft.Expression.Drawing, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -66,6 +67,7 @@
     <Compile Include="Events\Schedule.cs" />
     <Compile Include="Models\AppointmentDatabaseModel.cs" />
     <Compile Include="Models\DayInformationModel.cs" />
+    <Compile Include="Assets\ResourceManager.cs" />
     <Compile Include="ViewModels\AppointmentViewModel.cs" />
     <Compile Include="ViewModels\DayInformationViewModel.cs" />
     <Compile Include="Classes\EmeregencyContact.cs" />
@@ -310,55 +312,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="imgs\right-chevron %281%29.png" />
-    <Resource Include="imgs\right-chevron.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="imgs\cancel %281%29.png" />
-    <Resource Include="imgs\cancel.png" />
-    <Resource Include="imgs\edit %281%29.png" />
-    <Resource Include="imgs\edit %282%29.png" />
-    <Resource Include="imgs\edit %283%29.png" />
-    <Resource Include="imgs\edit.png" />
-    <Resource Include="imgs\horizontal-lines-and-a-square %281%29.png" />
-    <Resource Include="imgs\horizontal-lines-and-a-square.png" />
-    <Resource Include="imgs\icon %281%29.png" />
-    <Resource Include="imgs\NewApptIcon.png" />
-    <Resource Include="imgs\may-15-calendar-page-interface-symbol %281%29.png" />
-    <Resource Include="imgs\may-15-calendar-page-interface-symbol.png" />
-    <Resource Include="imgs\menu %281%29.png" />
-    <Resource Include="imgs\menu.png" />
-    <Resource Include="imgs\next %281%29.png" />
-    <Resource Include="imgs\next %282%29.png" />
-    <Resource Include="imgs\next.png" />
-    <Resource Include="imgs\square.png" />
-    <Resource Include="imgs\squareLg.png" />
-    <Resource Include="imgs\PatientIcon.png" />
-    <Resource Include="imgs\user-image-with-black-background.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="next.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="right-chevron.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="right-chevron %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="imgs\Search_256x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="imgs\Home.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="imgs\Back.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="imgs\Delete.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="imgs\Info-Blue.png" />
+    <Resource Include="Assets\ReturnIcon.png" />
+    <Resource Include="Assets\InfoIcon.png" />
+    <Resource Include="Assets\HomeIcon.png" />
+    <Resource Include="Assets\TrashIcon.png" />
+    <Resource Include="Assets\NewPatientIcon.png" />
+    <Resource Include="Assets\SearchIcon.png" />
+    <Resource Include="Assets\EditIcon.png" />
+    <Resource Include="Assets\RightArrow.png" />
+    <Resource Include="Assets\LeftArrow.png" />
+    <Resource Include="Assets\RightDblArrow.png" />
+    <Resource Include="Assets\LeftDblArrow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

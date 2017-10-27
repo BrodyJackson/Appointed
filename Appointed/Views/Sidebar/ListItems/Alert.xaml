@@ -38,7 +38,8 @@
             VerticalAlignment="Center"
             Width="25"
             Height="25"
-            Source="/Appointed;component/imgs/Info-Blue.png" />
+            Source="/Appointed;component/Assets/InfoIcon.png"
+            SnapsToDevicePixels="True" />
 
         <TextBlock
             Foreground="#FFFF1E1E"
@@ -61,14 +62,16 @@
             Margin="2"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
-            Height="16"
-            Width="16"
             Click="AlertDeleteBtn_Click"
-            BorderBrush="Transparent">
-            <Image 
+            BorderBrush="Transparent"
+            Background="Transparent"
+            Height="16"
+            Width="16">
+            <Image
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Source="/Appointed;component/imgs/Delete.png" />
+                SnapsToDevicePixels="True"
+                Source="/Appointed;component/Assets/TrashIcon.png" />
         </Button>
 
         <Button 

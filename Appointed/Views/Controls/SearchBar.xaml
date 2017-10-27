@@ -33,8 +33,7 @@
             Height="30">
             <Image
                 Height="Auto"
-                Source="/Appointed;component/imgs/Search_256x.png"
-            />
+                Source="/Appointed;component/Assets/SearchIcon.png" />
         </Button>
     </Grid>
 </UserControl>

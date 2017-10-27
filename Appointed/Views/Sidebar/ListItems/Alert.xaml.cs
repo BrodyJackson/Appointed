@@ -31,6 +31,7 @@ namespace Appointed.Views.Sidebar.ListItems
             _alert = alert;
             AlertTitle.Text = alert.Title;
             AlertActionBtn.Content = alert.ButtonText;
+            AlertIcon.Source = _alert.Icon;
         }
 
         private void AlertDeleteBtn_Click(object sender, RoutedEventArgs e)

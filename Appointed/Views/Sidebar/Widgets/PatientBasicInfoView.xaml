@@ -41,7 +41,7 @@
             Cursor="Hand"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
-            Source="/Appointed;component/imgs/edit.png"
+            Source="/Appointed;component/Assets/EditIcon.png"
             ToolTip="Edit Patient Information"/>
 
         <TextBlock

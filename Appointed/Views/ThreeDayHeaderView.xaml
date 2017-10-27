@@ -94,13 +94,15 @@
             </TextBlock.ToolTip>
         </TextBlock>
 
-        <Image Grid.Column="0" Source="/Appointed;component/right-chevron (1).png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" HorizontalAlignment="Center"
+        <Image Grid.Column="0"
+            Source="/Appointed;component/Assets/LeftDblArrow.png"
+            Stretch="Fill" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" HorizontalAlignment="Center"
                MouseLeftButtonUp="OnLargeShiftLeft">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
                     <SkewTransform/>
-                    <RotateTransform Angle="180"/>
+                    <RotateTransform Angle="0"/>
                     <TranslateTransform/>
                 </TransformGroup>
             </Image.RenderTransform>
@@ -108,13 +110,15 @@
                 <TextBlock Text="Back 3 Days" FontSize="16" FontFamily="Yu Gothic UI Light"/>
             </Image.ToolTip>
         </Image>
-        <Image Grid.Column="3" Source="/Appointed;component/right-chevron.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" HorizontalAlignment="Center"
+        <Image Grid.Column="3"
+            Source="/Appointed;component/Assets/LeftArrow.png"
+            Stretch="Fill" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" HorizontalAlignment="Center"
                MouseLeftButtonUp="OnSmallShiftLeft">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
                     <SkewTransform/>
-                    <RotateTransform Angle="180"/>
+                    <RotateTransform Angle="0"/>
                     <TranslateTransform/>
                 </TransformGroup>
             </Image.RenderTransform>
@@ -122,7 +126,9 @@
                 <TextBlock Text="Back 1 Day" FontSize="16" FontFamily="Yu Gothic UI Light"/>
             </Image.ToolTip>
         </Image>
-        <Image Grid.Column="5" Source="/Appointed;component/right-chevron.png" Stretch="Fill" VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5"
+        <Image Grid.Column="5"
+            Source="/Appointed;component/Assets/RightArrow.png"
+            Stretch="Fill" VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5"
                MouseLeftButtonUp="OnSmallShiftRight" >
             <Image.RenderTransform>
                 <TransformGroup>
@@ -136,7 +142,7 @@
                 <TextBlock Text="Forward 1 Day" FontSize="16" FontFamily="Yu Gothic UI Light"/>
             </Image.ToolTip>
         </Image>
-        <Image Grid.Column="7" Source="/Appointed;component/right-chevron (1).png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" HorizontalAlignment="Center"
+        <Image Grid.Column="7" Source="/Appointed;component/Assets/RightDblArrow.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" HorizontalAlignment="Center"
                MouseLeftButtonUp="OnLargeShiftRight" >
             <Image.RenderTransform>
                 <TransformGroup>

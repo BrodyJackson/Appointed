@@ -44,7 +44,7 @@
                     HorizontalAlignment="Center"
                     Margin="8,8,8,8"
                     VerticalAlignment="Center"
-                    Source="/Appointed;component/imgs/Home.png" />
+                    Source="/Appointed;component/Assets/ReturnIcon.png" />
             </Button>
 
             <Button
@@ -55,7 +55,7 @@
                     HorizontalAlignment="Center"
                     Margin="8,8,8,8"
                     VerticalAlignment="Center"
-                    Source="/Appointed;component/imgs/Back.png" />
+                    Source="/Appointed;component/Assets/HomeIcon.png" />
             </Button>
 
 

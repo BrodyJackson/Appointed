@@ -40,22 +40,11 @@ namespace Appointed
 
             //TODO: Replace these icons with black versions
 
-            Button newApptBtn = new Button
-            {
-                Content = new Image()
-                {
-                    Source = new BitmapImage(new Uri("pack://application:,,,/Appointed;component/imgs/NewApptIcon.png")),
-                    VerticalAlignment = VerticalAlignment.Center,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    Margin = new Thickness(8d)
-                }
-            };
-
             Button newPatientBtn = new Button
             {
                 Content = new Image()
                 {
-                    Source = new BitmapImage(new Uri("pack://application:,,,/Appointed;component/imgs/PatientIcon.png")),
+                    Source = Assets.ResourceManager.Instance.Images["NewPatientIcon"],
                     VerticalAlignment = VerticalAlignment.Center,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     Margin = new Thickness(8d)
@@ -63,7 +52,6 @@ namespace Appointed
             };
 
             SidebarView.SetLeftQuickNavButton(newPatientBtn);
-            //SidebarView.SetRightQuickNavButton(newApptBtn);
             SidebarView.SetRightQuickNavButton(null);
             Grid.SetColumnSpan(newPatientBtn, 2);
 

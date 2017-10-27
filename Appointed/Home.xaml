@@ -82,7 +82,7 @@
                 FontSize="24"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Text="ShiftView">
+                Text="Overview">
                 <TextBlock.Foreground>
                     <SolidColorBrush
                         Color="#FFFF1E1E"
