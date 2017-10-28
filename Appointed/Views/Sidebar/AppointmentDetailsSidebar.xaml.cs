@@ -18,9 +18,9 @@ namespace Appointed.Views
     /// <summary>
     /// Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class AppointmentDetailsTab : UserControl
+    public partial class AppointmentDetailsSidebar : UserControl
     {
-        public AppointmentDetailsTab()
+        public AppointmentDetailsSidebar()
         {
             InitializeComponent();
         }

@@ -6,8 +6,10 @@
              xmlns:local="clr-namespace:Appointed.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <!-- Each Day has as many columns as there are doctors on shift for that day.
-            Each column uses a DoctorColumnView to represent it's information. -->
+    
+    <!--This goes above each SingleDayView in the ThreeDayView-->
+    <!--It has as many columns as there are doctors on shift and lists their names-->
+    <!--It was necessary to separate the doctor's names from the scroll viewer in each single day view-->
 
     <ItemsControl x:Name="DoctorsOnShiftItemsControl" FontFamily="Yu Gothic UI Light" FontSize="16"
                   ItemsSource="{Binding AVM.DoctorsOnShift}">
@@ -42,31 +44,5 @@
 
     </ItemsControl>
 
-    
-    <!-- 
-                <Grid >
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-
-    <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="*"/>
-
-    </Grid.ColumnDefinitions>
-
-
-
-
-    <local:DoctorNameSlotView Grid.Column="0" Margin="0"/>
-    <local:DoctorNameSlotView Grid.Column="1" Margin="0"/>
-    <local:DoctorNameSlotView Grid.Column="2" Margin="0"/>
-
-    </Grid>
-
-    -->
-    
     
 </UserControl>

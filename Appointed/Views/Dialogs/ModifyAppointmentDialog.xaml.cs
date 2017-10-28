@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Appointed.Views
+namespace Appointed.Views.Dialogs
 {
     /// <summary>
-    /// Interaction logic for DoctorNameSlotView.xaml
+    /// Interaction logic for ModifyAppointmentDialog.xaml
     /// </summary>
-    public partial class DoctorNameSlotView : UserControl
+    public partial class ModifyAppointmentDialog : UserControl
     {
-        public DoctorNameSlotView()
+        public ModifyAppointmentDialog()
         {
             InitializeComponent();
         }

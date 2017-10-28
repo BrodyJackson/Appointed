@@ -28,7 +28,7 @@ namespace Appointed
             InitializeComponent();
 
             ShowHomeSidebar();
-            SidebarView.SetSidebarView(new AppointmentDetailsTab());
+            SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
             //SidebarView.SetSidebarView(new SearchResultsSidebar());
 
         }

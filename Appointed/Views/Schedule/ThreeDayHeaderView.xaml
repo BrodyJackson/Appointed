@@ -19,8 +19,8 @@
     
     
     
-    
-    <Grid Margin="0,0,0,0" PreviewMouseWheel="OnScrollDayShifter">
+    <!-- A header that consists of the small and large shift buttons along with day labels -->
+    <Grid Margin="0,0,0,0" PreviewMouseWheel="OnScrollDayShifter" Cursor="ScrollAll">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
@@ -77,7 +77,7 @@
         <Image Grid.Column="0"
             Source="/Appointed;component/Assets/LeftDblArrow.png"
             Stretch="Fill" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" HorizontalAlignment="Center"
-               MouseLeftButtonUp="OnLargeShiftLeft">
+               MouseLeftButtonUp="OnLargeShiftLeft" Cursor="Hand">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
@@ -93,7 +93,7 @@
         <Image Grid.Column="3"
             Source="/Appointed;component/Assets/LeftArrow.png"
             Stretch="Fill" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" HorizontalAlignment="Center"
-               MouseLeftButtonUp="OnSmallShiftLeft">
+               MouseLeftButtonUp="OnSmallShiftLeft" Cursor="Hand">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
@@ -109,7 +109,7 @@
         <Image Grid.Column="5"
             Source="/Appointed;component/Assets/RightArrow.png"
             Stretch="Fill" VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5"
-               MouseLeftButtonUp="OnSmallShiftRight" >
+               MouseLeftButtonUp="OnSmallShiftRight" Cursor="Hand">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
@@ -123,7 +123,7 @@
             </Image.ToolTip>
         </Image>
         <Image Grid.Column="7" Source="/Appointed;component/Assets/RightDblArrow.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" HorizontalAlignment="Center"
-               MouseLeftButtonUp="OnLargeShiftRight" >
+               MouseLeftButtonUp="OnLargeShiftRight" Cursor="Hand">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>

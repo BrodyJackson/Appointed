@@ -74,16 +74,13 @@
     <Compile Include="ViewModels\DayInformationViewModel.cs" />
     <Compile Include="Classes\EmeregencyContact.cs" />
     <Compile Include="Classes\Patient.cs" />
-    <Compile Include="Views\AppointmentDetailsTab.xaml.cs">
-      <DependentUpon>AppointmentDetailsTab.xaml</DependentUpon>
+    <Compile Include="Views\Sidebar\AppointmentDetailsSidebar.xaml.cs">
+      <DependentUpon>AppointmentDetailsSidebar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DoctorColumnView.xaml.cs">
+    <Compile Include="Views\Schedule\DoctorColumnView.xaml.cs">
       <DependentUpon>DoctorColumnView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DoctorNameSlotView.xaml.cs">
-      <DependentUpon>DoctorNameSlotView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DoctorsOnShiftView.xaml.cs">
+    <Compile Include="Views\Schedule\DoctorsOnShiftView.xaml.cs">
       <DependentUpon>DoctorsOnShiftView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Sidebar\ListItems\Alert.xaml.cs">
@@ -112,9 +109,6 @@
     </Compile>
     <Compile Include="Views\Sidebar\HomeSidebar.xaml.cs">
       <DependentUpon>HomeSidebar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\HomeWindowHeaderView.xaml.cs">
-      <DependentUpon>HomeWindowHeaderView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\InputText.xaml.cs">
       <DependentUpon>InputText.xaml</DependentUpon>
@@ -152,13 +146,13 @@
     <Compile Include="Views\Sidebar\Widgets\PatientUpcomingApptView.xaml.cs">
       <DependentUpon>PatientUpcomingApptView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SingleDayView.xaml.cs">
+    <Compile Include="Views\Schedule\SingleDayView.xaml.cs">
       <DependentUpon>SingleDayView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ThreeDayHeaderView.xaml.cs">
+    <Compile Include="Views\Schedule\ThreeDayHeaderView.xaml.cs">
       <DependentUpon>ThreeDayHeaderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ThreeDayView.xaml.cs">
+    <Compile Include="Views\Schedule\ThreeDayView.xaml.cs">
       <DependentUpon>ThreeDayView.xaml</DependentUpon>
     </Compile>
     <Page Include="Res\AppointedResources.xaml">
@@ -177,19 +171,15 @@
       <DependentUpon>Home.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\AppointmentDetailsTab.xaml">
+    <Page Include="Views\Sidebar\AppointmentDetailsSidebar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\DoctorColumnView.xaml">
+    <Page Include="Views\Schedule\DoctorColumnView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\DoctorNameSlotView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\DoctorsOnShiftView.xaml">
+    <Page Include="Views\Schedule\DoctorsOnShiftView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -226,10 +216,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Sidebar\HomeSidebar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\HomeWindowHeaderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -281,15 +267,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SingleDayView.xaml">
+    <Page Include="Views\Schedule\SingleDayView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ThreeDayHeaderView.xaml">
+    <Page Include="Views\Schedule\ThreeDayHeaderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ThreeDayView.xaml">
+    <Page Include="Views\Schedule\ThreeDayView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -332,6 +318,9 @@
     <Resource Include="Assets\LeftArrow.png" />
     <Resource Include="Assets\RightDblArrow.png" />
     <Resource Include="Assets\LeftDblArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Dialogs\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

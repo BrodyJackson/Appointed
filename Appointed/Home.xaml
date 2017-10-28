@@ -85,7 +85,7 @@
                 Text="Overview">
                 <TextBlock.Foreground>
                     <SolidColorBrush
-                        Color="#FFFF1E1E"
+                        Color="OrangeRed"
                         Opacity="0.75" />
                 </TextBlock.Foreground>
             </TextBlock>
@@ -100,6 +100,7 @@
         <Views:ThreeDayHeaderView
             Grid.Row="1"
             Grid.Column="1" />
+        
         <!-- -->
         <Views:ThreeDayView
             Grid.Row="2"

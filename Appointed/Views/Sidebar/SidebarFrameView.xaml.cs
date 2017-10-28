@@ -31,9 +31,9 @@ namespace Appointed.Views
 
         public void SetSidebarView(UserControl view)
         {
-            SidebarGirdLayout.Children.Remove(_sidebarView);
+            SidebarGridLayout.Children.Remove(_sidebarView);
             _sidebarView = view;
-            SidebarGirdLayout.Children.Add(view);
+            SidebarGridLayout.Children.Add(view);
             Grid.SetColumn(view, 0);
             Grid.SetRow(view, 0);
             view.VerticalAlignment = VerticalAlignment.Stretch;
