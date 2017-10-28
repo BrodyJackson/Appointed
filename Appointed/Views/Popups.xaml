@@ -1,0 +1,226 @@
+﻿<Window x:Class="HCI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HCI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="765.5" Width="1440" Background="Green" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Left="400" Top="0">
+    <Grid Background="Green" Margin="0,0,2,12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="443*"/>
+            <RowDefinition Height="63*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="65*"/>
+            <ColumnDefinition Width="450*"/>
+            <ColumnDefinition Width="502*"/>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="213*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="button" Content="Button" Height="30.598" Margin="10,0,12.633,10" VerticalAlignment="Bottom"/>
+        <Button x:Name="button_Copy" Content="Button" HorizontalAlignment="Left" Height="30.598" Margin="3.867,0,0,10" VerticalAlignment="Bottom" Width="40.367" Grid.Column="1"/>
+        <CheckBox x:Name="checkBox" Content="CheckBox" Height="15.997" Margin="10,120.643,-20.623,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="checkBox1" Content="CheckBox" Height="15.512" Margin="10,141.64,-20.623,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="checkBox2" Content="CheckBox" Margin="10,174.152,-20.623,0" Height="17.937" VerticalAlignment="Top"/>
+        <Popup OpacityMask="Red" Grid.ColumnSpan="5" IsOpen="True" Placement="Center">
+            <Grid Background="White" Height="377.844" Width="514.5" RenderTransformOrigin="0.5,0.5">
+                <ComboBox x:Name="Doctors" HorizontalAlignment="Right" Height="23" Margin="0,48.733,47.167,0" VerticalAlignment="Top" Width="91">
+                    <ComboBoxItem x:Name="Dr_Smith" Content="Dr Smith"/>
+                    <ComboBoxItem x:Name="Dr_Karen" Content="Dr Karen"/>
+                </ComboBox>
+                <ComboBox x:Name="Month" HorizontalAlignment="Left" Height="23" Margin="93,96,0,0" VerticalAlignment="Top" Width="106">
+                    <ComboBoxItem x:Name="January" Content="January"/>
+                    <ComboBoxItem x:Name="February" Content="February"/>
+                    <ComboBoxItem x:Name="March" Content="March"/>
+                    <ComboBoxItem x:Name="April" Content="April"/>
+                    <ComboBoxItem x:Name="May" Content="May"/>
+                    <ComboBoxItem x:Name="June" Content="June"/>
+                    <ComboBoxItem x:Name="July" Content="July"/>
+                    <ComboBoxItem x:Name="August" Content="August"/>
+                    <ComboBoxItem x:Name="September" Content="September"/>
+                    <ComboBoxItem x:Name="October" Content="October"/>
+                    <ComboBoxItem x:Name="November" Content="November"/>
+                    <ComboBoxItem x:Name="December" Content="December"/>
+                </ComboBox>
+                <ComboBox x:Name="Day" HorizontalAlignment="Right" Height="23" Margin="0,96,187.5,0" VerticalAlignment="Top" Width="63">
+                    <ComboBoxItem x:Name="_1st" Content="1"/>
+                    <ComboBoxItem x:Name="_2nd" Content="2"/>
+                    <ComboBoxItem x:Name="_3rd" Content="3"/>
+                    <ComboBoxItem x:Name="_4th" Content="4"/>
+                    <ComboBoxItem x:Name="_5th" Content="5"/>
+                    <ComboBoxItem x:Name="_6th" Content="6"/>
+                    <ComboBoxItem x:Name="_7th" Content="7"/>
+                    <ComboBoxItem x:Name="_8th" Content="8"/>
+                    <ComboBoxItem x:Name="_9th" Content="9"/>
+                    <ComboBoxItem x:Name="_10th" Content="10"/>
+                    <ComboBoxItem x:Name="_11th" Content="11"/>
+                    <ComboBoxItem x:Name="_12th" Content="12"/>
+                    <ComboBoxItem x:Name="_13th" Content="13"/>
+                    <ComboBoxItem x:Name="_14th" Content="14"/>
+                    <ComboBoxItem x:Name="_15th" Content="15"/>
+                    <ComboBoxItem x:Name="_16th" Content="16"/>
+                    <ComboBoxItem x:Name="_17th" Content="17"/>
+                    <ComboBoxItem x:Name="_18th" Content="18"/>
+                    <ComboBoxItem x:Name="_19th" Content="19"/>
+                    <ComboBoxItem x:Name="_20th" Content="20"/>
+                    <ComboBoxItem x:Name="_21st" Content="21"/>
+                    <ComboBoxItem x:Name="_22nd" Content="22"/>
+                    <ComboBoxItem x:Name="_23tf" Content="23"/>
+                    <ComboBoxItem x:Name="_24th" Content="24"/>
+                    <ComboBoxItem x:Name="_25th" Content="25"/>
+                    <ComboBoxItem x:Name="_26th" Content="26"/>
+                    <ComboBoxItem x:Name="_27th" Content="27"/>
+                    <ComboBoxItem x:Name="_28th" Content="28"/>
+                    <ComboBoxItem x:Name="_29th" Content="29"/>
+                    <ComboBoxItem x:Name="_30th" Content="30"/>
+                    <ComboBoxItem x:Name="_31st" Content="31"/>
+
+                </ComboBox>
+                <ComboBox x:Name="Year" HorizontalAlignment="Right" Height="23" Margin="0,96,39.167,0" VerticalAlignment="Top" Width="66">
+                    <ComboBoxItem x:Name="_2017" Content="2017"/>
+                    <ComboBoxItem x:Name="_2018" Content="2018"/>
+                    <ComboBoxItem x:Name="_2019" Content="2019"/>
+                </ComboBox>
+
+                <TextBlock x:Name="MonthBox" HorizontalAlignment="Left" Height="23" Margin="41,96,0,0" TextWrapping="Wrap" Text="Month" VerticalAlignment="Top" Width="47" FontSize="16" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <TextBlock x:Name="DayBox" Height="23" Margin="226,96,255.5,0" TextWrapping="Wrap" Text="Day" VerticalAlignment="Top" FontSize="14" RenderTransformOrigin="0.515,1.565" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <TextBlock x:Name="YearBox" HorizontalAlignment="Right" Height="23" Margin="0,96,105.167,0" TextWrapping="Wrap" Text="Year" VerticalAlignment="Top" Width="33" FontSize="14" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <ComboBox x:Name="comboBox4" HorizontalAlignment="Left" Height="23" Margin="93,149.683,0,0" VerticalAlignment="Top" Width="105" RenderTransformOrigin="0.505,-1.455" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <ComboBox x:Name="comboBox5" HorizontalAlignment="Right" Height="23" Margin="0,149.683,138.167,0" VerticalAlignment="Top" Width="118" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <TextBox x:Name="textBox" Margin="28,183,30.5,45" TextWrapping="Wrap" Text="TextBox" FontSize="16" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <TextBlock x:Name="textBlock_Copy" Height="23" Margin="0,48.733,138.167,0" TextWrapping="Wrap" Text="Doctor" VerticalAlignment="Top" FontSize="16" HorizontalAlignment="Right" Width="65" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Height="23" Margin="42,149.683,0,0" TextWrapping="Wrap" Text="Start" VerticalAlignment="Top" Width="37" FontSize="16" RenderTransformOrigin="1.784,2.029" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <TextBlock x:Name="textBlock_Copy2" Height="23" Margin="226,149.683,256.167,0" TextWrapping="Wrap" Text="End" VerticalAlignment="Top" FontSize="16" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <TextBlock x:Name="MonthBox_Copy1" HorizontalAlignment="Left" Height="23" Margin="42,48.733,0,0" TextWrapping="Wrap" Text="Patient Name:" VerticalAlignment="Top" Width="103" FontSize="16" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <Button x:Name="button1_Copy6" Content="Discard" Height="24" Margin="0,0,141.5,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="96" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <Button x:Name="button1_Copy7" Content="Save" Height="24" Margin="126,0,0,10" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="96" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <Rectangle Fill="#FFFF1E1E" Height="1" Margin="0,34,0,0" Stroke="#FFFF1E1E" VerticalAlignment="Top"/>
+                <TextBlock x:Name="MonthBox_Copy" Height="23" Margin="158,6,141.5,0" TextWrapping="Wrap" Text="Edit Appointment Information" VerticalAlignment="Top" FontSize="16" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <CheckBox x:Name="checkBox3" Content="Bump" HorizontalAlignment="Right" Height="23" Margin="0,156.683,25.5,0" VerticalAlignment="Top" Width="75.5" RenderTransformOrigin="0.5,0.5"  FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75">
+                    <CheckBox.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleY="1.5" ScaleX="1.5"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </CheckBox.RenderTransform>
+                </CheckBox>
+                <TextBlock x:Name="MonthBox_Copy2" Height="23" Margin="145,48.733,218.5,0" TextWrapping="Wrap" Text="John Steward" VerticalAlignment="Top" FontSize="16" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+            </Grid>
+        </Popup>
+        <Popup Placement="Center" Grid.ColumnSpan="2">
+            <Grid Background="White" Height="313" Width="514.5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="11*"/>
+                    <RowDefinition Height="81*"/>
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="22.5" Margin="10,3,0,0" TextWrapping="Wrap" Text="First Name" VerticalAlignment="Top" Width="79" FontSize="16" Grid.Row="1" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Height="23.317" Margin="10,39.55,0,0" TextWrapping="Wrap" Text="Middle Name" VerticalAlignment="Top" Width="96.095" FontSize="16" Grid.Row="1" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <TextBlock x:Name="textBlock_Copy4" HorizontalAlignment="Left" Margin="10,77.549,0,0" TextWrapping="Wrap" Text="Last Name" Width="83" FontSize="16" Height="25.5" Grid.Row="1" VerticalAlignment="Top" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <TextBlock x:Name="textBlock_Copy5" Margin="233,1.5,171.017,0" TextWrapping="Wrap" Text="Health Care ID" Height="22.5" VerticalAlignment="Top" FontSize="16" Grid.Row="1" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <TextBlock x:Name="textBlock_Copy7" HorizontalAlignment="Left" Margin="10,0,0,101" TextWrapping="Wrap" Width="50" Height="27.5" VerticalAlignment="Bottom" Text="Month" FontSize="16" Grid.Row="1" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <TextBlock x:Name="textBlock_Copy8" Margin="0,0,171.017,106.5" TextWrapping="Wrap" Height="24.5" VerticalAlignment="Bottom" Text="Day" HorizontalAlignment="Right" Width="32.5" FontSize="16" Grid.Row="1" RenderTransformOrigin="0.693,-0.571" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <TextBlock x:Name="textBlock_Copy9" HorizontalAlignment="Left" Margin="183,0,0,69" TextWrapping="Wrap" Width="38" Height="27" VerticalAlignment="Bottom" Text="Year" FontSize="16" Grid.Row="1" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Height="22" Margin="70.5,0,0,106.5" VerticalAlignment="Bottom" Width="117" FontSize="16" Grid.Row="1">
+                    <ComboBoxItem x:Name="b_January" Content="January"/>
+                    <ComboBoxItem x:Name="b_February" Content="February"/>
+                    <ComboBoxItem x:Name="b_March" Content="March"/>
+                    <ComboBoxItem x:Name="b_April" Content="April"/>
+                    <ComboBoxItem x:Name="b_May" Content="May"/>
+                    <ComboBoxItem x:Name="b_June" Content="June"/>
+                    <ComboBoxItem x:Name="b_July" Content="July"/>
+                    <ComboBoxItem x:Name="b_August" Content="August"/>
+                    <ComboBoxItem x:Name="b_September" Content="September"/>
+                    <ComboBoxItem x:Name="b_October" Content="October"/>
+                    <ComboBoxItem x:Name="b_November" Content="November"/>
+                    <ComboBoxItem x:Name="b_December" Content="December"/>
+
+                </ComboBox>
+
+                <ComboBox x:Name="comboBox_Copy" HorizontalAlignment="Right" Height="22" Margin="0,0,69.017,106.5" VerticalAlignment="Bottom" Width="97" FontSize="16" Grid.Row="1">
+                    <ComboBoxItem x:Name="b_1st" Content="1"/>
+                    <ComboBoxItem x:Name="b_2nd" Content="2"/>
+                    <ComboBoxItem x:Name="b_3rd" Content="3" />
+                    <ComboBoxItem x:Name="b_4th" Content="4" />
+                    <ComboBoxItem x:Name="b_5th" Content="5"/>
+                    <ComboBoxItem x:Name="b_6th" Content="6"/>
+                    <ComboBoxItem x:Name="b_7th" Content="7"/>
+                    <ComboBoxItem x:Name="b_8th" Content="8"/>
+                    <ComboBoxItem x:Name="b_9th" Content="9"/>
+                    <ComboBoxItem x:Name="b_10th" Content="10"/>
+                    <ComboBoxItem x:Name="b_11th" Content="11"/>
+                    <ComboBoxItem x:Name="b_12th" Content="12"/>
+                    <ComboBoxItem x:Name="b_13th" Content="13"/>
+                    <ComboBoxItem x:Name="b_14th" Content="14"/>
+                    <ComboBoxItem x:Name="b_15th" Content="15"/>
+                    <ComboBoxItem x:Name="b_16th" Content="16"/>
+                    <ComboBoxItem x:Name="b_17th" Content="17"/>
+                    <ComboBoxItem x:Name="b_18th" Content="18"/>
+                    <ComboBoxItem x:Name="b_19th" Content="19"/>
+                    <ComboBoxItem x:Name="b_20th" Content="20"/>
+                    <ComboBoxItem x:Name="b_21st" Content="21"/>
+                    <ComboBoxItem x:Name="b_22nd" Content="22"/>
+                    <ComboBoxItem x:Name="b_23tf" Content="23"/>
+                    <ComboBoxItem x:Name="b_24th" Content="24"/>
+                    <ComboBoxItem x:Name="b_25th" Content="25"/>
+                    <ComboBoxItem x:Name="b_26th" Content="26"/>
+                    <ComboBoxItem x:Name="b_27th" Content="27"/>
+                    <ComboBoxItem x:Name="b_28th" Content="28"/>
+                    <ComboBoxItem x:Name="b_29th" Content="29"/>
+                    <ComboBoxItem x:Name="b_30th" Content="30"/>
+                    <ComboBoxItem x:Name="b_31st" Content="31"/>
+                </ComboBox>
+
+
+                <ComboBox x:Name="comboBox_Copy1" Height="22" Margin="233,0,216.901,74" VerticalAlignment="Bottom" FontSize="16" Grid.Row="1">
+                    <ComboBoxItem x:Name="family" Content="family"/>
+                    <ComboBoxItem x:Name="friend" Content="friend"/>
+                </ComboBox>
+                <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="22" Margin="111.095,3,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="92.5" FontSize="16" Grid.Row="1" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <TextBox x:Name="textBox1_Copy" Margin="111.095,39.55,0,0" TextWrapping="Wrap" Text="TextBox" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="123" FontSize="16" Grid.Row="1" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <TextBox x:Name="textBox1_Copy1" HorizontalAlignment="Left" Margin="111.095,81.049,0,0" TextWrapping="Wrap" Text="TextBox" Width="130.095" FontSize="16" Height="22" Grid.Row="1" VerticalAlignment="Top"  FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75" RenderTransformOrigin="0.577,0.535"/>
+                <TextBox x:Name="textBox1_Copy2" HorizontalAlignment="Right" Height="22" Margin="0,2,21.517,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="144.5" FontSize="16" Grid.Row="1" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <TextBlock x:Name="textBlock1" Margin="173.483,4.5,171.017,10" TextWrapping="Wrap" Text="Edit Patient Information" FontSize="16" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <TextBlock x:Name="textBlock1_Copy" Margin="206,119.5,217.017,136" TextWrapping="Wrap" Text="Date Of Birth" FontSize="16" Grid.Row="1" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <Rectangle Fill="#FFFF1E1E" Height="1" Margin="0,0,0,2" Stroke="#FFFF1E1E" VerticalAlignment="Bottom"/>
+                <Button x:Name="button1_Copy4" Content="Save" HorizontalAlignment="Left" Height="24" Margin="125,0,0,27.47" VerticalAlignment="Bottom" Width="96" Grid.Row="1" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <Button x:Name="button1_Copy5" Content="Discard" HorizontalAlignment="Right" Height="24" Margin="0,0,128.5,27.47" VerticalAlignment="Bottom" Width="96" Grid.Row="1" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+            </Grid>
+        </Popup>
+        <Popup Placement="Center" Grid.ColumnSpan="2">
+            <Grid Background="White" Height="149" Width="484">
+                <Rectangle Fill="#FFFF1E1E" Height="1" Margin="0,30,0,0" Stroke="#FFFF1E1E" VerticalAlignment="Top"/>
+                <TextBlock x:Name="textBlock1_Copy1" Margin="161.483,6.5,152.517,0" TextWrapping="Wrap" Text="Edit Patient Information" FontSize="16" Height="18.5" VerticalAlignment="Top" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Height="22" Margin="31,36,0,0" TextWrapping="Wrap" Text="Phone" VerticalAlignment="Top" Width="48" FontSize="16" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <TextBlock x:Name="textBlock3" Height="22" Margin="0,36,178,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="34"  FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"><Run FontSize="16" Text="Cell"/></TextBlock>
+                <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="22" Margin="84,36,0,0" TextWrapping="Wrap" Text="444-555-5555" VerticalAlignment="Top" Width="152" FontSize="16" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <TextBox x:Name="textBox2_Copy" HorizontalAlignment="Right" Height="22" Margin="0,36,27,0" TextWrapping="Wrap" Text="444-555-5555" VerticalAlignment="Top" Width="151" FontSize="16" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <TextBlock x:Name="textBlock2_Copy" HorizontalAlignment="Left" Height="22" Margin="84,0,0,53.534" TextWrapping="Wrap" Text="E-Mail" VerticalAlignment="Bottom" Width="48" FontSize="16" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75" RenderTransformOrigin="0.771,1.012"/>
+                <TextBox x:Name="textBox2_Copy1" Height="22" Margin="148,0,41,53.534" TextWrapping="Wrap" Text="fake@faker.com" VerticalAlignment="Bottom" FontSize="16" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <Button x:Name="button1_Copy" Content="Discard" HorizontalAlignment="Right" Height="24" Margin="0,0,116,10" VerticalAlignment="Bottom" Width="96" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <Button x:Name="button1_Copy1" Content="Save" HorizontalAlignment="Left" Height="24" Margin="115,0,0,10" VerticalAlignment="Bottom" Width="96" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+            </Grid>
+        </Popup>
+        <Popup Placement="Center" VerticalOffset="300" HorizontalOffset="400" Grid.ColumnSpan="2">
+            <Grid Background="White" Height="198" Width="356">
+                <TextBlock x:Name="textBlock4" HorizontalAlignment="Left" Height="22" Margin="25,46,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="53" FontSize="16" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <Rectangle Fill="#FFFF1E1E" Height="1" Margin="0,30,0,0" Stroke="#FFFF1E1E" VerticalAlignment="Top"/>
+                <TextBlock x:Name="textBlock1_Copy2" Margin="48.483,6.5,31,0" TextWrapping="Wrap" FontSize="16" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75" Height="18.5" VerticalAlignment="Top"><Run Text="Edit Emergency Contact Information"/></TextBlock>
+                <TextBlock x:Name="textBlock4_Copy" HorizontalAlignment="Left" Height="22" Margin="25,84,0,0" TextWrapping="Wrap" Text="Relation" VerticalAlignment="Top" Width="63" FontSize="16" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <TextBlock x:Name="textBlock4_Copy1" HorizontalAlignment="Left" Height="22" Margin="25,0,0,54.267" TextWrapping="Wrap" Text="Phone" VerticalAlignment="Bottom" Width="49" FontSize="16" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <TextBox x:Name="textBox2_Copy2" Height="22" TextWrapping="Wrap" Text="444-555-5555" FontSize="16" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75" VerticalAlignment="Bottom" Margin="89,0,142,54.267"/>
+                <TextBox x:Name="textBox2_Copy3" Height="22" TextWrapping="Wrap" Text="John Smith" FontSize="16" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75" VerticalAlignment="Top" Margin="88,46,83,0"/>
+                <ComboBox x:Name="comboBox_Copy2" Margin="88,84,0,92" FontSize="16" HorizontalAlignment="Left" Width="108.599">
+                    <ComboBoxItem x:Name="b_1" Content="2017"/>
+                    <ComboBoxItem x:Name="b_2" Content="2018"/>
+                    <ComboBoxItem x:Name="b_3" Content="2019"/>
+                </ComboBox>
+                <Button x:Name="button1_Copy2" Content="Discard" HorizontalAlignment="Right" Height="24" Margin="0,0,60,10" VerticalAlignment="Bottom" Width="96" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+                <Button x:Name="button1_Copy3" Content="Save" Height="24" Margin="67,0,0,10" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="96" FontFamily="Yu Gothic UI Light" Foreground="#FFFF1E1E" Opacity="0.75"/>
+            </Grid>
+        </Popup>
+
+    </Grid>
+</Window>
