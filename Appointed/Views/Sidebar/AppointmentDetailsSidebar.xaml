@@ -21,18 +21,7 @@
 
 
 
-        <!--Static Resources For Button Style (Below)-->
-        <Style x:Key="FocusVisual">
-            <Setter Property="Control.Template">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-
+   
 
 
 
@@ -204,6 +193,7 @@
             Margin="5,5,5,0"
             VerticalScrollBarVisibility="Auto"
             DockPanel.Dock="Top"
+            MaxHeight="200"
             >
 
                 <TextBox 

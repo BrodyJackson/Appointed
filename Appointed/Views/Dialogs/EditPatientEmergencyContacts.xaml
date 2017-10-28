@@ -1,0 +1,45 @@
+﻿<Window x:Class="Appointed.Views.Dialogs.EditPatientEmergencyContacts"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Appointed.Views.Dialogs"
+        mc:Ignorable="d"
+        Title="Edit Emergency Contacts" Height="400" Width="400"
+        
+        
+        xmlns:Widgets="clr-namespace:Appointed.Views.Dialogs.Widgets"
+        xmlns:Controls="clr-namespace:Appointed.Views.Controls"
+        xmlns:ListItems="clr-namespace:Appointed.Views.Sidebar.ListItems"
+        Icon="/Appointed;component/Assets/EditIcon.png"
+        ResizeMode="NoResize"
+        Topmost="True"
+        WindowStartupLocation="CenterScreen"
+        >
+
+
+
+    <ScrollViewer
+        MaxHeight="400"
+        >
+        <StackPanel>
+
+            <Widgets:EmergencyContactEditor>
+
+            </Widgets:EmergencyContactEditor>
+
+            <Widgets:EmergencyContactEditor>
+
+            </Widgets:EmergencyContactEditor>
+
+            <Widgets:EmergencyContactEditor>
+
+            </Widgets:EmergencyContactEditor>
+
+        </StackPanel>
+
+    </ScrollViewer>
+    
+    
+
+</Window>

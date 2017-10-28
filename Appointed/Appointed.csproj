@@ -80,8 +80,23 @@
     <Compile Include="Views\Controls\InputText.xaml.cs">
       <DependentUpon>InputText.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Dialogs\EditPatientAddress.xaml.cs">
+      <DependentUpon>EditPatientAddress.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\EditPatientContactInfo.xaml.cs">
+      <DependentUpon>EditPatientContactInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\EditPatientEmergencyContacts.xaml.cs">
+      <DependentUpon>EditPatientEmergencyContacts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\EditPatientGeneralInfo.xaml.cs">
+      <DependentUpon>EditPatientGeneralInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Dialogs\ModifyAppointmentDialog.xaml.cs">
       <DependentUpon>ModifyAppointmentDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\Widgets\EmergencyContactEditor.xaml.cs">
+      <DependentUpon>EmergencyContactEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Sidebar\AppointmentDetailsSidebar.xaml.cs">
       <DependentUpon>AppointmentDetailsSidebar.xaml</DependentUpon>
@@ -185,7 +200,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Dialogs\EditPatientAddress.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialogs\EditPatientContactInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialogs\EditPatientEmergencyContacts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialogs\EditPatientGeneralInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Dialogs\ModifyAppointmentDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialogs\Widgets\EmergencyContactEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

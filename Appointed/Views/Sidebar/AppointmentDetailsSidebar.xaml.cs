@@ -43,6 +43,9 @@ namespace Appointed.Views
                 checkIn.ToolTip = "Click To Check Patient In";
             }
 
+
+            Window w = new EditPatientEmergencyContacts();
+            w.Show();
         }
 
         private void OnMouseLeftRelease_Modify(object sender, MouseButtonEventArgs e)

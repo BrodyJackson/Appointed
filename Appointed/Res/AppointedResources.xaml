@@ -185,12 +185,27 @@
 
 
 
+    <!--Static Resource For Button Style (Below)-->
+    <Style x:Key="FocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle Margin="2" 
+                               SnapsToDevicePixels="true" 
+                               Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" 
+                               StrokeThickness="1" 
+                               StrokeDashArray="1 2"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 
 
     <!--Definition of Style Template For A Button With Blue Background, White Text-->
     <Style TargetType="{x:Type Button}" x:Key="button_BlueWithWhiteForeground">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-        <Setter Property="Background" Value="DodgerBlue"/>
+        <Setter Property="Background" Value="#FF1F1F1F"/>
         <Setter Property="Opacity" Value="0.65"/>
         <Setter Property="BorderBrush" Value="SteelBlue"/>
         <Setter Property="Foreground" Value="White"/>
@@ -206,7 +221,7 @@
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}"
                             SnapsToDevicePixels="true"
-                            CornerRadius="4">
+                            CornerRadius="1">
 
                         <ContentPresenter 
                                 x:Name="contentPresenter" 
