@@ -44,7 +44,7 @@
                 </Grid.ColumnDefinitions>
 
 
-                <Rectangle RadiusX="8" RadiusY="8">
+                <Rectangle RadiusX="0" RadiusY="0">
                     <Rectangle.Fill>
                         <SolidColorBrush Color="DodgerBlue" Opacity="0.65"/>
                     </Rectangle.Fill>

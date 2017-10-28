@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Appointed.Views.Dialogs"
         mc:Ignorable="d"
-        Title="Edit Emergency Contacts" Height="400" Width="400"
+        Title="Edit Emergency Contacts" Height="600" Width="400"
         
         
         xmlns:Widgets="clr-namespace:Appointed.Views.Dialogs.Widgets"
@@ -14,32 +14,67 @@
         Icon="/Appointed;component/Assets/EditIcon.png"
         ResizeMode="NoResize"
         Topmost="True"
-        WindowStartupLocation="CenterScreen"
+        WindowStartupLocation="CenterScreen" Background="#FF666666"
         >
+    
+    <StackPanel>
 
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+
+        <Rectangle 
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="6"
+                    RadiusX="0" RadiusY="0">
+            <Rectangle.Fill>
+                    <SolidColorBrush Color="#FF666666" Opacity="1"/>
+            </Rectangle.Fill>
+        </Rectangle>
+
+
+        <TextBlock
+                    Style="{StaticResource text_WhiteLarge}"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="6"
+                    Margin="12,0,0,0"
+                    Text="Edit Emergency Contacts"
+                >
+        </TextBlock>
+
+    </Grid>
 
 
     <ScrollViewer
-        MaxHeight="400"
+        MaxHeight="600"
         >
         <StackPanel>
 
-            <Widgets:EmergencyContactEditor>
+   
 
-            </Widgets:EmergencyContactEditor>
+            <Widgets:EmergencyContactEditable>
 
-            <Widgets:EmergencyContactEditor>
+            </Widgets:EmergencyContactEditable>
 
-            </Widgets:EmergencyContactEditor>
+            <Widgets:EmergencyContactEditable>
 
-            <Widgets:EmergencyContactEditor>
+            </Widgets:EmergencyContactEditable>
 
-            </Widgets:EmergencyContactEditor>
+            <Widgets:EmergencyContactEditable>
+
+            </Widgets:EmergencyContactEditable>
 
         </StackPanel>
 
     </ScrollViewer>
-    
-    
+
+    </StackPanel>
 
 </Window>

@@ -19,9 +19,9 @@ namespace Appointed.Views.Dialogs.Widgets
     /// <summary>
     /// Interaction logic for EmergencyContactEditor.xaml
     /// </summary>
-    public partial class EmergencyContactEditor : UserControl
+    public partial class EmergencyContactEditable : UserControl
     {
-        public EmergencyContactEditor()
+        public EmergencyContactEditable()
         {
             InitializeComponent();
         }
