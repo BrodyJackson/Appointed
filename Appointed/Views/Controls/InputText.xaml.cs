@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Appointed.Views
+namespace Appointed.Views.Controls
 {
     /// <summary>
     /// Interaction logic for InputText.xaml
@@ -24,17 +24,15 @@ namespace Appointed.Views
 
         public string Hint
         {
-            get {return  _hint; }
+            get { return (string)GetValue(HintProperty); }
 
             set
             {
-                bool update = TextField.Text == _hint;
-                _hint = value;
-
-                if(update)
-                    TextField.Text = _hint;
+                SetValue(HintProperty, value);
             }
         }
+
+
         private Brush _forground = Brushes.Black;
         private Brush _hintForground = Brushes.Gray;
         public Brush Forground
@@ -66,7 +64,7 @@ namespace Appointed.Views
         {
             InitializeComponent();
 
-            ShowHintText(TextField);
+            //ShowHintText(TextField);
         }
 
         private void TextField_GotFocus(object sender, RoutedEventArgs e)
@@ -93,5 +91,23 @@ namespace Appointed.Views
                 textBox.Foreground = HintForground;
             }
         }
+
+
+
+
+
+
+
+
+
+
+        public static readonly DependencyProperty HintProperty = DependencyProperty.RegisterAttached(
+          "Hint",
+          typeof(string),
+          typeof(InputText),
+          new PropertyMetadata(string.Empty)
+        );
+
+
     }
 }

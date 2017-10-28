@@ -74,6 +74,12 @@
     <Compile Include="ViewModels\DayInformationViewModel.cs" />
     <Compile Include="Classes\EmeregencyContact.cs" />
     <Compile Include="Classes\Patient.cs" />
+    <Compile Include="Views\Controls\DatePicker.xaml.cs">
+      <DependentUpon>DatePicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\InputText.xaml.cs">
+      <DependentUpon>InputText.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Dialogs\ModifyAppointmentDialog.xaml.cs">
       <DependentUpon>ModifyAppointmentDialog.xaml</DependentUpon>
     </Compile>
@@ -112,9 +118,6 @@
     </Compile>
     <Compile Include="Views\Sidebar\HomeSidebar.xaml.cs">
       <DependentUpon>HomeSidebar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Controls\InputText.xaml.cs">
-      <DependentUpon>InputText.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Sidebar\Widgets\JumpCalendarView.xaml.cs">
       <DependentUpon>JumpCalendarView.xaml</DependentUpon>
@@ -174,6 +177,14 @@
       <DependentUpon>Home.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Controls\DatePicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\InputText.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Dialogs\ModifyAppointmentDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -223,10 +234,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Sidebar\HomeSidebar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Controls\InputText.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

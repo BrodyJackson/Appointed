@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Appointed.Views.Dialogs;
 
 namespace Appointed.Views
 {
@@ -42,6 +43,12 @@ namespace Appointed.Views
                 checkIn.ToolTip = "Click To Check Patient In";
             }
 
+        }
+
+        private void OnMouseLeftRelease_Modify(object sender, MouseButtonEventArgs e)
+        {
+            ModifyAppointmentDialog window = new ModifyAppointmentDialog();
+            window.Show();
         }
 
 

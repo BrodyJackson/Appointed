@@ -10,23 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Appointed.Views.Dialogs
+namespace Appointed.Views.Controls
 {
     /// <summary>
-    /// Interaction logic for ModifyAppointmentDialog.xaml
+    /// Interaction logic for DatePicker.xaml
     /// </summary>
-    public partial class ModifyAppointmentDialog : Window
+    public partial class DatePicker : UserControl
     {
-        public ModifyAppointmentDialog()
+        public DatePicker()
         {
             InitializeComponent();
-        }
-
-        private void OnMouseLeftRelease_Discard(object sender, MouseButtonEventArgs e)
-        {
-            this.Close();
         }
     }
 }

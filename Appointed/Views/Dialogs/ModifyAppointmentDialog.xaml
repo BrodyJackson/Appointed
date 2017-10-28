@@ -5,21 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Appointed.Views.Dialogs"
         mc:Ignorable="d"
-        xmlns:Controls="clr-namespace:Appointed.Views"
+        
+        xmlns:Controls="clr-namespace:Appointed.Views.Controls"
         xmlns:ListItems="clr-namespace:Appointed.Views.Sidebar.ListItems"
         Title="Modify An Appointment"
-        Height="400"
+        Height="600"
         Width="600"
         Icon="/Appointed;component/Assets/EditIcon.png"
         ResizeMode="NoResize"
         Topmost="True"
         WindowStartupLocation="CenterScreen">
 
-
     <DockPanel
         Margin="12"
         LastChildFill="False">
-        
+
         <Grid
             DockPanel.Dock="Top"
             Height="auto">
@@ -37,8 +37,18 @@
                 <ColumnDefinition
                     Width="*" />
             </Grid.ColumnDefinitions>
-            
+
             <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="auto" MinHeight="70" />
+                <RowDefinition
+                    Height="auto" MinHeight="29.96" />
+                <RowDefinition
+                    Height="auto" />
+                <RowDefinition
+                    Height="auto" />
+                <RowDefinition
+                    Height="auto" />
                 <RowDefinition
                     Height="auto" />
                 <RowDefinition
@@ -47,616 +57,247 @@
                     Height="auto" />
             </Grid.RowDefinitions>
 
-            <TextBlock
-                FontFamily="Yu Gothic UI Light"
-                FontSize="24"
-                HorizontalAlignment="Left"
+
+            <Rectangle 
                 Grid.Row="0"
                 Grid.Column="0"
-                Text="Patient Information"
-                VerticalAlignment="Center"
-                Grid.ColumnSpan="6">
-                <TextBlock.Foreground>
-                    <SolidColorBrush
-                        Color="#FFFF1E1E"
-                        Opacity="0.75" />
-                </TextBlock.Foreground>
+                Grid.ColumnSpan="6"
+                RadiusX="8" RadiusY="8">
+                <Rectangle.Fill>
+                    <SolidColorBrush Color="DodgerBlue" Opacity="0.65"/>
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <Separator Background="White" Foreground="White" BorderThickness="0" Margin="100,35,100,0" />
+
+
+            <TextBlock
+                Style="{StaticResource text_WhiteXLarge}"
+                x:Name="patientName"
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="6"
+                Margin="12,0,0,0"
+                Text="Mike Ross: Standard Appointment"
+                >
             </TextBlock>
 
             <TextBlock
-                Margin="4"
-                FontFamily="Yu Gothic UI Light"
-                FontSize="16"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
+                Style="{StaticResource text_BlackMedium}"
+                Margin="4,20,0,10"
                 Grid.Column="0"
                 Grid.Row="1"
-                Text="First Name:">
-                <TextBlock.Foreground>
-                    <SolidColorBrush
-                        Color="Black" />
-                </TextBlock.Foreground>
+                Text="Practitioner:"
+                >
             </TextBlock>
 
-            <Controls:InputText
-                Margin="4"
-                Grid.Row="1"
-                Grid.Column="1"
-                Hint="(ex. Christopher)"
-                HintForground="Gray"
-                Grid.ColumnSpan="1"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Stretch"
-                BorderBrush="#BF800080"
-                BorderThickness="1" />
 
-            <TextBlock
-                Margin="4"
-                FontFamily="Yu Gothic UI Light"
-                FontSize="16"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                Grid.Column="2"
-                Grid.Row="1"
-                Text="Middle Name(s):">
-                <TextBlock.Foreground>
-                    <SolidColorBrush
-                        Color="Black" />
-                </TextBlock.Foreground>
-            </TextBlock>
 
-            <Controls:InputText
-                Margin="4"
+            <ComboBox
                 Grid.Row="1"
                 Grid.Column="3"
-                Hint="(ex. James, Waldo)"
-                HintForground="Gray"
-                Grid.ColumnSpan="1"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Stretch" />
+                Margin="4,20,4,4"
+                SelectedIndex="0"
+                VerticalContentAlignment="Center">
+                <ComboBoxItem
+                        Content="Dr. Paulsen" />
+                <ComboBoxItem
+                        Content="Dr. Specter" />
+                <ComboBoxItem
+                        Content="Dr. Pearson" />
+            </ComboBox>
+
+
+
+
 
             <TextBlock
-                Margin="4"
-                FontFamily="Yu Gothic UI Light"
-                FontSize="16"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                Grid.Column="4"
-                Grid.Row="1"
-                Text="Last Name:">
-                <TextBlock.Foreground>
-                    <SolidColorBrush
-                        Color="Black" />
-                </TextBlock.Foreground>
-            </TextBlock>
-
-            <Controls:InputText
-                Margin="4"
-                Grid.Row="1"
-                Grid.Column="5"
-                Hint="(ex. O'Sullivan)"
-                HintForground="Gray"
-                Grid.ColumnSpan="1"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Stretch"
-                BorderBrush="#BF800080"
-                BorderThickness="1" />
-
-            <TextBlock
-                Margin="4"
-                FontFamily="Yu Gothic UI Light"
-                FontSize="16"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
+                Style="{StaticResource text_BlackMedium}"
+                Margin="4,5.4,0,5.4"
                 Grid.Column="0"
                 Grid.Row="2"
-                Text="Healthcare ID:">
-                <TextBlock.Foreground>
-                    <SolidColorBrush
-                        Color="Black" />
-                </TextBlock.Foreground>
+                Text="Date:" Height="19.2" Width="36.62">
             </TextBlock>
 
-            <Controls:InputText
-                Margin="4"
-                Grid.Row="2"
-                Grid.Column="1"
-                Hint="(ex. 12345678)"
-                HintForground="Gray"
-                Grid.ColumnSpan="1"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Stretch"
-                BorderBrush="#BF800080"
-                BorderThickness="1" />
 
-            <TextBlock
-                Margin="4"
-                FontFamily="Yu Gothic UI Light"
-                FontSize="16"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                Grid.Column="2"
-                Grid.Row="2"
-                Text="Birthdate:">
-                <TextBlock.Foreground>
-                    <SolidColorBrush
-                        Color="Black" />
-                </TextBlock.Foreground>
-            </TextBlock>
 
-            <CustomControls:DatePicker
+            <Controls:DatePicker
                 Grid.Column="3"
                 Grid.Row="2"
                 Margin="4"
                 BorderBrush="#BF800080"
                 BorderThickness="1" 
-                VerticalAlignment="Center"/>
+                VerticalAlignment="Center" Height="22"/>
+
+
+
+
 
             <TextBlock
-                Margin="4"
-                FontFamily="Yu Gothic UI Light"
-                FontSize="16"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                Grid.Column="4"
-                Grid.Row="2"
-                Text="Sex:">
-                <TextBlock.Foreground>
-                    <SolidColorBrush
-                        Color="Black" />
-                </TextBlock.Foreground>
-            </TextBlock>
-
-            <Border
-                Grid.Row="2"
-                Grid.Column="5"
-                Margin="4"
-                BorderBrush="#BF800080"
-                BorderThickness="1">
-                <ComboBox
-                    
-                    SelectedIndex="0"
-                    VerticalContentAlignment="Center">
-                    <ComboBoxItem
-                        Content="Male" />
-                    <ComboBoxItem
-                        Content="Female" />
-                    <ComboBoxItem
-                        Content="Other" />
-                </ComboBox>
-            </Border>
-        </Grid>
-
-        <Grid
-            DockPanel.Dock="Top">
-
-            <Grid.RowDefinitions>
-                <RowDefinition 
-                    Height="auto"/>
-                <RowDefinition
-                    Height="auto" />
-                <RowDefinition
-                    Height="auto" />
-            </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition
-                    Width="auto" />
-                <ColumnDefinition
-                    Width="*" />
-                <ColumnDefinition
-                    Width="auto" />
-                <ColumnDefinition
-                    Width="*" />
-                <ColumnDefinition
-                    Width="auto" />
-                <ColumnDefinition
-                    Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <TextBlock
-                FontFamily="Yu Gothic UI Light"
-                FontSize="24"
-                HorizontalAlignment="Left"
-                Grid.Row="0"
+                Style="{StaticResource text_BlackMedium}"
+                Margin="4,5.38,0,5.38"
                 Grid.Column="0"
-                Text="Address"
-                VerticalAlignment="Center"
-                Grid.ColumnSpan="6">
-                <TextBlock.Foreground>
-                    <SolidColorBrush
-                        Color="#FFFF1E1E"
-                        Opacity="0.75" />
-                </TextBlock.Foreground>
+                Grid.Row="3"
+                Text="Start Time:" Height="19.2" Width="75.307">
             </TextBlock>
 
-            <TextBlock
-                Margin="4"
-                FontFamily="Yu Gothic UI Light"
-                FontSize="16"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                Grid.Column="0"
-                Grid.Row="1"
-                Text="Street:">
-                <TextBlock.Foreground>
-                    <SolidColorBrush
-                        Color="Black" />
-                </TextBlock.Foreground>
-            </TextBlock>
 
-            <Controls:InputText
+            <ComboBox 
                 Margin="4"
-                Grid.Row="1"
-                Grid.Column="1"
-                Hint="(ex. 666 Springridge Circle NW)"
-                HintForground="Gray"
-                Grid.ColumnSpan="3"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Stretch" />
-
-            <TextBlock
-                Margin="4"
-                FontFamily="Yu Gothic UI Light"
-                FontSize="16"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                Grid.Column="4"
-                Grid.Row="1"
-                Text="City:">
-                <TextBlock.Foreground>
-                    <SolidColorBrush
-                        Color="Black" />
-                </TextBlock.Foreground>
-            </TextBlock>
-
-            <Controls:InputText
-                Margin="4"
-                Grid.Row="1"
-                Grid.Column="5"
-                Hint="(ex. Okotoks)"
-                HintForground="Gray"
-                Grid.ColumnSpan="1"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Stretch" />
-
-            <TextBlock
-                Margin="4"
-                FontFamily="Yu Gothic UI Light"
-                FontSize="16"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                Grid.Column="0"
-                Grid.Row="2"
-                Text="Postal Code:">
-                <TextBlock.Foreground>
-                    <SolidColorBrush
-                        Color="Black" />
-                </TextBlock.Foreground>
-            </TextBlock>
-
-            <Controls:InputText
-                Margin="4"
-                Grid.Row="2"
-                Grid.Column="1"
-                Hint="(ex. T3H 5T5)"
-                HintForground="Gray"
-                Grid.ColumnSpan="1"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Stretch" />
-
-            <TextBlock
-                Margin="4"
-                FontFamily="Yu Gothic UI Light"
-                FontSize="16"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                Grid.Column="2"
-                Grid.Row="2"
-                Text="Province:">
-                <TextBlock.Foreground>
-                    <SolidColorBrush
-                        Color="Black" />
-                </TextBlock.Foreground>
-            </TextBlock>
-
-            <ComboBox
-                Grid.Row="2"
+                Grid.Row="3"
                 Grid.Column="3"
-                Margin="4"
+                ItemsSource="{Binding TimeStamps}"    
                 SelectedIndex="0"
                 VerticalContentAlignment="Center">
-                <ComboBoxItem
-                    Content="Alberta" />
-                <ComboBoxItem
-                    Content="British Columbia" />
-                <ComboBoxItem
-                    Content="Manitoba" />
-                <ComboBoxItem
-                    Content="New Brunswick" />
-                <ComboBoxItem
-                    Content="Newfoundland and Labrador" />
-                <ComboBoxItem
-                    Content="Northwest Territories" />
-                <ComboBoxItem
-                    Content="Nova Scotia" />
-                <ComboBoxItem
-                    Content="Nunavut" />
-                <ComboBoxItem
-                    Content="Ontario" />
-                <ComboBoxItem
-                    Content="Prince Edward Island" />
-                <ComboBoxItem
-                    Content="Quebec" />
-                <ComboBoxItem
-                    Content="Saskatchewan" />
-                <ComboBoxItem
-                    Content="Yukon" />
+
             </ComboBox>
 
+
+
+
+
+            <TextBlock
+                Style="{StaticResource text_BlackMedium}"
+                Margin="4,5.38,0,5.38"
+                Grid.Column="0"
+                Grid.Row="4"
+                Text="End Time:" Height="19.2" Width="68.827">
+            </TextBlock>
+
+
+            <ComboBox 
+                Margin="4"
+                Grid.Row="4"
+                Grid.Column="3"
+                ItemsSource="{Binding TimeStamps}"    
+                SelectedIndex="0"
+                VerticalContentAlignment="Center">
+
+            </ComboBox>
+
+
+
+            <TextBlock
+                Style="{StaticResource text_BlackMedium}"
+                Margin="4,4,0,4"
+                Grid.Column="0"
+                Grid.Row="5"
+                Text="Type:" Height="19.2" Width="37.37">
+            </TextBlock>
+
+
+            <RadioButton
+                Grid.Row="5"
+                Grid.Column="3"
+                Margin="4"
+                Content="Standard"
+                />
+
+
+            <RadioButton
+                Grid.Row="6"
+                Grid.Column="3"
+                Margin="4"
+                Content="Consultation"
+                />
+
+
+            <CheckBox
+                Grid.Row="7"
+                Grid.Column="3"
+                Margin="4,30,4,4"
+                Content="Add To Waitlist"                
+                />
+
+
+
+
+
+
         </Grid>
 
-        <Grid
-            DockPanel.Dock="Top">
 
-            <Grid.RowDefinitions>
-                <RowDefinition
-                    Height="auto" />
-                <RowDefinition
-                    Height="auto" />
-                <RowDefinition
-                    Height="auto" />
-            </Grid.RowDefinitions>
+
+
+        <TextBlock
+            Text="Notes"
+            Margin="5,20,0,0"
+            DockPanel.Dock="Top"
+            />
+
+
+        <ScrollViewer
+            MinHeight="75" 
+            CanContentScroll="True" 
+            BorderBrush="Black" 
+            BorderThickness="1" 
+            Background="Lavender" 
+            Margin="5,5,5,0"
+            VerticalScrollBarVisibility="Auto"
+            DockPanel.Dock="Top"
+            >
+
+            <TextBox 
+                BorderBrush="SteelBlue" 
+                Background="{x:Null}" 
+                SpellCheck.IsEnabled="True" 
+                Cursor="Pen" 
+                ToolTip="Click to edit Notes"
+                TextWrapping="Wrap"
+                />
+
+        </ScrollViewer>
+
+
+
+        <Grid 
+            Margin="0,20,0,10"
+            DockPanel.Dock="Bottom">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition
-                    Width="auto" />
-                <ColumnDefinition
+              <ColumnDefinition
                     Width="*" />
-                <ColumnDefinition
-                    Width="auto" />
-                <ColumnDefinition
-                    Width="*" />
-                <ColumnDefinition
-                    Width="auto" />
                 <ColumnDefinition
                     Width="*" />
             </Grid.ColumnDefinitions>
 
-            <TextBlock
-                FontFamily="Yu Gothic UI Light"
-                FontSize="24"
-                HorizontalAlignment="Left"
-                Grid.Row="0"
-                Grid.Column="0"
-                Text="Contact Information"
-                VerticalAlignment="Center"
-                Grid.ColumnSpan="6">
-                <TextBlock.Foreground>
-                    <SolidColorBrush
-                        Color="#FFFF1E1E"
-                        Opacity="0.75" />
-                </TextBlock.Foreground>
-            </TextBlock>
-
-            <TextBlock
-                Margin="4"
-                FontFamily="Yu Gothic UI Light"
-                FontSize="16"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                Grid.Column="0"
-                Grid.Row="1"
-                Text="Home:">
-                <TextBlock.Foreground>
-                    <SolidColorBrush
-                        Color="Black" />
-                </TextBlock.Foreground>
-            </TextBlock>
-
-            <Controls:InputText
-                Margin="4"
-                Grid.Row="1"
-                Grid.Column="1"
-                Hint="(ex. 403-666-5555)"
-                HintForground="Gray"
-                Grid.ColumnSpan="1"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Stretch" />
-
-            <TextBlock
-                Margin="4"
-                FontFamily="Yu Gothic UI Light"
-                FontSize="16"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                Grid.Column="2"
-                Grid.Row="1"
-                Text="Business:">
-                <TextBlock.Foreground>
-                    <SolidColorBrush
-                        Color="Black" />
-                </TextBlock.Foreground>
-            </TextBlock>
-
-            <Controls:InputText
-                Margin="4"
-                Hint="(ex. 587-555-5555+ext)"
-                Grid.Row="1"
-                Grid.Column="3"
-                Grid.ColumnSpan="1"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Stretch" />
-
-            <TextBlock
-                Margin="4"
-                FontFamily="Yu Gothic UI Light"
-                FontSize="16"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                Grid.Column="4"
-                Grid.Row="1"
-                Text="Cell:">
-                <TextBlock.Foreground>
-                    <SolidColorBrush
-                        Color="Black" />
-                </TextBlock.Foreground>
-            </TextBlock>
-
-            <Controls:InputText
-                Margin="4"
-                Hint="(ex. 587-989-8899)"
-                Grid.Row="1"
-                Grid.Column="5"
-                Grid.ColumnSpan="1"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Stretch" />
-
-            <TextBlock
-                Margin="4"
-                FontFamily="Yu Gothic UI Light"
-                FontSize="16"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                Grid.Column="0"
-                Grid.Row="2"
-                Text="Email:">
-                <TextBlock.Foreground>
-                    <SolidColorBrush
-                        Color="Black" />
-                </TextBlock.Foreground>
-            </TextBlock>
-
-            <Controls:InputText
-                Margin="4"
-                Hint="(ex. jason.briggs@shaw.ca)"
-                Grid.Row="2"
-                Grid.Column="1"
-                Grid.ColumnSpan="2"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Stretch" />
-
-        </Grid>
-
-        <Grid
-            DockPanel.Dock="Top">
-
             <Grid.RowDefinitions>
                 <RowDefinition
-                    Height="auto" />
-                <RowDefinition
-                    Height="auto" />
-                <RowDefinition
-                    Height="auto" />
+                    Height="*" />
             </Grid.RowDefinitions>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition
-                    Width="auto" />
-                <ColumnDefinition
-                    Width="*" />
-                <ColumnDefinition
-                    Width="auto" />
-                <ColumnDefinition
-                    Width="*" />
-                <ColumnDefinition
-                    Width="auto" />
-                <ColumnDefinition
-                    Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <TextBlock
-                FontFamily="Yu Gothic UI Light"
-                FontSize="24"
-                HorizontalAlignment="Left"
+            <Button 
+                Style="{StaticResource button_BlueWithWhiteForeground}"
                 Grid.Row="0"
                 Grid.Column="0"
-                Text="Emergency Contact"
-                VerticalAlignment="Center"
-                Grid.ColumnSpan="6">
-                <TextBlock.Foreground>
-                    <SolidColorBrush
-                        Color="#FFFF1E1E"
-                        Opacity="0.75" />
-                </TextBlock.Foreground>
-            </TextBlock>
+                Content="Save"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Bottom" 
+                MaxWidth="200" 
+                MinWidth="150"
+                Height="30" 
+            />
 
-            <TextBlock
-                Margin="4"
-                FontFamily="Yu Gothic UI Light"
-                FontSize="16"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                Grid.Column="0"
-                Grid.Row="1"
-                Text="Name:">
-                <TextBlock.Foreground>
-                    <SolidColorBrush
-                        Color="Black" />
-                </TextBlock.Foreground>
-            </TextBlock>
-
-            <Controls:InputText
-                Margin="4"
-                Grid.Row="1"
+            <Button
+                Style="{StaticResource button_BlueWithWhiteForeground}"
+                Grid.Row="0"
                 Grid.Column="1"
-                Hint="(ex. Frank Preston)"
-                HintForground="Gray"
-                Grid.ColumnSpan="1"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Stretch" />
+                Content="Discard"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Bottom" 
+                MaxWidth="200" 
+                MinWidth="150"
+                Height="30"
+                PreviewMouseLeftButtonUp="OnMouseLeftRelease_Discard"
+            />
 
-            <TextBlock
-                Margin="4"
-                FontFamily="Yu Gothic UI Light"
-                FontSize="16"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                Grid.Column="2"
-                Grid.Row="1"
-                Text="Relationship:">
-                <TextBlock.Foreground>
-                    <SolidColorBrush
-                        Color="Black" />
-                </TextBlock.Foreground>
-            </TextBlock>
-
-            <Controls:InputText
-                Margin="4"
-                Grid.Row="1"
-                Grid.Column="3"
-                Hint="(ex. Mother)"
-                HintForground="Gray"
-                Grid.ColumnSpan="1"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Stretch" />
-
-            <TextBlock
-                Margin="4"
-                FontFamily="Yu Gothic UI Light"
-                FontSize="16"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                Grid.Column="4"
-                Grid.Row="1"
-                Text="Phone:">
-                <TextBlock.Foreground>
-                    <SolidColorBrush
-                        Color="Black" />
-                </TextBlock.Foreground>
-            </TextBlock>
-
-            <Controls:InputText
-                Margin="4"
-                Grid.Row="1"
-                Grid.Column="5"
-                Hint="(ex. 403-777-0990+ext)"
-                HintForground="Gray"
-                Grid.ColumnSpan="1"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Stretch" />
 
         </Grid>
+
+       
+        
+        
+        
 
     </DockPanel>
 
