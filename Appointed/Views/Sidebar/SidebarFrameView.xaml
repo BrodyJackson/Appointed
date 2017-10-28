@@ -9,7 +9,7 @@
     d:DesignHeight="768"
     d:DesignWidth="300">
     <Grid
-        Name="SidebarGirdLayout"
+        Name="SidebarGridLayout"
         Margin="4">
 
         <!--

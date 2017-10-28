@@ -74,6 +74,9 @@
     <Compile Include="ViewModels\DayInformationViewModel.cs" />
     <Compile Include="Classes\EmeregencyContact.cs" />
     <Compile Include="Classes\Patient.cs" />
+    <Compile Include="Views\AppointmentDetailsTab.xaml.cs">
+      <DependentUpon>AppointmentDetailsTab.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DoctorColumnView.xaml.cs">
       <DependentUpon>DoctorColumnView.xaml</DependentUpon>
     </Compile>
@@ -158,7 +161,7 @@
     <Compile Include="Views\ThreeDayView.xaml.cs">
       <DependentUpon>ThreeDayView.xaml</DependentUpon>
     </Compile>
-    <Page Include="AppointedResources.xaml">
+    <Page Include="Res\AppointedResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -174,6 +177,10 @@
       <DependentUpon>Home.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AppointmentDetailsTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\DoctorColumnView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

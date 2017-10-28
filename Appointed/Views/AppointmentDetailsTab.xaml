@@ -1,0 +1,297 @@
+﻿<UserControl x:Class="Appointed.Views.AppointmentDetailsTab"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Appointed.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="300">
+
+
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="Foreground" Value="SlateGray"/>
+            <Setter Property="FontFamily" Value="Yu Gothic UI Light"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+
+
+        <!--Static Resources For Button Style (Below)-->
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+
+        <!--Definition of Style Template For Buttons-->
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="DodgerBlue"/>
+            <Setter Property="Opacity" Value="0.65"/>
+            <Setter Property="BorderBrush" Value="SteelBlue"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border
+                            x:Name="border"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="true"
+                            CornerRadius="4">
+                            
+                            <ContentPresenter 
+                                x:Name="contentPresenter" 
+                                Focusable="False" 
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" 
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                TextElement.FontSize="14"
+                            />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" 
+                                        Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderThickness" TargetName="border" Value="2"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="SlateBlue"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="DodgerBlue"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="SteelBlue"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="#FFF4F4F4"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#FFADB2B5"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="#FF838383"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+
+    </UserControl.Resources>
+
+
+    <ScrollViewer VerticalScrollBarVisibility="Hidden" CanContentScroll="True">
+
+        <DockPanel Background="White" >
+
+
+
+            <Grid DockPanel.Dock="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+
+                <Rectangle RadiusX="8" RadiusY="8">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="DodgerBlue" Opacity="0.65"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+
+                <Separator Background="White" Foreground="White" BorderThickness="0" Margin="100,35,100,0" />
+
+                <TextBlock 
+                Margin="0,12,0,0"
+                FontFamily="Yu Gothic UI Light"
+                FontSize="24"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Text="Appointment Details"
+                Foreground="White">
+
+                </TextBlock>
+            </Grid>
+
+
+            <!-- 1 Row, 2 Column Grid, Appt Detail Labels in StackPanel in Column 1, Values in StackPanel in Column 2,-->
+            <Grid DockPanel.Dock="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+
+
+                <!-- Labels Stack Panel -->
+                <StackPanel Grid.Column="0" Margin="0,10,0,0" >
+                    <TextBlock 
+                    Text="Patient:" Margin="10,10,0,0">
+                    </TextBlock>
+
+                    <TextBlock 
+                    Text="Start:" Margin="10,10,0,0">
+                    </TextBlock>
+
+                    <TextBlock 
+                    Text="End:" Margin="10,10,0,0">
+                    </TextBlock>
+
+                    <TextBlock 
+                    Text="Type:" Margin="10,10,0,0">
+                    </TextBlock>
+
+                    <TextBlock 
+                    Text="Doctor:" Margin="10,10,0,0">
+                    </TextBlock>
+
+                    <TextBlock 
+                    Text="Reminder:" Margin="10,10,0,0">
+                    </TextBlock>
+
+                    <TextBlock 
+                    Text="Waitlist Status:" Margin="10,10,0,0">
+                    </TextBlock>
+                </StackPanel>
+
+
+
+                <!-- Values Stack Panel -->
+                <StackPanel Grid.Column="1" Margin="0,10,0,0">
+                    <TextBlock 
+                    x:Name="patientName" 
+                    Text="Mike Ross"
+                    Margin="10,10,0,0">
+                    </TextBlock>
+
+                    <TextBlock 
+                    x:Name="startTime" 
+                    Text="8:00 AM"
+                    Margin="10,10,0,0">
+                    </TextBlock>
+
+                    <TextBlock 
+                    x:Name="endTime" 
+                    Text="8:15 AM"
+                    Margin="10,10,0,0">
+                    </TextBlock>
+
+                    <TextBlock 
+                    x:Name="apptType" 
+                    Text="Consultation"
+                    Margin="10,10,0,0">
+                    </TextBlock>
+
+                    <TextBlock 
+                    x:Name="doctorName" 
+                    Text="Dr. Paulsen"
+                    Margin="10,10,0,0">
+                    </TextBlock>
+
+                    <TextBlock 
+                    x:Name="reminderType" 
+                    Text="Email"
+                    Margin="10,10,0,0">
+                    </TextBlock>
+
+                    <TextBlock 
+                    x:Name="waitlistPos" 
+                    Text="N/A"
+                    Margin="10,10,0,0">
+                    </TextBlock>
+                </StackPanel>
+
+            </Grid>
+
+
+
+            <Button 
+            x:Name="checkIn"
+            Content="Check In"
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Bottom" 
+            MaxWidth="200" 
+            MinWidth="150"
+            Height="30" 
+            Margin="0,50,0,10"
+            PreviewMouseUp="OnMouseLeftRelease_CheckIn"
+            ToolTip="Click To Check Patient In"
+            DockPanel.Dock="Top"
+            />
+
+
+
+
+            <TextBlock 
+            Text="Notes" Margin="5,100,0,0"
+            DockPanel.Dock="Top"
+            />
+
+
+            <ScrollViewer
+            MinHeight="75" 
+            CanContentScroll="True" 
+            BorderBrush="Black" 
+            BorderThickness="1" 
+            Background="Lavender" 
+            Margin="5,5,5,0"
+            VerticalScrollBarVisibility="Auto"
+            DockPanel.Dock="Top"
+            >
+
+                <TextBox 
+                BorderBrush="SteelBlue" 
+                Background="{x:Null}" 
+                SpellCheck.IsEnabled="True" 
+                Cursor="Pen" 
+                ToolTip="Click to edit Notes"
+                TextWrapping="Wrap"
+                />
+
+            </ScrollViewer>
+
+
+
+            <Button 
+            Content="Modify Appointment"
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Bottom" 
+            MaxWidth="200" 
+            MinWidth="150"
+            Height="30" 
+            Margin="0,60,0,10"
+            DockPanel.Dock="Top"
+            />
+            <Separator 
+            BorderThickness="0" 
+            Margin="0,30,0,30" 
+            Background="{x:Null}" 
+            Foreground="{x:Null}"            
+            />
+
+        </DockPanel>
+
+
+    </ScrollViewer>
+
+</UserControl>
