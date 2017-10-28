@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Appointed.Views;
 using Appointed.Views.Sidebar;
+using Appointed.Views.Dialogs;
 
 namespace Appointed
 {
@@ -54,6 +55,8 @@ namespace Appointed
             SidebarView.SetLeftQuickNavButton(newPatientBtn);
             SidebarView.SetRightQuickNavButton(null);
             Grid.SetColumnSpan(newPatientBtn, 2);
+
+            newPatientBtn.Click += (object sender, RoutedEventArgs args) => { new NewPatientDialog().ShowDialog(); };
 
             //TODO: Add event listeners
         }

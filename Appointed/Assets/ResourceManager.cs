@@ -36,6 +36,8 @@ namespace Appointed.Assets
             AddImage("LeftArrow", "LeftArrow.png");
             AddImage("RightDblArrow", "RightDblArrow.png");
             AddImage("LeftDblArrow", "LeftDblArrow.png");
+            AddImage("CalendarIcon", "CalendarIcon.png");
+            AddImage("DayIcon", "DayIcon.png");
 
 
         }

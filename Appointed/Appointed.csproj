@@ -72,6 +72,12 @@
     <Compile Include="ViewModels\DayInformationViewModel.cs" />
     <Compile Include="Classes\EmeregencyContact.cs" />
     <Compile Include="Classes\Patient.cs" />
+    <Compile Include="Views\Controls\DatePicker.xaml.cs">
+      <DependentUpon>DatePicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\NewPatientDialog.xaml.cs">
+      <DependentUpon>NewPatientDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DoctorColumnView.xaml.cs">
       <DependentUpon>DoctorColumnView.xaml</DependentUpon>
     </Compile>
@@ -172,6 +178,14 @@
       <DependentUpon>Home.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Controls\DatePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialogs\NewPatientDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DoctorColumnView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -323,6 +337,12 @@
     <Resource Include="Assets\LeftArrow.png" />
     <Resource Include="Assets\RightDblArrow.png" />
     <Resource Include="Assets\LeftDblArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\CalendarIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\DayIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
