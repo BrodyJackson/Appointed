@@ -225,7 +225,16 @@
                 DockPanel.Dock="Top"
                 PreviewMouseLeftButtonUp="OnMouseLeftRelease_Modify"
             />
-           
+
+            <Button
+                Content="Delete Appointment"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                MaxWidth="200"
+                MinWidth="150"
+                Height="30"
+                Margin="4"
+                DockPanel.Dock="Top" />
 
         </DockPanel>
 
