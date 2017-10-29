@@ -19,15 +19,13 @@
         </Grid.RowDefinitions>
 
         <TextBlock
+            Style="{StaticResource text_HeadingLarge}"
             Name="Message"
-            FontFamily="Yu Gothic UI Light"
-            FontSize="24"
             HorizontalAlignment="Center"
             Grid.Row="0"
             Grid.Column="0"
             Text="No Patients Found"
-            VerticalAlignment="Center"
-            Foreground="#FFFF1E1E" />
+            VerticalAlignment="Center" />
 
         <Button
             Name="Action"

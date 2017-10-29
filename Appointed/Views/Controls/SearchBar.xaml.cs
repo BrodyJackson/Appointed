@@ -20,9 +20,18 @@ namespace Appointed.Views
     /// </summary>
     public partial class SearchBar : UserControl
     {
+
         public SearchBar()
         {
+            //Manual workaround for showing hint text
+
             InitializeComponent();
+
+            InputField.Hint = "Search by name or ID...";
+            InputField.HintForground = Brushes.Gray;
+
+            InputField.ShowHintText(InputField.TextField);
+
         }
     }
 }

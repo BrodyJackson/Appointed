@@ -46,63 +46,39 @@
             ToolTip="Edit Patient Address"/>
 
         <TextBlock
+            Style="{StaticResource text_HeadingLarge}"
             FontFamily="Yu Gothic UI Light"
             Margin="4"
             Grid.Column="0"
             Grid.Row="0"
             Text="Address"
-            FontSize="20"
-            Grid.ColumnSpan="2">
-            <TextBlock.Foreground>
-                <SolidColorBrush
-                    Color="#FFFF1E1E"
-                    Opacity="0.75" />
-            </TextBlock.Foreground>
-        </TextBlock>
+            Grid.ColumnSpan="2" />
 
         <TextBlock
+            Style="{StaticResource text_BlackMedium}"
             Name="PatientStreetAddr"
             Margin="4"
             Grid.Column="0"
             Grid.Row="1"
             Text="570 - 11th Avenue SW"
-            FontSize="18"
-            Grid.ColumnSpan="3">
-            <TextBlock.Foreground>
-                <SolidColorBrush
-                    Color="#FFFF1E1E"
-                    Opacity="0.75" />
-            </TextBlock.Foreground>
-        </TextBlock>
+            Grid.ColumnSpan="3" />
         <TextBlock
+            Style="{StaticResource text_BlackMedium}"
             Name="PatientRegion"
             Margin="4"
             Grid.Column="0"
             Grid.Row="2"
             Text="Okotoks, AB"
-            FontSize="18"
-            Grid.ColumnSpan="1">
-            <TextBlock.Foreground>
-                <SolidColorBrush
-                    Color="#FFFF1E1E"
-                    Opacity="0.75" />
-            </TextBlock.Foreground>
-        </TextBlock>
+            Grid.ColumnSpan="1" />
 
         <TextBlock
+            Style="{StaticResource text_BlackMedium}"
             Name="PatientPostal"
             Margin="4"
             Grid.Column="1"
             Grid.Row="2"
             Text="T3H 5T5"
-            FontSize="18"
-            Grid.ColumnSpan="1">
-            <TextBlock.Foreground>
-                <SolidColorBrush
-                    Color="#FFFF1E1E"
-                    Opacity="0.75" />
-            </TextBlock.Foreground>
-        </TextBlock>
+            Grid.ColumnSpan="1" />
 
     </Grid>
 </UserControl>

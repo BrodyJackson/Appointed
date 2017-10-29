@@ -101,7 +101,7 @@ namespace Appointed.Views.Controls
             ShowHintText(textBox);
         }
 
-        private void ShowHintText(TextBox textBox)
+        public void ShowHintText(TextBox textBox)
         {
             if (String.IsNullOrWhiteSpace(textBox.Text))
             {

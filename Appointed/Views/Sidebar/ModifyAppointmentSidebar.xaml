@@ -35,7 +35,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                    Style="{StaticResource text_OrangeRedLarge}"
+                    Style="{StaticResource text_HeadingLarge}"
                     Grid.Row="0"
                     Grid.Column="0"
                    

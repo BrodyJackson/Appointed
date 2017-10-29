@@ -42,9 +42,7 @@
             SnapsToDevicePixels="True" />
 
         <TextBlock
-            Foreground="#FFFF1E1E"
-            FontFamily="Yu Gothic UI Light"
-            FontSize="14"
+            Style="{StaticResource text_BlackMedium}"
             Name="AlertTitle"
             Grid.Column="1"
             Grid.RowSpan="2"

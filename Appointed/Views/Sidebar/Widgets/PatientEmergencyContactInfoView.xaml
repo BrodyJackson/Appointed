@@ -46,101 +46,59 @@
             ToolTip="Edit Emergency Contact Information" />
 
         <TextBlock
+            Style="{StaticResource text_HeadingLarge}"
             Margin="4"
             Grid.Column="0"
             Grid.Row="0"
             Text="Emergency Contact"
-            FontSize="20"
-            Grid.ColumnSpan="2">
-            <TextBlock.Foreground>
-                <SolidColorBrush
-                    Color="#FFFF1E1E"
-                    Opacity="0.75" />
-            </TextBlock.Foreground>
-        </TextBlock>
+            Grid.ColumnSpan="2" />
 
         <TextBlock
+            Style="{StaticResource text_BlackMedium}"
             Margin="4"
             Grid.Column="0"
             Grid.Row="1"
             Text="Name:"
-            FontSize="18"
-            Grid.ColumnSpan="1">
-            <TextBlock.Foreground>
-                <SolidColorBrush
-                    Color="#FFFF1E1E"
-                    Opacity="0.75" />
-            </TextBlock.Foreground>
-        </TextBlock>
+            Grid.ColumnSpan="1" />
         <TextBlock
+            Style="{StaticResource text_BlackMedium}"
             Name="ContactName"
             Margin="0,4"
             Grid.Column="1"
             Grid.Row="1"
             Text="Rose Ross"
-            FontSize="18"
-            Grid.ColumnSpan="2">
-            <TextBlock.Foreground>
-                <SolidColorBrush
-                    Color="#FFFF1E1E"
-                    Opacity="0.75" />
-            </TextBlock.Foreground>
-        </TextBlock>
+            Grid.ColumnSpan="2" />
         <TextBlock
+            Style="{StaticResource text_BlackMedium}"
             Margin="4"
             Grid.Column="0"
             Grid.Row="2"
             Text="Phone:"
-            FontSize="18"
-            Grid.ColumnSpan="1">
-            <TextBlock.Foreground>
-                <SolidColorBrush
-                    Color="#FFFF1E1E"
-                    Opacity="0.75" />
-            </TextBlock.Foreground>
-        </TextBlock>
+            Grid.ColumnSpan="1" />
         <TextBlock
+            Style="{StaticResource text_BlackMedium}"
             Name="ContactPhone"
             Margin="0,4"
             Grid.Column="1"
             Grid.Row="2"
             Text="(587) 403-6372"
-            FontSize="18"
-            Grid.ColumnSpan="2">
-            <TextBlock.Foreground>
-                <SolidColorBrush
-                    Color="#FFFF1E1E"
-                    Opacity="0.75" />
-            </TextBlock.Foreground>
-        </TextBlock>
+            Grid.ColumnSpan="2" />
 
         <TextBlock
+            Style="{StaticResource text_BlackMedium}"
             Margin="4"
             Grid.Column="0"
             Grid.Row="3"
             Text="Relation:"
-            FontSize="18"
-            Grid.ColumnSpan="1">
-            <TextBlock.Foreground>
-                <SolidColorBrush
-                    Color="#FFFF1E1E"
-                    Opacity="0.75" />
-            </TextBlock.Foreground>
-        </TextBlock>
+            Grid.ColumnSpan="1" />
         <TextBlock
+            Style="{StaticResource text_BlackMedium}"
             Name="ContactRelation"
             Margin="0,4,4,0"
             Grid.Column="1"
             Grid.Row="3"
             Text="Grandmother"
-            FontSize="18"
-            Grid.ColumnSpan="2">
-            <TextBlock.Foreground>
-                <SolidColorBrush
-                    Color="#FFFF1E1E"
-                    Opacity="0.75" />
-            </TextBlock.Foreground>
-        </TextBlock>
+            Grid.ColumnSpan="2" />
 
     </Grid>
 </UserControl>

@@ -21,54 +21,36 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock
+            Style="{StaticResource text_BlackMedium}"
             Name="Date"
             Margin="4"
             Grid.Column="0"
             Grid.Row="0"
             Text="2017-10-11"
-            FontSize="14"
             Grid.ColumnSpan="1"
             VerticalAlignment="Center"
-            HorizontalAlignment="Center">
-            <TextBlock.Foreground>
-                <SolidColorBrush
-                    Color="#FFFF1E1E"
-                    Opacity="0.75" />
-            </TextBlock.Foreground>
-        </TextBlock>
-        
+            HorizontalAlignment="Center" />
+
         <TextBlock
+            Style="{StaticResource text_BlackMedium}"
             Name="Doctor"
             Margin="4"
             Grid.Column="1"
             Grid.Row="0"
             Text="Dr. Pearson"
-            FontSize="14"
             Grid.ColumnSpan="1"
             VerticalAlignment="Center"
-            HorizontalAlignment="Center">
-            <TextBlock.Foreground>
-                <SolidColorBrush
-                    Color="#FFFF1E1E"
-                    Opacity="0.75" />
-            </TextBlock.Foreground>
-        </TextBlock>
+            HorizontalAlignment="Center" />
 
         <TextBlock
+            Style="{StaticResource text_BlackMedium}"
             Name="Type"
             Margin="4"
             Grid.Column="2"
             Grid.Row="0"
             Text="Consult"
-            FontSize="14"
             Grid.ColumnSpan="1"
             VerticalAlignment="Center"
-            HorizontalAlignment="Center">
-            <TextBlock.Foreground>
-                <SolidColorBrush
-                    Color="#FFFF1E1E"
-                    Opacity="0.75" />
-            </TextBlock.Foreground>
-        </TextBlock>
+            HorizontalAlignment="Center" />
     </Grid>
 </UserControl>

@@ -20,14 +20,12 @@
         </Grid.RowDefinitions>
 
         <TextBlock
-            FontFamily="Yu Gothic UI Light"
-            FontSize="16"
+            Style="{StaticResource text_HeadingMedium}"
             HorizontalAlignment="Left"
             Grid.Row="0"
             Grid.Column="0"
             Text="Search results for..."
-            VerticalAlignment="Center"
-            Foreground="#FFFF1E1E" />
+            VerticalAlignment="Center" />
 
         <local:SearchBar
             x:Name="SearchBar"
