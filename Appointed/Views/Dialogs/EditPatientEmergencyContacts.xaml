@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Appointed.Views.Dialogs"
         mc:Ignorable="d"
-        Title="Edit Emergency Contact" Height="240" Width="400"
+        Title="Edit Emergency Contact" 
+        
+        Height="240" Width="400"
         
         
         xmlns:Widgets="clr-namespace:Appointed.Views.Dialogs.Widgets"
@@ -14,7 +16,7 @@
         Icon="/Appointed;component/Assets/EditIcon.png"
         ResizeMode="NoResize"
         Topmost="True"
-        WindowStartupLocation="CenterScreen" Background="#FFB9B9B9"
+        WindowStartupLocation="CenterScreen"
         >
     
     <StackPanel>
@@ -52,12 +54,7 @@
     </Grid>-->
 
 
-    <ScrollViewer
-        MaxHeight="600"
-        VerticalScrollBarVisibility="Disabled"
-        CanContentScroll="False"
-        >
-        <StackPanel>
+        <StackPanel Height="260" Width="400">
 
    
 
@@ -75,7 +72,6 @@
 
         </StackPanel>
 
-    </ScrollViewer>
 
     </StackPanel>
 

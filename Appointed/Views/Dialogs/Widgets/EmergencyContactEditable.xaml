@@ -13,38 +13,19 @@
 
 
 
-
-    <DockPanel
-        Margin="10"
-        LastChildFill="False"
-        Background="White"
-        
-        >
-
-        <Grid
-            DockPanel.Dock="Top"
-            Height="auto"
-            >
+        <Grid Height="260" Width="400" >
+            
             <Grid.ColumnDefinitions>
-                <ColumnDefinition
-                    Width="*" />
-                <ColumnDefinition
-                    Width="*" />
-                <ColumnDefinition
-                    Width="30" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition
-                    Height="auto" />
-                <RowDefinition
-                    Height="auto" />
-                <RowDefinition
-                    Height="auto" />
-                <RowDefinition
-                    Height="auto" />
-                <RowDefinition
-                    Height="auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
 
@@ -60,7 +41,7 @@
 
             <TextBlock
                 Style="{StaticResource text_BlackMedium}"
-                Margin="4,20,4,4"
+                Margin="4"
                 Grid.Column="0"
                 Grid.Row="0"
                 Text="First Name:"
@@ -161,7 +142,7 @@
                 Grid.Row="4"
                 Grid.Column="0"
                 Grid.ColumnSpan="3"
-                Margin="0,20,0,10"
+                Margin="10"
                 Visibility="Visible"
             >
 
@@ -207,8 +188,6 @@
             </Grid>
 
         </Grid>
-
-    </DockPanel>
 
 
 
