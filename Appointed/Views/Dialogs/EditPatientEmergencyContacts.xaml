@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Edit Emergency Contact" 
         
-        Height="240" Width="400"
+        Height="300" Width="400"
         
         
         xmlns:Widgets="clr-namespace:Appointed.Views.Dialogs.Widgets"
@@ -18,61 +18,155 @@
         Topmost="True"
         WindowStartupLocation="CenterScreen"
         >
-    
-    <StackPanel>
 
-    <!--<Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-        </Grid.RowDefinitions>
+    <DockPanel
+        Margin="12"
+        LastChildFill="False">
+
+        <Grid
+            DockPanel.Dock="Top"
+            Height="auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    Width="*" />
+                <ColumnDefinition
+                    Width="*" />
+
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="auto" MinHeight="70" />
+                <RowDefinition
+                    Height="auto" MinHeight="29.96" />
+                <RowDefinition
+                    Height="auto" />
+                <RowDefinition
+                    Height="auto" />
+                <RowDefinition
+                    Height="auto" />
+                <RowDefinition
+                    Height="auto" />
+                <RowDefinition
+                    Height="auto" />
+                <RowDefinition
+                    Height="auto" />
+            </Grid.RowDefinitions>
 
 
-        <Rectangle 
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="6"
-                    RadiusX="0" RadiusY="0">
-            <Rectangle.Fill>
-                    <SolidColorBrush Color="#FF666666" Opacity="1"/>
-            </Rectangle.Fill>
-        </Rectangle>
+            <Rectangle 
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="6"
+                RadiusX="8" RadiusY="8">
+                <Rectangle.Fill>
+                    <SolidColorBrush Color="DodgerBlue" Opacity="0.65"/>
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <Separator Background="White" Foreground="White" BorderThickness="0" Margin="100,35,100,0" />
 
 
-        <TextBlock
-                    Style="{StaticResource text_WhiteLarge}"
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="6"
-                    Margin="12,0,0,0"
-                    Text="Edit Emergency Contacts"
+            <TextBlock
+                Style="{StaticResource text_WhiteXLarge}"
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="6"
+                Margin="12,0,0,0"
+                Text="Edit Emergency Contact"
                 >
-        </TextBlock>
+            </TextBlock>
 
-    </Grid>-->
+            <TextBlock
+                Style="{StaticResource text_BlackMedium}"
+                Margin="4,20,4,4"
+                Grid.Column="0"
+                Grid.Row="1"
+                Text="Name:"
+                >
+            </TextBlock>
 
-
-        <StackPanel Height="260" Width="400">
-
-   
-
-            <!--<Widgets:EmergencyContactEditable>
-
-            </Widgets:EmergencyContactEditable>
-
-            <Widgets:EmergencyContactEditable>
-
-            </Widgets:EmergencyContactEditable>-->
-
-            <Widgets:EmergencyContactEditable>
-
-            </Widgets:EmergencyContactEditable>
-
-        </StackPanel>
+            <!--Input Text For First Name Goes Here - Row 1, Column 2-->
 
 
-    </StackPanel>
+            <TextBlock
+                Style="{StaticResource text_BlackMedium}"
+                Margin="4"
+                Grid.Column="0"
+                Grid.Row="2"
+                Text="Phone:"
+                >
+            </TextBlock>
+
+
+            <!--Input Text For Middle Names Goes Here - Row 2, Column 2-->
+
+
+            <TextBlock
+                Style="{StaticResource text_BlackMedium}"
+                Margin="4"
+                Grid.Column="0"
+                Grid.Row="3"
+                Text="Relation:"
+                >
+            </TextBlock>
+
+
+            <!--Input Text For Last Name Goes Here - Row 3, Column 2-->
+
+
+
+       </Grid>
+
+        <Grid 
+            Margin="0,20,0,10"
+            DockPanel.Dock="Bottom">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    Width="*" />
+                <ColumnDefinition
+                    Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="*" />
+            </Grid.RowDefinitions>
+
+            <Button 
+                Style="{StaticResource button_BlueWithWhiteForeground}"
+                Grid.Row="0"
+                Grid.Column="0"
+                Content="Save"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Bottom" 
+                MaxWidth="200" 
+                MinWidth="150"
+                Height="30" 
+            />
+
+            <Button
+                Style="{StaticResource button_BlueWithWhiteForeground}"
+                Grid.Row="0"
+                Grid.Column="1"
+                Content="Discard"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Bottom" 
+                MaxWidth="200" 
+                MinWidth="150"
+                Height="30"
+                PreviewMouseLeftButtonUp="OnMouseLeftRelease_Discard"
+            />
+
+
+        </Grid>
+
+
+
+
+
+
+    </DockPanel>
 
 </Window>

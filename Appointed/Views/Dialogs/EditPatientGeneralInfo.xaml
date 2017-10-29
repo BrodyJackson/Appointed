@@ -159,24 +159,18 @@
             </TextBlock>
 
 
-            <Border
-                Grid.Row="6"
-                Grid.Column="2"
-                Margin="4"
-                BorderBrush="#BF800080"
-                BorderThickness="1">
-                <ComboBox
+
+            <ComboBox
                     
                     SelectedIndex="0"
                     VerticalContentAlignment="Center">
-                    <ComboBoxItem
+                <ComboBoxItem
                         Content="Male" />
-                    <ComboBoxItem
+                <ComboBoxItem
                         Content="Female" />
-                    <ComboBoxItem
+                <ComboBoxItem
                         Content="Other" />
-                </ComboBox>
-            </Border>
+            </ComboBox>
 
 
         </Grid>

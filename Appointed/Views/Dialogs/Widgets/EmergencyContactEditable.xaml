@@ -12,8 +12,7 @@
 
 
 
-
-        <Grid Height="260" Width="400" >
+        <Grid Height="260" Width="400" Background="White">
             
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -29,16 +28,6 @@
             </Grid.RowDefinitions>
 
 
-            <Rectangle
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.ColumnSpan="3"
-                Grid.RowSpan="5" 
-                Stroke="#FF1F1F1F" 
-                StrokeThickness="1"
-                />
-
-
             <TextBlock
                 Style="{StaticResource text_BlackMedium}"
                 Margin="4"
@@ -51,12 +40,12 @@
             <!--Input Text For First Name Goes Here - Row 1, Column 1 - Make Visibility="Hidden"-->
 
 
-             <!--<Label
+            <Label
                 Margin="4,20,4,4"
                 Grid.Row="0"
                 Grid.Column="1"
                 Content="Jeremy Kale"
-                />-->
+                />
 
             <!--Input Text For Last Name Goes Here - Row 3, Column 1 - Make Visibility="Hidden"-->
 
@@ -69,12 +58,12 @@
                 >
             </TextBlock>
 
-            <!--<Label
+          <Label
                 Margin="4"
                 Grid.Row="1"
                 Grid.Column="1"
                 Content="555-5555"
-                />-->
+                />
 
 
             <!--Input Text For Healthcare ID Goes Here - Row 4, Column 1 - Make Visibility="Hidden"-->
@@ -91,12 +80,12 @@
             </TextBlock>
 
 
-            <!--<Label
+            <Label
                 Margin="4"
                 Grid.Row="2"
                 Grid.Column="1"
                 Content="Brother"
-                />-->
+                />
 
             <!--Input Text For Phone Goes Here - Row 5, Column 1 - Make Visibility="Hidden"-->
 
@@ -110,12 +99,12 @@
             </TextBlock>
 
 
-            <!--<Label
+            <Label
                 Margin="4"
                 Grid.Row="3"
                 Grid.Column="1"
                 Content="jKale@ucalgary.ca"
-                />-->
+                />
 
             <!--Input Text For Email Goes Here - Row 6, Column 1 - Make Visibility="Hidden"-->
 
