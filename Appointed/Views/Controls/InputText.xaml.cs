@@ -22,15 +22,31 @@ namespace Appointed.Views.Controls
     {
         private string _hint = "";
 
+        //public string Hint
+        //{
+        //    get { return (string)GetValue(HintProperty); }
+
+        //    set
+        //    {
+        //        SetValue(HintProperty, value);
+        //    }
+        //}
+
+
         public string Hint
         {
-            get { return (string)GetValue(HintProperty); }
+            get { return _hint; }
 
             set
             {
-                SetValue(HintProperty, value);
+                bool update = TextField.Text == _hint;
+                _hint = value;
+
+                if (update)
+                    TextField.Text = _hint;
             }
         }
+
 
 
         private Brush _forground = Brushes.Black;
@@ -101,12 +117,12 @@ namespace Appointed.Views.Controls
 
 
 
-        public static readonly DependencyProperty HintProperty = DependencyProperty.RegisterAttached(
-          "Hint",
-          typeof(string),
-          typeof(InputText),
-          new PropertyMetadata(string.Empty)
-        );
+        //public static readonly DependencyProperty HintProperty = DependencyProperty.RegisterAttached(
+        //  "Hint",
+        //  typeof(string),
+        //  typeof(InputText),
+        //  new PropertyMetadata(string.Empty)
+        //);
 
 
     }
