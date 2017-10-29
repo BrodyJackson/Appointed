@@ -29,10 +29,10 @@ namespace Appointed
             InitializeComponent();
 
             ShowHomeSidebar();
-            SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
-            //SidebarView.SetSidebarView(new ModifyAppointmentSidebar());
+            //SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
+            SidebarView.SetSidebarView(new ModifyAppointmentSidebar());
             //SidebarView.SetSidebarView(new HomeSidebar());
-            SidebarView.SetSidebarView(new PatientInfoSidebar());
+            //SidebarView.SetSidebarView(new PatientInfoSidebar());
 
         }
 
