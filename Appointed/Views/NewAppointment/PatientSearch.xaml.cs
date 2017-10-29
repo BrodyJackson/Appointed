@@ -24,5 +24,10 @@ namespace Appointed.Views.NewAppointment
         {
             InitializeComponent();
         }
+
+        private void newPatient_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

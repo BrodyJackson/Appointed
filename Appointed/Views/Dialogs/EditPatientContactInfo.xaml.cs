@@ -23,5 +23,10 @@ namespace Appointed.Views.Dialogs
         {
             InitializeComponent();
         }
+
+        private void OnMouseLeftRelease_Discard(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

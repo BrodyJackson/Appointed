@@ -1,4 +1,6 @@
-﻿ x:Class="Appointed.NewAppointment.appointmentFrame"
+﻿<UserControl
+    
+    x:Class="Appointed.NewAppointment.appointmentFrame"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -6,7 +8,9 @@
     xmlns:local="clr-namespace:Appointed.Views"
     mc:Ignorable="d"
     d:DesignHeight="768"
-    d:DesignWidth="300"><Grid
+    d:DesignWidth="300">
+    
+    <Grid
         Name="SidebarGirdLayout"
         Margin="4">
 
@@ -42,7 +46,7 @@
                     HorizontalAlignment="Center"
                     Margin="8,8,8,8"
                     VerticalAlignment="Center"
-                    Source="/Appointed;component/imgs/Home.png" />
+                    Source="/Appointed;component/Assets/HomeIcon.png" />
         </Button>
 
         <Button
@@ -53,7 +57,7 @@
                     HorizontalAlignment="Center"
                     Margin="8,8,8,8"
                     VerticalAlignment="Center"
-                    Source="/Appointed;component/imgs/Back.png" />
+                    Source="/Appointed;component/Assets/ReturnIcon.png" />
         </Button>
 
 

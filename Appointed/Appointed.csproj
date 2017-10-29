@@ -78,13 +78,6 @@
     <Compile Include="Views\Controls\DatePicker.xaml.cs">
       <DependentUpon>DatePicker.xaml</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="Views\Dialogs\NewPatientDialog.xaml.cs">
-      <DependentUpon>NewPatientDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DoctorColumnView.xaml.cs">
-      <DependentUpon>DoctorColumnView.xaml</DependentUpon>
-=======
     <Compile Include="Views\Controls\InputText.xaml.cs">
       <DependentUpon>InputText.xaml</DependentUpon>
     </Compile>
@@ -93,7 +86,6 @@
     </Compile>
     <Compile Include="Views\Dialogs\EditPatientContactInfo.xaml.cs">
       <DependentUpon>EditPatientContactInfo.xaml</DependentUpon>
->>>>>>> MergeAttempt
     </Compile>
     <Compile Include="Views\Dialogs\EditPatientEmergencyContacts.xaml.cs">
       <DependentUpon>EditPatientEmergencyContacts.xaml</DependentUpon>
@@ -202,16 +194,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\Controls\DatePicker.xaml">
-<<<<<<< HEAD
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Dialogs\NewPatientDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\DoctorColumnView.xaml">
-=======
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -240,7 +222,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Dialogs\Widgets\EmergencyContactEditable.xaml">
->>>>>>> MergeAttempt
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -388,15 +369,11 @@
     <Resource Include="Assets\RightDblArrow.png" />
     <Resource Include="Assets\LeftDblArrow.png" />
   </ItemGroup>
-<<<<<<< HEAD
   <ItemGroup>
     <Resource Include="Assets\CalendarIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\DayIcon.png" />
   </ItemGroup>
-=======
-  <ItemGroup />
->>>>>>> MergeAttempt
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

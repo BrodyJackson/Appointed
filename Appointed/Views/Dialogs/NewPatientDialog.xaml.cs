@@ -23,6 +23,5 @@ namespace Appointed.Views.Dialogs
         {
             InitializeComponent();
         }
-
     }
 }

@@ -18,9 +18,9 @@ namespace Appointed.Views.NewAppointment
     /// <summary>
     /// Interaction logic for Page1.xaml
     /// </summary>
-    public partial class Page1 : Page
+    public partial class AppointmentFrame : UserControl
     {
-        public Page1()
+        public AppointmentFrame()
         {
             InitializeComponent();
         }
