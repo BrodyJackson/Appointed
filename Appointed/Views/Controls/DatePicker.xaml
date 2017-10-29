@@ -23,6 +23,8 @@
         
         <local:InputText
             x:Name="InputText"
+            Hint="YYYY-MM-DD"
+            HintForground="Gray"
             Grid.Column="0"
             Grid.Row="0"
             VerticalAlignment="Center"

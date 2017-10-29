@@ -14,7 +14,7 @@
         </Grid.ColumnDefinitions>
         
         <local:InputText
-            x:Name="InputText"
+            x:Name="InputField"
             Grid.Column="0"
             Grid.Row="0"
             VerticalAlignment="Stretch"

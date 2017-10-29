@@ -141,9 +141,6 @@
     <Compile Include="Views\Sidebar\Widgets\JumpCalendarView.xaml.cs">
       <DependentUpon>JumpCalendarView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NewAppointmentTabView.xaml.cs">
-      <DependentUpon>NewAppointmentTabView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Controls\SearchBar.xaml.cs">
       <DependentUpon>SearchBar.xaml</DependentUpon>
     </Compile>
@@ -281,10 +278,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Sidebar\Widgets\JumpCalendarView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\NewAppointmentTabView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

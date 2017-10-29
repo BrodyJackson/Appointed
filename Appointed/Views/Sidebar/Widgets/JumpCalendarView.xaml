@@ -11,19 +11,14 @@
         VerticalAlignment="Stretch"
         >
 
-        <TextBlock 
-            FontFamily="Yu Gothic UI Light" 
-            FontSize="24"
-            HorizontalAlignment="Center"  
+        <TextBlock
+            Style="{StaticResource text_HeadingLarge}"
+            HorizontalAlignment="Center"
             Grid.Row="0"
             Grid.Column="0"
-            Text="Jump to Date" 
+            Text="Jump to Date"
             VerticalAlignment="Center"
-            Margin="0,0,0,0">
-            <TextBlock.Foreground>
-                <SolidColorBrush Color="#FFFF1E1E" Opacity="0.75"/>
-            </TextBlock.Foreground>
-        </TextBlock>
+            Margin="0,0,0,0" />
 
         <Calendar
             Name="Calendar"/>

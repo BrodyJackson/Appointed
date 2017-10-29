@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Appointed.Views.Dialogs"
         mc:Ignorable="d"
-        Title="EditPatientContactInfo" Height="300" Width="400"
+        Title="EditPatientContactInfo"
+    Height="315"
+    Width="400"
         
         xmlns:Controls="clr-namespace:Appointed.Views.Controls"
         xmlns:ListItems="clr-namespace:Appointed.Views.Sidebar.ListItems"
@@ -67,13 +69,13 @@
 
 
             <TextBlock
-                Style="{StaticResource text_OrangeRedLarge}"
+                Style="{StaticResource text_HeadingLarge}"
                 Grid.Row="0"
                 Grid.Column="0"
                 Grid.ColumnSpan="6"
                 Margin="12,0,0,0"
                 HorizontalAlignment="Center"
-                Text="Edit Contact Info"
+                Text="Edit Contact Information"
                 >
             </TextBlock>
 
@@ -86,8 +88,16 @@
                 >
             </TextBlock>
 
+            <TextBlock
+                Margin="0,16,0,0"
+                Grid.Column="1"
+                Grid.Row="1"
+                Text="*"
+                Foreground="Red"
+                HorizontalAlignment="Right" />
+            
             <Controls:InputText
-                    Margin="4,20,4,4"
+                    Margin="4,20,6,4"
                     Grid.Row="1"
                     Grid.Column="1"
                     Hint="(ex. 403-777-0990+ext)"
@@ -118,13 +128,40 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Stretch" />
 
-
+            <Controls:InputText
+                Margin="4"
+                Grid.Row="2"
+                Grid.Column="1"
+                Hint="(ex. 587-989-8899)"
+                HintForground="Gray"
+                Grid.ColumnSpan="1"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Stretch" />
 
             <TextBlock
                 Style="{StaticResource text_BlackMedium}"
                 Margin="4"
                 Grid.Column="0"
                 Grid.Row="3"
+                Text="Business:">
+            </TextBlock>
+
+            <Controls:InputText
+                    Margin="4"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Hint="(ex. 587-989-8899)"
+                    HintForground="Gray"
+                    Grid.ColumnSpan="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Stretch" />
+
+            
+            <TextBlock
+                Style="{StaticResource text_BlackMedium}"
+                Margin="4"
+                Grid.Column="0"
+                Grid.Row="4"
                 Text="Email:"
                 >
             </TextBlock>
@@ -132,7 +169,7 @@
 
             <Controls:InputText
                     Margin="4"
-                    Grid.Row="3"
+                    Grid.Row="4"
                     Grid.Column="1"
                     Hint="(ex. jason.briggs@shaw.ca)"
                     HintForground="Gray"
@@ -146,7 +183,7 @@
 
         <Grid 
             Margin="0,20,0,10"
-            DockPanel.Dock="Bottom">
+            DockPanel.Dock="Top">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition

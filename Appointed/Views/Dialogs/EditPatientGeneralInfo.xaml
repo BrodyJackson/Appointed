@@ -66,13 +66,13 @@
 
 
             <TextBlock
-                Style="{StaticResource text_OrangeRedLarge}"
+                Style="{StaticResource text_HeadingLarge}"
                 Grid.Row="0"
                 Grid.Column="0"
                 Grid.ColumnSpan="6"
                 Margin="12,0,0,0"
                 HorizontalAlignment="Center"
-                Text="Edit General Patient Info"
+                Text="Edit Patient Infomation"
                 >
             </TextBlock>
 
@@ -90,7 +90,7 @@
 
  
             <Controls:InputText
-                    Margin="4,20,4,4"
+                    Margin="4,20,6,4"
                     Grid.Row="1"
                     Grid.Column="1"
                     Hint="(ex. Christopher)"
@@ -99,7 +99,13 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Stretch" />
 
-
+            <TextBlock
+                Margin="0,16,0,0"
+                Grid.Column="1"
+                Grid.Row="1"
+                Text="*"
+                Foreground="Red"
+                HorizontalAlignment="Right" />
 
             <!--==================================================-->
             <TextBlock
@@ -134,7 +140,7 @@
 
 
             <Controls:InputText
-                    Margin="4"
+                    Margin="4,4,6,4"
                     Grid.Row="3"
                     Grid.Column="1"
                     Hint="(ex. O'Sullivan)"
@@ -143,7 +149,12 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Stretch" />
 
-
+            <TextBlock
+                Grid.Column="1"
+                Grid.Row="3"
+                Text="*"
+                Foreground="Red"
+                HorizontalAlignment="Right" />
 
             <TextBlock
                 Style="{StaticResource text_BlackMedium}"
@@ -156,7 +167,7 @@
 
 
             <Controls:InputText
-                    Margin="4"
+                    Margin="4,4,6,4"
                     Grid.Row="4"
                     Grid.Column="1"
                     Hint="(ex. 12345678)"
@@ -166,6 +177,13 @@
                     HorizontalAlignment="Stretch" />
 
 
+            <TextBlock
+                Grid.Column="1"
+                Grid.Row="4"
+                Text="*"
+                Foreground="Red"
+                HorizontalAlignment="Right" />
+            
             <TextBlock
                 Style="{StaticResource text_BlackMedium}"
                 Margin="4"
@@ -180,11 +198,15 @@
             <Controls:DatePicker
                 Grid.Column="2"
                 Grid.Row="5"
-                Margin="4"
-                BorderBrush="#BF800080"
-                BorderThickness="1" 
+                Margin="4,4,6,4"
                 VerticalAlignment="Center" Height="22"
                 />
+            <TextBlock
+                Grid.Column="1"
+                Grid.Row="5"
+                Text="*"
+                Foreground="Red" 
+                HorizontalAlignment="Right"/>
 
 
 
@@ -193,16 +215,15 @@
                 Margin="4"
                 Grid.Column="0"
                 Grid.Row="6"
-                Text="Sex:"
-                >
-            </TextBlock>
+                Text="Sex:" />
+
 
 
 
             <ComboBox
                     Grid.Row="6"
                     Grid.Column="1"
-                    Margin="4"
+                    Margin="4,4,6,4"
                     SelectedIndex="0"
                     VerticalContentAlignment="Center">
                 <ComboBoxItem
@@ -212,7 +233,12 @@
                 <ComboBoxItem
                         Content="Other" />
             </ComboBox>
-
+            <TextBlock
+                Grid.Column="1"
+                Grid.Row="6"
+                Text="*"
+                Foreground="Red"
+                HorizontalAlignment="Right" />
 
         </Grid>
 

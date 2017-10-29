@@ -34,9 +34,6 @@ namespace Appointed
             SidebarView.SetSidebarView(new HomeSidebar());
             SidebarView.SetSidebarView(new PatientInfoSidebar());
 
-
-            //SidebarView.SetSidebarView(new SearchResultsSidebar());
-
         }
 
         private void ShowHomeSidebar()

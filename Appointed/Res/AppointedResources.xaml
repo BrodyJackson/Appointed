@@ -161,7 +161,85 @@
     </Style>
     <!-- End Orange Red Text -->
 
+    <!-- OrangeRed Text In Three Sizes -->
+    <Style
+        x:Key="text_HeadingMedium"
+        TargetType="{x:Type TextBlock}">
+        <Setter
+            Property="Background"
+            Value="{x:Null}" />
+        <Setter
+            Property="Opacity"
+            Value="0.75" />
+        <Setter
+            Property="Foreground"
+            Value="#FFFF1E1E" />
+        <Setter
+            Property="FontFamily"
+            Value="Yu Gothic UI Light" />
+        <Setter
+            Property="FontSize"
+            Value="16" />
+        <Setter
+            Property="HorizontalAlignment"
+            Value="Left" />
+        <Setter
+            Property="VerticalAlignment"
+            Value="Center" />
+    </Style>
 
+    <Style
+        x:Key="text_HeadingLarge"
+        TargetType="{x:Type TextBlock}">
+        <Setter
+            Property="Background"
+            Value="{x:Null}" />
+        <Setter
+            Property="Opacity"
+            Value="0.75" />
+        <Setter
+            Property="Foreground"
+            Value="#FFFF1E1E" />
+        <Setter
+            Property="FontFamily"
+            Value="Yu Gothic UI Light" />
+        <Setter
+            Property="FontSize"
+            Value="20" />
+        <Setter
+            Property="HorizontalAlignment"
+            Value="Left" />
+        <Setter
+            Property="VerticalAlignment"
+            Value="Center" />
+    </Style>
+
+    <Style
+        x:Key="text_HeadingXLarge"
+        TargetType="{x:Type TextBlock}">
+        <Setter
+            Property="Background"
+            Value="{x:Null}" />
+        <Setter
+            Property="Opacity"
+            Value="0.75" />
+        <Setter
+            Property="Foreground"
+            Value="#FFFF1E1E" />
+        <Setter
+            Property="FontFamily"
+            Value="Yu Gothic UI Light" />
+        <Setter
+            Property="FontSize"
+            Value="24" />
+        <Setter
+            Property="HorizontalAlignment"
+            Value="Left" />
+        <Setter
+            Property="VerticalAlignment"
+            Value="Center" />
+    </Style>
+    <!-- End Orange Red Text -->
 
 
     <!-- OrangeRed Text In Three Sizes -->

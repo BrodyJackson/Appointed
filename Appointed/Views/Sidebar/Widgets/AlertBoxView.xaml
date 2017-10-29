@@ -15,18 +15,13 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock 
-            FontFamily="Yu Gothic UI Light" 
-            FontSize="24"
-            HorizontalAlignment="Center"  
+        <TextBlock
+            Style="{StaticResource text_HeadingLarge}"
+            HorizontalAlignment="Center"
             Grid.Row="0"
             Grid.Column="0"
-            Text="Alerts" 
-            VerticalAlignment="Center">
-            <TextBlock.Foreground>
-                <SolidColorBrush Color="#FFFF1E1E" Opacity="0.75"/>
-            </TextBlock.Foreground>
-        </TextBlock>
+            Text="Alerts"
+            VerticalAlignment="Center" />
         <Rectangle
             Grid.Row="1"
             Stroke="DarkGray"

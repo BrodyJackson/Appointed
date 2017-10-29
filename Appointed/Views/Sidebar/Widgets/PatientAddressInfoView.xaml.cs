@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Appointed.Views.Dialogs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,14 @@ namespace Appointed.Views.Sidebar.Widgets
         public PatientAddressInfoView()
         {
             InitializeComponent();
+
+            EditBtn.MouseLeftButtonUp += EditBtn_MouseLeftButtonUp;
+
+        }
+
+        private void EditBtn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            new EditPatientAddress().ShowDialog();
         }
     }
 }
