@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Appointed.Views.Dialogs"
         mc:Ignorable="d"
-        Title="Edit Patient Details" Height="400" Width="400"
+        Title="Edit Credentials" Height="400" Width="400"
         
         
         xmlns:Controls="clr-namespace:Appointed.Views.Controls"
@@ -72,7 +72,7 @@
                 Grid.ColumnSpan="6"
                 Margin="12,0,0,0"
                 HorizontalAlignment="Center"
-                Text="Edit Patient Infomation"
+                Text="Edit Credentials"
                 >
             </TextBlock>
 

@@ -197,7 +197,9 @@
             MaxHeight="200"
             >
 
-                <TextBox 
+                <TextBox
+                AcceptsReturn="True"
+                AcceptsTab="True"
                 BorderBrush="SteelBlue" 
                 Background="{x:Null}" 
                 SpellCheck.IsEnabled="True" 

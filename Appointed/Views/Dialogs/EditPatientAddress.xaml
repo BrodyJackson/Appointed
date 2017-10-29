@@ -9,7 +9,12 @@
         xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" x:Class="Appointed.Views.Dialogs.EditPatientAddress"
         
         mc:Ignorable="d"
-        Title="EditPatientAddress" Height="325" Width="400">
+        Title="Edit Address" Height="325" Width="400"
+        Icon="/Appointed;component/Assets/EditIcon.png"
+        ResizeMode="NoResize"
+        Topmost="True"
+        WindowStartupLocation="CenterScreen"
+    >
 
 
 

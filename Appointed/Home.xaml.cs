@@ -30,8 +30,8 @@ namespace Appointed
 
             ShowHomeSidebar();
             SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
-            SidebarView.SetSidebarView(new ModifyAppointmentSidebar());
-            SidebarView.SetSidebarView(new HomeSidebar());
+            //SidebarView.SetSidebarView(new ModifyAppointmentSidebar());
+            //SidebarView.SetSidebarView(new HomeSidebar());
             SidebarView.SetSidebarView(new PatientInfoSidebar());
 
         }

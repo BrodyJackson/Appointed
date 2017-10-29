@@ -73,7 +73,7 @@
             Margin="4"
             Grid.Column="1"
             Grid.Row="1"
-            Text="Sex: Male"
+            Text="Sex: Female"
             TextWrapping="Wrap"
             Grid.ColumnSpan="2" />
 

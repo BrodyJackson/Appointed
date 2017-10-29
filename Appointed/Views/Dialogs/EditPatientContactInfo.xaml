@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Appointed.Views.Dialogs"
         mc:Ignorable="d"
-        Title="EditPatientContactInfo"
-    Height="315"
+        Title="Edit Contact Information"
+    Height="325"
     Width="400"
         
         xmlns:Controls="clr-namespace:Appointed.Views.Controls"
