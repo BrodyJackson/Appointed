@@ -29,7 +29,7 @@ namespace Appointed
             InitializeComponent();
 
             ShowHomeSidebar();
-            //SidebarView.SetSidebarView(new PatientInfoSidebar());
+            SidebarView.SetSidebarView(new ModifyAppointmentSidebar());
             //SidebarView.SetSidebarView(new SearchResultsSidebar());
 
         }

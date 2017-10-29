@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,9 +33,11 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Expression.Drawing, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -75,16 +78,42 @@
     <Compile Include="Views\Controls\DatePicker.xaml.cs">
       <DependentUpon>DatePicker.xaml</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Views\Dialogs\NewPatientDialog.xaml.cs">
       <DependentUpon>NewPatientDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DoctorColumnView.xaml.cs">
       <DependentUpon>DoctorColumnView.xaml</DependentUpon>
+=======
+    <Compile Include="Views\Controls\InputText.xaml.cs">
+      <DependentUpon>InputText.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DoctorNameSlotView.xaml.cs">
-      <DependentUpon>DoctorNameSlotView.xaml</DependentUpon>
+    <Compile Include="Views\Dialogs\EditPatientAddress.xaml.cs">
+      <DependentUpon>EditPatientAddress.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DoctorsOnShiftView.xaml.cs">
+    <Compile Include="Views\Dialogs\EditPatientContactInfo.xaml.cs">
+      <DependentUpon>EditPatientContactInfo.xaml</DependentUpon>
+>>>>>>> MergeAttempt
+    </Compile>
+    <Compile Include="Views\Dialogs\EditPatientEmergencyContacts.xaml.cs">
+      <DependentUpon>EditPatientEmergencyContacts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\EditPatientGeneralInfo.xaml.cs">
+      <DependentUpon>EditPatientGeneralInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sidebar\ModifyAppointmentSidebar.xaml.cs">
+      <DependentUpon>ModifyAppointmentSidebar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\Widgets\EmergencyContactEditable.xaml.cs">
+      <DependentUpon>EmergencyContactEditable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sidebar\AppointmentDetailsSidebar.xaml.cs">
+      <DependentUpon>AppointmentDetailsSidebar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Schedule\DoctorColumnView.xaml.cs">
+      <DependentUpon>DoctorColumnView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Schedule\DoctorsOnShiftView.xaml.cs">
       <DependentUpon>DoctorsOnShiftView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Sidebar\ListItems\Alert.xaml.cs">
@@ -113,12 +142,6 @@
     </Compile>
     <Compile Include="Views\Sidebar\HomeSidebar.xaml.cs">
       <DependentUpon>HomeSidebar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\HomeWindowHeaderView.xaml.cs">
-      <DependentUpon>HomeWindowHeaderView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Controls\InputText.xaml.cs">
-      <DependentUpon>InputText.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Sidebar\Widgets\JumpCalendarView.xaml.cs">
       <DependentUpon>JumpCalendarView.xaml</DependentUpon>
@@ -153,16 +176,16 @@
     <Compile Include="Views\Sidebar\Widgets\PatientUpcomingApptView.xaml.cs">
       <DependentUpon>PatientUpcomingApptView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SingleDayView.xaml.cs">
+    <Compile Include="Views\Schedule\SingleDayView.xaml.cs">
       <DependentUpon>SingleDayView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ThreeDayHeaderView.xaml.cs">
+    <Compile Include="Views\Schedule\ThreeDayHeaderView.xaml.cs">
       <DependentUpon>ThreeDayHeaderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ThreeDayView.xaml.cs">
+    <Compile Include="Views\Schedule\ThreeDayView.xaml.cs">
       <DependentUpon>ThreeDayView.xaml</DependentUpon>
     </Compile>
-    <Page Include="AppointedResources.xaml">
+    <Page Include="Res\AppointedResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -179,6 +202,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\Controls\DatePicker.xaml">
+<<<<<<< HEAD
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -187,14 +211,48 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DoctorColumnView.xaml">
+=======
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\InputText.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\DoctorNameSlotView.xaml">
+    <Page Include="Views\Dialogs\EditPatientAddress.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\DoctorsOnShiftView.xaml">
+    <Page Include="Views\Dialogs\EditPatientContactInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialogs\EditPatientEmergencyContacts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialogs\EditPatientGeneralInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\ModifyAppointmentSidebar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialogs\Widgets\EmergencyContactEditable.xaml">
+>>>>>>> MergeAttempt
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\AppointmentDetailsSidebar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Schedule\DoctorColumnView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Schedule\DoctorsOnShiftView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -231,14 +289,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Sidebar\HomeSidebar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\HomeWindowHeaderView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Controls\InputText.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -286,15 +336,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SingleDayView.xaml">
+    <Page Include="Views\Schedule\SingleDayView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ThreeDayHeaderView.xaml">
+    <Page Include="Views\Schedule\ThreeDayHeaderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ThreeDayView.xaml">
+    <Page Include="Views\Schedule\ThreeDayView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -338,11 +388,15 @@
     <Resource Include="Assets\RightDblArrow.png" />
     <Resource Include="Assets\LeftDblArrow.png" />
   </ItemGroup>
+<<<<<<< HEAD
   <ItemGroup>
     <Resource Include="Assets\CalendarIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\DayIcon.png" />
   </ItemGroup>
+=======
+  <ItemGroup />
+>>>>>>> MergeAttempt
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -10,19 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Appointed.Views
+namespace Appointed.Views.Dialogs
 {
     /// <summary>
-    /// Interaction logic for DoctorNameSlotView.xaml
+    /// Interaction logic for EditPatientGeneralInfo.xaml
     /// </summary>
-    public partial class DoctorNameSlotView : UserControl
+    public partial class EditPatientGeneralInfo : Window
     {
-        public DoctorNameSlotView()
+        public EditPatientGeneralInfo()
         {
             InitializeComponent();
         }
+
+        private void OnMouseLeftRelease_Discard(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+        }   
     }
 }

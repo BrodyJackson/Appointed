@@ -4,7 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Appointed.Views"
+             xmlns:local="clr-namespace:Appointed.Views.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="300">
     <Grid>
@@ -20,9 +20,7 @@
             VerticalAlignment="Stretch"
             HorizontalAlignment="Stretch"
             Height="30"
-            Hint="Search by name or id"
-            HintForground="DarkGray"
-            Forground="Black"
+        
             FontSize="20"
             />
         <Button

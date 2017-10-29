@@ -24,7 +24,7 @@ namespace Appointed.Views.Sidebar.ListItems
         private Patient patient;
         public Patient Patient
         {
-            get => patient;
+            get { return patient; }
             set
             {
                 patient = value;

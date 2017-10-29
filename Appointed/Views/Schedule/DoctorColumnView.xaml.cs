@@ -32,7 +32,7 @@ namespace Appointed.Views
         {
             InitializeComponent();
 
-            this.InitializeComponent();
+//            this.InitializeComponent();
 
             this.Loaded += new RoutedEventHandler(DoctorColumnView_Loaded);
             
@@ -241,7 +241,9 @@ namespace Appointed.Views
             // Set appointment as active appointment. AppointmentViewModel will have an Appointment object
             //      that contains information for the last clicked appointment, either in the search bar or
             //      schedule view.
-            Console.WriteLine(appt.Patient);
+
+
+            
 
         }
 

@@ -4,7 +4,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+<<<<<<< HEAD
     xmlns:local="clr-namespace:Appointed.Views"
+=======
+    xmlns:local="clr-namespace:Appointed.Views.Controls"
+>>>>>>> MergeAttempt
     mc:Ignorable="d"
     d:DesignHeight="20"
     d:DesignWidth="300">
@@ -27,9 +31,13 @@
             Grid.Row="0"
             VerticalAlignment="Center"
             HorizontalAlignment="Stretch"
+<<<<<<< HEAD
             Hint="YYYY-MM-DD"
             HintForground="DarkGray"
             Forground="Black" />
+=======
+        />
+>>>>>>> MergeAttempt
         <Button
             Grid.Column="1"
             Grid.Row="0"
@@ -39,7 +47,11 @@
             Height="20">
             <Image
                 Height="Auto"
+<<<<<<< HEAD
                 Source="/Appointed;component/Assets/DayIcon.png" />
+=======
+                Source="/Appointed;component/Assets/EditIcon.png" />
+>>>>>>> MergeAttempt
         </Button>
     </Grid>
 </UserControl>
