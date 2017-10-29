@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Appointed.Views.Dialogs"
+        xmlns:Controls="clr-namespace:Appointed.Views.Controls"
+        
         mc:Ignorable="d"
         Title="EditPatientAddress" Height="325" Width="400">
 
@@ -72,7 +74,15 @@
                 >
             </TextBlock>
 
-            <!--Input Text For First Name Goes Here - Row 1, Column 1-->
+            <Controls:InputText
+                    Margin="4,20,4,4"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Hint="(ex. 666 Springridge Circle NW)"
+                    HintForground="Gray"
+                    Grid.ColumnSpan="3"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Stretch" />
 
 
             <TextBlock
@@ -85,7 +95,15 @@
             </TextBlock>
 
 
-            <!--Input Text For Middle Names Goes Here - Row 2, Column 1-->
+            <Controls:InputText
+                    Margin="4"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Hint="(ex. Okotoks)"
+                    HintForground="Gray"
+                    Grid.ColumnSpan="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Stretch" />
 
 
             <TextBlock
@@ -106,11 +124,31 @@
                     SelectedIndex="0"
                     VerticalContentAlignment="Center">
                 <ComboBoxItem
-                        Content="AB" />
+                        Content="Alberta" />
                 <ComboBoxItem
-                        Content="SK" />
+                        Content="British Columbia" />
                 <ComboBoxItem
-                        Content="NWT" />
+                        Content="Manitoba" />
+                <ComboBoxItem
+                        Content="New Brunswick" />
+                <ComboBoxItem
+                        Content="Newfoundland and Labrador" />
+                <ComboBoxItem
+                        Content="Northwest Territories" />
+                <ComboBoxItem
+                        Content="Nova Scotia" />
+                <ComboBoxItem
+                        Content="Nunavut" />
+                <ComboBoxItem
+                        Content="Ontario" />
+                <ComboBoxItem
+                        Content="Prince Edward Island" />
+                <ComboBoxItem
+                        Content="Quebec" />
+                <ComboBoxItem
+                        Content="Saskatchewan" />
+                <ComboBoxItem
+                        Content="Yukon" />
             </ComboBox>
 
 
@@ -124,6 +162,16 @@
             </TextBlock>
 
 
+            <Controls:InputText
+                    Margin="4"
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Hint="(ex. T3H 5T5)"
+                    HintForground="Gray"
+                    Grid.ColumnSpan="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Stretch" />
+            
 
         </Grid>
 

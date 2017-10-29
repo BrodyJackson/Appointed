@@ -86,7 +86,15 @@
                 >
             </TextBlock>
 
-            <!--Input Text For First Name Goes Here - Row 1, Column 2-->
+            <Controls:InputText
+                    Margin="4,20,4,4"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Hint="(ex. Frank Preston)"
+                    HintForground="Gray"
+                    Grid.ColumnSpan="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Stretch" />
 
 
             <TextBlock
@@ -99,7 +107,15 @@
             </TextBlock>
 
 
-            <!--Input Text For Middle Names Goes Here - Row 2, Column 2-->
+            <Controls:InputText
+                    Margin="4"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Hint="(ex. 403-777-0990+ext)"
+                    HintForground="Gray"
+                    Grid.ColumnSpan="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Stretch" />
 
 
             <TextBlock
@@ -112,7 +128,15 @@
             </TextBlock>
 
 
-            <!--Input Text For Last Name Goes Here - Row 3, Column 2-->
+            <Controls:InputText
+                    Margin="4"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Hint="(ex. Mother)"
+                    HintForground="Gray"
+                    Grid.ColumnSpan="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Stretch" />
 
 
 

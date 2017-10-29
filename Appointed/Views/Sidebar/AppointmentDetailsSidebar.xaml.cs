@@ -36,19 +36,19 @@ namespace Appointed.Views
             if (checkIn.Content.ToString() == "Check In")
             {
                 checkIn.Content = "Patient Arrived";
-                checkIn.Background = Brushes.Magenta;
+                //checkIn.Background = Brushes.Magenta;
                 checkIn.ToolTip = "Click To Undo Check In";
             }
             else
             {
                 checkIn.Content = "Check In";
-                checkIn.Background = Brushes.DodgerBlue;
+                //checkIn.Background = Brushes.DodgerBlue;
                 checkIn.ToolTip = "Click To Check Patient In";
             }
 
 
-            Window w = new EditPatientEmergencyContacts();
-            w.Show();
+            //Window w = new EditPatientEmergencyContacts();
+            //w.Show();
         }
 
         private void OnMouseLeftRelease_Modify(object sender, MouseButtonEventArgs e)

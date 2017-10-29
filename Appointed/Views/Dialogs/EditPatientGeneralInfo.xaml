@@ -75,6 +75,9 @@
                 >
             </TextBlock>
 
+
+
+            <!--==================================================-->
             <TextBlock
                 Style="{StaticResource text_BlackMedium}"
                 Margin="4,20,4,4"
@@ -84,9 +87,20 @@
                 >
             </TextBlock>
 
-            <!--Input Text For First Name Goes Here - Row 1, Column 2-->
-            
-            
+ 
+            <Controls:InputText
+                    Margin="4,20,4,4"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Hint="(ex. Christopher)"
+                    HintForground="Gray"
+                    Grid.ColumnSpan="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Stretch" />
+
+
+
+            <!--==================================================-->
             <TextBlock
                 Style="{StaticResource text_BlackMedium}"
                 Margin="4"
@@ -96,8 +110,16 @@
                 >
             </TextBlock>
 
-            
-            <!--Input Text For Middle Names Goes Here - Row 2, Column 2-->
+
+            <Controls:InputText
+                    Margin="4"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Hint="(ex. James, Waldo)"
+                    HintForground="Gray"
+                    Grid.ColumnSpan="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Stretch" />
 
 
             <TextBlock
@@ -110,7 +132,15 @@
             </TextBlock>
 
 
-            <!--Input Text For Last Name Goes Here - Row 3, Column 2-->
+            <Controls:InputText
+                    Margin="4"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Hint="(ex. O'Sullivan)"
+                    HintForground="Gray"
+                    Grid.ColumnSpan="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Stretch" />
 
 
 
@@ -124,7 +154,15 @@
             </TextBlock>
 
 
-            <!--Input Text For Healthcare ID Goes Here - Row 4, Column 2-->
+            <Controls:InputText
+                    Margin="4"
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Hint="(ex. 12345678)"
+                    HintForground="Gray"
+                    Grid.ColumnSpan="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Stretch" />
 
 
             <TextBlock
@@ -161,7 +199,9 @@
 
 
             <ComboBox
-                    
+                    Grid.Row="6"
+                    Grid.Column="1"
+                    Margin="4"
                     SelectedIndex="0"
                     VerticalContentAlignment="Center">
                 <ComboBoxItem
