@@ -67,7 +67,7 @@
 
 
             <TextBlock
-                Style="{StaticResource text_OrangeRedLarge}"
+                Style="{StaticResource text_HeadingLarge}"
                 Grid.Row="0"
                 Grid.Column="0"
                 Grid.ColumnSpan="6"
@@ -86,8 +86,16 @@
                 >
             </TextBlock>
 
+            <TextBlock
+                Margin="0,16,0,0"
+                Grid.Column="1"
+                Grid.Row="1"
+                Text="*"
+                Foreground="Red"
+                HorizontalAlignment="Right" />
+            
             <Controls:InputText
-                    Margin="4,20,4,4"
+                    Margin="4,20,6,4"
                     Grid.Row="1"
                     Grid.Column="1"
                     Hint="(ex. 403-777-0990+ext)"
@@ -117,7 +125,6 @@
                     Grid.ColumnSpan="1"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Stretch" />
-
 
 
             <TextBlock
