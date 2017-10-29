@@ -49,7 +49,7 @@
             Name="PatientName"
             Grid.Column="0"
             Grid.Row="0"
-            Text="Last_Name, First_Name, M."
+            Text="Ross, Michael, J."
             FontSize="20"
             TextWrapping="Wrap"
             Grid.ColumnSpan="2">
@@ -82,7 +82,7 @@
             Margin="4"
             Grid.Column="1"
             Grid.Row="1"
-            Text="Sex: Other"
+            Text="Sex: Male"
             FontSize="18"
             TextWrapping="Wrap"
             Grid.ColumnSpan="2">
@@ -97,7 +97,7 @@
             Margin="4"
             Grid.Column="0"
             Grid.Row="2"
-            Text="Birthdate: YYYY-MM-DD"
+            Text="Birthdate: 1987-09-22"
             FontSize="18"
             TextWrapping="Wrap"
             Grid.ColumnSpan="3">

@@ -34,6 +34,7 @@
             BorderBrush="LightGray" />
 
         <TextBlock
+            FontFamily="Yu Gothic UI Light"
             Margin="4"
             Grid.Column="0"
             Grid.Row="0"

@@ -8,6 +8,7 @@
     mc:Ignorable="d"
     d:DesignHeight="100"
     d:DesignWidth="300">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition
@@ -45,6 +46,7 @@
             ToolTip="Edit Patient Address"/>
 
         <TextBlock
+            FontFamily="Yu Gothic UI Light"
             Margin="4"
             Grid.Column="0"
             Grid.Row="0"
@@ -63,7 +65,7 @@
             Margin="4"
             Grid.Column="0"
             Grid.Row="1"
-            Text="#### Street Ave NS"
+            Text="570 - 11th Avenue SW"
             FontSize="18"
             Grid.ColumnSpan="3">
             <TextBlock.Foreground>
@@ -77,7 +79,7 @@
             Margin="4"
             Grid.Column="0"
             Grid.Row="2"
-            Text="City_Name, AB"
+            Text="Okotoks, AB"
             FontSize="18"
             Grid.ColumnSpan="1">
             <TextBlock.Foreground>

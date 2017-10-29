@@ -77,7 +77,7 @@
             Margin="0,4"
             Grid.Column="1"
             Grid.Row="1"
-            Text="Franklin E. Contactus"
+            Text="Rose Ross"
             FontSize="18"
             Grid.ColumnSpan="2">
             <TextBlock.Foreground>
@@ -104,7 +104,7 @@
             Margin="0,4"
             Grid.Column="1"
             Grid.Row="2"
-            Text="(587) 403-5555"
+            Text="(587) 403-6372"
             FontSize="18"
             Grid.ColumnSpan="2">
             <TextBlock.Foreground>
@@ -132,7 +132,7 @@
             Margin="0,4,4,0"
             Grid.Column="1"
             Grid.Row="3"
-            Text="Borther's Sister"
+            Text="Grandmother"
             FontSize="18"
             Grid.ColumnSpan="2">
             <TextBlock.Foreground>
