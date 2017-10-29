@@ -20,14 +20,41 @@ namespace Appointed.Views.Sidebar
     /// </summary>
     public partial class ModifyAppointmentSidebar : UserControl
     {
+        private bool _reminderEnabled = true;
+
         public ModifyAppointmentSidebar()
         {
             InitializeComponent();
+            ReminderToggle.IsChecked = true;
         }
 
         private void OnMouseLeftRelease_Discard(object sender, MouseButtonEventArgs e)
         {
-           
+
+        }
+
+        private void CheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            _reminderEnabled = !_reminderEnabled;
+
+            RemDaysLable.Visibility = _reminderEnabled ? Visibility.Visible : Visibility.Hidden;
+            RemTODLable.Visibility = _reminderEnabled ? Visibility.Visible : Visibility.Hidden;
+            RemType.Visibility = _reminderEnabled ? Visibility.Visible : Visibility.Hidden;
+            RemTypeLable.Visibility = _reminderEnabled ? Visibility.Visible : Visibility.Hidden;
+            RemTOD.Visibility = _reminderEnabled ? Visibility.Visible : Visibility.Hidden;
+            RemDays.Visibility = _reminderEnabled ? Visibility.Visible : Visibility.Hidden;
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (((ApptType.SelectedItem as ComboBoxItem).Content as string) == "Standard")
+            {
+                EndTime.Text = DateTime.Parse((StartTime.SelectedItem as Classes.Time).TimeString).AddMinutes(15).ToShortTimeString();
+            }
+            else
+            {
+                EndTime.Text = DateTime.Parse((StartTime.SelectedItem as Classes.Time).TimeString).AddMinutes(30).ToShortTimeString();
+            }
         }
     }
 }
