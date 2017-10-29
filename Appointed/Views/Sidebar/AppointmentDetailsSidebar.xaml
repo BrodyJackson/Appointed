@@ -18,6 +18,7 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
+
     </UserControl.Resources>
 
 
@@ -212,15 +213,10 @@
                 MinWidth="150"
                 Height="30" 
                 Margin="0,60,0,10"
-                DockPanel.Dock="Top"
+                DockPanel.Dock="Bottom"
                 PreviewMouseLeftButtonUp="OnMouseLeftRelease_Modify"
             />
-            <Separator 
-                BorderThickness="0" 
-                Margin="0,30,0,30" 
-                Background="{x:Null}" 
-                Foreground="{x:Null}"            
-            />
+           
 
         </DockPanel>
 
