@@ -51,6 +51,7 @@ namespace Appointed.Views.Controls
 
         private Brush _forground = Brushes.Black;
         private Brush _hintForground = Brushes.Gray;
+
         public Brush Forground
         {
             get { return _forground; }
@@ -60,6 +61,7 @@ namespace Appointed.Views.Controls
                 _forground = value;
             }
         }
+
         public Brush HintForground
         {
             get { return _hintForground; }
@@ -80,7 +82,7 @@ namespace Appointed.Views.Controls
         {
             InitializeComponent();
 
-            //ShowHintText(TextField);
+            ShowHintText(TextField);
         }
 
         private void TextField_GotFocus(object sender, RoutedEventArgs e)

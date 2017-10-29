@@ -29,7 +29,7 @@
         Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition
-                Height="55" />
+                Height="10" />
             <RowDefinition
                 Height="40" />
             <RowDefinition
@@ -75,7 +75,7 @@
             </Grid.ColumnDefinitions>
 
 
-            <TextBlock
+            <!--<TextBlock
                 Grid.Row="0"
                 Grid.Column="4"
                 FontFamily="Yu Gothic UI Light"
@@ -88,7 +88,7 @@
                         Color="OrangeRed"
                         Opacity="0.75" />
                 </TextBlock.Foreground>
-            </TextBlock>
+            </TextBlock>-->
 
         </Grid>
 

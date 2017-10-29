@@ -31,7 +31,7 @@
 
             <Grid DockPanel.Dock="Top">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="60"/>
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
