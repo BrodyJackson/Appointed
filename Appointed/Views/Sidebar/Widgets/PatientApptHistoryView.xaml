@@ -97,7 +97,7 @@
 
                 <!--Insert ApptHistoryDetails here-->
 
-                <ListItems:ApptHistoryDetail />
+                <ListItems:ApptHistoryDetail/>
                 <ListItems:ApptHistoryDetail />
                 <ListItems:ApptHistoryDetail />
                 <ListItems:ApptHistoryDetail />

@@ -48,7 +48,7 @@
             Margin="4"
             Grid.Column="2"
             Grid.Row="0"
-            Text="Consult"
+            Text="Standard"
             Grid.ColumnSpan="1"
             VerticalAlignment="Center"
             HorizontalAlignment="Center" />

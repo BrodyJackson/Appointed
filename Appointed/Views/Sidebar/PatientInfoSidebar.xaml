@@ -64,12 +64,14 @@
                     DockPanel.Dock="Top"
                     Margin="0,4,0,0"
                     MaxHeight="150"
+                    MinHeight="150"
                     Height="auto" />
 
                 <Widgets:PatientApptHistoryView
                     DockPanel.Dock="Top"
                     Margin="0,4,0,0"
                     MaxHeight="300"
+                    MinHeight="300"
                     Height="auto" />
 
             </DockPanel>
