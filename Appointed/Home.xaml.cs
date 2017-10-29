@@ -28,9 +28,17 @@ namespace Appointed
         {
             InitializeComponent();
 
-            //ShowHomeSidebar();
+
             //SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
             SidebarView.SetSidebarView(new ModifyAppointmentSidebar());
+
+            //ShowHomeSidebar();      //This doesn't need to be called unless showing the home sidebar, 
+                                    //otherwise it will incorrectly set the bottom buttons
+            
+            //SidebarView.SetSidebarView(new SearchResultsSidebar());
+            //SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
+            //SidebarView.SetSidebarView(new ModifyAppointmentSidebar());
+
             //SidebarView.SetSidebarView(new HomeSidebar());
             //SidebarView.SetSidebarView(new PatientInfoSidebar());
 
@@ -39,9 +47,6 @@ namespace Appointed
         private void ShowHomeSidebar()
         {
             SidebarView.SetSidebarView(new HomeSidebar());
-
-
-            //TODO: Replace these icons with black versions
 
             Button newPatientBtn = new Button
             {
@@ -59,8 +64,6 @@ namespace Appointed
             Grid.SetColumnSpan(newPatientBtn, 2);
 
             newPatientBtn.Click += (object sender, RoutedEventArgs args) => { new NewPatientDialog().ShowDialog(); };
-
-            //TODO: Add event listeners
         }
     }
 }
