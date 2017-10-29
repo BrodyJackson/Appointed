@@ -47,7 +47,7 @@ namespace Appointed.Views.Dialogs.Widgets
 
 
             if (buttonPartition.Visibility == Visibility.Visible)
-                buttonPartition.Visibility = Visibility.Collapsed;
+                buttonPartition.Visibility = Visibility.Hidden;
             else
                 buttonPartition.Visibility = Visibility.Visible;
         }
@@ -62,7 +62,7 @@ namespace Appointed.Views.Dialogs.Widgets
 
             setLabelVisibility(G2, Visibility.Visible);
             setInputControlVisibility(G2, Visibility.Hidden);
-            buttonPartition.Visibility = Visibility.Collapsed;
+            buttonPartition.Visibility = Visibility.Hidden;
         }
 
 
@@ -77,7 +77,7 @@ namespace Appointed.Views.Dialogs.Widgets
 
             setLabelVisibility(G2, Visibility.Visible);
             setInputControlVisibility(G2, Visibility.Hidden);
-            buttonPartition.Visibility = Visibility.Collapsed;
+            buttonPartition.Visibility = Visibility.Hidden;
         }
 
 

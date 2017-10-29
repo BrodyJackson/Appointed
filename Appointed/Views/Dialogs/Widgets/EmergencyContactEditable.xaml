@@ -15,7 +15,7 @@
 
 
     <DockPanel
-        Margin="4"
+        Margin="10"
         LastChildFill="False"
         Background="White"
         
@@ -70,12 +70,12 @@
             <!--Input Text For First Name Goes Here - Row 1, Column 1 - Make Visibility="Hidden"-->
 
 
-             <Label
+             <!--<Label
                 Margin="4,20,4,4"
                 Grid.Row="0"
                 Grid.Column="1"
                 Content="Jeremy Kale"
-                />
+                />-->
 
             <!--Input Text For Last Name Goes Here - Row 3, Column 1 - Make Visibility="Hidden"-->
 
@@ -88,12 +88,12 @@
                 >
             </TextBlock>
 
-            <Label
+            <!--<Label
                 Margin="4"
                 Grid.Row="1"
                 Grid.Column="1"
                 Content="555-5555"
-                />
+                />-->
 
 
             <!--Input Text For Healthcare ID Goes Here - Row 4, Column 1 - Make Visibility="Hidden"-->
@@ -110,12 +110,12 @@
             </TextBlock>
 
 
-            <Label
+            <!--<Label
                 Margin="4"
                 Grid.Row="2"
                 Grid.Column="1"
                 Content="Brother"
-                />
+                />-->
 
             <!--Input Text For Phone Goes Here - Row 5, Column 1 - Make Visibility="Hidden"-->
 
@@ -129,18 +129,18 @@
             </TextBlock>
 
 
-            <Label
+            <!--<Label
                 Margin="4"
                 Grid.Row="3"
                 Grid.Column="1"
                 Content="jKale@ucalgary.ca"
-                />
+                />-->
 
             <!--Input Text For Email Goes Here - Row 6, Column 1 - Make Visibility="Hidden"-->
 
 
 
-            <Image
+            <!--<Image
             Margin="0,2,2,0"
             Grid.Column="2"
             Grid.Row="0"
@@ -152,7 +152,7 @@
             Source="/Appointed;component/Assets/EditIcon.png"
             ToolTip="Edit Emergency Contact Information" 
             PreviewMouseLeftButtonUp="OnMouseLeftRelease_Edit"
-                />
+                />-->
 
 
 
@@ -162,7 +162,7 @@
                 Grid.Column="0"
                 Grid.ColumnSpan="3"
                 Margin="0,20,0,10"
-                Visibility="Collapsed"
+                Visibility="Visible"
             >
 
                 <Grid.ColumnDefinitions>

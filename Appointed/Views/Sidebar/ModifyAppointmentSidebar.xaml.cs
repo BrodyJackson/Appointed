@@ -12,21 +12,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Appointed.Views.Dialogs
+
+namespace Appointed.Views.Sidebar
 {
     /// <summary>
     /// Interaction logic for ModifyAppointmentDialog.xaml
     /// </summary>
-    public partial class ModifyAppointmentDialog : Window
+    public partial class ModifyAppointmentSidebar : UserControl
     {
-        public ModifyAppointmentDialog()
+        public ModifyAppointmentSidebar()
         {
             InitializeComponent();
         }
 
         private void OnMouseLeftRelease_Discard(object sender, MouseButtonEventArgs e)
         {
-            this.Close();
+           
         }
     }
 }

@@ -92,8 +92,8 @@
     <Compile Include="Views\Dialogs\EditPatientGeneralInfo.xaml.cs">
       <DependentUpon>EditPatientGeneralInfo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Dialogs\ModifyAppointmentDialog.xaml.cs">
-      <DependentUpon>ModifyAppointmentDialog.xaml</DependentUpon>
+    <Compile Include="Views\Sidebar\ModifyAppointmentSidebar.xaml.cs">
+      <DependentUpon>ModifyAppointmentSidebar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Dialogs\Widgets\EmergencyContactEditable.xaml.cs">
       <DependentUpon>EmergencyContactEditable.xaml</DependentUpon>
@@ -216,7 +216,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Dialogs\ModifyAppointmentDialog.xaml">
+    <Page Include="Views\Sidebar\ModifyAppointmentSidebar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

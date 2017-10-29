@@ -18,17 +18,11 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
-
-
-
-   
-
-
-
     </UserControl.Resources>
 
 
-    <ScrollViewer VerticalScrollBarVisibility="Hidden" CanContentScroll="True">
+    <ScrollViewer VerticalScrollBarVisibility="Hidden" CanContentScroll="True"
+                  HorizontalAlignment="Stretch">
 
         <DockPanel Background="White" >
 

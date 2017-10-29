@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Appointed.Views.Dialogs;
+using Appointed.Views;
 
 namespace Appointed.Views
 {
@@ -24,6 +25,8 @@ namespace Appointed.Views
         public AppointmentDetailsSidebar()
         {
             InitializeComponent();
+
+            
         }
 
         private void OnMouseLeftRelease_CheckIn(object sender, MouseButtonEventArgs e)
@@ -50,8 +53,8 @@ namespace Appointed.Views
 
         private void OnMouseLeftRelease_Modify(object sender, MouseButtonEventArgs e)
         {
-            ModifyAppointmentDialog window = new ModifyAppointmentDialog();
-            window.Show();
+            //ModifyAppointmentDialog window = new ModifyAppointmentDialog();
+            //window.Show();
         }
 
 
