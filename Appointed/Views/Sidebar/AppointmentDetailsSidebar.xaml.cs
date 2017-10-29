@@ -47,8 +47,8 @@ namespace Appointed.Views
             }
 
 
-            //Window w = new EditPatientEmergencyContacts();
-            //w.Show();
+            Window w = new EditPatientEmergencyContacts();
+            w.Show();
         }
 
         private void OnMouseLeftRelease_Modify(object sender, MouseButtonEventArgs e)
