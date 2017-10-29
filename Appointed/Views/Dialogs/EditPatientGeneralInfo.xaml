@@ -52,7 +52,7 @@
             </Grid.RowDefinitions>
 
 
-            <Rectangle 
+            <!--<Rectangle 
                 Grid.Row="0"
                 Grid.Column="0"
                 Grid.ColumnSpan="6"
@@ -60,17 +60,18 @@
                 <Rectangle.Fill>
                     <SolidColorBrush Color="DodgerBlue" Opacity="0.65"/>
                 </Rectangle.Fill>
-            </Rectangle>
+            </Rectangle>-->
 
-            <Separator Background="White" Foreground="White" BorderThickness="0" Margin="100,35,100,0" />
+
 
 
             <TextBlock
-                Style="{StaticResource text_WhiteXLarge}"
+                Style="{StaticResource text_OrangeRedLarge}"
                 Grid.Row="0"
                 Grid.Column="0"
                 Grid.ColumnSpan="6"
                 Margin="12,0,0,0"
+                HorizontalAlignment="Center"
                 Text="Edit General Patient Info"
                 >
             </TextBlock>
@@ -232,7 +233,7 @@
             </Grid.RowDefinitions>
 
             <Button 
-                Style="{StaticResource button_BlueWithWhiteForeground}"
+
                 Grid.Row="0"
                 Grid.Column="0"
                 Content="Save"
@@ -244,7 +245,7 @@
             />
 
             <Button
-                Style="{StaticResource button_BlueWithWhiteForeground}"
+
                 Grid.Row="0"
                 Grid.Column="1"
                 Content="Discard"
