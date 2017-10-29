@@ -239,10 +239,55 @@
             Property="VerticalAlignment"
             Value="Center" />
     </Style>
+    <Style
+        x:Key="text_HeadingXXLarge"
+        TargetType="{x:Type TextBlock}">
+        <Setter
+            Property="Background"
+            Value="{x:Null}" />
+        <Setter
+            Property="Opacity"
+            Value="0.75" />
+        <Setter
+            Property="Foreground"
+            Value="#FFFF1E1E" />
+        <Setter
+            Property="FontFamily"
+            Value="Yu Gothic UI Light" />
+        <Setter
+            Property="FontSize"
+            Value="28" />
+        <Setter
+            Property="HorizontalAlignment"
+            Value="Left" />
+        <Setter
+            Property="VerticalAlignment"
+            Value="Center" />
+    </Style>
     <!-- End Orange Red Text -->
 
 
     <!-- OrangeRed Text In Three Sizes -->
+    <Style x:Key="text_BlackXSmall" TargetType="{x:Type TextBlock}">
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="Opacity" Value="1"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontFamily" Value="Yu Gothic UI Light"/>
+        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    
+    <Style x:Key="text_BlackSmall" TargetType="{x:Type TextBlock}">
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="Opacity" Value="1"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontFamily" Value="Yu Gothic UI Light"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    
     <Style x:Key="text_BlackMedium" TargetType="{x:Type TextBlock}">
         <Setter Property="Background" Value="{x:Null}" />
         <Setter Property="Opacity" Value="1"/>

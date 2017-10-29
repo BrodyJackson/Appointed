@@ -129,6 +129,9 @@
     <Compile Include="Views\Sidebar\SearchResultsSidebar.xaml.cs">
       <DependentUpon>SearchResultsSidebar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Sidebar\NewAppointmentSidebar.xaml.cs">
+      <DependentUpon>NewAppointmentSidebar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Sidebar\Widgets\AlertBoxView.xaml.cs">
       <DependentUpon>AlertBoxView.xaml</DependentUpon>
     </Compile>
@@ -267,6 +270,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Sidebar\SearchResultsSidebar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\NewAppointmentSidebar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
