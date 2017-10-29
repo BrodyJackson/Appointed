@@ -39,8 +39,7 @@
                 </Grid.ColumnDefinitions>
 
 
-            
-                <Separator Background="White" Foreground="White" BorderThickness="0" Margin="100,35,100,0" />
+
 
                 <TextBlock 
                     Style="{StaticResource text_OrangeRedLarge}"
@@ -107,25 +106,25 @@
 
                     <TextBlock 
                     x:Name="startTime" 
-                    Text="8:00 AM"
+                    Text="7:15 AM"
                     Margin="10,10,0,0">
                     </TextBlock>
 
                     <TextBlock 
                     x:Name="endTime" 
-                    Text="8:15 AM"
+                    Text="7:30 AM"
                     Margin="10,10,0,0">
                     </TextBlock>
 
                     <TextBlock 
                     x:Name="apptType" 
-                    Text="Consultation"
+                    Text="Standard"
                     Margin="10,10,0,0">
                     </TextBlock>
 
                     <TextBlock 
                     x:Name="doctorName" 
-                    Text="Dr. Paulsen"
+                    Text="Dr. Pearson"
                     Margin="10,10,0,0">
                     </TextBlock>
 
@@ -145,6 +144,14 @@
             </Grid>
 
 
+            <Separator
+                Background="Gray" 
+                Foreground="Gray" 
+                BorderThickness="1" 
+                Margin="15,50,15,50" 
+                DockPanel.Dock="Top" 
+                BorderBrush="Gray" 
+                Height="2"/>
 
             <Button
             x:Name="checkIn"
@@ -154,29 +161,37 @@
             MaxWidth="200" 
             MinWidth="150"
             Height="30" 
-            Margin="0,50,0,10"
+            Margin="0"
             PreviewMouseLeftButtonUp="OnMouseLeftRelease_CheckIn"
             ToolTip="Click To Check Patient In"
             DockPanel.Dock="Top"
             />
 
 
-
-
+            <Separator
+                Background="Gray" 
+                Foreground="Gray" 
+                BorderThickness="1" 
+                Margin="15,50,15,50" 
+                DockPanel.Dock="Top" 
+                BorderBrush="Gray" 
+                Height="2"/>
+            
+            
             <TextBlock 
             Text="Notes"
-            Margin="5,100,0,0"
+            Margin="10,0,0,0"
             DockPanel.Dock="Top"
             />
 
 
             <ScrollViewer
-            MinHeight="75" 
+            MinHeight="125" 
             CanContentScroll="True" 
             BorderBrush="Black" 
             BorderThickness="1" 
             Background="Lavender" 
-            Margin="5,5,5,0"
+            Margin="10,10,10,0"
             VerticalScrollBarVisibility="Auto"
             DockPanel.Dock="Top"
             MaxHeight="200"
@@ -202,7 +217,7 @@
                 MaxWidth="200" 
                 MinWidth="150"
                 Height="30" 
-                Margin="0,60,0,10"
+                Margin="0,60,0,50"
                 DockPanel.Dock="Bottom"
                 PreviewMouseLeftButtonUp="OnMouseLeftRelease_Modify"
             />

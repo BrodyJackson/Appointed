@@ -297,4 +297,16 @@
 
 
 
+
+
+    <LinearGradientBrush x:Key="buttonSpecialBackground" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="#FFA5DFFF" Offset="0"/>
+        <GradientStop Color="#FF789DEC" Offset="0.5"/>
+        <GradientStop Color="#FFA0BAFF" Offset="0.5"/>
+        <GradientStop Color="#FF86ABF7" Offset="1"/>
+    </LinearGradientBrush>
+
+
+
+
 </ResourceDictionary>

@@ -40,7 +40,7 @@
                     Grid.Column="0"
                    
                     HorizontalAlignment="Center"
-                    Text="Modify Appointment"
+                    Text="Mike Ross"
                 />
 
             </Grid>
@@ -116,7 +116,7 @@
                         Grid.Row="0"
                         Grid.Column="1"
                         Margin="4,20,4,4"
-                        SelectedIndex="0"
+                        SelectedIndex="3"
                        VerticalContentAlignment="Center">
 
                         <ComboBoxItem
@@ -140,7 +140,7 @@
                         Grid.Column="1"
                         Margin="4"
                         ItemsSource="{Binding TimeStamps}"
-                        SelectedIndex="0"
+                        SelectedIndex="1"
                         VerticalContentAlignment="Center">
 
                         <ComboBox.ItemTemplate>
@@ -157,7 +157,7 @@
                         Grid.Column="1"
                         Margin="4"
                         ItemsSource="{Binding TimeStamps}"
-                        SelectedIndex="0"
+                        SelectedIndex="2"
                         VerticalContentAlignment="Center">
 
                         <ComboBox.ItemTemplate>
@@ -238,7 +238,7 @@
 
 
             <Grid 
-                Margin="0,20,0,10"
+                Margin="0,20,0,20"
                 DockPanel.Dock="Bottom">
 
                 <Grid.ColumnDefinitions>

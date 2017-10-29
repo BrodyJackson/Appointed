@@ -33,16 +33,29 @@ namespace Appointed.Views
         {
             Button checkIn = sender as Button;
 
+            //Color a = (Color)ColorConverter.ConvertFromString("#FFA5DFFF");
+            //Color b = (Color)ColorConverter.ConvertFromString("#FF789DEC");
+            //Color c = (Color)ColorConverter.ConvertFromString("#FFA0BAFF");
+            //Color d = (Color)ColorConverter.ConvertFromString("#FF86ABF7");
+
+
+            //LinearGradientBrush gradientBrush = new LinearGradientBrush(
+            //    a,
+            //    b, 
+            //    new Point(0.8, 0), 
+            //    new Point(0.8, 1));
+
+
             if (checkIn.Content.ToString() == "Check In")
             {
                 checkIn.Content = "Patient Arrived";
-                //checkIn.Background = Brushes.Magenta;
+                checkIn.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
                 checkIn.ToolTip = "Click To Undo Check In";
             }
             else
             {
                 checkIn.Content = "Check In";
-                //checkIn.Background = Brushes.DodgerBlue;
+                checkIn.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
                 checkIn.ToolTip = "Click To Check Patient In";
             }
 
