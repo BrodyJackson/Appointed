@@ -830,7 +830,8 @@
             Margin="8,4,8,0"
             Padding="4"
             Content="Save"
-            Width="100"/>
+            Width="100"
+            Click="Button_Click" />
 
         <Button
             Grid.Row="1"

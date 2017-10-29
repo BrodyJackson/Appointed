@@ -23,5 +23,10 @@ namespace Appointed.Views.Dialogs
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Please ensure all required fields are completed!", "Unable to Add Patient", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+        }
     }
 }
