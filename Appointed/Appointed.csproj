@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,11 +33,14 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Expression.Drawing, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,6 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\Alert.cs" />
     <Compile Include="Classes\Appointment.cs" />
     <Compile Include="Classes\DayTemplate.cs" />
     <Compile Include="Classes\Doctor.cs" />
@@ -65,50 +70,122 @@
     <Compile Include="Events\Schedule.cs" />
     <Compile Include="Models\AppointmentDatabaseModel.cs" />
     <Compile Include="Models\DayInformationModel.cs" />
+    <Compile Include="Assets\ResourceManager.cs" />
     <Compile Include="ViewModels\AppointmentViewModel.cs" />
     <Compile Include="ViewModels\DayInformationViewModel.cs" />
     <Compile Include="Classes\EmeregencyContact.cs" />
     <Compile Include="Classes\Patient.cs" />
-    <Compile Include="Views\DoctorColumnView.xaml.cs">
+    <Compile Include="Views\Controls\DatePicker.xaml.cs">
+      <DependentUpon>DatePicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\InputText.xaml.cs">
+      <DependentUpon>InputText.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\EditPatientAddress.xaml.cs">
+      <DependentUpon>EditPatientAddress.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\EditPatientContactInfo.xaml.cs">
+      <DependentUpon>EditPatientContactInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\EditPatientEmergencyContacts.xaml.cs">
+      <DependentUpon>EditPatientEmergencyContacts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\EditPatientGeneralInfo.xaml.cs">
+      <DependentUpon>EditPatientGeneralInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\NewPatientDialog.xaml.cs">
+      <DependentUpon>NewPatientDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sidebar\ModifyAppointmentSidebar.xaml.cs">
+      <DependentUpon>ModifyAppointmentSidebar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\Widgets\EmergencyContactEditable.xaml.cs">
+      <DependentUpon>EmergencyContactEditable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sidebar\AppointmentDetailsSidebar.xaml.cs">
+      <DependentUpon>AppointmentDetailsSidebar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Schedule\DoctorColumnView.xaml.cs">
       <DependentUpon>DoctorColumnView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DoctorNameSlotView.xaml.cs">
-      <DependentUpon>DoctorNameSlotView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DoctorsOnShiftView.xaml.cs">
+    <Compile Include="Views\Schedule\DoctorsOnShiftView.xaml.cs">
       <DependentUpon>DoctorsOnShiftView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\HomeTabAlertsView.xaml.cs">
-      <DependentUpon>HomeTabAlertsView.xaml</DependentUpon>
+    <Compile Include="Views\Sidebar\ListItems\Alert.xaml.cs">
+      <DependentUpon>Alert.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\HomeTabFilterView.xaml.cs">
-      <DependentUpon>HomeTabFilterView.xaml</DependentUpon>
+    <Compile Include="Views\Sidebar\ListItems\ApptHistoryDetail.xaml.cs">
+      <DependentUpon>ApptHistoryDetail.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\HomeTabSearchBar.xaml.cs">
-      <DependentUpon>HomeTabSearchBar.xaml</DependentUpon>
+    <Compile Include="Views\Sidebar\ListItems\CreateNewPatientResultItem.xaml.cs">
+      <DependentUpon>CreateNewPatientResultItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\HomeTabView.xaml.cs">
-      <DependentUpon>HomeTabView.xaml</DependentUpon>
+    <Compile Include="Views\Sidebar\ListItems\SearchResult.xaml.cs">
+      <DependentUpon>SearchResult.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\HomeWindowHeaderView.xaml.cs">
-      <DependentUpon>HomeWindowHeaderView.xaml</DependentUpon>
+    <Compile Include="Views\Sidebar\PatientInfoSidebar.xaml.cs">
+      <DependentUpon>PatientInfoSidebar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NewAppointmentTabView.xaml.cs">
-      <DependentUpon>NewAppointmentTabView.xaml</DependentUpon>
+    <Compile Include="Views\Sidebar\SearchResultsSidebar.xaml.cs">
+      <DependentUpon>SearchResultsSidebar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SidebarFrameView.xaml.cs">
+    <Compile Include="Views\Sidebar\NewAppointmentSidebar.xaml.cs">
+      <DependentUpon>NewAppointmentSidebar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sidebar\Widgets\AlertBoxView.xaml.cs">
+      <DependentUpon>AlertBoxView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sidebar\Widgets\FilterView.xaml.cs">
+      <DependentUpon>FilterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sidebar\HomeSidebar.xaml.cs">
+      <DependentUpon>HomeSidebar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sidebar\Widgets\JumpCalendarView.xaml.cs">
+      <DependentUpon>JumpCalendarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\SearchBar.xaml.cs">
+      <DependentUpon>SearchBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sidebar\SidebarFrameView.xaml.cs">
       <DependentUpon>SidebarFrameView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SingleDayView.xaml.cs">
+    <Compile Include="Views\Sidebar\Widgets\PatientAddressInfoView.xaml.cs">
+      <DependentUpon>PatientAddressInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sidebar\Widgets\PatientApptHistoryView.xaml.cs">
+      <DependentUpon>PatientApptHistoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sidebar\Widgets\PatientBasicInfoView.xaml.cs">
+      <DependentUpon>PatientBasicInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sidebar\Widgets\PatientContactInfoView.xaml.cs">
+      <DependentUpon>PatientContactInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sidebar\Widgets\PatientEmergencyContactInfoView.xaml.cs">
+      <DependentUpon>PatientEmergencyContactInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sidebar\Widgets\PatientNotesView.xaml.cs">
+      <DependentUpon>PatientNotesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sidebar\Widgets\PatientUpcomingApptView.xaml.cs">
+      <DependentUpon>PatientUpcomingApptView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Schedule\SingleDayView.xaml.cs">
       <DependentUpon>SingleDayView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ThreeDayHeaderView.xaml.cs">
+    <Compile Include="Views\Schedule\ThreeDayHeaderView.xaml.cs">
       <DependentUpon>ThreeDayHeaderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ThreeDayView.xaml.cs">
+    <Compile Include="Views\Schedule\ThreeDayView.xaml.cs">
       <DependentUpon>ThreeDayView.xaml</DependentUpon>
     </Compile>
-    <Page Include="AppointedResources.xaml">
+    <Page Include="DesignTimeResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
+    </Page>
+    <Page Include="Res\AppointedResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -124,55 +201,143 @@
       <DependentUpon>Home.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\DoctorColumnView.xaml">
+    <Page Include="Views\Controls\DatePicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\InputText.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\DoctorNameSlotView.xaml">
+    <Page Include="Views\Dialogs\EditPatientAddress.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\DoctorsOnShiftView.xaml">
+    <Page Include="Views\Dialogs\EditPatientContactInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\HomeTabAlertsView.xaml">
+    <Page Include="Views\Dialogs\EditPatientEmergencyContacts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\HomeTabFilterView.xaml">
+    <Page Include="Views\Dialogs\EditPatientGeneralInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\HomeTabSearchBar.xaml">
+    <Page Include="Views\Dialogs\NewPatientDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\HomeTabView.xaml">
+    <Page Include="Views\Sidebar\ModifyAppointmentSidebar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\HomeWindowHeaderView.xaml">
+    <Page Include="Views\Dialogs\Widgets\EmergencyContactEditable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\NewAppointmentTabView.xaml">
+    <Page Include="Views\Sidebar\AppointmentDetailsSidebar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Schedule\DoctorColumnView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SidebarFrameView.xaml">
+    <Page Include="Views\Schedule\DoctorsOnShiftView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SingleDayView.xaml">
+    <Page Include="Views\Sidebar\ListItems\Alert.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ThreeDayHeaderView.xaml">
+    <Page Include="Views\Sidebar\ListItems\ApptHistoryDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ThreeDayView.xaml">
+    <Page Include="Views\Sidebar\ListItems\CreateNewPatientResultItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\ListItems\SearchResult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\PatientInfoSidebar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\SearchResultsSidebar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\NewAppointmentSidebar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\Widgets\AlertBoxView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\Widgets\FilterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\HomeSidebar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\Widgets\JumpCalendarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\SearchBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\SidebarFrameView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\Widgets\PatientAddressInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\Widgets\PatientApptHistoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\Widgets\PatientBasicInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\Widgets\PatientContactInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\Widgets\PatientEmergencyContactInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\Widgets\PatientNotesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\Widgets\PatientUpcomingApptView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Schedule\SingleDayView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Schedule\ThreeDayHeaderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Schedule\ThreeDayView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -204,40 +369,23 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="imgs\right-chevron %281%29.png" />
-    <Resource Include="imgs\right-chevron.png" />
+    <Resource Include="Assets\ReturnIcon.png" />
+    <Resource Include="Assets\InfoIcon.png" />
+    <Resource Include="Assets\HomeIcon.png" />
+    <Resource Include="Assets\TrashIcon.png" />
+    <Resource Include="Assets\NewPatientIcon.png" />
+    <Resource Include="Assets\SearchIcon.png" />
+    <Resource Include="Assets\EditIcon.png" />
+    <Resource Include="Assets\RightArrow.png" />
+    <Resource Include="Assets\LeftArrow.png" />
+    <Resource Include="Assets\RightDblArrow.png" />
+    <Resource Include="Assets\LeftDblArrow.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="imgs\cancel %281%29.png" />
-    <Resource Include="imgs\cancel.png" />
-    <Resource Include="imgs\edit %281%29.png" />
-    <Resource Include="imgs\edit %282%29.png" />
-    <Resource Include="imgs\edit %283%29.png" />
-    <Resource Include="imgs\edit.png" />
-    <Resource Include="imgs\horizontal-lines-and-a-square %281%29.png" />
-    <Resource Include="imgs\horizontal-lines-and-a-square.png" />
-    <Resource Include="imgs\icon %281%29.png" />
-    <Resource Include="imgs\icon.png" />
-    <Resource Include="imgs\may-15-calendar-page-interface-symbol %281%29.png" />
-    <Resource Include="imgs\may-15-calendar-page-interface-symbol.png" />
-    <Resource Include="imgs\menu %281%29.png" />
-    <Resource Include="imgs\menu.png" />
-    <Resource Include="imgs\next %281%29.png" />
-    <Resource Include="imgs\next %282%29.png" />
-    <Resource Include="imgs\next.png" />
-    <Resource Include="imgs\square.png" />
-    <Resource Include="imgs\squareLg.png" />
-    <Resource Include="imgs\user-image-with-black-background %281%29.png" />
-    <Resource Include="imgs\user-image-with-black-background.png" />
+    <Resource Include="Assets\CalendarIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="next.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="right-chevron.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="right-chevron %281%29.png" />
+    <Resource Include="Assets\DayIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

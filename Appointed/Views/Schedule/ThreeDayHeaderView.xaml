@@ -1,0 +1,146 @@
+﻿<UserControl x:Class="Appointed.Views.ThreeDayHeaderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Appointed.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+     
+
+    </UserControl.Resources>
+    
+    
+    
+    
+    
+    
+    
+    
+    <!-- A header that consists of the small and large shift buttons along with day labels -->
+    <Grid Margin="0,0,0,0" PreviewMouseWheel="OnScrollDayShifter" Cursor="ScrollAll">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="15"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="40"/>
+
+        </Grid.ColumnDefinitions>
+
+
+
+        <TextBlock Grid.Row="0" Grid.Column="2" FontFamily="Yu Gothic UI Light" FontSize="24"
+                   HorizontalAlignment="Center" VerticalAlignment="Center" Panel.ZIndex="0"
+                    Text="{Binding FirstDay}">
+            <TextBlock.Foreground>
+                <SolidColorBrush Color="#FFFF1E1E" Opacity="0.75"/>
+            </TextBlock.Foreground>
+            <TextBlock.ToolTip>
+                <TextBlock Text="Scroll To Shift Days" FontSize="16" FontFamily="Yu Gothic UI Light"/>
+            </TextBlock.ToolTip>
+        </TextBlock>
+
+
+        <TextBlock Grid.Row="0" Grid.Column="4" FontFamily="Yu Gothic UI Light" FontSize="24"
+                   HorizontalAlignment="Center" VerticalAlignment="Center" Panel.ZIndex="0"
+                    Text="{Binding SecondDay}">
+            <TextBlock.Foreground>
+                <SolidColorBrush Color="#FFFF1E1E" Opacity="0.75"/>
+            </TextBlock.Foreground>
+            <TextBlock.ToolTip>
+                <TextBlock Text="Scroll To Shift Days" FontSize="16" FontFamily="Yu Gothic UI Light"/>
+            </TextBlock.ToolTip>
+        </TextBlock>
+
+
+        <TextBlock Grid.Row="0" Grid.Column="6" FontFamily="Yu Gothic UI Light" FontSize="24"
+                   HorizontalAlignment="Center" VerticalAlignment="Center" Panel.ZIndex="0"
+                    Text="{Binding ThirdDay}">
+            <TextBlock.Foreground>
+                <SolidColorBrush Color="#FFFF1E1E" Opacity="0.75"/>
+            </TextBlock.Foreground>
+            <TextBlock.ToolTip>
+                <TextBlock Text="Scroll To Shift Days" FontSize="16" FontFamily="Yu Gothic UI Light"/>
+            </TextBlock.ToolTip>
+        </TextBlock>
+
+        <Image Grid.Column="0"
+            Source="/Appointed;component/Assets/LeftDblArrow.png"
+            Stretch="Fill" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" HorizontalAlignment="Center"
+               MouseLeftButtonUp="OnLargeShiftLeft" Cursor="Hand">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+            <Image.ToolTip>
+                <TextBlock Text="Back 3 Days" FontSize="16" FontFamily="Yu Gothic UI Light"/>
+            </Image.ToolTip>
+        </Image>
+        <Image Grid.Column="3"
+            Source="/Appointed;component/Assets/LeftArrow.png"
+            Stretch="Fill" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" HorizontalAlignment="Center"
+               MouseLeftButtonUp="OnSmallShiftLeft" Cursor="Hand">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+            <Image.ToolTip>
+                <TextBlock Text="Back 1 Day" FontSize="16" FontFamily="Yu Gothic UI Light"/>
+            </Image.ToolTip>
+        </Image>
+        <Image Grid.Column="5"
+            Source="/Appointed;component/Assets/RightArrow.png"
+            Stretch="Fill" VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5"
+               MouseLeftButtonUp="OnSmallShiftRight" Cursor="Hand">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+            <Image.ToolTip>
+                <TextBlock Text="Forward 1 Day" FontSize="16" FontFamily="Yu Gothic UI Light"/>
+            </Image.ToolTip>
+        </Image>
+        <Image Grid.Column="7" Source="/Appointed;component/Assets/RightDblArrow.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" HorizontalAlignment="Center"
+               MouseLeftButtonUp="OnLargeShiftRight" Cursor="Hand">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+            <Image.ToolTip>
+                <TextBlock Text="Forward 3 Days" FontSize="16" FontFamily="Yu Gothic UI Light"/>
+            </Image.ToolTip>
+        </Image>
+
+
+
+
+
+
+    </Grid>
+</UserControl>

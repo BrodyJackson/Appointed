@@ -1,0 +1,453 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Appointed">
+    
+    
+    <!-- Global Tool Tip Style - Orange Border, BlueViolet Text, White Background-->
+    <Style x:Key="{x:Type ToolTip}" TargetType="ToolTip">
+        <Setter Property="Opacity" Value="1"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderBrush" Value="DarkOrange"/>
+        <Setter Property="Foreground" Value="BlueViolet"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="ToolTipService.InitialShowDelay" Value="500000"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToolTip">
+                    <Border x:Name="border" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                Background="{TemplateBinding Background}" 
+                                SnapsToDevicePixels="true"
+                                CornerRadius="2" 
+                                Opacity="{TemplateBinding Opacity}">
+
+                        <ContentPresenter x:Name="contentPresenter" 
+                                              Focusable="False" 
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                              Margin="{TemplateBinding Padding}"
+                                              RecognizesAccessKey="True" 
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+
+
+    <Style TargetType="{x:Type Label}">
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="Opacity" Value="1"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontFamily" Value="Yu Gothic UI Light"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+
+
+
+
+
+
+    <!-- Slate Gray Text In Three Sizes -->
+    <Style x:Key="text_SlateGrayMedium" TargetType="{x:Type TextBlock}">
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="Opacity" Value="1"/>
+        <Setter Property="Foreground" Value="SlateGray"/>
+        <Setter Property="FontFamily" Value="Yu Gothic UI Light"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="text_SlateGrayLarge" TargetType="{x:Type TextBlock}">
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="Opacity" Value="1"/>
+        <Setter Property="Foreground" Value="SlateGray"/>
+        <Setter Property="FontFamily" Value="Yu Gothic UI Light"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="text_SlateGrayXLarge" TargetType="{x:Type TextBlock}">
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="Opacity" Value="1"/>
+        <Setter Property="Foreground" Value="SlateGray"/>
+        <Setter Property="FontFamily" Value="Yu Gothic UI Light"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <!-- End Slate Gray Text -->
+
+
+    
+    
+    
+    <!-- White Text In Three Sizes -->
+    <Style x:Key="text_WhiteMedium" TargetType="{x:Type TextBlock}">
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="Opacity" Value="1"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontFamily" Value="Yu Gothic UI Light"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="text_WhiteLarge" TargetType="{x:Type TextBlock}">
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="Opacity" Value="1"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontFamily" Value="Yu Gothic UI Light"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="text_WhiteXLarge" TargetType="{x:Type TextBlock}">
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="Opacity" Value="1"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontFamily" Value="Yu Gothic UI Light"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <!-- End White Text -->
+
+
+    
+    
+    
+    <!-- OrangeRed Text In Three Sizes -->
+    <Style x:Key="text_OrangeRedMedium" TargetType="{x:Type TextBlock}">
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="Opacity" Value="1"/>
+        <Setter Property="Foreground" Value="OrangeRed"/>
+        <Setter Property="FontFamily" Value="Yu Gothic UI Light"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="text_OrangeRedLarge" TargetType="{x:Type TextBlock}">
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="Opacity" Value="1"/>
+        <Setter Property="Foreground" Value="OrangeRed"/>
+        <Setter Property="FontFamily" Value="Yu Gothic UI Light"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="text_OrangeRedXLarge" TargetType="{x:Type TextBlock}">
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="Opacity" Value="1"/>
+        <Setter Property="Foreground" Value="OrangeRed"/>
+        <Setter Property="FontFamily" Value="Yu Gothic UI Light"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <!-- End Orange Red Text -->
+
+    <!-- OrangeRed Text In Three Sizes -->
+    <Style
+        x:Key="text_HeadingMedium"
+        TargetType="{x:Type TextBlock}">
+        <Setter
+            Property="Background"
+            Value="{x:Null}" />
+        <Setter
+            Property="Opacity"
+            Value="0.75" />
+        <Setter
+            Property="Foreground"
+            Value="#FFFF1E1E" />
+        <Setter
+            Property="FontFamily"
+            Value="Yu Gothic UI Light" />
+        <Setter
+            Property="FontSize"
+            Value="16" />
+        <Setter
+            Property="HorizontalAlignment"
+            Value="Left" />
+        <Setter
+            Property="VerticalAlignment"
+            Value="Center" />
+    </Style>
+
+    <Style
+        x:Key="text_HeadingLarge"
+        TargetType="{x:Type TextBlock}">
+        <Setter
+            Property="Background"
+            Value="{x:Null}" />
+        <Setter
+            Property="Opacity"
+            Value="0.75" />
+        <Setter
+            Property="Foreground"
+            Value="#FFFF1E1E" />
+        <Setter
+            Property="FontFamily"
+            Value="Yu Gothic UI Light" />
+        <Setter
+            Property="FontSize"
+            Value="20" />
+        <Setter
+            Property="HorizontalAlignment"
+            Value="Left" />
+        <Setter
+            Property="VerticalAlignment"
+            Value="Center" />
+    </Style>
+
+    <Style
+        x:Key="text_HeadingXLarge"
+        TargetType="{x:Type TextBlock}">
+        <Setter
+            Property="Background"
+            Value="{x:Null}" />
+        <Setter
+            Property="Opacity"
+            Value="0.75" />
+        <Setter
+            Property="Foreground"
+            Value="#FFFF1E1E" />
+        <Setter
+            Property="FontFamily"
+            Value="Yu Gothic UI Light" />
+        <Setter
+            Property="FontSize"
+            Value="24" />
+        <Setter
+            Property="HorizontalAlignment"
+            Value="Left" />
+        <Setter
+            Property="VerticalAlignment"
+            Value="Center" />
+    </Style>
+    <Style
+        x:Key="text_HeadingXXLarge"
+        TargetType="{x:Type TextBlock}">
+        <Setter
+            Property="Background"
+            Value="{x:Null}" />
+        <Setter
+            Property="Opacity"
+            Value="0.75" />
+        <Setter
+            Property="Foreground"
+            Value="#FFFF1E1E" />
+        <Setter
+            Property="FontFamily"
+            Value="Yu Gothic UI Light" />
+        <Setter
+            Property="FontSize"
+            Value="28" />
+        <Setter
+            Property="HorizontalAlignment"
+            Value="Left" />
+        <Setter
+            Property="VerticalAlignment"
+            Value="Center" />
+    </Style>
+    <!-- End Orange Red Text -->
+
+
+    <!-- OrangeRed Text In Three Sizes -->
+    <Style x:Key="text_BlackXSmall" TargetType="{x:Type TextBlock}">
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="Opacity" Value="1"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontFamily" Value="Yu Gothic UI Light"/>
+        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    
+    <Style x:Key="text_BlackSmall" TargetType="{x:Type TextBlock}">
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="Opacity" Value="1"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontFamily" Value="Yu Gothic UI Light"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    
+    <Style x:Key="text_BlackMedium" TargetType="{x:Type TextBlock}">
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="Opacity" Value="1"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontFamily" Value="Yu Gothic UI Light"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="text_BlackLarge" TargetType="{x:Type TextBlock}">
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="Opacity" Value="1"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontFamily" Value="Yu Gothic UI Light"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="text_BlackXLarge" TargetType="{x:Type TextBlock}">
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="Opacity" Value="1"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontFamily" Value="Yu Gothic UI Light"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <!-- End Orange Red Text -->
+
+
+
+
+
+
+
+    <!--Static Resource For Button Style (Below)-->
+    <Style x:Key="FocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle Margin="2" 
+                               SnapsToDevicePixels="true" 
+                               Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" 
+                               StrokeThickness="1" 
+                               StrokeDashArray="1 2"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+    <!--Definition of Style Template For A Button With Blue Background, White Text-->
+    <Style TargetType="{x:Type Button}" x:Key="button_BlueWithWhiteForeground">
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+        <Setter Property="Background" Value="DodgerBlue"/>
+        <Setter Property="Opacity" Value="0.65"/>
+        <Setter Property="BorderBrush" Value="SteelBlue"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border
+                            x:Name="border"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="true"
+                            CornerRadius="2">
+
+                        <ContentPresenter 
+                                x:Name="contentPresenter" 
+                                Focusable="False" 
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" 
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                TextElement.FontSize="14"
+                            />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsDefaulted" Value="true">
+                            <Setter Property="BorderBrush" TargetName="border" 
+                                        Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="BorderThickness" TargetName="border" Value="2"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="SlateBlue"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Background" TargetName="border" Value="DodgerBlue"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="SteelBlue"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Background" TargetName="border" Value="#FFF4F4F4"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="#FFADB2B5"/>
+                            <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="#FF838383"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+
+
+
+
+
+
+    <!--Style for Rectangle Headers in sidebars-->
+    <Style x:Key="titleHeaders" TargetType="{x:Type Rectangle}">
+        <Setter Property="Fill" Value="DodgerBlue" />
+        <Setter Property="Opacity" Value="0.65"/>
+        <Setter Property="RadiusX" Value="0"/>
+        <Setter Property="RadiusY" Value="0"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+    </Style>
+
+
+
+
+    <Style
+        x:Key="checkBoxes"
+        TargetType="{x:Type CheckBox}">
+        <Setter
+            Property="FontFamily"
+            Value="Yu Gothic UI Light" />
+        <Setter
+            Property="FontSize"
+            Value="16" />
+        <Setter
+            Property="Foreground"
+            Value="Black" />
+        <Setter
+            Property="VerticalContentAlignment"
+            Value="Center" />
+    </Style>
+
+
+
+
+
+    <LinearGradientBrush x:Key="buttonSpecialBackground" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="#FFA5DFFF" Offset="0"/>
+        <GradientStop Color="#FF789DEC" Offset="0.5"/>
+        <GradientStop Color="#FFA0BAFF" Offset="0.5"/>
+        <GradientStop Color="#FF86ABF7" Offset="1"/>
+    </LinearGradientBrush>
+
+
+
+
+</ResourceDictionary>

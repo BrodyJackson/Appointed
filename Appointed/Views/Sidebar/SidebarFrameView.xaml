@@ -1,0 +1,67 @@
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Appointed.Views"
+    xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+    x:Class="Appointed.Views.SidebarFrameView"
+    mc:Ignorable="d"
+    d:DesignHeight="768"
+    d:DesignWidth="300">
+    
+    <Grid
+        x:Name="SidebarGridLayout"
+        Margin="4">
+
+        <!--
+        Top part is for actual views
+        Bottom is nav buttons
+        -->
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="QuickNavArea"
+            HorizontalAlignment="Stretch"
+            Margin="0,0,0,0"
+            VerticalAlignment="Stretch"
+            Grid.Row="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    Width="50*" />
+                <ColumnDefinition
+                    Width="50*" />
+            </Grid.ColumnDefinitions>
+
+            <Button
+                x:Name="LeftQuickNavButton"
+                Grid.Column="0"
+                Grid.ColumnSpan="1" >
+                <Image
+                    HorizontalAlignment="Center"
+                    Margin="8,8,8,8"
+                    VerticalAlignment="Center"
+                    Source="/Appointed;component/Assets/ReturnIcon.png" />
+            </Button>
+
+            <Button
+                x:Name="RightQuickNavButton"
+                Grid.Column="1"
+                Grid.ColumnSpan="1">
+                <Image
+                    HorizontalAlignment="Center"
+                    Margin="8,8,8,8"
+                    VerticalAlignment="Center"
+                    Source="/Appointed;component/Assets/HomeIcon.png" />
+            </Button>
+
+
+        </Grid>
+
+
+    </Grid>
+</UserControl>

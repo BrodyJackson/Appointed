@@ -1,0 +1,84 @@
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Appointed.Views.Sidebar"
+    xmlns:Widgets="clr-namespace:Appointed.Views.Sidebar.Widgets"
+    x:Class="Appointed.Views.Sidebar.PatientInfoSidebar"
+    mc:Ignorable="d"
+    d:DesignHeight="700"
+    d:DesignWidth="300">
+    <Grid
+        Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="auto" />
+            <RowDefinition
+                Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Style="{StaticResource text_HeadingXLarge}"
+            Grid.Row="0"
+            Margin="0,0,0,4"
+            Text="Patient Information"
+            Grid.ColumnSpan="2"
+            TextAlignment="Center" />
+
+        <ScrollViewer
+            Grid.Row="1"
+            VerticalScrollBarVisibility="Hidden">
+
+            <DockPanel
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                LastChildFill="False">
+
+                <Widgets:PatientBasicInfoView
+                    DockPanel.Dock="Top"
+                    Margin="0,4,0,0"
+                    Height="auto" />
+
+                <Widgets:PatientAddressInfoView
+                    DockPanel.Dock="Top"
+                    Margin="0,4,0,0"
+                    Height="auto" />
+
+                <Widgets:PatientContactInfoView
+                    DockPanel.Dock="Top"
+                    Margin="0,4,0,0"
+                    Height="auto" />
+
+                <Widgets:PatientEmergencyContactInfoView
+                    DockPanel.Dock="Top"
+                    Margin="0,4,0,0"
+                    Height="auto" />
+
+                <Widgets:PatientNotesView
+                    DockPanel.Dock="Top"
+                    Margin="0,4,0,0"
+                    Height="auto" />
+
+                <Widgets:PatientUpcomingApptView
+                    DockPanel.Dock="Top"
+                    Margin="0,4,0,0"
+                    MaxHeight="150"
+                    MinHeight="150"
+                    Height="auto" />
+
+                <Widgets:PatientApptHistoryView
+                    DockPanel.Dock="Top"
+                    Margin="0,4,0,0"
+                    MaxHeight="300"
+                    MinHeight="300"
+                    Height="auto" />
+
+            </DockPanel>
+
+        </ScrollViewer>
+        
+
+
+    </Grid>
+</UserControl>

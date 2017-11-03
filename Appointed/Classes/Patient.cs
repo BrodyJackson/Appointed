@@ -10,43 +10,30 @@ using System.Threading.Tasks;
 
 namespace Appointed.ViewModels
 {
+
 	public class Patient : ObservableObject
 	{
 		//Constant values
 
 		//Sex
-		const int OTHER = 0;
-		const int MALE = 1;
-		const int FEMALE = 2;
+		public enum SEX { MALE, FEMALE, OTHER};
 
-		//Provinces (and territories)
-		const int AB = 0;
-		const int BC = 1;
-		const int MB = 2;
-		const int NB = 3;
-		const int NL = 4;
-		const int NT = 5;
-		const int NS = 6;
-		const int NU = 7;
-		const int ON = 8;
-		const int PE = 9;
-		const int QC = 10;
-		const int SK = 11;
-		const int YT = 12;
+        //Provinces (and territories)
+        public enum PROVINCE { AB, BC, MB, NB, NL, NT, NS, NU, ON, PE, QC, SK, YT};
 
 		//General info
 		string _firstName;
 		string _middleName;
 		string _lastName;
 		DateTime _birthDate;
-		int _sex;               //Use constant values
+		SEX _sex;              
 		int _healthID;
 
-		//Address
-		string _street;
+        //Address
+        string _street;
 		string _suite;
 		string _city;
-		int _province;          //Use constant values
+		PROVINCE _province;        
 		string _postalCode;
 
 		//Contact
@@ -92,6 +79,8 @@ namespace Appointed.ViewModels
 			}
 		}
 
+        //TODO: Add GetFullName() function er something
+
 		public DateTime BirthDate
 		{
 			get { return _birthDate; }
@@ -103,7 +92,7 @@ namespace Appointed.ViewModels
 			}
 		}
 
-		public int Sex
+		public SEX Sex
 		{
 			get { return _sex; }
 
@@ -113,6 +102,21 @@ namespace Appointed.ViewModels
 				RaisePropertyChangedEvent("Sex");
 			}
 		}
+
+        public String GetSexAsString()
+        {
+            switch (_sex)
+            {
+                case SEX.MALE:
+                    return "Male";
+                case SEX.FEMALE:
+                    return "Female";
+                case SEX.OTHER:
+                    return "Other";
+                default:
+                    return "Undefined";
+            }
+        }
 
 		public int HealthID
 		{
@@ -125,7 +129,13 @@ namespace Appointed.ViewModels
 			}
 		}
 
-		public string Street
+        internal string GetHealthIdAsString()
+        {
+            return _healthID.ToString().Substring(0, 5) + "-" + _healthID.ToString().Substring(4);
+        }
+
+
+        public string Street
 		{
 			get { return _street; }
 
@@ -158,7 +168,7 @@ namespace Appointed.ViewModels
 			}
 		}
 
-		public int Province
+		public PROVINCE Province
 		{
 			get { return _province; }
 

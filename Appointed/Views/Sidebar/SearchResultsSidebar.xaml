@@ -1,0 +1,51 @@
+﻿<UserControl
+    x:Class="Appointed.Views.Sidebar.SearchResultsSidebar"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Appointed.Views"
+    mc:Ignorable="d"
+    d:DesignHeight="700"
+    d:DesignWidth="300">
+    <Grid
+        Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="auto" />
+            <RowDefinition
+                Height="auto" />
+            <RowDefinition
+                Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Style="{StaticResource text_HeadingMedium}"
+            HorizontalAlignment="Left"
+            Grid.Row="0"
+            Grid.Column="0"
+            Text="Search results for..."
+            VerticalAlignment="Center" />
+
+        <local:SearchBar
+            x:Name="SearchBar"
+            Grid.Column="0"
+            Grid.Row="1" />
+        <ScrollViewer
+            Margin="0, 8, 0, 0"
+            Grid.Row="2"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch"
+            VerticalScrollBarVisibility="Auto"
+            Grid.RowSpan="1">
+            <StackPanel
+                Name="SearchResultsList"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                CanVerticallyScroll="True">
+                <!--Insert Search result list items here-->
+            </StackPanel>
+        </ScrollViewer>
+
+    </Grid>
+</UserControl>
