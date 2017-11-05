@@ -51,7 +51,7 @@ namespace Appointed.Views
 
 
 
-
+        // I should be able to use this.findCommonVisualAncestor or something similar to simplify this.
         void OnScheduleAltered(Object sender, EventArgs e)
         {
             int drColumn;
@@ -67,10 +67,8 @@ namespace Appointed.Views
             // Get all sibling DrColumns then find this one's position by name.
             var DrColumns = SingleDayViewGrid.Children.OfType<DoctorColumnView>();
             for (drColumn = 0; drColumn < DrColumns.Count(); drColumn++)
-            {
                 if (DrColumns.ElementAt(drColumn).Name == this.Name)
                     break;
-            }
 
             // Get the SingleDayView that is an ancestor of this DoctorColumnView
             SingleDayView SDV = (SingleDayView)SingleDayViewGrid.Parent;
@@ -91,8 +89,8 @@ namespace Appointed.Views
 
             Console.WriteLine("Number of Scroll Viewers: " + count);
 
-            // Get number of scroll viewer children that are not single day scrollers that preceed the first single day scroller
-            // All single day svroll viewers must follow a naming convention; x:Name="Day<xxx>Scroller"
+            // Get number of scroll viewer children that are not single day columns that preceed the first single day column
+            // All single day scroll viewers must follow a naming convention; x:Name="Day<xxx>Scroller"
             for (numPreceeding = 0; numPreceeding < SVs.Count(); numPreceeding++)
             {
                 if (SVs.ElementAt(numPreceeding).Name.Contains("Day"))
@@ -106,6 +104,8 @@ namespace Appointed.Views
                     break;
             }
 
+
+            // binding code is dr column
             Console.WriteLine("Day Column: " + singleDayColumn);
 
             bindingCode += drColumn + 1;
@@ -129,24 +129,6 @@ namespace Appointed.Views
 
 
 
-
-        private void OnWindowResize(object sender, SizeChangedEventArgs e)
-        {
-            Grid drColumn = (Grid)sender;
-           
-            double newWidth = e.NewSize.Width;
-            double newHeight = e.NewSize.Height;
-
-            
-            Console.WriteLine("WINDOW RESIZED\n");
-
-            double columnWidth = (newWidth - 255) / 3;
-
-            if (columnWidth >= 80)
-                drColumn.ColumnDefinitions.ElementAt(0).Width = new GridLength(columnWidth);
-        }
-
-
         private void OnMouseEnterAppointmentSlot(object sender, MouseEventArgs e)
         {
             Rectangle r = new Rectangle();
@@ -155,29 +137,12 @@ namespace Appointed.Views
 
             Grid parentGrid;
 
-            Type senderType = sender.GetType();
+            r = (Rectangle)sender;
+            parentGrid = (Grid)r.Parent;
 
-            if (senderType == r.GetType())
-            {
-                r = (Rectangle)sender;
-                parentGrid = (Grid)r.Parent;
-            }
-            else if (senderType == t.GetType())
-            {
-                t = (TextBlock)sender;
-                parentGrid = (Grid)t.Parent;
-            }
-            else
-            {
-                b = (Button)sender;
-                parentGrid = (Grid)b.Parent;
-            }
-
-
-
+            // Each slot in a doctor column is a 1x1 grid with a Rectangle and a TextBlock.
             Rectangle rectangle = parentGrid.Children.OfType<Rectangle>().ElementAt(0);
             TextBlock textBlock = parentGrid.Children.OfType<TextBlock>().ElementAt(0);
-
 
             rectangle.Opacity = 0.7;
             rectangle.RadiusX = 2;
@@ -194,25 +159,8 @@ namespace Appointed.Views
 
             Grid parentGrid;
 
-            Type senderType = sender.GetType();
-
-            if (senderType == r.GetType())
-            {
-                r = (Rectangle)sender;
-                parentGrid = (Grid)r.Parent;
-            }
-            else if (senderType == t.GetType())
-            {
-                t = (TextBlock)sender;
-                parentGrid = (Grid)t.Parent;
-            }
-            else
-            {
-                b = (Button)sender;
-                parentGrid = (Grid)b.Parent;
-            }
-
-
+            r = (Rectangle)sender;
+            parentGrid = (Grid)r.Parent;
 
             Rectangle rectangle = parentGrid.Children.OfType<Rectangle>().ElementAt(0);
             TextBlock textBlock = parentGrid.Children.OfType<TextBlock>().ElementAt(0);
@@ -237,20 +185,35 @@ namespace Appointed.Views
 
             Appointment appt = DIVM.AVM._appointmentLookup[Int32.Parse(apptSlotID)];
 
+            //            Application.Current.MainWindow.OpacityMask = Brushes.Black;
+            //            Application.Current.MainWindow.Opacity = 0.2;
+            //            Application.Current.MainWindow.IsHitTestVisible = false;
 
-            // Set appointment as active appointment. AppointmentViewModel will have an Appointment object
-            //      that contains information for the last clicked appointment, either in the search bar or
-            //      schedule view.
 
-
-            
+            DIVM.AVM._activeAppointment.Colour = appt.Colour;
+            DIVM.AVM._activeAppointment.Comments = appt.Comments;
+            DIVM.AVM._activeAppointment.Cursor = appt.Cursor;
+            DIVM.AVM._activeAppointment.DateTime = appt.DateTime;
+            DIVM.AVM._activeAppointment.DoctorName = appt.DoctorName;
+            DIVM.AVM._activeAppointment.EndTime = appt.EndTime;
+            DIVM.AVM._activeAppointment.Height = appt.Height;
+            DIVM.AVM._activeAppointment.ID = appt.ID;
+            DIVM.AVM._activeAppointment.Margin = appt.Margin;
+            DIVM.AVM._activeAppointment.Missed = appt.Missed;
+            DIVM.AVM._activeAppointment.Opacity = appt.Opacity;
+            DIVM.AVM._activeAppointment.Patient = appt.Patient;
+            DIVM.AVM._activeAppointment.RowSpan = appt.RowSpan;
+            DIVM.AVM._activeAppointment.StartTime = appt.StartTime;
+            DIVM.AVM._activeAppointment.Type = appt.Type;
+            DIVM.AVM._activeAppointment.Waitlisted = appt.Waitlisted;
+            DIVM.AVM._activeAppointment.Visibility = appt.Visibility;
 
         }
 
 
 
 
-// =========================  Next three functions for drag and drop. ==================
+        // =========================  Next three functions for drag and drop. ==================
 
 
         // Used to detect a click and drag combination
@@ -301,7 +264,7 @@ namespace Appointed.Views
                 if (targetAppointment.Type.Length != 0)
                     return;
 
-                // Collapse the empty appointment following the target to make room for two appointments.
+                // If the source is a consultation, collapse the empty appointment following the target to make room for two appointments.
                 // Expand the collapsed (by default) appointment following the source appointment.
                 if (sourceAppointment.Type.Equals("Consultation"))
                 {
@@ -325,6 +288,7 @@ namespace Appointed.Views
                 targetAppointment.Height = sourceAppointment.Height;
                 targetAppointment.Margin = sourceAppointment.Margin;
                 targetAppointment.Missed = sourceAppointment.Missed;
+                targetAppointment.Arrived = sourceAppointment.Arrived;
                 targetAppointment.Opacity = sourceAppointment.Opacity;
                 targetAppointment.Patient = sourceAppointment.Patient;
                 targetAppointment.RowSpan = sourceAppointment.RowSpan;
@@ -339,6 +303,7 @@ namespace Appointed.Views
                 sourceAppointment.Height = "35";
                 sourceAppointment.Margin = "0,1,0,0";
                 sourceAppointment.Missed = false;
+                sourceAppointment.Arrived = false;
                 sourceAppointment.Opacity = "0";
                 sourceAppointment.Patient = "";
                 sourceAppointment.Type = "";

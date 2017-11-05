@@ -7,7 +7,9 @@ using Appointed.Events;
 
 namespace Appointed.Classes
 {
-
+    // Need to add.. 
+    //  Strings for start and end time, colon separated - StartTimeStr, EndTimeStr
+    //  
     public class Appointment : ObservableObject
     {
         DateTime _dateTime;
@@ -23,10 +25,12 @@ namespace Appointed.Classes
         string _visibility;
         string _ID;
         string _comments;
+        string _waitlistPos;
         int _startTime;
         int _endTime;
         bool _missed;
         bool _waitlisted;
+        bool _arrived;
 
 
 
@@ -51,6 +55,7 @@ namespace Appointed.Classes
             this.ID = toCopy.ID;
             this.Margin = toCopy.Margin;
             this.Missed = toCopy.Missed;
+            this.Arrived = toCopy.Arrived;
             this.Opacity = toCopy.Opacity;
             this.Patient = toCopy.Patient;
             this.RowSpan = toCopy.RowSpan;
@@ -58,7 +63,7 @@ namespace Appointed.Classes
             this.Type = toCopy.Type;
             this.Waitlisted = toCopy.Waitlisted;
             this.Visibility = toCopy.Visibility;
-        }
+         }
 
 
         public DateTime DateTime
@@ -100,10 +105,35 @@ namespace Appointed.Classes
             set
             {
                 _patient = value;
+                RaisePropertyChangedEvent("PatientNameAbbrev");
                 RaisePropertyChangedEvent("Patient");
                 RaisePropertyChangedEvent("AppointmentInfo");
             }
+        }
 
+        public string PatientNameAbbrev
+        {
+            get
+            {
+                    string shortenedInfo;
+                    int whiteSpaceIndex;
+
+                    if (Patient.Length > 12)
+                    {
+                        whiteSpaceIndex = Patient.IndexOf(' ');
+                        shortenedInfo = Patient.ElementAt(0).ToString() + "." + Patient.Substring(whiteSpaceIndex);
+                    }
+                    else
+                        return Patient;
+                    
+                    if (shortenedInfo.Length > 12)
+                    {
+                        whiteSpaceIndex = shortenedInfo.IndexOf(' ');
+                        shortenedInfo = shortenedInfo.Substring(0, whiteSpaceIndex) + " " + shortenedInfo.Substring(whiteSpaceIndex+1, 8) + "..";
+                    }
+
+                    return shortenedInfo;
+            }
         }
 
         public string Colour
@@ -230,6 +260,17 @@ namespace Appointed.Classes
             {
                 _startTime = value;
                 RaisePropertyChangedEvent("StartTime");
+                RaisePropertyChangedEvent("StartTimeStr");
+            }
+        }
+
+        public string StartTimeStr
+        {
+            get
+            {
+                string startTimeStr = _startTime.ToString();
+
+                return startTimeStr.Substring(0, startTimeStr.Length - 2) + ":" + startTimeStr.Substring(startTimeStr.Length - 2);  
             }
         }
 
@@ -241,6 +282,17 @@ namespace Appointed.Classes
             {
                 _endTime = value;
                 RaisePropertyChangedEvent("EndTime");
+                RaisePropertyChangedEvent("EndTimeStr");
+            }
+        }
+
+        public string EndTimeStr
+        {
+            get
+            {
+                string endTimeStr = _endTime.ToString();
+
+                return endTimeStr.Substring(0, endTimeStr.Length - 2) + ":" + endTimeStr.Substring(endTimeStr.Length - 2);
             }
         }
 
@@ -255,6 +307,17 @@ namespace Appointed.Classes
             }
         }
 
+        public bool Arrived
+        {
+            get { return _arrived; }
+
+            set
+            {
+                _arrived = value;
+                RaisePropertyChangedEvent("Arrived");                
+            }
+        }
+
         public bool Waitlisted
         {
             get { return _waitlisted; }
@@ -266,6 +329,27 @@ namespace Appointed.Classes
             }
 
         }
+
+
+        public string WaitlistPos
+        {
+            get
+            {
+                if (_waitlisted)
+                {
+                    return _waitlistPos;
+                }
+                else
+                    return "N/A";
+            }
+
+            set
+            {
+                _waitlistPos = value;
+                RaisePropertyChangedEvent("WaitlistPos");
+            }
+        }
+
     }
 
 }

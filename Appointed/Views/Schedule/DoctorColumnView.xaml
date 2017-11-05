@@ -27,7 +27,8 @@
     
              The default is 4 hours worth of slots being displayed at a time. -->
 
-
+    <!--Note that the items control has an items source, it's just not explicitly stated here because it changes so often.
+        It is bound to a list in a dictionary in the AppointmentViewModel class from the cs file accompanying this markup.-->
     <ItemsControl x:Name="DrColumnItemsControl" Foreground="#FF0023FF" FontFamily="Yu Gothic UI Light" FontSize="10" >
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>

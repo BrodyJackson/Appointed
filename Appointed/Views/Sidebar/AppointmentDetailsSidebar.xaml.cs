@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Appointed.Views.Dialogs;
 using Appointed.Views;
+using Appointed.ViewModels;
+using Appointed.Classes;
 
 namespace Appointed.Views
 {
@@ -31,6 +33,7 @@ namespace Appointed.Views
 
         private void OnMouseLeftRelease_CheckIn(object sender, MouseButtonEventArgs e)
         {
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
             Button checkIn = sender as Button;
 
             //Color a = (Color)ColorConverter.ConvertFromString("#FFA5DFFF");
@@ -51,24 +54,62 @@ namespace Appointed.Views
                 checkIn.Content = "Patient Arrived";
                 checkIn.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
                 checkIn.ToolTip = "Click To Undo Check In";
+                DIVM.AVM._appointmentLookup[Int32.Parse(DIVM.AVM._activeAppointment.ID)].Arrived = true;
             }
             else
             {
                 checkIn.Content = "Check In";
                 checkIn.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
                 checkIn.ToolTip = "Click To Check Patient In";
+                DIVM.AVM._appointmentLookup[Int32.Parse(DIVM.AVM._activeAppointment.ID)].Arrived = false;
             }
 
 
             Window w = new EditPatientEmergencyContacts();
-            w.Show();
+            w.Show();            
         }
+
+
 
         private void OnMouseLeftRelease_Modify(object sender, MouseButtonEventArgs e)
         {
-            //ModifyAppointmentDialog window = new ModifyAppointmentDialog();
-            //window.Show();
+
+
+
+
         }
+
+
+
+        private void OnMouseLeftRelease_Delete(object sender, MouseButtonEventArgs e)
+        {
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
+
+            Appointment appt = DIVM.AVM._appointmentLookup[Int32.Parse(DIVM.AVM._activeAppointment.ID)];
+
+            if (DIVM.AVM._activeAppointment.Type == "Consultation")
+            {
+                Appointment apptThatFollows = DIVM.AVM.FindAppointmentThatFollows(appt);
+                DIVM.AVM._appointmentLookup[Int32.Parse(apptThatFollows.ID)].Visibility = "Visible";
+
+                // Set the appointment slot that was holding the consultation back to a 15 minute empty place holder
+                appt.EndTime -= 15;
+
+                if (appt.EndTime % 100 > 60)
+                    appt.EndTime += 40;
+            }
+
+            appt.Comments = "";
+            appt.Height = "35";
+            appt.Margin = "0,1,0,0";
+            appt.Missed = false;
+            appt.Arrived = false;
+            appt.Opacity = "0";
+            appt.Patient = "";
+            appt.Type = "";
+            appt.Waitlisted = false;
+        }
+
 
 
     }

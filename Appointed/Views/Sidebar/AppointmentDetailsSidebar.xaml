@@ -102,31 +102,31 @@
                 <StackPanel Grid.Column="1" Margin="0,10,0,0">
                     <TextBlock 
                     x:Name="patientName" 
-                    Text="Mike Ross"
+                    Text="{Binding AVM._activeAppointment.PatientNameAbbrev}"
                     Margin="10,10,0,0">
                     </TextBlock>
 
                     <TextBlock 
                     x:Name="startTime" 
-                    Text="7:15 AM"
+                    Text="{Binding AVM._activeAppointment.StartTimeStr}"
                     Margin="10,10,0,0">
                     </TextBlock>
 
                     <TextBlock 
                     x:Name="endTime" 
-                    Text="7:30 AM"
+                    Text="{Binding AVM._activeAppointment.EndTimeStr}"
                     Margin="10,10,0,0">
                     </TextBlock>
 
                     <TextBlock 
                     x:Name="apptType" 
-                    Text="Standard"
+                    Text="{Binding AVM._activeAppointment.Type}"
                     Margin="10,10,0,0">
                     </TextBlock>
 
                     <TextBlock 
                     x:Name="doctorName" 
-                    Text="Dr. Pearson"
+                    Text="{Binding AVM._activeAppointment.DoctorName}"
                     Margin="10,10,0,0">
                     </TextBlock>
 
@@ -138,7 +138,7 @@
 
                     <TextBlock 
                     x:Name="waitlistPos" 
-                    Text="N/A"
+                    Text="{Binding AVM._activeAppointment.WaitlistPos}"
                     Margin="10,10,0,0">
                     </TextBlock>
                 </StackPanel>
@@ -234,7 +234,8 @@
                 MinWidth="150"
                 Height="30"
                 Margin="4"
-                DockPanel.Dock="Top" />
+                DockPanel.Dock="Top" 
+                PreviewMouseLeftButtonUp="OnMouseLeftRelease_Delete"/>
 
         </DockPanel>
 
