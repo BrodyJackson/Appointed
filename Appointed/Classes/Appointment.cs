@@ -32,6 +32,10 @@ namespace Appointed.Classes
         bool _waitlisted;
         bool _arrived;
 
+        string _reminderType;
+        string _reminderDays;
+        string _reminderTimeOfDay;
+
 
 
         public Appointment()
@@ -63,7 +67,10 @@ namespace Appointed.Classes
             this.Type = toCopy.Type;
             this.Waitlisted = toCopy.Waitlisted;
             this.Visibility = toCopy.Visibility;
-         }
+            this.ReminderDays = toCopy.ReminderDays;
+            this.ReminderTimeOfDay = toCopy.ReminderTimeOfDay;
+            this.ReminderType = toCopy.ReminderType;
+        }
 
 
         public DateTime DateTime
@@ -349,6 +356,43 @@ namespace Appointed.Classes
                 RaisePropertyChangedEvent("WaitlistPos");
             }
         }
+
+
+        public string ReminderType
+        {
+            get { return _reminderType; }
+            set
+            {
+                _reminderType = value;
+                RaisePropertyChangedEvent("ReminderType");
+            }
+
+        }
+
+
+        public string ReminderTimeOfDay
+        {
+            get { return _reminderTimeOfDay; }
+            set
+            {
+                _reminderTimeOfDay = value;
+                RaisePropertyChangedEvent("ReminderTimeOfDay");
+            }
+
+        }
+
+
+        public string ReminderDays
+        {
+            get { return _reminderDays; }
+            set
+            {
+                _reminderDays = value;
+                RaisePropertyChangedEvent("ReminderDays");
+            }
+
+        }
+
 
     }
 

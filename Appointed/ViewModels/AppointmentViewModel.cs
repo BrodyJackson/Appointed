@@ -196,50 +196,31 @@ namespace Appointed.ViewModels
                     time = startTime;
                     for (int k = 0; k < listOfAppointments.Count; k++)
                     {
+                        if (listOfAppointments[k].Visibility == "Collapsed")
+                        {
+                            time -= 15;
+                            if (time % 100 >= 60)
+                                time += 40;
+                        }
+
+                        listOfAppointments[k].StartTime = time;
                         listOfAppointments[k].DateTime = new DateTime(date.Year, date.Month, date.Day, time / 100, time % 100, 0);
 
                         hashCode = listOfAppointments[k].DateTime.GetHashCode();
 
-                        Console.WriteLine("Appt Date: " + listOfAppointments[k].DateTime);
-                        Console.WriteLine("Hash Code: " + (hashCode+i));
 
-
-                        listOfAppointments[k].StartTime = time;
-
-                        // If the appointment follows a consultation it is collapsed, force it's start time to overlap the consultation
-                        // to make dragging and dropping more straightforward.
-                        if (listOfAppointments[k].Visibility == "Collapsed")
-                        {
-                            int st = time - 15;
-                            if (st % 100 >= 60)
-                                st += 40;
-
-                            listOfAppointments[k].StartTime = st;
-                            listOfAppointments[k].EndTime = time;
-                            listOfAppointments[k].ID = (hashCode + i + 2000000).ToString();
-
-                            _appointmentLookup.Add(hashCode + i + 2000000, listOfAppointments[k]);
-                        }
+                        if (listOfAppointments[k].Type.Equals("Consultation"))
+                            time += 30;
                         else
-                        {
-                            if (listOfAppointments[k].Type.Equals("Consultation"))
-                                time += 30;
-                            else
-                                time += 15;
+                            time += 15;
 
-                            if (time % 100 >= 60)
-                                time += 40;
+                        if (time % 100 >= 60)
+                            time += 40;
 
-                            listOfAppointments[k].EndTime = time;
-                            listOfAppointments[k].ID = (hashCode + i).ToString();
+                        listOfAppointments[k].EndTime = time;
+                        listOfAppointments[k].ID = (hashCode + i).ToString();
 
-                            _appointmentLookup.Add(hashCode + i, listOfAppointments[k]);
-                        }
-
-                        //                        if (listOfAppointments[k].Type == "Consultation")
-                        //                            time -= 15;
-
-                        //                        prevAppt = listOfAppointments[k];
+                        _appointmentLookup.Add(hashCode + i, listOfAppointments[k]);
                     }
 
                     bindingCode = (i + 1).ToString() + date.Day.ToString() + date.Month.ToString() + date.Year.ToString();
@@ -386,6 +367,19 @@ namespace Appointed.ViewModels
             return -1;
 
         }
+
+
+        public int FindDrColumnForDrName(string name)
+        {
+            for (int i = 0; i < DoctorsOnShiftCount; i++)
+                if (DoctorsOnShift.ElementAt(i).DoctorName.Equals(name))
+                    return i;
+
+            return -1;
+
+        }
+
+
 
 
         public Appointment FindAppointmentThatFollows(Appointment appointment)

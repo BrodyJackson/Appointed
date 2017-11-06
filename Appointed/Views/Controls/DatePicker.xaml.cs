@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Appointed.ViewModels;
 
 namespace Appointed.Views.Controls
 {
@@ -24,5 +25,24 @@ namespace Appointed.Views.Controls
         {
             InitializeComponent();
         }
+
+
+        private void OnLeftMouseRelease_PickDate(object sender, MouseButtonEventArgs e)
+        {
+            Window w = new ShowableCalendar();
+            w.Show();
+
+
+            w.Unloaded += new RoutedEventHandler(ShowableCalendarUnloaded);
+        }
+
+
+        void ShowableCalendarUnloaded(object sender, RoutedEventArgs e)
+        {
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
+            this.InputText.TextField.Text = DIVM._activeDate.Year.ToString() + '-' + DIVM._activeDate.Month.ToString() + '-' + DIVM._activeDate.Day.ToString();
+        }
+
+
     }
 }

@@ -208,6 +208,10 @@ namespace Appointed.Views
             DIVM.AVM._activeAppointment.Waitlisted = appt.Waitlisted;
             DIVM.AVM._activeAppointment.Visibility = appt.Visibility;
 
+            DIVM._activeDate.Day = appt.DateTime.Day;
+            DIVM._activeDate.Month = appt.DateTime.Month;
+            DIVM._activeDate.Year = appt.DateTime.Year;
+            DIVM._activeDate.Time24Hr = appt.StartTime;
         }
 
 
