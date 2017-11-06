@@ -40,7 +40,7 @@ namespace Appointed
             
             //SidebarView.SetSidebarView(new SearchResultsSidebar());
             //SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
-            //SidebarView.SetSidebarView(new ModifyAppointmentSidebar());
+            SidebarView.SetSidebarView(new ModifyAppointmentSidebar());
 
 
             //SidebarView.SetSidebarView(new HomeSidebar());
