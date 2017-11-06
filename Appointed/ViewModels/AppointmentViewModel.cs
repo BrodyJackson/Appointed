@@ -196,12 +196,6 @@ namespace Appointed.ViewModels
                     time = startTime;
                     for (int k = 0; k < listOfAppointments.Count; k++)
                     {
-                        if (listOfAppointments[k].Visibility == "Collapsed")
-                        {
-                            time -= 15;
-                            if (time % 100 >= 60)
-                                time += 40;
-                        }
 
                         listOfAppointments[k].StartTime = time;
                         listOfAppointments[k].DateTime = new DateTime(date.Year, date.Month, date.Day, time / 100, time % 100, 0);
@@ -209,18 +203,26 @@ namespace Appointed.ViewModels
                         hashCode = listOfAppointments[k].DateTime.GetHashCode();
 
 
-                        if (listOfAppointments[k].Type.Equals("Consultation"))
-                            time += 30;
-                        else
-                            time += 15;
+                        time += 15;
 
                         if (time % 100 >= 60)
                             time += 40;
 
-                        listOfAppointments[k].EndTime = time;
+                        if (listOfAppointments[k].Type.Equals("Consultation"))
+                        {
+                            int bigTime = time + 15;
+
+                            if (bigTime % 100 >= 60)
+                                bigTime += 40;
+
+                            listOfAppointments[k].EndTime = bigTime;
+                        }
+                        else
+                            listOfAppointments[k].EndTime = time;
+
                         listOfAppointments[k].ID = (hashCode + i).ToString();
 
-                        _appointmentLookup.Add(hashCode + i, listOfAppointments[k]);
+                         _appointmentLookup.Add(hashCode + i, listOfAppointments[k]);
                     }
 
                     bindingCode = (i + 1).ToString() + date.Day.ToString() + date.Month.ToString() + date.Year.ToString();

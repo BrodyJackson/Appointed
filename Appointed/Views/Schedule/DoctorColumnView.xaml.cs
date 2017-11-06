@@ -284,8 +284,7 @@ namespace Appointed.Views
 
                     targetAppointment.EndTime = targetAppointment.StartTime + 30;
                 }
-                else
-                    targetAppointment.EndTime += 15;
+
 
                 if (targetAppointment.EndTime % 100 >= 60)
                     targetAppointment.EndTime += 40;

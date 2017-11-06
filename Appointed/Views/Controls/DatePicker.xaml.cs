@@ -30,6 +30,12 @@ namespace Appointed.Views.Controls
         private void OnLeftMouseRelease_PickDate(object sender, MouseButtonEventArgs e)
         {
             Window w = new ShowableCalendar();
+
+            Point pointW = Mouse.GetPosition(this);
+            Point pointS = PointToScreen(pointW);
+
+            w.Left = pointS.X;
+            w.Top = pointS.Y;
             w.Show();
 
 
@@ -40,9 +46,12 @@ namespace Appointed.Views.Controls
         void ShowableCalendarUnloaded(object sender, RoutedEventArgs e)
         {
             DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
-            this.InputText.TextField.Text = DIVM._activeDate.Year.ToString() + '-' + DIVM._activeDate.Month.ToString() + '-' + DIVM._activeDate.Day.ToString();
+
+            if (DIVM._activeDate.HasChanged)
+                this.InputText.TextField.Text = DIVM._activeDate.Year.ToString() + '-' + DIVM._activeDate.Month.ToString() + '-' + DIVM._activeDate.Day.ToString();
         }
-
-
+        
+        
+           
     }
 }

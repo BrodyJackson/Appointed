@@ -43,6 +43,7 @@ namespace Appointed.Views.Controls
             DIVM._activeDate.Month = dt.Month;
             DIVM._activeDate.Year = dt.Year;
 
+            DIVM._activeDate.HasChanged = true;
 
             this.Close();
         }

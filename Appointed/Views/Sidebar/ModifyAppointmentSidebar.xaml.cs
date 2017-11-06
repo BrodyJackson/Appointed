@@ -24,16 +24,19 @@ namespace Appointed.Views.Sidebar
     {
         private bool _reminderEnabled = true;
 
+
         public ModifyAppointmentSidebar()
         {
             InitializeComponent();
             ReminderToggle.IsChecked = true;
         }
 
+
         private void OnMouseLeftRelease_Discard(object sender, MouseButtonEventArgs e)
         {
 
         }
+
 
         private void CheckBox_Click(object sender, RoutedEventArgs e)
         {
@@ -47,6 +50,8 @@ namespace Appointed.Views.Sidebar
             RemDays.Visibility = _reminderEnabled ? Visibility.Visible : Visibility.Hidden;
         }
 
+
+
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (((ApptTypeComboBox.SelectedItem as ComboBoxItem).Content as string) == "Standard")
@@ -59,31 +64,42 @@ namespace Appointed.Views.Sidebar
             }
         }
 
+
+
         private void OnMouseLeftRelease_Save(object sender, MouseButtonEventArgs e)
         {
             DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
             Appointment appt = DIVM.AVM._appointmentLookup[Int32.Parse(DIVM.AVM._activeAppointment.ID)];
 
-/*
+
             // If Change of Date or Time, find the appointment slot they are trying to place it into.
-            string startTime = StartTime.Text;
-            startTime = startTime.Substring(0, startTime.IndexOf(':')) + startTime.Substring(startTime.IndexOf(':') + 1);
-            int time = Int32.Parse(startTime);
-            DateTime dt = new DateTime(date.Year, date.Month, date.Day, time / 100, time % 100, 0);
-
-            int key = dt.GetHashCode() + DIVM.AVM.FindDrColumnForDrName(appt.DoctorName);
-
-
-
-            if (DIVM.AVM._appointmentLookup[key] != null)
+            if (appt.StartTimeStr != StartTime.Text || DIVM._activeDate.HasChanged)
             {
-                // Check that appointment slot is free and if the source is a consultation, check that the following slot is free as well.
+                string stTime = StartTime.Text;
+                stTime = stTime.Substring(0, stTime.IndexOf(':')) + stTime.Substring(stTime.IndexOf(':') + 1);
+                int time = Int32.Parse(stTime);
+
+                string dateString = DatePicker.InputText.TextField.Text;
+                int year = Int32.Parse(dateString.Substring(0, dateString.IndexOf('-')));
+                int month = Int32.Parse(dateString.Substring(dateString.IndexOf('-') + 1, dateString.LastIndexOf('-')));
+                int day = Int32.Parse(dateString.Substring(dateString.LastIndexOf('-') + 1));
+
+                // The hashcode of the DateTime + the doctor column form the key for appointment lookups
+                DateTime dt = new DateTime(year, month, day, time / 100, time % 100, 0);
+
+                int key = dt.GetHashCode() + DIVM.AVM.FindDrColumnForDrName(appt.DoctorName);
+
+                if (DIVM.AVM._appointmentLookup[key] != null)
+                {
+                    // Check that appointment slot is free and if the source is a consultation, check that the following slot is free as well.
+                }
+
+                DIVM._activeDate.HasChanged = false;
             }
+
 
             appt.DoctorName = DoctorComboBox.Text;
             appt.Type = ApptTypeComboBox.SelectedValue.ToString();
-
-
 
             string startTime = StartTime.Text;
             startTime = startTime.Substring(0, startTime.IndexOf(':')) + startTime.Substring(startTime.IndexOf(':') + 1);
@@ -97,7 +113,7 @@ namespace Appointed.Views.Sidebar
             appt.ReminderTimeOfDay = RemTOD.Text;
             appt.ReminderDays = RemDays.Text;
             appt.Comments = CommentBox.Text;
-*/
+
 
             //DoctorComboBox
             //ApptTypeComboBox
