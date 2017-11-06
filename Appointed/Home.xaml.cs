@@ -34,7 +34,9 @@ namespace Appointed
 
         private void ShowHomeSidebar()
         {
-            SidebarView.SetSidebarView(new HomeSidebar());
+            HomeSidebar homeSidebar = new HomeSidebar();
+
+            SidebarView.SetSidebarView(homeSidebar);
 
             Button newPatientBtn = new Button
             {
@@ -52,7 +54,6 @@ namespace Appointed
             Grid.SetColumnSpan(newPatientBtn, 2);
 
             newPatientBtn.Click += (object sender, RoutedEventArgs args) => { new NewPatientDialog().ShowDialog(); };
-
         }
     }
 }

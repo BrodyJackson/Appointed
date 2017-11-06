@@ -29,6 +29,11 @@ namespace Appointed.Views
             InitializeComponent();
         }
 
+        public UserControl GetSidebarView()
+        {
+            return _sidebarView;
+        }
+
         public void SetSidebarView(UserControl view)
         {
             SidebarGridLayout.Children.Remove(_sidebarView);

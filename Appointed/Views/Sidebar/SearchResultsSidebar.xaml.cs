@@ -25,32 +25,21 @@ namespace Appointed.Views.Sidebar
     {
         private List<Patient> _resultPatients;
 
+        public SearchResultsSidebar(string searchTerm)
+        {
+            InitializeComponent();
+            _resultPatients = new List<Patient>();
+
+            SearchBar.InputField.TextField.Text = searchTerm;
+            
+            //TODO: Find Results
+        }
+
         public SearchResultsSidebar()
         {
             InitializeComponent();
 
             _resultPatients = new List<Patient>();
-
-            AddPatient(new Patient() { FirstName = "Ben", MiddleName = "Jay", LastName = "Tester", BirthDate = new DateTime(1964, 1, 3), HealthID = 65874515, Sex = Patient.SEX.MALE });
-            AddPatient(new Patient() { FirstName = "Benjamin", MiddleName = "Thomas", LastName = "Gargonzola", BirthDate = new DateTime(1996, 4, 23), HealthID = 78541203, Sex = Patient.SEX.MALE });
-            AddPatient(new Patient() { FirstName = "Ben", MiddleName = "Larry", LastName = "Knuth", BirthDate = new DateTime(1996, 12, 30), HealthID = 47130200, Sex = Patient.SEX.OTHER });
-            //AddPatient(new Patient() { FirstName = "Ben", MiddleName = "Jay", LastName = "Tester", BirthDate = new DateTime(1996, 1, 3), HealthID = 55555555, Sex = Patient.SEX.MALE });
-            //AddPatient(new Patient() { FirstName = "Ben", MiddleName = "Jay", LastName = "Tester", BirthDate = new DateTime(1996, 1, 3), HealthID = 55555555, Sex = Patient.SEX.FEMALE });
-            //AddPatient(new Patient() { FirstName = "Ben", MiddleName = "Jay", LastName = "Tester", BirthDate = new DateTime(1996, 12, 30), HealthID = 55555555, Sex = Patient.SEX.OTHER });
-            //AddPatient(new Patient() { FirstName = "Ben", MiddleName = "Jay", LastName = "Tester", BirthDate = new DateTime(1996, 1, 3), HealthID = 55555555, Sex = Patient.SEX.MALE });
-            //AddPatient(new Patient() { FirstName = "Ben", MiddleName = "Jay", LastName = "Tester", BirthDate = new DateTime(1996, 1, 3), HealthID = 55555555, Sex = Patient.SEX.FEMALE });
-            //AddPatient(new Patient() { FirstName = "Ben", MiddleName = "Jay", LastName = "Tester", BirthDate = new DateTime(1996, 12, 30), HealthID = 55555555, Sex = Patient.SEX.OTHER });
-            //AddPatient(new Patient() { FirstName = "Ben", MiddleName = "Jay", LastName = "Tester", BirthDate = new DateTime(1996, 1, 3), HealthID = 55555555, Sex = Patient.SEX.MALE });
-            //AddPatient(new Patient() { FirstName = "Ben", MiddleName = "Jay", LastName = "Tester", BirthDate = new DateTime(1996, 1, 3), HealthID = 55555555, Sex = Patient.SEX.FEMALE });
-            //AddPatient(new Patient() { FirstName = "Ben", MiddleName = "Jay", LastName = "Tester", BirthDate = new DateTime(1996, 12, 30), HealthID = 55555555, Sex = Patient.SEX.OTHER });
-            //AddPatient(new Patient() { FirstName = "Ben", MiddleName = "Jay", LastName = "Tester", BirthDate = new DateTime(1996, 1, 3), HealthID = 55555555, Sex = Patient.SEX.MALE });
-            //AddPatient(new Patient() { FirstName = "Ben", MiddleName = "Jay", LastName = "Tester", BirthDate = new DateTime(1996, 1, 3), HealthID = 55555555, Sex = Patient.SEX.FEMALE });
-            //AddPatient(new Patient() { FirstName = "Ben", MiddleName = "Jay", LastName = "Tester", BirthDate = new DateTime(1996, 12, 30), HealthID = 55555555, Sex = Patient.SEX.OTHER });
-            //AddPatient(new Patient() { FirstName = "Ben", MiddleName = "Jay", LastName = "Tester", BirthDate = new DateTime(1996, 1, 3), HealthID = 55555555, Sex = Patient.SEX.MALE });
-            //AddPatient(new Patient() { FirstName = "Ben", MiddleName = "Jay", LastName = "Tester", BirthDate = new DateTime(1996, 1, 3), HealthID = 55555555, Sex = Patient.SEX.FEMALE });
-            //AddPatient(new Patient() { FirstName = "Ben", MiddleName = "Jay", LastName = "Tester", BirthDate = new DateTime(1996, 12, 30), HealthID = 55555555, Sex = Patient.SEX.OTHER });
-
-            UpdatePatientResultList();
         }
 
         public void AddPatient(Patient patient)

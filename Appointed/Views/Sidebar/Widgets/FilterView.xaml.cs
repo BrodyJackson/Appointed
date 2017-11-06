@@ -69,14 +69,14 @@ namespace Appointed.Views
         {
             App.CalendarApptFilter[_checkboxToFilterName[sender as CheckBox]] = false;
             UpdateApptFilters();
-            ApptFilterChanged(sender, EventArgs.Empty);
+            ApptFilterChanged?.Invoke(sender, EventArgs.Empty);
         }
 
         private void DocFilter_Unchecked(object sender, RoutedEventArgs e)
         {
             App.CalendarDocFilter[_checkboxToFilterName[sender as CheckBox]] = false;
             UpdateDocFilters();
-            DoctorFilterChanged(sender, EventArgs.Empty);
+            DoctorFilterChanged?.Invoke(sender, EventArgs.Empty);
         }
 
         private void RegisterFilterOption(string name, CheckBox checkBox)
@@ -89,14 +89,14 @@ namespace Appointed.Views
         {
             App.CalendarDocFilter[_checkboxToFilterName[sender as CheckBox]] = true;
             UpdateDocFilters();
-            DoctorFilterChanged(sender, EventArgs.Empty);
+            DoctorFilterChanged?.Invoke(sender, EventArgs.Empty);
         }
 
         private void ApptFilter_Checked(object sender, RoutedEventArgs e)
         {
             App.CalendarApptFilter[_checkboxToFilterName[sender as CheckBox]] = true;
             UpdateApptFilters();
-            ApptFilterChanged(sender, EventArgs.Empty);
+            ApptFilterChanged?.Invoke(sender, EventArgs.Empty);
         }
 
         private void AllApptsBtn_Click(object sender, RoutedEventArgs e)

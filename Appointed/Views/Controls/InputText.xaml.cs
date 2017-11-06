@@ -22,17 +22,6 @@ namespace Appointed.Views.Controls
     {
         private string _hint = "";
 
-        //public string Hint
-        //{
-        //    get { return (string)GetValue(HintProperty); }
-
-        //    set
-        //    {
-        //        SetValue(HintProperty, value);
-        //    }
-        //}
-
-
         public string Hint
         {
             get { return _hint; }
@@ -82,7 +71,22 @@ namespace Appointed.Views.Controls
         {
             InitializeComponent();
 
+            TextField.TextChanged += TextField_TextChanged;
+
             ShowHintText(TextField);
+        }
+
+        private void TextField_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            if (textBox.Text == Hint)
+            {
+                ShowHintText(textBox);
+            }
+            else
+            {
+                textBox.Foreground = Forground;
+            }
         }
 
         private void TextField_GotFocus(object sender, RoutedEventArgs e)
@@ -114,17 +118,6 @@ namespace Appointed.Views.Controls
 
 
 
-
-
-
-
-
-        //public static readonly DependencyProperty HintProperty = DependencyProperty.RegisterAttached(
-        //  "Hint",
-        //  typeof(string),
-        //  typeof(InputText),
-        //  new PropertyMetadata(string.Empty)
-        //);
 
 
     }
