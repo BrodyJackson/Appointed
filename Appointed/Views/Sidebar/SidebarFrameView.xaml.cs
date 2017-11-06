@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Appointed.Views.Dialogs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,8 @@ namespace Appointed.Views
         Button _rightQuickNavButton;
         UserControl _sidebarView;
 
+        Stack<UserControl> _sidebarHistory = new Stack<UserControl>();
+
         public SidebarFrameView()
         {
             InitializeComponent();
@@ -36,6 +39,7 @@ namespace Appointed.Views
 
         public void SetSidebarView(UserControl view)
         {
+            _sidebarHistory.Push(_sidebarView);
             SidebarGridLayout.Children.Remove(_sidebarView);
             _sidebarView = view;
             SidebarGridLayout.Children.Add(view);
@@ -43,6 +47,76 @@ namespace Appointed.Views
             Grid.SetRow(view, 0);
             view.VerticalAlignment = VerticalAlignment.Stretch;
             view.HorizontalAlignment = HorizontalAlignment.Stretch;
+
+            //Auto set buttons based on special case for the home view, all other sidebars should have standard back/home buttons
+            if(view is HomeSidebar)
+            {
+                //Also clear history stack
+                _sidebarHistory.Clear();
+
+                Button newPatientBtn = new Button
+                {
+                    Content = new Image()
+                    {
+                        Source = Assets.ResourceManager.Instance.Images["NewPatientIcon"],
+                        VerticalAlignment = VerticalAlignment.Center,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        Margin = new Thickness(8d)
+                    }
+                };
+
+                SetLeftQuickNavButton(newPatientBtn);
+                SetRightQuickNavButton(null);
+                Grid.SetColumnSpan(newPatientBtn, 2);
+
+                newPatientBtn.Click += (object sender, RoutedEventArgs args) => { new NewPatientDialog().ShowDialog(); };
+            }
+            else
+            {
+                Button homeButton = new Button
+                {
+                    Content = new Image()
+                    {
+                        Source = Assets.ResourceManager.Instance.Images["HomeIcon"],
+                        VerticalAlignment = VerticalAlignment.Center,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        Margin = new Thickness(8d)
+                    }
+                };
+
+                Button backButton = new Button
+                {
+                    Content = new Image()
+                    {
+                        Source = Assets.ResourceManager.Instance.Images["ReturnIcon"],
+                        VerticalAlignment = VerticalAlignment.Center,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        Margin = new Thickness(8d)
+                    }
+                };
+
+                SetLeftQuickNavButton(backButton);
+                SetRightQuickNavButton(homeButton);
+
+                backButton.Click += (object s, RoutedEventArgs args) =>
+                {
+                   SetSidebarView(GetPreviousSidebar());
+                };
+
+                homeButton.Click += (object s, RoutedEventArgs args) =>
+                {
+                    SetSidebarView(new HomeSidebar());
+                };
+            }
+
+        }
+
+        public UserControl GetPreviousSidebar()
+        {
+            if (_sidebarHistory.Count > 0)
+                return _sidebarHistory.Pop();
+            else
+                return this;
         }
 
         /// <summary>

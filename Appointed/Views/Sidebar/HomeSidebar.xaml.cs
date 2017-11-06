@@ -1,4 +1,5 @@
 ﻿using Appointed.Views.Sidebar;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Appointed.Views
@@ -24,7 +25,9 @@ namespace Appointed.Views
 
         private void SearchInput_Search(object sender, System.EventArgs e)
         {
-            (App.Current.MainWindow as Home).SidebarView.SetSidebarView(new SearchResultsSidebar(SearchInput.InputField.TextField.Text));
+            Home home = App.Current.MainWindow as Home;
+
+            home.SidebarView.SetSidebarView(new SearchResultsSidebar(SearchInput.InputField.TextField.Text));
         }
     }
 }

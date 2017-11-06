@@ -31,8 +31,17 @@ namespace Appointed.Views.Sidebar
             _resultPatients = new List<Patient>();
 
             SearchBar.InputField.TextField.Text = searchTerm;
-            
-            //TODO: Find Results
+
+            Search(searchTerm);
+
+            SearchBar.Search += SearchBar_Search;
+        }
+
+        private void SearchBar_Search(object sender, EventArgs e)
+        {
+            _resultPatients.Clear();
+
+            Search(SearchBar.InputField.TextField.Text);
         }
 
         public SearchResultsSidebar()
@@ -40,6 +49,14 @@ namespace Appointed.Views.Sidebar
             InitializeComponent();
 
             _resultPatients = new List<Patient>();
+        }
+
+        public void Search(string searchTerm)
+        {
+            //TODO: Search Patient Database
+            //TODO: Get Results, then Add them to _resultPatients
+
+            UpdatePatientResultList();
         }
 
         public void AddPatient(Patient patient)

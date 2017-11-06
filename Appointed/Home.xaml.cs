@@ -38,22 +38,6 @@ namespace Appointed
 
             SidebarView.SetSidebarView(homeSidebar);
 
-            Button newPatientBtn = new Button
-            {
-                Content = new Image()
-                {
-                    Source = Assets.ResourceManager.Instance.Images["NewPatientIcon"],
-                    VerticalAlignment = VerticalAlignment.Center,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    Margin = new Thickness(8d)
-                }
-            };
-
-            SidebarView.SetLeftQuickNavButton(newPatientBtn);
-            SidebarView.SetRightQuickNavButton(null);
-            Grid.SetColumnSpan(newPatientBtn, 2);
-
-            newPatientBtn.Click += (object sender, RoutedEventArgs args) => { new NewPatientDialog().ShowDialog(); };
         }
     }
 }
