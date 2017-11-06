@@ -59,64 +59,73 @@ namespace Appointed.Views
             //Auto set buttons based on special case for the home view, all other sidebars should have standard back/home buttons
             if(view is HomeSidebar)
             {
-                //Also clear history stack
+                //Clear history stack
                 _sidebarHistory.Clear();
-
-                Button newPatientBtn = new Button
-                {
-                    Content = new Image()
-                    {
-                        Source = Assets.ResourceManager.Instance.Images["NewPatientIcon"],
-                        VerticalAlignment = VerticalAlignment.Center,
-                        HorizontalAlignment = HorizontalAlignment.Center,
-                        Margin = new Thickness(8d)
-                    }
-                };
-
-                SetLeftQuickNavButton(newPatientBtn);
-                SetRightQuickNavButton(null);
-                Grid.SetColumnSpan(newPatientBtn, 2);
-
-                newPatientBtn.Click += (object sender, RoutedEventArgs args) => { new NewPatientDialog().ShowDialog(); };
+                SetHomeSidebarQuickNavButtons();
             }
             else
             {
-                Button homeButton = new Button
-                {
-                    Content = new Image()
-                    {
-                        Source = Assets.ResourceManager.Instance.Images["HomeIcon"],
-                        VerticalAlignment = VerticalAlignment.Center,
-                        HorizontalAlignment = HorizontalAlignment.Center,
-                        Margin = new Thickness(8d)
-                    }
-                };
-
-                Button backButton = new Button
-                {
-                    Content = new Image()
-                    {
-                        Source = Assets.ResourceManager.Instance.Images["ReturnIcon"],
-                        VerticalAlignment = VerticalAlignment.Center,
-                        HorizontalAlignment = HorizontalAlignment.Center,
-                        Margin = new Thickness(8d)
-                    }
-                };
-
-                SetLeftQuickNavButton(backButton);
-                SetRightQuickNavButton(homeButton);
-
-                backButton.Click += (object s, RoutedEventArgs args) =>
-                {
-                   SetSidebarView(GetPreviousSidebar(), false);
-                };
-
-                homeButton.Click += (object s, RoutedEventArgs args) =>
-                {
-                    SetSidebarView(new HomeSidebar());
-                };
+                SetStandardQuickNavButtons();
             }
 
+        }
+
+        private void SetStandardQuickNavButtons()
+        {
+            Button homeButton = new Button
+            {
+                Content = new Image()
+                {
+                    Source = Assets.ResourceManager.Instance.Images["HomeIcon"],
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Margin = new Thickness(8d)
+                }
+            };
+
+            Button backButton = new Button
+            {
+                Content = new Image()
+                {
+                    Source = Assets.ResourceManager.Instance.Images["ReturnIcon"],
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Margin = new Thickness(8d)
+                }
+            };
+
+            SetLeftQuickNavButton(backButton);
+            SetRightQuickNavButton(homeButton);
+
+            backButton.Click += (object s, RoutedEventArgs args) =>
+            {
+                SetSidebarView(GetPreviousSidebar(), false);
+            };
+
+            homeButton.Click += (object s, RoutedEventArgs args) =>
+            {
+                SetSidebarView(new HomeSidebar());
+            };
+        }
+
+        private void SetHomeSidebarQuickNavButtons()
+        {
+            Button newPatientBtn = new Button
+            {
+                Content = new Image()
+                {
+                    Source = Assets.ResourceManager.Instance.Images["NewPatientIcon"],
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Margin = new Thickness(8d)
+                }
+            };
+
+            SetLeftQuickNavButton(newPatientBtn);
+            SetRightQuickNavButton(null);
+            Grid.SetColumnSpan(newPatientBtn, 2);
+
+            newPatientBtn.Click += (object sender, RoutedEventArgs args) => { new NewPatientDialog().ShowDialog(); };
         }
 
         public UserControl GetPreviousSidebar()

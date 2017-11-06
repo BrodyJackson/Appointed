@@ -79,6 +79,9 @@ namespace Appointed.Views.Sidebar
                 SearchResultsList.Children.Add(new SearchResult(p));
             }
 
+            //TODO: Add Event Handler to this button
+            // in the event the button is clicked, open popup, then when saved, return to search results BUT research to show the new patient result
+
             SearchResultsList.Children.Add(new CreateNewPatientResultItem(_resultPatients.Count > 0 ? "Can't Find Patient?" : "No Patients Found"));
         }
 
