@@ -37,9 +37,17 @@ namespace Appointed.Views
             return _sidebarView;
         }
 
-        public void SetSidebarView(UserControl view)
+        /// <summary>
+        /// Used to change sidebar view.
+        /// Set pushToHistoryStack to false to avoid infinite loops. (Whenever using the back button, set push to false)
+        /// </summary>
+        /// <param name="view">new view to set sidebar to</param>
+        /// <param name="pushToHistoryStack"> Defaults to true, if false the current view will not be pushed to the history stack</param>
+        public void SetSidebarView(UserControl view, bool pushToHistoryStack = true)
         {
-            _sidebarHistory.Push(_sidebarView);
+            if(pushToHistoryStack)
+                _sidebarHistory.Push(_sidebarView);
+
             SidebarGridLayout.Children.Remove(_sidebarView);
             _sidebarView = view;
             SidebarGridLayout.Children.Add(view);
@@ -100,7 +108,7 @@ namespace Appointed.Views
 
                 backButton.Click += (object s, RoutedEventArgs args) =>
                 {
-                   SetSidebarView(GetPreviousSidebar());
+                   SetSidebarView(GetPreviousSidebar(), false);
                 };
 
                 homeButton.Click += (object s, RoutedEventArgs args) =>
