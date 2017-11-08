@@ -25,12 +25,16 @@ namespace Appointed.Views.Sidebar
     {
         private List<Patient> _resultPatients;
 
+        private string _searchTerm;
+
         public SearchResultsSidebar(string searchTerm)
         {
             InitializeComponent();
             _resultPatients = new List<Patient>();
 
             SearchBar.InputField.TextField.Text = searchTerm;
+
+            _searchTerm = searchTerm;
 
             Search(searchTerm);
 
@@ -41,7 +45,9 @@ namespace Appointed.Views.Sidebar
         {
             _resultPatients.Clear();
 
-            Search(SearchBar.InputField.TextField.Text);
+            _searchTerm = SearchBar.InputField.TextField.Text;
+
+            Search(_searchTerm);
         }
 
         public SearchResultsSidebar()
@@ -79,10 +85,23 @@ namespace Appointed.Views.Sidebar
                 SearchResultsList.Children.Add(new SearchResult(p));
             }
 
-            //TODO: Add Event Handler to this button
-            // in the event the button is clicked, open popup, then when saved, return to search results BUT research to show the new patient result
+            CreateNewPatientResultItem newPatientItem = new CreateNewPatientResultItem(_resultPatients.Count > 0 ? "Can't Find Patient?" : "No Patients Found");
 
-            SearchResultsList.Children.Add(new CreateNewPatientResultItem(_resultPatients.Count > 0 ? "Can't Find Patient?" : "No Patients Found"));
+            newPatientItem.Action.Click += 
+                (object sender, RoutedEventArgs e) => 
+                {
+                    Dialogs.NewPatientDialog newPatientDialog = new Dialogs.NewPatientDialog();
+
+                    newPatientDialog.ShowDialog();
+
+                    //Re-Search the patients
+                    if (newPatientDialog.ExitAction == Dialogs.NewPatientDialog.EXIT_ACTION.SAVE)
+                    {
+                        Search(_searchTerm);
+                    }
+                };
+
+            SearchResultsList.Children.Add(newPatientItem);
         }
 
     }

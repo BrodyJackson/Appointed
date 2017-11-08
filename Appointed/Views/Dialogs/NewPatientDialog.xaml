@@ -817,6 +817,7 @@
         </DockPanel>
 
         <Button
+            Name="SaveBookBtn"
             Grid.Row="1"
             Grid.Column="1"
             Margin="4,4,8,0"
@@ -825,15 +826,16 @@
             Width="100"/>
 
         <Button
+            Name="SaveBtn"
             Grid.Row="1"
             Grid.Column="2"
             Margin="8,4,8,0"
             Padding="4"
             Content="Save"
-            Width="100"
-            Click="Button_Click" />
+            Width="100" />
 
         <Button
+            Name="DiscardBtn"
             Grid.Row="1"
             Grid.Column="3"
             Margin="8,4,8,0"

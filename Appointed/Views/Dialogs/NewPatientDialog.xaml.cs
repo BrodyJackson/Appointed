@@ -19,14 +19,18 @@ namespace Appointed.Views.Dialogs
     /// </summary>
     public partial class NewPatientDialog : Window
     {
+
+        public enum EXIT_ACTION { SAVE, SAVEBOOK, DISCARD };
+
+        public EXIT_ACTION ExitAction { get; private set; }
+
         public NewPatientDialog()
         {
             InitializeComponent();
+
+            Closing += (object sender, System.ComponentModel.CancelEventArgs e) => { ExitAction = EXIT_ACTION.DISCARD; };
+            DiscardBtn.Click += (object sender, RoutedEventArgs e) => { ExitAction = EXIT_ACTION.DISCARD; };
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Please ensure all required fields are completed!", "Unable to Add Patient", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-        }
     }
 }
