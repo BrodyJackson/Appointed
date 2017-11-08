@@ -21,6 +21,15 @@ namespace Appointed.Views
 
             //AlertBox.UpdateAlertsBox();
 
+            Loaded += HomeSidebar_Loaded;
+
+        }
+
+        //Gross work-around for going back to home sidebar from search results
+        private void HomeSidebar_Loaded(object sender, RoutedEventArgs e)
+        {
+            SearchInput.InputField.TextField.Text = "";
+            SearchInput.InputField.ShowHintText(SearchInput.InputField.TextField);
         }
 
         private void SearchInput_Search(object sender, System.EventArgs e)
