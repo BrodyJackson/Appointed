@@ -277,7 +277,10 @@ namespace Appointed.Classes
             {
                 string startTimeStr = _startTime.ToString();
 
-                return startTimeStr.Substring(0, startTimeStr.Length - 2) + ":" + startTimeStr.Substring(startTimeStr.Length - 2);  
+                if (startTimeStr.Length >= 3)
+                    return startTimeStr.Substring(0, startTimeStr.Length - 2) + ":" + startTimeStr.Substring(startTimeStr.Length - 2);
+                else
+                    return startTimeStr;
             }
         }
 
@@ -299,7 +302,10 @@ namespace Appointed.Classes
             {
                 string endTimeStr = _endTime.ToString();
 
-                return endTimeStr.Substring(0, endTimeStr.Length - 2) + ":" + endTimeStr.Substring(endTimeStr.Length - 2);
+                if (endTimeStr.Length >= 3)
+                    return endTimeStr.Substring(0, endTimeStr.Length - 2) + ":" + endTimeStr.Substring(endTimeStr.Length - 2);
+                else
+                    return endTimeStr;
             }
         }
 

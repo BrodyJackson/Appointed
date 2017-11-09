@@ -69,12 +69,13 @@ namespace Appointed.Views.Sidebar
         private void OnMouseLeftRelease_Save(object sender, MouseButtonEventArgs e)
         {
             DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
-            Appointment appt = DIVM.AVM._appointmentLookup[Int32.Parse(DIVM.AVM._activeAppointment.ID)];
+            Appointment activeAppt = DIVM.AVM._appointmentLookup[Int32.Parse(DIVM.AVM._activeAppointment.ID)];
 
 
             // If Change of Date or Time, find the appointment slot they are trying to place it into.
-            if (appt.StartTimeStr != StartTime.Text || DIVM._activeDate.HasChanged)
+            if (activeAppt.StartTimeStr != StartTime.Text || DIVM._activeDate.HasChanged)
             {
+                // Build the key to look up the appointment slot they wish to book in.
                 string stTime = StartTime.Text;
                 stTime = stTime.Substring(0, stTime.IndexOf(':')) + stTime.Substring(stTime.IndexOf(':') + 1);
                 int time = Int32.Parse(stTime);
@@ -84,36 +85,44 @@ namespace Appointed.Views.Sidebar
                 int month = Int32.Parse(dateString.Substring(dateString.IndexOf('-') + 1, dateString.LastIndexOf('-')));
                 int day = Int32.Parse(dateString.Substring(dateString.LastIndexOf('-') + 1));
 
-                // The hashcode of the DateTime + the doctor column form the key for appointment lookups
+                // The hashcode of the DateTime + <DrColumn> form the key for appointment lookups.
                 DateTime dt = new DateTime(year, month, day, time / 100, time % 100, 0);
+                int key = dt.GetHashCode() + DIVM.AVM.FindDrColumnForDrName(DoctorComboBox.Text);
 
-                int key = dt.GetHashCode() + DIVM.AVM.FindDrColumnForDrName(appt.DoctorName);
-
-                if (DIVM.AVM._appointmentLookup[key] != null)
+                Appointment targetAppointment = DIVM.AVM._appointmentLookup[key];
+                if (targetAppointment != null)
                 {
-                    // Check that appointment slot is free and if the source is a consultation, check that the following slot is free as well.
+                    Appointment apptThatFollowsTarget = null;
+
+                    if (activeAppt.Type == "Consultation")
+                        apptThatFollowsTarget = DIVM.AVM.FindAppointmentThatFollows(targetAppointment);
+
+                    if (targetAppointment.Type != "" ||
+                       (activeAppt.Type == "Consultation" && apptThatFollowsTarget.Type != ""))
+                    {
+                        // Show error popup notifying the user that the slot is taken
+                        return;
+                    }
                 }
 
                 DIVM._activeDate.HasChanged = false;
             }
 
-
-            appt.DoctorName = DoctorComboBox.Text;
-            appt.Type = ApptTypeComboBox.SelectedValue.ToString();
+            activeAppt.DoctorName = DoctorComboBox.Text;
+            activeAppt.Type = ApptTypeComboBox.SelectedValue.ToString();
 
             string startTime = StartTime.Text;
             startTime = startTime.Substring(0, startTime.IndexOf(':')) + startTime.Substring(startTime.IndexOf(':') + 1);
-            appt.StartTime = Int32.Parse(startTime);
+            activeAppt.StartTime = Int32.Parse(startTime);
 
             string endTime = EndTime.Text;
             endTime = endTime.Substring(0, endTime.IndexOf(':')) + endTime.Substring(endTime.IndexOf(':') + 1);
-            appt.EndTime = Int32.Parse(endTime);
+            activeAppt.EndTime = Int32.Parse(endTime);
 
-            appt.ReminderType = RemType.Text;
-            appt.ReminderTimeOfDay = RemTOD.Text;
-            appt.ReminderDays = RemDays.Text;
-            appt.Comments = CommentBox.Text;
-
+            activeAppt.ReminderType = RemType.Text;
+            activeAppt.ReminderTimeOfDay = RemTOD.Text;
+            activeAppt.ReminderDays = RemDays.Text;
+            activeAppt.Comments = CommentBox.Text;
 
             //DoctorComboBox
             //ApptTypeComboBox
@@ -126,5 +135,7 @@ namespace Appointed.Views.Sidebar
             //CommentBox
 
         }
+
+
     }
 }
