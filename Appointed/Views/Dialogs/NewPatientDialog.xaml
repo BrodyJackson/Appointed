@@ -193,10 +193,12 @@
                 </TextBlock>
 
                 <Controls:InputText
+                    x:Name="HealthID"
                     Margin="4,4,6,4"
                     Grid.Row="2"
                     Grid.Column="1"
-                    Hint="(ex. 12345678)"
+                    Mask="HEALTHID"
+                    Hint="(ex. 12345-678)"
                     HintForground="Gray"
                     Grid.ColumnSpan="1"
                     VerticalAlignment="Center"
@@ -408,6 +410,7 @@
                     Margin="4,4,6,4"
                     Grid.Row="2"
                     Grid.Column="1"
+                    Mask="POSTAL"
                     Hint="(ex. T3H 5T5)"
                     HintForground="Gray"
                     Grid.ColumnSpan="1"
@@ -543,7 +546,8 @@
                     Margin="4,4,6,4"
                     Grid.Row="1"
                     Grid.Column="1"
-                    Hint="(ex. 403-666-5555)"
+                    Mask="PHONENUMBER"
+                    Hint="(ex. (403) 666-5555)"
                     HintForground="Gray"
                     Grid.ColumnSpan="1"
                     VerticalAlignment="Center"
@@ -574,7 +578,8 @@
 
                 <Controls:InputText
                     Margin="4"
-                    Hint="(ex. 587-555-5555+ext)"
+                    Mask="PHONENUMBER_WITHEXT"
+                    Hint="(ex. (587) 555-5555+ext)"
                     Grid.Row="1"
                     Grid.Column="3"
                     Grid.ColumnSpan="1"
@@ -598,7 +603,8 @@
 
                 <Controls:InputText
                     Margin="4"
-                    Hint="(ex. 587-989-8899)"
+                    Mask="PHONENUMBER"
+                    Hint="(ex. (587) 989-8899)"
                     Grid.Row="1"
                     Grid.Column="5"
                     Grid.ColumnSpan="1"
@@ -759,6 +765,7 @@
                     Margin="4,4,6,4"
                     Grid.Row="1"
                     Grid.Column="5"
+                    Mask="PHONENUMBER_WITHEXT"
                     Hint="(ex. 403-777-0990+ext)"
                     HintForground="Gray"
                     Grid.ColumnSpan="1"

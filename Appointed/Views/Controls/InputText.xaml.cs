@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Appointed.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,18 +21,14 @@ namespace Appointed.Views.Controls
     /// </summary>
     public partial class InputText : UserControl
     {
+        public enum MASK { NONE, PHONENUMBER, PHONENUMBER_WITHEXT, HEALTHID, POSTAL, DATE}
+
+        public MASK Mask { get; set; }
+
+        private ITextMask _textMask;
+
+
         private string _hint = "";
-
-        //public string Hint
-        //{
-        //    get { return (string)GetValue(HintProperty); }
-
-        //    set
-        //    {
-        //        SetValue(HintProperty, value);
-        //    }
-        //}
-
 
         public string Hint
         {
@@ -46,7 +43,6 @@ namespace Appointed.Views.Controls
                     TextField.Text = _hint;
             }
         }
-
 
 
         private Brush _forground = Brushes.Black;
@@ -70,7 +66,7 @@ namespace Appointed.Views.Controls
             {
                 _hintForground = value;
 
-                if(!TextField.IsInitialized)
+                if (!TextField.IsInitialized)
                 {
                     TextField.Foreground = _hintForground;
                 }
@@ -83,6 +79,45 @@ namespace Appointed.Views.Controls
             InitializeComponent();
 
             ShowHintText(TextField);
+
+            TextField.TextChanged += TextField_TextChanged;
+
+            Loaded += InputTextLoaded;
+
+        }
+
+        private void InputTextLoaded(object sender, RoutedEventArgs e)
+        {
+            switch (Mask)
+            {
+                case MASK.PHONENUMBER:
+                    _textMask = new PhoneNumberMask();
+                    break;
+                case MASK.PHONENUMBER_WITHEXT:
+                    _textMask = new PhoneNumberWithExtMask();
+                    break;
+                case MASK.HEALTHID:
+                    _textMask = new HealthCareIDMask();
+                    break;
+                case MASK.POSTAL:
+                    _textMask = new PostalCodeMask();
+                    break;
+                case MASK.DATE:
+                    _textMask = new DateMask();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void TextField_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextField.CaretIndex = TextField.Text.Length;
+
+            if(_textMask != null && TextField.Text != _hint)
+            {
+                TextField.Text = _textMask.FormatText(TextField.Text);
+            }
         }
 
         private void TextField_GotFocus(object sender, RoutedEventArgs e)
@@ -109,23 +144,6 @@ namespace Appointed.Views.Controls
                 textBox.Foreground = HintForground;
             }
         }
-
-
-
-
-
-
-
-
-
-
-        //public static readonly DependencyProperty HintProperty = DependencyProperty.RegisterAttached(
-        //  "Hint",
-        //  typeof(string),
-        //  typeof(InputText),
-        //  new PropertyMetadata(string.Empty)
-        //);
-
 
     }
 }
