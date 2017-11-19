@@ -47,7 +47,7 @@
                     Style="{StaticResource text_OrangeRedLarge}"
                     HorizontalAlignment="Center"
                     Text="Appointment Details"
-              >
+                >
 
                 </TextBlock>
             </Grid>
@@ -68,31 +68,31 @@
                 <!-- Labels Stack Panel -->
                 <StackPanel Grid.Column="0" Margin="0,10,0,0">
                     <TextBlock 
-                    Text="Patient Name:" Margin="10,10,0,0">
+                    Text="Patient Name:" Margin="10,10,0,0" Style="{StaticResource text_GrayMedium}">
                     </TextBlock>
 
                     <TextBlock 
-                    Text="Start Time:" Margin="10,10,0,0">
+                    Text="Start Time:" Margin="10,10,0,0" Style="{StaticResource text_GrayMedium}">
                     </TextBlock>
 
                     <TextBlock 
-                    Text="End Time:" Margin="10,10,0,0">
+                    Text="End Time:" Margin="10,10,0,0" Style="{StaticResource text_GrayMedium}">
                     </TextBlock>
 
                     <TextBlock 
-                    Text="Type:" Margin="10,10,0,0">
+                    Text="Type:" Margin="10,10,0,0" Style="{StaticResource text_GrayMedium}">
                     </TextBlock>
 
                     <TextBlock 
-                    Text="Practitioner:" Margin="10,10,0,0">
+                    Text="Practitioner:" Margin="10,10,0,0" Style="{StaticResource text_GrayMedium}">
                     </TextBlock>
 
                     <TextBlock 
-                    Text="Remind By:" Margin="10,10,0,0">
+                    Text="Remind By:" Margin="10,10,0,0" Style="{StaticResource text_GrayMedium}">
                     </TextBlock>
 
                     <TextBlock 
-                    Text="Waitlist Status:" Margin="10,10,0,0">
+                    Text="Waitlist Status:" Margin="10,10,0,0" Style="{StaticResource text_GrayMedium}">
                     </TextBlock>
                 </StackPanel>
 
@@ -101,42 +101,49 @@
                 <!-- Values Stack Panel -->
                 <StackPanel Grid.Column="1" Margin="0,10,0,0">
                     <TextBlock 
+                    Style="{StaticResource text_GrayMedium}"
                     x:Name="patientName" 
                     Text="{Binding AVM._activeAppointment.PatientNameAbbrev}"
                     Margin="10,10,0,0">
                     </TextBlock>
 
                     <TextBlock 
+                    Style="{StaticResource text_GrayMedium}"
                     x:Name="startTime" 
                     Text="{Binding AVM._activeAppointment.StartTimeStr}"
                     Margin="10,10,0,0">
                     </TextBlock>
 
                     <TextBlock 
+                    Style="{StaticResource text_GrayMedium}"
                     x:Name="endTime" 
                     Text="{Binding AVM._activeAppointment.EndTimeStr}"
                     Margin="10,10,0,0">
                     </TextBlock>
 
                     <TextBlock 
+                    Style="{StaticResource text_GrayMedium}"
                     x:Name="apptType" 
-                    Text="{Binding AVM._activeAppointment.Type}"
+                    Text="{Binding AVM._activeAppointment.Type, Mode=TwoWay}"
                     Margin="10,10,0,0">
                     </TextBlock>
 
                     <TextBlock 
+                    Style="{StaticResource text_GrayMedium}"
                     x:Name="doctorName" 
                     Text="{Binding AVM._activeAppointment.DoctorName}"
                     Margin="10,10,0,0">
                     </TextBlock>
 
                     <TextBlock 
+                    Style="{StaticResource text_GrayMedium}"
                     x:Name="reminderType" 
                     Text="Email"
                     Margin="10,10,0,0">
                     </TextBlock>
 
                     <TextBlock 
+                    Style="{StaticResource text_GrayMedium}"
                     x:Name="waitlistPos" 
                     Text="{Binding AVM._activeAppointment.WaitlistPos}"
                     Margin="10,10,0,0">

@@ -29,12 +29,44 @@ namespace Appointed.Views.Sidebar
         {
             InitializeComponent();
             ReminderToggle.IsChecked = true;
+
+
+
+            Home h = App.Current.MainWindow as Home;
+
+            Button backButton = new Button
+            {
+                Content = new Image()
+                {
+                    Source = Assets.ResourceManager.Instance.Images["ReturnIcon"],
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Margin = new Thickness(8d)
+                }
+            };
+
+            Button homeButton = new Button
+            {
+                Content = new Image()
+                {
+                    Source = Assets.ResourceManager.Instance.Images["HomeIcon"],
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Margin = new Thickness(8d)
+                }
+            };
+
+
+            h.SidebarView.SetLeftQuickNavButton(backButton);
+            h.SidebarView.SetRightQuickNavButton(homeButton);
         }
 
 
         private void OnMouseLeftRelease_Discard(object sender, MouseButtonEventArgs e)
         {
+            Home h = App.Current.MainWindow as Home;
 
+            h.SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
         }
 
 
@@ -177,8 +209,10 @@ namespace Appointed.Views.Sidebar
                 activeAppt.EndTime += 40;
 
 
+            DIVM.AVM._activeAppointment = targetAppointment;
+
             Home h = App.Current.MainWindow as Home;
-            h.SidebarView.SetSidebarView(new HomeSidebar());
+            h.SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
         }
 
 

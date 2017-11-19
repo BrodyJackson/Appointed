@@ -29,7 +29,33 @@ namespace Appointed.Views
         {
             InitializeComponent();
 
-            
+            Home h = App.Current.MainWindow as Home;
+
+            Button backButton = new Button
+            {
+                Content = new Image()
+                {
+                    Source = Assets.ResourceManager.Instance.Images["ReturnIcon"],
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Margin = new Thickness(8d)
+                }
+            };
+
+            Button homeButton = new Button
+            {
+                Content = new Image()
+                {
+                    Source = Assets.ResourceManager.Instance.Images["HomeIcon"],
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Margin = new Thickness(8d)
+                }
+            };
+
+
+            h.SidebarView.SetLeftQuickNavButton(backButton);
+            h.SidebarView.SetRightQuickNavButton(homeButton);
         }
 
         private void OnMouseLeftRelease_CheckIn(object sender, MouseButtonEventArgs e)
