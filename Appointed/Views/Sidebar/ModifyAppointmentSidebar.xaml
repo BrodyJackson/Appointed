@@ -180,16 +180,20 @@
                 x:Name="DoctorComboBox"
                 Grid.Row="0"
                 Grid.Column="1"
+                ItemsSource="{Binding AVM.DoctorsOnShift}"
                 Margin="4,4,6,4"
                 SelectedIndex="0"
                 VerticalContentAlignment="Center">
 
-                <ComboBoxItem
-                    Content="Dr. Paulsen" />
-                <ComboBoxItem
-                    Content="Dr. Specter" />
-                <ComboBoxItem
-                    Content="Dr. Pearson" />
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock
+                            Text="{Binding DoctorName}"
+                            HorizontalAlignment="Left"
+                            Margin="0,2,0,0"
+                            Foreground="Black" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
             </ComboBox>
 
 
