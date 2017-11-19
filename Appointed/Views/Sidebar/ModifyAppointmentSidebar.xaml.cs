@@ -52,8 +52,14 @@ namespace Appointed.Views.Sidebar
 
 
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBox_StartTimeSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (StartTime.SelectedItem == null)
+            {
+                Console.WriteLine("Gotcha: \n");
+                return;
+            }
+
             if (((ApptTypeComboBox.SelectedItem as ComboBoxItem).Content as string) == "Standard")
             {
                 EndTime.Text = DateTime.Parse((StartTime.SelectedItem as Classes.Time).TimeString).AddMinutes(15).ToShortTimeString();
@@ -86,10 +92,6 @@ namespace Appointed.Views.Sidebar
             string drName = ((Doctor)DoctorComboBox.SelectedItem).DoctorName;
             string dateString = DatePicker.InputText.TextField.Text;
 
-            // If Change of Date or Time, find the appointment slot they are trying to place it into.
-            // Note that activeDate is changed when the user selects a date in the mini calendar popup.
-            if (activeAppt.StartTimeStr != timeCmp || DIVM._activeDate.HasChanged || activeAppt.DoctorName != drName)
-            {
                 // Build the key to look up the appointment slot they wish to book in.
                 int time = Int32.Parse(stTime);
                 int year = Int32.Parse(dateString.Substring(0, dateString.IndexOf('-')));
@@ -111,7 +113,7 @@ namespace Appointed.Views.Sidebar
                     if (type == "Consultation")
                         apptThatFollowsTarget = DIVM.AVM.FindAppointmentThatFollows(targetAppointment);
 
-                    if ( (targetAppointment.Type != "") || (type == "Consultation" && apptThatFollowsTarget.Type != "") )
+                    if ((targetAppointment.Type != "") || (type == "Consultation" && apptThatFollowsTarget.Type != ""))
                     {
                         MessageBox.Show(
                             "The Time Slot Specified Is Taken!",
@@ -122,8 +124,8 @@ namespace Appointed.Views.Sidebar
                         return;
                     }
 
-                    if (    (!DIVM.AVM.DoctorsOnShift.ElementAt(drColumn).IsAvailable(Int32.Parse(stTime)))     ||
-                            (!DIVM.AVM.DoctorsOnShift.ElementAt(drColumn).IsAvailable(Int32.Parse(endTime)))    )
+                    if ((!DIVM.AVM.DoctorsOnShift.ElementAt(drColumn).IsAvailable(Int32.Parse(stTime))) ||
+                            (!DIVM.AVM.DoctorsOnShift.ElementAt(drColumn).IsAvailable(Int32.Parse(endTime))))
                     {
                         MessageBox.Show(
                             "The Doctor Specified Is Unavaliable At That Time!",
@@ -138,7 +140,7 @@ namespace Appointed.Views.Sidebar
                 }
 
                 DIVM._activeDate.HasChanged = false;
-            }
+
 
             targetAppointment.DoctorName = ((Doctor)DoctorComboBox.SelectedItem).DoctorName;
             targetAppointment.Type = type;    
@@ -174,6 +176,9 @@ namespace Appointed.Views.Sidebar
             if (activeAppt.EndTime % 100 > 60)
                 activeAppt.EndTime += 40;
 
+
+            Home h = App.Current.MainWindow as Home;
+            h.SidebarView.SetSidebarView(new HomeSidebar());
         }
 
 

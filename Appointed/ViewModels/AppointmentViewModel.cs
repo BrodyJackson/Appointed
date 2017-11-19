@@ -182,7 +182,7 @@ namespace Appointed.ViewModels
             int hashCode;
             int time;
             string bindingCode = "";
-            Appointment prevAppt;
+
 
             for (int i = 0; i < DoctorsOnShiftCount; i++)
             {
@@ -196,7 +196,6 @@ namespace Appointed.ViewModels
                     time = startTime;
                     for (int k = 0; k < listOfAppointments.Count; k++)
                     {
-
                         listOfAppointments[k].StartTime = time;
                         listOfAppointments[k].DateTime = new DateTime(date.Year, date.Month, date.Day, time / 100, time % 100, 0);
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Appointed.Events;
+using Appointed.ViewModels;
 
 namespace Appointed.Classes
 {
@@ -94,6 +95,7 @@ namespace Appointed.Classes
             {
                 _doctorName = value;
                 RaisePropertyChangedEvent("DoctorName");
+                RaisePropertyChangedEvent("DrColumn");
             }
 
         }
@@ -106,6 +108,7 @@ namespace Appointed.Classes
                 _type = value;
                 RaisePropertyChangedEvent("Type");
                 RaisePropertyChangedEvent("AppointmentInfo");
+                RaisePropertyChangedEvent("TypeIndex");
             }
         }
 
@@ -311,6 +314,51 @@ namespace Appointed.Classes
                     return endTimeStr;
             }
         }
+
+        public int DrColumn
+        {
+            get
+            {
+                DayInformationViewModel DIVM = new DayInformationViewModel();
+
+                return DIVM.AVM.FindDrColumnForDrName(_doctorName);
+            }
+        }
+
+
+        public int TypeIndex
+        {
+            get { return _type == "Standard" ? 0 : 1; }
+        }
+
+        public int TimeIndex
+        {
+            get { return ( (_startTime % 100)  / 15)   +   (((_startTime / 100) - 7) * 4)  ; }
+        }
+
+        public int RemDaysIndex
+        {
+            get { return _reminderDays == null ? 1 : Int32.Parse(_reminderDays); }
+        }
+
+        public int RemTypeIndex
+        {
+            get
+            {
+                if ( _reminderType == null || _reminderType == "Email" )
+                    return 0;
+                else if ( _reminderType == "Text" )
+                    return 1;
+                else
+                    return 2;
+            }
+        }
+
+        public int RemTODIndex
+        {
+            get { return _reminderTimeOfDay == "AM" ? 0 : 1; }
+        }
+
 
         public bool Missed
         {

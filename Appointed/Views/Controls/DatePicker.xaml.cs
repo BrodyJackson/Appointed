@@ -24,6 +24,22 @@ namespace Appointed.Views.Controls
         public DatePicker()
         {
             InitializeComponent();
+
+
+            this.Loaded += new RoutedEventHandler(DatePicker_Loaded);
+        }
+
+
+        void DatePicker_Loaded(object sender, RoutedEventArgs e)
+        {
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
+
+
+            string year = DIVM.AVM._activeAppointment.DateTime.Year.ToString();
+            string month = DIVM.AVM._activeAppointment.DateTime.Month.ToString();
+            string day = DIVM.AVM._activeAppointment.DateTime.Day.ToString();
+
+            this.InputText.TextField.Text = year + '-' + month + '-' + day;
         }
 
 

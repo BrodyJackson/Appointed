@@ -16,6 +16,7 @@ using Appointed.Views.Dialogs;
 using Appointed.Views;
 using Appointed.ViewModels;
 using Appointed.Classes;
+using Appointed.Views.Sidebar;
 
 namespace Appointed.Views
 {
@@ -51,7 +52,7 @@ namespace Appointed.Views
 
             if (checkIn.Content.ToString() == "Check In")
             {
-                checkIn.Content = "Patient Arrived";
+                checkIn.Content = "Undo Check-In";
                 checkIn.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
                 checkIn.ToolTip = "Click To Undo Check In";
                 DIVM.AVM._appointmentLookup[Int32.Parse(DIVM.AVM._activeAppointment.ID)].Arrived = true;
@@ -73,10 +74,9 @@ namespace Appointed.Views
 
         private void OnMouseLeftRelease_Modify(object sender, MouseButtonEventArgs e)
         {
+            Home h = App.Current.MainWindow as Home;
 
-
-
-
+            h.SidebarView.SetSidebarView(new ModifyAppointmentSidebar());
         }
 
 

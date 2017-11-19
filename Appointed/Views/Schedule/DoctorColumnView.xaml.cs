@@ -32,8 +32,6 @@ namespace Appointed.Views
         {
             InitializeComponent();
 
-//            this.InitializeComponent();
-
             this.Loaded += new RoutedEventHandler(DoctorColumnView_Loaded);
             
 
@@ -212,6 +210,9 @@ namespace Appointed.Views
             DIVM._activeDate.Month = appt.DateTime.Month;
             DIVM._activeDate.Year = appt.DateTime.Year;
             DIVM._activeDate.Time24Hr = appt.StartTime;
+
+            Home h = App.Current.MainWindow as Home;
+            h.SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
         }
 
 

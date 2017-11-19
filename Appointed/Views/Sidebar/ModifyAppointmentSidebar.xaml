@@ -182,7 +182,7 @@
                 Grid.Column="1"
                 ItemsSource="{Binding AVM.DoctorsOnShift}"
                 Margin="4,4,6,4"
-                SelectedIndex="0"
+                SelectedIndex="{Binding AVM._activeAppointment.DrColumn, Mode=OneWay}"
                 VerticalContentAlignment="Center">
 
                 <ComboBox.ItemTemplate>
@@ -202,7 +202,7 @@
                 Grid.Row="1"
                 Grid.Column="1"
                 Margin="4,4,6,4"
-                SelectedIndex="0"
+                SelectedIndex="{Binding AVM._activeAppointment.TypeIndex, Mode=OneWay}"
                 VerticalContentAlignment="Center">
 
                 <ComboBoxItem
@@ -228,9 +228,9 @@
                 Grid.Column="1"
                 Margin="4,4,6,4"
                 ItemsSource="{Binding TimeStamps}"
-                SelectedIndex="0"
+                SelectedIndex="{Binding AVM._activeAppointment.TimeIndex, Mode=OneWay}"
                 VerticalContentAlignment="Center"
-                SelectionChanged="ComboBox_SelectionChanged">
+                SelectionChanged="ComboBox_StartTimeSelectionChanged">
 
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
@@ -314,7 +314,7 @@
                 Grid.Row="9"
                 Grid.Column="1"
                 Margin="4"
-                SelectedIndex="0">
+                SelectedIndex="{Binding AVM._activeAppointment.RemTypeIndex, Mode=OneWay}">
                 <ComboBoxItem
                     Content="Email" />
                 <ComboBoxItem
@@ -328,7 +328,7 @@
                 Grid.Row="10"
                 Grid.Column="1"
                 Margin="4"
-                SelectedIndex="1">
+                SelectedIndex="{Binding AVM._activeAppointment.RemDaysIndex, Mode=OneWay}">
                 <ComboBoxItem
                     Content="0" />
                 <ComboBoxItem
@@ -355,7 +355,7 @@
 
             <ComboBox
                 Name="RemTOD"
-                Grid.Column="1"
+                Grid.Column="{Binding AVM._activeAppointment.RemTODIndex, Mode=OneWay}"
                 Grid.Row="11"
                 Margin="4"
                 SelectedIndex="0">

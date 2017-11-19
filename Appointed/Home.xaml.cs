@@ -29,21 +29,17 @@ namespace Appointed
             InitializeComponent();
 
             //ShowHomeSidebar();
-            //SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
             SidebarView.SetSidebarView(new NewAppointmentSidebar());
 
-            //SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
             SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
 
-            //ShowHomeSidebar();      //This doesn't need to be called unless showing the home sidebar, 
-                                    //otherwise it will incorrectly set the bottom buttons
             
             //SidebarView.SetSidebarView(new SearchResultsSidebar());
             //SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
             SidebarView.SetSidebarView(new ModifyAppointmentSidebar());
 
+            ShowHomeSidebar();
 
-            //SidebarView.SetSidebarView(new HomeSidebar());
             //SidebarView.SetSidebarView(new PatientInfoSidebar());
         }
 
