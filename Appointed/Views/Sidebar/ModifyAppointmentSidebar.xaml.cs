@@ -78,18 +78,24 @@ namespace Appointed.Views.Sidebar
 			if (activeAppt.StartTimeStr != StartTime.Text || DIVM._activeDate.HasChanged || activeAppt.DoctorName != DoctorComboBox.Text)
             {
                 // Build the key to look up the appointment slot they wish to book in.
-                string stTime = StartTime.Text;
+                string stTime = ((Time)StartTime.SelectedItem).TimeString;
                 stTime = stTime.Substring(0, stTime.IndexOf(':')) + stTime.Substring(stTime.IndexOf(':') + 1);
                 int time = Int32.Parse(stTime);
 
                 string dateString = DatePicker.InputText.TextField.Text;
                 int year = Int32.Parse(dateString.Substring(0, dateString.IndexOf('-')));
-                int month = Int32.Parse(dateString.Substring(dateString.IndexOf('-') + 1, dateString.LastIndexOf('-')));
+
+                int firstInd = dateString.IndexOf('-') + 1;
+                int secondInd = dateString.LastIndexOf('-');
+                int month = Int32.Parse(dateString.Substring(firstInd, secondInd - firstInd));
+
                 int day = Int32.Parse(dateString.Substring(dateString.LastIndexOf('-') + 1));
 
                 // The hashcode of the DateTime + <DrColumn> form the key for appointment lookups.
                 DateTime dt = new DateTime(year, month, day, time / 100, time % 100, 0);
-                int key = dt.GetHashCode() + DIVM.AVM.FindDrColumnForDrName(DoctorComboBox.Text);
+
+                string drName = ((Doctor)DoctorComboBox.SelectedItem).DoctorName;
+                int key = dt.GetHashCode() + DIVM.AVM.FindDrColumnForDrName(drName);
 
                 Appointment targetAppointment = DIVM.AVM._appointmentLookup[key];
                 if (targetAppointment != null)
@@ -111,20 +117,26 @@ namespace Appointed.Views.Sidebar
                 DIVM._activeDate.HasChanged = false;
             }
 
-            activeAppt.DoctorName = DoctorComboBox.Text;
-            activeAppt.Type = ApptTypeComboBox.SelectedValue.ToString();
+            activeAppt.DoctorName = ((Doctor)DoctorComboBox.SelectedItem).DoctorName;
 
-            string startTime = StartTime.Text;
+            string typeFromComboBox = ApptTypeComboBox.SelectedValue.ToString();
+            activeAppt.Type = typeFromComboBox.Substring(typeFromComboBox.LastIndexOf(':') + 2);
+                
+            string startTime = ((Time)StartTime.SelectedItem).TimeString;
             startTime = startTime.Substring(0, startTime.IndexOf(':')) + startTime.Substring(startTime.IndexOf(':') + 1);
             activeAppt.StartTime = Int32.Parse(startTime);
 
             string endTime = EndTime.Text;
-            endTime = endTime.Substring(0, endTime.IndexOf(':')) + endTime.Substring(endTime.IndexOf(':') + 1);
+            endTime = endTime.Substring(0, endTime.IndexOf(':')) + endTime.Substring(endTime.IndexOf(':') + 1, 2);
             activeAppt.EndTime = Int32.Parse(endTime);
 
-            activeAppt.ReminderType = RemType.Text;
-            activeAppt.ReminderTimeOfDay = RemTOD.Text;
-            activeAppt.ReminderDays = RemDays.Text;
+
+            activeAppt.ReminderType = ((ComboBoxItem)RemType.SelectedItem).Content.ToString();
+            
+            activeAppt.ReminderTimeOfDay = ((ComboBoxItem)RemTOD.SelectedItem).Content.ToString();
+ 
+            activeAppt.ReminderDays = ((ComboBoxItem)RemDays.SelectedItem).Content.ToString();
+
             activeAppt.Comments = CommentBox.Text;
 
             //DoctorComboBox
