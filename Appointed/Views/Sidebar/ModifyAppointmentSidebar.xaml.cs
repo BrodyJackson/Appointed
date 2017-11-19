@@ -74,6 +74,7 @@ namespace Appointed.Views.Sidebar
             Appointment apptThatFollowsTarget = null;
 
             string stTime = ((Time)StartTime.SelectedItem).TimeString;
+            string timeCmp = stTime;
             stTime = stTime.Substring(0, stTime.IndexOf(':')) + stTime.Substring(stTime.IndexOf(':') + 1);
 
             string endTime = EndTime.Text;
@@ -87,7 +88,7 @@ namespace Appointed.Views.Sidebar
 
             // If Change of Date or Time, find the appointment slot they are trying to place it into.
             // Note that activeDate is changed when the user selects a date in the mini calendar popup.
-            if (activeAppt.StartTimeStr != StartTime.Text || DIVM._activeDate.HasChanged || activeAppt.DoctorName != DoctorComboBox.Text)
+            if (activeAppt.StartTimeStr != timeCmp || DIVM._activeDate.HasChanged || activeAppt.DoctorName != drName)
             {
                 // Build the key to look up the appointment slot they wish to book in.
                 int time = Int32.Parse(stTime);
@@ -101,7 +102,8 @@ namespace Appointed.Views.Sidebar
 
                 // The hashcode of the DateTime + <DrColumn> form the key for appointment lookups.
                 DateTime dt = new DateTime(year, month, day, time / 100, time % 100, 0);
-                int key = dt.GetHashCode() + DIVM.AVM.FindDrColumnForDrName(drName);
+                int drColumn = DIVM.AVM.FindDrColumnForDrName(drName);
+                int key = dt.GetHashCode() + drColumn;
 
                 targetAppointment = DIVM.AVM._appointmentLookup[key];
                 if (targetAppointment != null)
@@ -109,11 +111,30 @@ namespace Appointed.Views.Sidebar
                     if (type == "Consultation")
                         apptThatFollowsTarget = DIVM.AVM.FindAppointmentThatFollows(targetAppointment);
 
-                    if ( (targetAppointment.Type != "") || (type == "Consultation" && apptThatFollowsTarget.Type != ""))
+                    if ( (targetAppointment.Type != "") || (type == "Consultation" && apptThatFollowsTarget.Type != "") )
                     {
-                        // Show error popup notifying the user that the slot is taken
+                        MessageBox.Show(
+                            "The Time Slot Specified Is Taken!",
+                            "Unable to Modify Appointment",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Asterisk);
+
                         return;
                     }
+
+                    if (    (!DIVM.AVM.DoctorsOnShift.ElementAt(drColumn).IsAvailable(Int32.Parse(stTime)))     ||
+                            (!DIVM.AVM.DoctorsOnShift.ElementAt(drColumn).IsAvailable(Int32.Parse(endTime)))    )
+                    {
+                        MessageBox.Show(
+                            "The Doctor Specified Is Unavaliable At That Time!",
+                            "Unable to Modify Appointment",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Asterisk);
+
+                        return;
+                    }
+
+
                 }
 
                 DIVM._activeDate.HasChanged = false;

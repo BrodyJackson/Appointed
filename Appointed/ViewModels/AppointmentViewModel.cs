@@ -26,13 +26,13 @@ namespace Appointed.ViewModels
         // to their days in the three day view by date and doctor column.
         public Dictionary<int, List<Appointment>> _drScheduleMap;
 
-        // Stores appointments with keys for quick lookup within onClick events.
-        // This is a storage of all individual appointments by a guaranteed unique identifier.
+        // Maps appointments with integer keys useful for quick lookup within onClick events.
+        // This is a storage of all individual appointments with a key that is guaranteed to be unique.
         // This allows me to reference single appointments quickly rather than iterating through lists to find one.
         // The key is auto generated. It is obtained by taking the hash code of the DateTime for that appointment, then adding to it the doctor column
         // the appointment resides in. This code is stored in each appointment object referenced by the "ID" property. The ID property is
         // automatically bound to the "Tag" element of each rectangle that serves as the background for a single appointment slot. This means
-        // that accessing an appointment only requires you to parse the Tag element as an integer and use it directly as a key in this dictionary.
+        // that accessing an appointment in code behind only requires you to parse the Tag element as an integer and use it directly as a key in this dictionary.
         public Dictionary<int, Appointment> _appointmentLookup;
 
         // Used as a base to calculate the number of days elapsed.
@@ -108,9 +108,9 @@ namespace Appointed.ViewModels
 
             _doctorsOnShift = new ObservableCollection<Doctor>
             {
-                new Doctor { DoctorName = "Dr. Pearson", Position = "0"},
-                new Doctor { DoctorName = "Dr. Specter", Position = "1"},
-                new Doctor { DoctorName = "Dr. Paulsen", Position = "2"}
+                new Doctor (800, 1700) { DoctorName = "Dr. Pearson", Position = "0"},
+                new Doctor (830, 1730) { DoctorName = "Dr. Specter", Position = "1"},
+                new Doctor (730, 1630) { DoctorName = "Dr. Paulsen", Position = "2"}
             };
 
 
@@ -220,9 +220,23 @@ namespace Appointed.ViewModels
                         else
                             listOfAppointments[k].EndTime = time;
 
+
                         listOfAppointments[k].ID = (hashCode + i).ToString();
 
-                         _appointmentLookup.Add(hashCode + i, listOfAppointments[k]);
+
+
+                        int st = listOfAppointments[k].StartTime;
+                        int end = listOfAppointments[k].EndTime;
+                        Doctor d = DoctorsOnShift.ElementAt(i);
+
+                        if (st < d.ShiftStart || end > d.ShiftEnd)
+                        {
+                            listOfAppointments[k].Colour = "SlateGray";
+                            listOfAppointments[k].Opacity = "0.3";
+                        }
+
+ 
+                        _appointmentLookup.Add(hashCode + i, listOfAppointments[k]);
                     }
 
                     bindingCode = (i + 1).ToString() + date.Day.ToString() + date.Month.ToString() + date.Year.ToString();
@@ -316,7 +330,7 @@ namespace Appointed.ViewModels
 
 
 
-        public void RemoveAppointment(int key)
+        private void RemoveAppointment(int key)
         {
             Appointment appointment = _appointmentLookup[key];
             Appointment emptyAppointment;
@@ -342,7 +356,7 @@ namespace Appointed.ViewModels
 
 
         // Uses the date and doctor name in the argument "appointment" to overwrite an existing appointment with the argument's details.
-        public void InsertAppointment(int doctorColumn, Appointment appointment)
+        private void InsertAppointment(int doctorColumn, Appointment appointment)
         {
             List<Appointment> listOfAppointments;
             string bindingCode;

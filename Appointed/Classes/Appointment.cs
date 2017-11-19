@@ -26,6 +26,7 @@ namespace Appointed.Classes
         string _ID;
         string _comments;
         string _waitlistPos;
+        string _isClickable;
         int _startTime;
         int _endTime;
         bool _missed;
@@ -66,6 +67,8 @@ namespace Appointed.Classes
             this.StartTime = toCopy.StartTime;
             this.Type = toCopy.Type;
             this.Waitlisted = toCopy.Waitlisted;
+            this.WaitlistPos = toCopy.WaitlistPos;
+            this.IsClickable = toCopy.IsClickable;
             this.Visibility = toCopy.Visibility;
             this.ReminderDays = toCopy.ReminderDays;
             this.ReminderTimeOfDay = toCopy.ReminderTimeOfDay;
@@ -363,6 +366,16 @@ namespace Appointed.Classes
             }
         }
 
+
+        public string IsClickable
+        {
+            get { return _isClickable; }
+            set
+            {
+                _isClickable = value;
+                RaisePropertyChangedEvent("IsClickable");
+            }
+        }
 
         public string ReminderType
         {
