@@ -291,8 +291,15 @@ namespace Appointed.ViewModels
                 Console.WriteLine("Appointment Type: " + _appointmentLookup[key].Type);
                 return false;
             }
-            int doctorColumn = 0;
 
+            if (appointment.Type == "Consultation")
+            {
+                Appointment apptThatFollows = FindAppointmentThatFollows(appointment);
+                if (apptThatFollows.Type != "")
+                    return false;
+            }
+
+            int doctorColumn = 0;
             _appointmentLookup[key] = appointment;
 
             for (int i = 0; i < DoctorsOnShiftCount; i++)
@@ -340,7 +347,7 @@ namespace Appointed.ViewModels
             List<Appointment> listOfAppointments;
             string bindingCode;
    
-
+            // Get the list of appointments this one belongs in (based on date and doctor)
             bindingCode = (doctorColumn + 1).ToString() + appointment.DateTime.Day.ToString() + appointment.DateTime.Month.ToString() + appointment.DateTime.Year.ToString();
             listOfAppointments = _drScheduleMap[Int32.Parse(bindingCode)];
 

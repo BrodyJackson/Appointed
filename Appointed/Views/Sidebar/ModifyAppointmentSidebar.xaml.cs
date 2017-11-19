@@ -72,8 +72,10 @@ namespace Appointed.Views.Sidebar
             Appointment activeAppt = DIVM.AVM._appointmentLookup[Int32.Parse(DIVM.AVM._activeAppointment.ID)];
 
 
+            Console.WriteLine("Active appt: " + activeAppt.StartTimeStr + " - " + activeAppt.EndTimeStr);
+
             // If Change of Date or Time, find the appointment slot they are trying to place it into.
-			if (appt.StartTimeStr != StartTime.Text || DIVM._activeDate.HasChanged || appt.DoctorName != DoctorComboBox.Text)
+			if (activeAppt.StartTimeStr != StartTime.Text || DIVM._activeDate.HasChanged || activeAppt.DoctorName != DoctorComboBox.Text)
             {
                 // Build the key to look up the appointment slot they wish to book in.
                 string stTime = StartTime.Text;
@@ -103,6 +105,7 @@ namespace Appointed.Views.Sidebar
                         // Show error popup notifying the user that the slot is taken
                         return;
                     }
+                    
                 }
 
                 DIVM._activeDate.HasChanged = false;
