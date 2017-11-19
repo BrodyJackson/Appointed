@@ -10,7 +10,7 @@
 
 
     <UserControl.Resources>
-        <Style TargetType="TextBlock" >
+        <Style TargetType="TextBlock" x:Key="text_GrayMedium">
             <Setter Property="Opacity" Value="1"/>
             <Setter Property="Foreground" Value="SlateGray"/>
             <Setter Property="FontFamily" Value="Yu Gothic UI Light"/>
