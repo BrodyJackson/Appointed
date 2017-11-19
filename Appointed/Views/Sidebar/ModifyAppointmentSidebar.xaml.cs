@@ -73,7 +73,7 @@ namespace Appointed.Views.Sidebar
 
 
             // If Change of Date or Time, find the appointment slot they are trying to place it into.
-            if (activeAppt.StartTimeStr != StartTime.Text || DIVM._activeDate.HasChanged)
+			if (appt.StartTimeStr != StartTime.Text || DIVM._activeDate.HasChanged || appt.DoctorName != DoctorComboBox.Text)
             {
                 // Build the key to look up the appointment slot they wish to book in.
                 string stTime = StartTime.Text;
