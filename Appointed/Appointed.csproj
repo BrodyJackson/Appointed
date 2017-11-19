@@ -64,6 +64,7 @@
     <Compile Include="Classes\Date.cs" />
     <Compile Include="Classes\DayTemplate.cs" />
     <Compile Include="Classes\Doctor.cs" />
+    <Compile Include="Classes\TextMasks.cs" />
     <Compile Include="Classes\Time.cs" />
     <Compile Include="Commands\ChangeMonthCommand.cs" />
     <Compile Include="Commands\ShiftScheduleViewCommand.cs" />

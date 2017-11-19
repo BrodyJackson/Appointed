@@ -1,21 +1,20 @@
-﻿<Window x:Class="Appointed.Views.Dialogs.EditPatientContactInfo"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Appointed.Views.Dialogs"
-        mc:Ignorable="d"
-        Title="Edit Contact Information"
+﻿<Window
+    x:Class="Appointed.Views.Dialogs.EditPatientContactInfo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Appointed.Views.Dialogs"
+    mc:Ignorable="d"
+    Title="Edit Contact Information"
     Height="325"
     Width="400"
-        
-        xmlns:Controls="clr-namespace:Appointed.Views.Controls"
-        xmlns:ListItems="clr-namespace:Appointed.Views.Sidebar.ListItems"
-        Icon="/Appointed;component/Assets/EditIcon.png"
-        ResizeMode="NoResize"
-        Topmost="True"
-        WindowStartupLocation="CenterScreen"
-        >
+    xmlns:Controls="clr-namespace:Appointed.Views.Controls"
+    xmlns:ListItems="clr-namespace:Appointed.Views.Sidebar.ListItems"
+    Icon="/Appointed;component/Assets/EditIcon.png"
+    ResizeMode="NoResize"
+    Topmost="True"
+    WindowStartupLocation="CenterScreen">
 
 
 
@@ -37,9 +36,11 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition
-                    Height="auto" MinHeight="70" />
+                    Height="auto"
+                    MinHeight="70" />
                 <RowDefinition
-                    Height="auto" MinHeight="29.96" />
+                    Height="auto"
+                    MinHeight="29.96" />
                 <RowDefinition
                     Height="auto" />
                 <RowDefinition
@@ -75,8 +76,7 @@
                 Grid.ColumnSpan="6"
                 Margin="12,0,0,0"
                 HorizontalAlignment="Center"
-                Text="Edit Contact Information"
-                >
+                Text="Edit Contact Information">
             </TextBlock>
 
             <TextBlock
@@ -84,8 +84,7 @@
                 Margin="4,20,4,4"
                 Grid.Column="0"
                 Grid.Row="1"
-                Text="Home Phone:"
-                >
+                Text="Home Phone:">
             </TextBlock>
 
             <TextBlock
@@ -95,16 +94,17 @@
                 Text="*"
                 Foreground="Red"
                 HorizontalAlignment="Right" />
-            
+
             <Controls:InputText
-                    Margin="4,20,6,4"
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Hint="(ex. 403-777-0990+ext)"
-                    HintForground="Gray"
-                    Grid.ColumnSpan="1"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Stretch" />
+                Margin="4,20,6,4"
+                Grid.Row="1"
+                Grid.Column="1"
+                Mask="PHONENUMBER"
+                Hint="(ex. (403) 777-0990)"
+                HintForground="Gray"
+                Grid.ColumnSpan="1"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Stretch" />
 
 
 
@@ -113,26 +113,26 @@
                 Margin="4"
                 Grid.Column="0"
                 Grid.Row="2"
-                Text="Cell:"
-                >
+                Text="Cell:">
             </TextBlock>
 
-
-            <Controls:InputText
-                    Margin="4"
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    Hint="(ex. 587-989-8899)"
-                    HintForground="Gray"
-                    Grid.ColumnSpan="1"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Stretch" />
 
             <Controls:InputText
                 Margin="4"
                 Grid.Row="2"
                 Grid.Column="1"
-                Hint="(ex. 587-989-8899)"
+                Hint="(ex. (587) 989-8899)"
+                HintForground="Gray"
+                Grid.ColumnSpan="1"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Stretch" />
+
+            <Controls:InputText
+                Margin="4"
+                Grid.Row="2"
+                Grid.Column="1"
+                Mask="PHONENUMBER"
+                Hint="(ex. (587) 989-8899)"
                 HintForground="Gray"
                 Grid.ColumnSpan="1"
                 VerticalAlignment="Center"
@@ -147,41 +147,41 @@
             </TextBlock>
 
             <Controls:InputText
-                    Margin="4"
-                    Grid.Row="3"
-                    Grid.Column="1"
-                    Hint="(ex. 587-989-8899)"
-                    HintForground="Gray"
-                    Grid.ColumnSpan="1"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Stretch" />
+                Margin="4"
+                Grid.Row="3"
+                Grid.Column="1"
+                Mask="PHONENUMBER_WITHEXT"
+                Hint="(ex. (587) 989-8899+ext)"
+                HintForground="Gray"
+                Grid.ColumnSpan="1"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Stretch" />
 
-            
+
             <TextBlock
                 Style="{StaticResource text_BlackMedium}"
                 Margin="4"
                 Grid.Column="0"
                 Grid.Row="4"
-                Text="Email:"
-                >
+                Text="Email:">
             </TextBlock>
 
 
             <Controls:InputText
-                    Margin="4"
-                    Grid.Row="4"
-                    Grid.Column="1"
-                    Hint="(ex. jason.briggs@shaw.ca)"
-                    HintForground="Gray"
-                    Grid.ColumnSpan="1"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Stretch" />
+                Margin="4"
+                Grid.Row="4"
+                Grid.Column="1"
+                Hint="(ex. jason.briggs@shaw.ca)"
+                HintForground="Gray"
+                Grid.ColumnSpan="1"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Stretch" />
 
 
 
         </Grid>
 
-        <Grid 
+        <Grid
             Margin="0,20,0,10"
             DockPanel.Dock="Top">
 
@@ -197,28 +197,26 @@
                     Height="*" />
             </Grid.RowDefinitions>
 
-            <Button 
+            <Button
                 Grid.Row="0"
                 Grid.Column="0"
                 Content="Save"
-                HorizontalAlignment="Center" 
-                VerticalAlignment="Bottom" 
-                MaxWidth="200" 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                MaxWidth="200"
                 MinWidth="150"
-                Height="30" 
-            />
+                Height="30" />
 
             <Button
                 Grid.Row="0"
                 Grid.Column="1"
                 Content="Discard"
-                HorizontalAlignment="Center" 
-                VerticalAlignment="Bottom" 
-                MaxWidth="200" 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                MaxWidth="200"
                 MinWidth="150"
                 Height="30"
-                PreviewMouseLeftButtonUp="OnMouseLeftRelease_Discard"
-            />
+                PreviewMouseLeftButtonUp="OnMouseLeftRelease_Discard" />
 
 
         </Grid>
