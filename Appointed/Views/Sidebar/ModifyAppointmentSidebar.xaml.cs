@@ -70,19 +70,27 @@ namespace Appointed.Views.Sidebar
         {
             DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
             Appointment activeAppt = DIVM.AVM._appointmentLookup[Int32.Parse(DIVM.AVM._activeAppointment.ID)];
+            Appointment targetAppointment = null;
+            Appointment apptThatFollowsTarget = null;
 
+            string stTime = ((Time)StartTime.SelectedItem).TimeString;
+            stTime = stTime.Substring(0, stTime.IndexOf(':')) + stTime.Substring(stTime.IndexOf(':') + 1);
 
-            Console.WriteLine("Active appt: " + activeAppt.StartTimeStr + " - " + activeAppt.EndTimeStr);
+            string endTime = EndTime.Text;
+            endTime = endTime.Substring(0, endTime.IndexOf(':')) + endTime.Substring(endTime.IndexOf(':') + 1, 2);
+
+            string type = ApptTypeComboBox.SelectedValue.ToString();
+            type = type.Substring(type.LastIndexOf(':') + 2);
+
+            string drName = ((Doctor)DoctorComboBox.SelectedItem).DoctorName;
+            string dateString = DatePicker.InputText.TextField.Text;
 
             // If Change of Date or Time, find the appointment slot they are trying to place it into.
-			if (activeAppt.StartTimeStr != StartTime.Text || DIVM._activeDate.HasChanged || activeAppt.DoctorName != DoctorComboBox.Text)
+            // Note that activeDate is changed when the user selects a date in the mini calendar popup.
+            if (activeAppt.StartTimeStr != StartTime.Text || DIVM._activeDate.HasChanged || activeAppt.DoctorName != DoctorComboBox.Text)
             {
                 // Build the key to look up the appointment slot they wish to book in.
-                string stTime = ((Time)StartTime.SelectedItem).TimeString;
-                stTime = stTime.Substring(0, stTime.IndexOf(':')) + stTime.Substring(stTime.IndexOf(':') + 1);
                 int time = Int32.Parse(stTime);
-
-                string dateString = DatePicker.InputText.TextField.Text;
                 int year = Int32.Parse(dateString.Substring(0, dateString.IndexOf('-')));
 
                 int firstInd = dateString.IndexOf('-') + 1;
@@ -93,61 +101,57 @@ namespace Appointed.Views.Sidebar
 
                 // The hashcode of the DateTime + <DrColumn> form the key for appointment lookups.
                 DateTime dt = new DateTime(year, month, day, time / 100, time % 100, 0);
-
-                string drName = ((Doctor)DoctorComboBox.SelectedItem).DoctorName;
                 int key = dt.GetHashCode() + DIVM.AVM.FindDrColumnForDrName(drName);
 
-                Appointment targetAppointment = DIVM.AVM._appointmentLookup[key];
+                targetAppointment = DIVM.AVM._appointmentLookup[key];
                 if (targetAppointment != null)
                 {
-                    Appointment apptThatFollowsTarget = null;
-
-                    if (activeAppt.Type == "Consultation")
+                    if (type == "Consultation")
                         apptThatFollowsTarget = DIVM.AVM.FindAppointmentThatFollows(targetAppointment);
 
-                    if (targetAppointment.Type != "" ||
-                       (activeAppt.Type == "Consultation" && apptThatFollowsTarget.Type != ""))
+                    if ( (targetAppointment.Type != "") || (type == "Consultation" && apptThatFollowsTarget.Type != ""))
                     {
                         // Show error popup notifying the user that the slot is taken
                         return;
                     }
-                    
                 }
 
                 DIVM._activeDate.HasChanged = false;
             }
 
-            activeAppt.DoctorName = ((Doctor)DoctorComboBox.SelectedItem).DoctorName;
+            targetAppointment.DoctorName = ((Doctor)DoctorComboBox.SelectedItem).DoctorName;
+            targetAppointment.Type = type;    
+            targetAppointment.StartTime = Int32.Parse(stTime);
+            targetAppointment.EndTime = Int32.Parse(endTime);
+            targetAppointment.ReminderType = ((ComboBoxItem)RemType.SelectedItem).Content.ToString();
+            targetAppointment.ReminderTimeOfDay = ((ComboBoxItem)RemTOD.SelectedItem).Content.ToString();
+            targetAppointment.ReminderDays = ((ComboBoxItem)RemDays.SelectedItem).Content.ToString();
+            targetAppointment.Comments = CommentBox.Text;
+            targetAppointment.Height = (type == "Consultation" ? "70" : "35");
+            targetAppointment.Patient = activeAppt.Patient;
+            targetAppointment.Opacity = activeAppt.Opacity;
 
-            string typeFromComboBox = ApptTypeComboBox.SelectedValue.ToString();
-            activeAppt.Type = typeFromComboBox.Substring(typeFromComboBox.LastIndexOf(':') + 2);
-                
-            string startTime = ((Time)StartTime.SelectedItem).TimeString;
-            startTime = startTime.Substring(0, startTime.IndexOf(':')) + startTime.Substring(startTime.IndexOf(':') + 1);
-            activeAppt.StartTime = Int32.Parse(startTime);
-
-            string endTime = EndTime.Text;
-            endTime = endTime.Substring(0, endTime.IndexOf(':')) + endTime.Substring(endTime.IndexOf(':') + 1, 2);
-            activeAppt.EndTime = Int32.Parse(endTime);
+            if (targetAppointment.Type == "Consultation")
+                apptThatFollowsTarget.Visibility = "Collapsed";
 
 
-            activeAppt.ReminderType = ((ComboBoxItem)RemType.SelectedItem).Content.ToString();
-            
-            activeAppt.ReminderTimeOfDay = ((ComboBoxItem)RemTOD.SelectedItem).Content.ToString();
- 
-            activeAppt.ReminderDays = ((ComboBoxItem)RemDays.SelectedItem).Content.ToString();
 
-            activeAppt.Comments = CommentBox.Text;
 
-            //DoctorComboBox
-            //ApptTypeComboBox
-            //DatePicker
-            //StartTime
-            //EndTime
-            //RemType
-            //RemDays
-            //RemTOD
-            //CommentBox
+            if (activeAppt.Type == "Consultation")
+            {
+                Appointment apptThatFollowsActive = DIVM.AVM.FindAppointmentThatFollows(activeAppt);
+                apptThatFollowsActive.Visibility = "Visible";
+            }
+
+            activeAppt.Arrived = false;
+            activeAppt.Height = "35";
+            activeAppt.Opacity = "0";
+            activeAppt.Type = "";
+            activeAppt.Patient = "";
+            activeAppt.Comments = "";
+            activeAppt.EndTime = activeAppt.StartTime + 15;
+            if (activeAppt.EndTime % 100 > 60)
+                activeAppt.EndTime += 40;
 
         }
 
