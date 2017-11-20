@@ -20,9 +20,49 @@ namespace Appointed.Views.Controls
     /// </summary>
     public partial class DatePicker : UserControl
     {
+        public DateTime DateSelected { get; set; }
+        public bool IsValidDate { get; protected set; }
+
+        private Brush _textBorderBrush;
+
         public DatePicker()
         {
             InitializeComponent();
+
+            _textBorderBrush = InputText.TextField.BorderBrush;
+
+            InputText.TextField.TextChanged += DateTextInputChanged;
+
+            DateSelected = new DateTime();
+            IsValidDate = false;
+        }
+
+        private void DateTextInputChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox input = sender as TextBox;
+
+            if (input.Text != InputText.Hint)
+            {
+
+                if (DateTime.TryParse(input.Text, out DateTime date))
+                {
+                    DateSelected = date;
+                    IsValidDate = true;
+                    input.BorderBrush = _textBorderBrush;
+                }
+                else
+                {
+                    DateSelected = new DateTime();
+                    IsValidDate = false;
+                    input.BorderBrush = Brushes.Red;
+                }
+            }
+            else
+            {
+                DateSelected = new DateTime();
+                IsValidDate = false;
+                input.BorderBrush = _textBorderBrush;
+            }
         }
     }
 }

@@ -16,24 +16,26 @@ namespace Appointed.Classes
     {
         public string FormatText(string input)
         {
-            input = new string(input.Where(x => Char.IsDigit(x)).ToArray());
+            input = new string(input.Where(x => Char.IsDigit(x) || x == '-').ToArray());
 
             StringBuilder stringBuilder = new StringBuilder();
 
-            if (input.Length > 0) stringBuilder.Append(input[0]);
-            if (input.Length > 1) stringBuilder.Append(input[1]);
-            if (input.Length > 2) stringBuilder.Append(input[2]);
-            if (input.Length > 3) stringBuilder.Append(input[3]);
+            if (input.Length > 0 && !(input[0] == '-')) stringBuilder.Append(input[0]);
+            if (input.Length > 1 && !(input[1] == '-')) stringBuilder.Append(input[1]);
+            if (input.Length > 2 && !(input[2] == '-')) stringBuilder.Append(input[2]);
+            if (input.Length > 3 && !(input[3] == '-')) stringBuilder.Append(input[3]);
 
             if (input.Length > 4) stringBuilder.Append("-");
+            if (input.Length > 4 && input[4] == '-') input = input.Remove(4, 1);
 
-            if (input.Length > 4) stringBuilder.Append(input[4]);
-            if (input.Length > 5) stringBuilder.Append(input[5]);
+            if (input.Length > 4 && !(input[4] == '-')) stringBuilder.Append(input[4]);
+            if (input.Length > 5 && !(input[5] == '-')) stringBuilder.Append(input[5]);
 
             if (input.Length > 6) stringBuilder.Append("-");
+            if (input.Length > 6 && input[6] == '-') input = input.Remove(6, 1);
 
-            if (input.Length > 6) stringBuilder.Append(input[6]);
-            if (input.Length > 7) stringBuilder.Append(input[7]);
+            if (input.Length > 6 && !(input[6] == '-')) stringBuilder.Append(input[6]);
+            if (input.Length > 7 && !(input[7] == '-')) stringBuilder.Append(input[7]);
 
             return stringBuilder.ToString();
         }
