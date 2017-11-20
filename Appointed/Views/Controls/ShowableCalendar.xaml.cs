@@ -21,6 +21,9 @@ namespace Appointed.Views.Controls
     /// </summary>
     public partial class ShowableCalendar : Window
     {
+        private bool shouldClose = false;
+
+
         public ShowableCalendar()
         {
             InitializeComponent();
@@ -45,9 +48,23 @@ namespace Appointed.Views.Controls
 
             DIVM._activeDate.HasChanged = true;
 
-            this.Close();
+
+            if (shouldClose)
+                this.Close();
+
+            shouldClose = true;
         }
 
+        private void Calendar_Loaded(object sender, RoutedEventArgs e)
+        {
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
 
+            Calendar c = sender as Calendar;
+
+            c.DisplayDate = new DateTime(2017, 12, 5);
+//            c.SelectedDate = DIVM.AVM._activeAppointment.DateTimeStr. ; // new DateTime(2017, 12, 5);//(DIVM.AVM._activeAppointment.DateTime);
+
+
+        }
     }
 }

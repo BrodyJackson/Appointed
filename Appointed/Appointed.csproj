@@ -73,10 +73,12 @@
     <Compile Include="Models\AppointmentDatabaseModel.cs" />
     <Compile Include="Models\DayInformationModel.cs" />
     <Compile Include="Assets\ResourceManager.cs" />
+    <Compile Include="Models\PatientDatabaseModel.cs" />
     <Compile Include="ViewModels\AppointmentViewModel.cs" />
     <Compile Include="ViewModels\DayInformationViewModel.cs" />
     <Compile Include="Classes\EmeregencyContact.cs" />
     <Compile Include="Classes\Patient.cs" />
+    <Compile Include="ViewModels\PatientViewModel.cs" />
     <Compile Include="Views\Controls\DatePicker.xaml.cs">
       <DependentUpon>DatePicker.xaml</DependentUpon>
     </Compile>

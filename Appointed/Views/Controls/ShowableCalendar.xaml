@@ -10,6 +10,11 @@
 
         >
 
+    <Window.DataContext>
+        <ViewModels:DayInformationViewModel />
+    </Window.DataContext>
+
+
     <Grid>
 
         <Grid.RowDefinitions>
@@ -25,7 +30,8 @@
             SelectionMode="SingleDate"
             Cursor="Hand"
             SelectedDatesChanged="DateSelected"
-            />
+            Loaded="Calendar_Loaded"
+           />
 
 
     </Grid>

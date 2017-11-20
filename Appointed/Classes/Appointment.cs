@@ -84,6 +84,20 @@ namespace Appointed.Classes
             {
                 _dateTime = value;
                 RaisePropertyChangedEvent("DateTime");
+                RaisePropertyChangedEvent("DateTimeStr");
+            }
+        }
+
+        public string DateTimeStr
+        {
+            get
+            {
+                string dTS = _dateTime.Month.ToString() + "/" + _dateTime.Day.ToString() + "/" + _dateTime.Year.ToString();
+
+                Console.WriteLine(dTS);
+
+                return "12/5/2017";
+
             }
         }
 
