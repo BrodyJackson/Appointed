@@ -38,7 +38,13 @@
 
         <ItemsControl.ItemTemplate>
             <DataTemplate>
-                <Grid Margin="{Binding Margin}" AllowDrop="True" Cursor="Hand" Visibility="{Binding Visibility}">
+                <Grid 
+                    Margin="{Binding Margin}" 
+                    AllowDrop="True" 
+                    Cursor="Hand" 
+                    Visibility="{Binding Visibility}"
+                    IsHitTestVisible="{Binding IsClickable}">
+                    
                     <Grid.RowDefinitions>
                         <RowDefinition Height ="{Binding Height}"/>
                     </Grid.RowDefinitions>
@@ -60,7 +66,8 @@
                                 DragEnter="OnDragEnterAppointmentSlot"
                                 Drop="OnDropInAppointmentSlot" 
                                 Cursor="Hand" 
-                                Opacity="0.5" >
+                                Opacity="0.5" 
+                                IsHitTestVisible="{Binding IsClickable}">
                         <Rectangle.Fill>
                             <SolidColorBrush Color="{Binding Colour}" Opacity="{Binding Opacity}"/>
                         </Rectangle.Fill>

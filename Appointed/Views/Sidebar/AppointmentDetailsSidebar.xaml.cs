@@ -109,6 +109,20 @@ namespace Appointed.Views
 
         private void OnMouseLeftRelease_Delete(object sender, MouseButtonEventArgs e)
         {
+            MessageBoxResult result =
+                
+                MessageBox.Show
+                (
+                    "Are you sure you wish to delete this patient?",
+                    "Confirm Selection",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Asterisk
+                );
+
+            if (result == MessageBoxResult.No || result == MessageBoxResult.None)
+                return;
+
+
             DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
 
             Appointment appt = DIVM.AVM._appointmentLookup[Int32.Parse(DIVM.AVM._activeAppointment.ID)];

@@ -230,10 +230,12 @@ namespace Appointed.ViewModels
 
                         if (st < d.ShiftStart || end > d.ShiftEnd)
                         {
+                            listOfAppointments[k].IsClickable = "false";
                             listOfAppointments[k].Colour = "SlateGray";
-                            listOfAppointments[k].Opacity = "0.3";
+                            listOfAppointments[k].Opacity = "0.5";
                         }
-
+                        else
+                            listOfAppointments[k].IsClickable = "true";
  
                         _appointmentLookup.Add(hashCode + i, listOfAppointments[k]);
                     }
