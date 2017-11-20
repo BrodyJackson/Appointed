@@ -16,19 +16,30 @@ namespace Appointed.ViewModels
         private AppointmentDatabaseModel _adm;
         private int _numDaysPopulated = 70;
 
+        public Appointment _activeAppointment { get; set; }
 
-        // Mapping of numeric code in format <position><month><day><year> where position is the column they are in (starting at 1)
-        //      and month, day and year are the date in integer format ie 31/1/2017 or 1/1/2017.
+        // Mapping of numeric codes in format <position><month><day><year> where position is the column they are in (starting at 1)
+        //      and month, day and year are the date in integer format ie 31/1/2017 is mapped as 3112017.
+        //
+        // This is essentially a storage of all LISTS of appointments that exist. There is no way to index specific doctor
+        // columns to obtain lists of appointments without the binding code for that doctor and date. This is used to bind the lists
+        // to their days in the three day view by date and doctor column.
         public Dictionary<int, List<Appointment>> _drScheduleMap;
 
-        // Stores appointment with keys for quick lookup within onClick events in the schedule view.
+        // Maps appointments with integer keys useful for quick lookup within onClick events.
+        // This is a storage of all individual appointments with a key that is guaranteed to be unique.
+        // This allows me to reference single appointments quickly rather than iterating through lists to find one.
+        // The key is auto generated. It is obtained by taking the hash code of the DateTime for that appointment, then adding to it the doctor column
+        // the appointment resides in. This code is stored in each appointment object referenced by the "ID" property. The ID property is
+        // automatically bound to the "Tag" element of each rectangle that serves as the background for a single appointment slot. This means
+        // that accessing an appointment in code behind only requires you to parse the Tag element as an integer and use it directly as a key in this dictionary.
         public Dictionary<int, Appointment> _appointmentLookup;
 
         // Used as a base to calculate the number of days elapsed.
         // Number of days elapsed is used to reference appointment lists in the array of appointment lists,=.
         private DateTime _beginningOfAllTime = new DateTime(2017, 10, 14);
 
-        // To be set by the DIVM that instantiates an instance of this class.
+        // To be set by the DIVM that instantiates an object of this class.
         public int _numAppointmentsPerDay;
 
         // An array where each cell is a list of appointments.
@@ -40,9 +51,8 @@ namespace Appointed.ViewModels
 
 
         // A dictionary that pairs an int with the above data type.
-        // The int represents a doctor's ID which must be the column the doctor is assigned to in the three day view.
-        // This ID shouls match the position field in each Doctor object on the collection "_doctorsOnShift" found below.
-        // The Doctor class is near the bottom of this file and it consists of a name and a position presented as observable properties.
+        // The int represents a doctor's ID which must be the column the doctor is assigned to in the three day view, starting at 0.
+        // This ID should match the position field in each Doctor object on the collection "_doctorsOnShift" found below.
 
         // Hence this structure contains an array of lists of appointments for each doctor. Each array represents all appointments since
         //      the beginning of time where the index is the number of days since the beginning of time. (October 14, 2017)
@@ -50,7 +60,7 @@ namespace Appointed.ViewModels
         // Each dictionary entry corresponds to one doctor's array of lists of appointments.
         private Dictionary<int, List<Appointment>[]> _appointmentDictionary;
 
-
+        // A list of strings of doctor names allowing the doctor names to be bound and changed dynamically if required.
         private ObservableCollection<Doctor> _doctorsOnShift;
 
 
@@ -62,6 +72,27 @@ namespace Appointed.ViewModels
 
         public AppointmentViewModel()
         {
+            _activeAppointment = new Appointment();
+
+
+            _activeAppointment.Colour = "";
+            _activeAppointment.Comments = "";
+            _activeAppointment.Cursor = "";
+            _activeAppointment.DoctorName = "";
+            _activeAppointment.EndTime = 0;
+            _activeAppointment.Height = "";
+            _activeAppointment.ID = "";
+            _activeAppointment.Margin = "";
+            _activeAppointment.Missed = false;
+            _activeAppointment.Opacity = "";
+            _activeAppointment.Patient = "";
+            _activeAppointment.RowSpan = "";
+            _activeAppointment.StartTime = 0;
+            _activeAppointment.Type = "";
+            _activeAppointment.Waitlisted = false;
+            _activeAppointment.Visibility = "";
+
+
             _adm = new AppointmentDatabaseModel();
             DT = new DayTemplate { StartTime = 700 };
             _drScheduleMap = new Dictionary<int, List<Appointment>>();
@@ -71,22 +102,22 @@ namespace Appointed.ViewModels
             _specterAppointmentListArray = new List<Appointment>[_numDaysPopulated];
             _paulsenAppointmentListArray = new List<Appointment>[_numDaysPopulated];
 
-
+            // set here for now instead of in DIVM. Not important until dynamic modification of three day view is required.
             _numAppointmentsPerDay = 48;
 
 
             _doctorsOnShift = new ObservableCollection<Doctor>
             {
-                new Doctor { DoctorName = "Dr. Pearson", Position = "0"},
-                new Doctor { DoctorName = "Dr. Specter", Position = "1"},
-                new Doctor { DoctorName = "Dr. Paulsen", Position = "2"}
+                new Doctor (800, 1700) { DoctorName = "Dr. Pearson", Position = "0"},
+                new Doctor (830, 1730) { DoctorName = "Dr. Specter", Position = "1"},
+                new Doctor (730, 1630) { DoctorName = "Dr. Paulsen", Position = "2"}
             };
 
 
 
 
-            // Adding empty Days for each doctor their schedule array where no corresponding fake appointments were made
-            // Each column in the array is ine day of appointments
+            // Adding empty Days for each doctor in their schedule array where no corresponding fake appointments were made
+            // Each column in the array is one day of appointments
             AddEmptyDaysToArray(_pearsonAppointmentListArray, 0);
             AddEmptyDaysToArray(_specterAppointmentListArray, 1);
             AddEmptyDaysToArray(_paulsenAppointmentListArray, 2);
@@ -132,7 +163,8 @@ namespace Appointed.ViewModels
                 { 2, _paulsenAppointmentListArray }
             };
 
-
+            // Deals with auto generating appointment lookup codes and binding codes for lists of appointments
+            // to be used in accessing the dictionaries in the future.
             PopulateAppointmentDatabase(DT.StartTime);
 
 
@@ -151,6 +183,7 @@ namespace Appointed.ViewModels
             int time;
             string bindingCode = "";
 
+
             for (int i = 0; i < DoctorsOnShiftCount; i++)
             {
                 listOfAppointmentsArray = _appointmentDictionary[i];
@@ -163,27 +196,48 @@ namespace Appointed.ViewModels
                     time = startTime;
                     for (int k = 0; k < listOfAppointments.Count; k++)
                     {
+                        listOfAppointments[k].StartTime = time;
                         listOfAppointments[k].DateTime = new DateTime(date.Year, date.Month, date.Day, time / 100, time % 100, 0);
 
                         hashCode = listOfAppointments[k].DateTime.GetHashCode();
-                        listOfAppointments[k].ID = (hashCode+i).ToString();
 
-                        Console.WriteLine("Appt Date: " + listOfAppointments[k].DateTime);
-                        Console.WriteLine("Hash Code: " + (hashCode+i));
 
-                        _appointmentLookup.Add(hashCode+i, listOfAppointments[k]);
-
-                        listOfAppointments[k].StartTime = time;
-
-                        if (listOfAppointments[k].Type.Equals("Consultation"))
-                            time += 30;
-                        else
-                            time += 15;
+                        time += 15;
 
                         if (time % 100 >= 60)
                             time += 40;
 
-                        listOfAppointments[k].EndTime = time;
+                        if (listOfAppointments[k].Type.Equals("Consultation"))
+                        {
+                            int bigTime = time + 15;
+
+                            if (bigTime % 100 >= 60)
+                                bigTime += 40;
+
+                            listOfAppointments[k].EndTime = bigTime;
+                        }
+                        else
+                            listOfAppointments[k].EndTime = time;
+
+
+                        listOfAppointments[k].ID = (hashCode + i).ToString();
+
+
+
+                        int st = listOfAppointments[k].StartTime;
+                        int end = listOfAppointments[k].EndTime;
+                        Doctor d = DoctorsOnShift.ElementAt(i);
+
+                        if (st < d.ShiftStart || end > d.ShiftEnd)
+                        {
+                            listOfAppointments[k].IsClickable = "false";
+                            listOfAppointments[k].Colour = "SlateGray";
+                            listOfAppointments[k].Opacity = "0.5";
+                        }
+                        else
+                            listOfAppointments[k].IsClickable = "true";
+ 
+                        _appointmentLookup.Add(hashCode + i, listOfAppointments[k]);
                     }
 
                     bindingCode = (i + 1).ToString() + date.Day.ToString() + date.Month.ToString() + date.Year.ToString();
@@ -236,19 +290,12 @@ namespace Appointed.ViewModels
                 listOfAppointmentsArray[i].AddRange(emptyDay.Select(a => new Appointment(a)));
             }
 
-            /*
-                        for (int j = 0; j < _numAppointmentsPerDay; j++)
-                        {
-                            Appointment a = new Appointment(emptyDay.ElementAt(0));
-                            listOfAppointmentsArray[i].Add(a);
-                        }
-            */
-        }
+         }
 
 
 
         // Since empty appointment slots also have a unique key, get that key first to use this function.
-        // The key is automatically bound to the <appt>.Tag property and is easily accessed in an event handler.
+        // The key is automatically bound to the "<appt>.Tag" property and is easily accessed in an event handler.
         // In this scenario, the key refers to the key of the slot you would like to create the appointment in.
         // The appointment is the appointment you would like to place in that slot.
         // If the slot is not empty, it returns false and does nothing to the database.
@@ -259,8 +306,15 @@ namespace Appointed.ViewModels
                 Console.WriteLine("Appointment Type: " + _appointmentLookup[key].Type);
                 return false;
             }
-            int doctorColumn = 0;
 
+            if (appointment.Type == "Consultation")
+            {
+                Appointment apptThatFollows = FindAppointmentThatFollows(appointment);
+                if (apptThatFollows.Type != "")
+                    return false;
+            }
+
+            int doctorColumn = 0;
             _appointmentLookup[key] = appointment;
 
             for (int i = 0; i < DoctorsOnShiftCount; i++)
@@ -277,7 +331,7 @@ namespace Appointed.ViewModels
 
 
 
-        public void RemoveAppointment(int key)
+        private void RemoveAppointment(int key)
         {
             Appointment appointment = _appointmentLookup[key];
             Appointment emptyAppointment;
@@ -303,12 +357,12 @@ namespace Appointed.ViewModels
 
 
         // Uses the date and doctor name in the argument "appointment" to overwrite an existing appointment with the argument's details.
-        public void InsertAppointment(int doctorColumn, Appointment appointment)
+        private void InsertAppointment(int doctorColumn, Appointment appointment)
         {
             List<Appointment> listOfAppointments;
             string bindingCode;
    
-
+            // Get the list of appointments this one belongs in (based on date and doctor)
             bindingCode = (doctorColumn + 1).ToString() + appointment.DateTime.Day.ToString() + appointment.DateTime.Month.ToString() + appointment.DateTime.Year.ToString();
             listOfAppointments = _drScheduleMap[Int32.Parse(bindingCode)];
 
@@ -337,6 +391,19 @@ namespace Appointed.ViewModels
             return -1;
 
         }
+
+
+        public int FindDrColumnForDrName(string name)
+        {
+            for (int i = 0; i < DoctorsOnShiftCount; i++)
+                if (DoctorsOnShift.ElementAt(i).DoctorName.Equals(name))
+                    return i;
+
+            return -1;
+
+        }
+
+
 
 
         public Appointment FindAppointmentThatFollows(Appointment appointment)

@@ -1,4 +1,5 @@
-﻿using Appointed.ViewModels;
+﻿using Appointed.Classes;
+using Appointed.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

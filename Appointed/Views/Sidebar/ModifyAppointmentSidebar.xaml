@@ -24,6 +24,80 @@
             Text="Modify Appointment" />
 
 
+
+        <Separator
+                Background="Gray" 
+                Foreground="Gray" 
+                BorderThickness="1" 
+                Margin="15,10,15,10" 
+                DockPanel.Dock="Top" 
+                BorderBrush="Gray" 
+                Height="2"/>
+
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <StackPanel Grid.Column="0" Margin="6,0,0,0">
+                <TextBlock
+                    Style="{StaticResource text_SlateGrayMedium}"
+                    HorizontalAlignment="Left"
+                    Text="{Binding AVM._activeAppointment.PatientNameAbbrev}" 
+                    />
+
+                <TextBlock
+                    Style="{StaticResource text_SlateGrayMedium}"
+                    HorizontalAlignment="Left"
+                    Text="With:" 
+                    />
+
+                <TextBlock
+                    Style="{StaticResource text_SlateGrayMedium}"
+                    HorizontalAlignment="Left"
+                    Text="From:" 
+                    />
+            </StackPanel>
+
+
+            <StackPanel Grid.Column="1">
+                <TextBlock
+                    Style="{StaticResource text_SlateGrayMedium}"
+                    HorizontalAlignment="Left"
+                    Text="{Binding AVM._activeAppointment.Type}" 
+                    />
+
+                <TextBlock
+                    Style="{StaticResource text_SlateGrayMedium}"
+                    HorizontalAlignment="Left"
+                    Text="{Binding AVM._activeAppointment.DoctorName}"
+                    />
+
+                <TextBlock
+                    Style="{StaticResource text_SlateGrayMedium}"
+                    HorizontalAlignment="Left"
+                    >
+                    <Run Text="{Binding AVM._activeAppointment.StartTimeStr, Mode=OneWay}"/>
+                    <Run Text=" - "/>
+                    <Run Text="{Binding AVM._activeAppointment.EndTimeStr, Mode=OneWay}"/>
+                </TextBlock>
+            </StackPanel>
+
+
+        </Grid>
+
+
+        <Separator
+                Background="Gray" 
+                Foreground="Gray" 
+                BorderThickness="1" 
+                Margin="15,10,15,10" 
+                DockPanel.Dock="Top" 
+                BorderBrush="Gray" 
+                Height="2"/>
+
         <!-- 1 Row, 2 Column Grid, Appt Detail Labels in StackPanel in Column 1, Values in StackPanel in Column 2,-->
         <Grid
             DockPanel.Dock="Top">
@@ -103,27 +177,32 @@
                 Text="End Time:" />
 
             <ComboBox
+                x:Name="DoctorComboBox"
                 Grid.Row="0"
                 Grid.Column="1"
+                ItemsSource="{Binding AVM.DoctorsOnShift}"
                 Margin="4,4,6,4"
-                SelectedIndex="0"
+                SelectedIndex="{Binding AVM._activeAppointment.DrColumn, Mode=OneWay}"
                 VerticalContentAlignment="Center">
 
-                <ComboBoxItem
-                    Content="Dr. Paulsen" />
-                <ComboBoxItem
-                    Content="Dr. Specter" />
-                <ComboBoxItem
-                    Content="Dr. Pearson" />
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock
+                            Text="{Binding DoctorName}"
+                            HorizontalAlignment="Left"
+                            Margin="0,2,0,0"
+                            Foreground="Black" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
             </ComboBox>
 
 
             <ComboBox
-                Name="ApptType"
+                x:Name="ApptTypeComboBox"
                 Grid.Row="1"
                 Grid.Column="1"
                 Margin="4,4,6,4"
-                SelectedIndex="0"
+                SelectedIndex="{Binding AVM._activeAppointment.TypeIndex, Mode=OneWay}"
                 VerticalContentAlignment="Center">
 
                 <ComboBoxItem
@@ -133,22 +212,25 @@
             </ComboBox>
 
             <Controls:DatePicker
+                x:Name="DatePicker"
                 Grid.Row="2"
                 Grid.Column="1"
                 Margin="4,4,6,4"
                 VerticalAlignment="Center"
-                Height="22" />
+                Height="22" 
+                
+                />
 
 
             <ComboBox
-                Name="StartTime"
+                x:Name="StartTime"
                 Grid.Row="3"
                 Grid.Column="1"
                 Margin="4,4,6,4"
                 ItemsSource="{Binding TimeStamps}"
-                SelectedIndex="0"
+                SelectedIndex="{Binding AVM._activeAppointment.TimeIndex, Mode=OneWay}"
                 VerticalContentAlignment="Center"
-                SelectionChanged="ComboBox_SelectionChanged">
+                SelectionChanged="ComboBox_StartTimeSelectionChanged">
 
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
@@ -228,11 +310,11 @@
                 Text="Time:" />
 
             <ComboBox
-                Name="RemType"
+                x:Name="RemType"
                 Grid.Row="9"
                 Grid.Column="1"
                 Margin="4"
-                SelectedIndex="0">
+                SelectedIndex="{Binding AVM._activeAppointment.RemTypeIndex, Mode=OneWay}">
                 <ComboBoxItem
                     Content="Email" />
                 <ComboBoxItem
@@ -242,11 +324,11 @@
             </ComboBox>
 
             <ComboBox
-                Name="RemDays"
+                x:Name="RemDays"
                 Grid.Row="10"
                 Grid.Column="1"
                 Margin="4"
-                SelectedIndex="1">
+                SelectedIndex="{Binding AVM._activeAppointment.RemDaysIndex, Mode=OneWay}">
                 <ComboBoxItem
                     Content="0" />
                 <ComboBoxItem
@@ -273,7 +355,7 @@
 
             <ComboBox
                 Name="RemTOD"
-                Grid.Column="1"
+                Grid.Column="{Binding AVM._activeAppointment.RemTODIndex, Mode=OneWay}"
                 Grid.Row="11"
                 Margin="4"
                 SelectedIndex="0">
@@ -318,6 +400,7 @@
             MaxHeight="200">
 
             <TextBox
+                x:Name="CommentBox"
                 BorderBrush="SteelBlue"
                 Background="{x:Null}"
                 SpellCheck.IsEnabled="True"
@@ -357,7 +440,8 @@
                 VerticalAlignment="Bottom"
                 MaxWidth="200"
                 MinWidth="100"
-                Height="30" />
+                Height="30"
+                PreviewMouseLeftButtonUp="OnMouseLeftRelease_Save"/>
 
             <Button
                 Grid.Row="0"

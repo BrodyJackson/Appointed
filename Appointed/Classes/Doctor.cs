@@ -13,6 +13,15 @@ namespace Appointed.Classes
         string _doctorName;
         string _position;
         string _colour;
+        int _shiftStart;
+        int _shiftEnd;
+
+
+        public Doctor(int start, int end)
+        {
+            _shiftStart = start;
+            _shiftEnd = end;
+        }
 
         public string DoctorName
         {
@@ -45,5 +54,25 @@ namespace Appointed.Classes
             }
         }
 
+        public int ShiftStart
+        {
+            get { return _shiftStart; }
+        }
+
+
+        public int ShiftEnd
+        {
+            get { return _shiftEnd; }
+        }
+
+
+
+        public bool IsAvailable(int time)
+        {
+            if (time >= _shiftStart && time <= _shiftEnd)
+                return true;
+            else
+                return false;
+        }
     }
 }

@@ -14,6 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Appointed.Views.Dialogs;
 using Appointed.Views;
+using Appointed.ViewModels;
+using Appointed.Classes;
+using Appointed.Views.Sidebar;
 
 namespace Appointed.Views
 {
@@ -26,11 +29,38 @@ namespace Appointed.Views
         {
             InitializeComponent();
 
-            
+            Home h = App.Current.MainWindow as Home;
+
+            Button backButton = new Button
+            {
+                Content = new Image()
+                {
+                    Source = Assets.ResourceManager.Instance.Images["ReturnIcon"],
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Margin = new Thickness(8d)
+                }
+            };
+
+            Button homeButton = new Button
+            {
+                Content = new Image()
+                {
+                    Source = Assets.ResourceManager.Instance.Images["HomeIcon"],
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Margin = new Thickness(8d)
+                }
+            };
+
+
+            h.SidebarView.SetLeftQuickNavButton(backButton);
+            h.SidebarView.SetRightQuickNavButton(homeButton);
         }
 
         private void OnMouseLeftRelease_CheckIn(object sender, MouseButtonEventArgs e)
         {
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
             Button checkIn = sender as Button;
 
             //Color a = (Color)ColorConverter.ConvertFromString("#FFA5DFFF");
@@ -48,27 +78,78 @@ namespace Appointed.Views
 
             if (checkIn.Content.ToString() == "Check In")
             {
-                checkIn.Content = "Patient Arrived";
+                checkIn.Content = "Undo Check-In";
                 checkIn.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
                 checkIn.ToolTip = "Click To Undo Check In";
+                DIVM.AVM._appointmentLookup[Int32.Parse(DIVM.AVM._activeAppointment.ID)].Arrived = true;
             }
             else
             {
                 checkIn.Content = "Check In";
                 checkIn.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
                 checkIn.ToolTip = "Click To Check Patient In";
+                DIVM.AVM._appointmentLookup[Int32.Parse(DIVM.AVM._activeAppointment.ID)].Arrived = false;
             }
 
 
             Window w = new EditPatientEmergencyContacts();
-            w.Show();
+            w.Show();            
         }
+
+
 
         private void OnMouseLeftRelease_Modify(object sender, MouseButtonEventArgs e)
         {
-            //ModifyAppointmentDialog window = new ModifyAppointmentDialog();
-            //window.Show();
+            Home h = App.Current.MainWindow as Home;
+
+            h.SidebarView.SetSidebarView(new ModifyAppointmentSidebar());
         }
+
+
+
+        private void OnMouseLeftRelease_Delete(object sender, MouseButtonEventArgs e)
+        {
+            MessageBoxResult result =
+                
+                MessageBox.Show
+                (
+                    "Are you sure you wish to delete this patient?",
+                    "Confirm Selection",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Asterisk
+                );
+
+            if (result == MessageBoxResult.No || result == MessageBoxResult.None)
+                return;
+
+
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
+
+            Appointment appt = DIVM.AVM._appointmentLookup[Int32.Parse(DIVM.AVM._activeAppointment.ID)];
+
+            if (DIVM.AVM._activeAppointment.Type == "Consultation")
+            {
+                Appointment apptThatFollows = DIVM.AVM.FindAppointmentThatFollows(appt);
+                DIVM.AVM._appointmentLookup[Int32.Parse(apptThatFollows.ID)].Visibility = "Visible";
+
+                // Set the appointment slot that was holding the consultation back to a 15 minute empty place holder
+                appt.EndTime -= 15;
+
+                if (appt.EndTime % 100 > 60)
+                    appt.EndTime += 40;
+            }
+
+            appt.Comments = "";
+            appt.Height = "35";
+            appt.Margin = "0,1,0,0";
+            appt.Missed = false;
+            appt.Arrived = false;
+            appt.Opacity = "0";
+            appt.Patient = "";
+            appt.Type = "";
+            appt.Waitlisted = false;
+        }
+
 
 
     }

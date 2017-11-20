@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Appointed.ViewModels
+namespace Appointed.Classes
 {
 
 	public class Patient : ObservableObject
@@ -31,10 +31,12 @@ namespace Appointed.ViewModels
 
         //Address
         string _street;
+        string _building;
 		string _suite;
-		string _city;
+        string _city;
 		PROVINCE _province;        
 		string _postalCode;
+
 
 		//Contact
 		string _phone;
@@ -42,7 +44,7 @@ namespace Appointed.ViewModels
 		string _email;
 
 		//Emergency Contact
-		EmeregencyContact _emergencyContact;
+		EmergencyContact _emergencyContact;
 
 		//Property methods
 
@@ -146,6 +148,16 @@ namespace Appointed.ViewModels
 			}
 		}
 
+        public string Building
+        {
+            get { return _building; }
+            set
+            {
+                _building = value;
+                RaisePropertyChangedEvent("Building");
+            }
+        }
+
 		public string Suite
 		{
 			get { return _suite; }
@@ -223,7 +235,7 @@ namespace Appointed.ViewModels
 			}
 		}
 
-		public EmeregencyContact EmergencyContact
+		public EmergencyContact EmergencyContact
 		{
 			get { return _emergencyContact; }
 

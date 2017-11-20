@@ -40,9 +40,14 @@ namespace Appointed.ViewModels
         private string _day;
 
 
+        public Date _activeDate { get; set; }
+
 
         public DayInformationViewModel()
         {
+            _activeDate = new Date();
+
+
             _dim = new DayInformationModel();
             AVM = new AppointmentViewModel();
 

@@ -27,7 +27,8 @@
     
              The default is 4 hours worth of slots being displayed at a time. -->
 
-
+    <!--Note that the items control has an items source, it's just not explicitly stated here because it changes so often.
+        It is bound to a list in a dictionary in the AppointmentViewModel class from the cs file accompanying this markup.-->
     <ItemsControl x:Name="DrColumnItemsControl" Foreground="#FF0023FF" FontFamily="Yu Gothic UI Light" FontSize="10" >
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
@@ -37,7 +38,13 @@
 
         <ItemsControl.ItemTemplate>
             <DataTemplate>
-                <Grid Margin="{Binding Margin}" AllowDrop="True" Cursor="Hand" Visibility="{Binding Visibility}">
+                <Grid 
+                    Margin="{Binding Margin}" 
+                    AllowDrop="True" 
+                    Cursor="Hand" 
+                    Visibility="{Binding Visibility}"
+                    IsHitTestVisible="{Binding IsClickable}">
+                    
                     <Grid.RowDefinitions>
                         <RowDefinition Height ="{Binding Height}"/>
                     </Grid.RowDefinitions>
@@ -59,7 +66,8 @@
                                 DragEnter="OnDragEnterAppointmentSlot"
                                 Drop="OnDropInAppointmentSlot" 
                                 Cursor="Hand" 
-                                Opacity="0.5" >
+                                Opacity="0.5" 
+                                IsHitTestVisible="{Binding IsClickable}">
                         <Rectangle.Fill>
                             <SolidColorBrush Color="{Binding Colour}" Opacity="{Binding Opacity}"/>
                         </Rectangle.Fill>

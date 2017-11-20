@@ -8,21 +8,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Appointed.ViewModels
+namespace Appointed.Classes
 {
-	public class EmeregencyContact : ObservableObject
+	public class EmergencyContact : ObservableObject
 	{
-		//Constant values for relationship
-		const int OTHER = 0;
-		const int SPOUSE = 1;
-		const int PARENT = 2;
-		const int CHILD = 3;
-		const int EXTENDED_FAMILY = 4;
-		const int FRIEND = 5;
+        public enum RELATION { OTHER, SPOUSE, PARENT, CHILD, EXTENDED_FAMILY, SIBLING, FRIEND };
 
-		string _emergencyName;
-		int _emergencyRelation;          //Use constant values
+        string _emergencyName;
 		string _emergencyPhone;
+
+        RELATION _relation;
 
 		//Properties
 
@@ -37,16 +32,17 @@ namespace Appointed.ViewModels
 			}
 		}
 
-		public int EmergencyRelation
+  		public RELATION EmergencyRelation
 		{
-			get { return _emergencyRelation; }
+			get { return _relation; }
 
 			set
 			{
-				_emergencyRelation = value;
+				_relation = value;
 				RaisePropertyChangedEvent("EmergencyRelation");
 			}
 		}
+      
 
 		public string EmergencyPhone
 		{

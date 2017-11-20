@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Appointed.Events;
+using Appointed.ViewModels;
 
 namespace Appointed.Classes
 {
-
+    // Need to add.. 
+    //  Strings for start and end time, colon separated - StartTimeStr, EndTimeStr
+    //  
     public class Appointment : ObservableObject
     {
         DateTime _dateTime;
@@ -23,10 +26,17 @@ namespace Appointed.Classes
         string _visibility;
         string _ID;
         string _comments;
+        string _waitlistPos;
+        string _isClickable;
         int _startTime;
         int _endTime;
         bool _missed;
         bool _waitlisted;
+        bool _arrived;
+
+        string _reminderType;
+        string _reminderDays;
+        string _reminderTimeOfDay;
 
 
 
@@ -51,13 +61,19 @@ namespace Appointed.Classes
             this.ID = toCopy.ID;
             this.Margin = toCopy.Margin;
             this.Missed = toCopy.Missed;
+            this.Arrived = toCopy.Arrived;
             this.Opacity = toCopy.Opacity;
             this.Patient = toCopy.Patient;
             this.RowSpan = toCopy.RowSpan;
             this.StartTime = toCopy.StartTime;
             this.Type = toCopy.Type;
             this.Waitlisted = toCopy.Waitlisted;
+            this.WaitlistPos = toCopy.WaitlistPos;
+            this.IsClickable = toCopy.IsClickable;
             this.Visibility = toCopy.Visibility;
+            this.ReminderDays = toCopy.ReminderDays;
+            this.ReminderTimeOfDay = toCopy.ReminderTimeOfDay;
+            this.ReminderType = toCopy.ReminderType;
         }
 
 
@@ -68,6 +84,20 @@ namespace Appointed.Classes
             {
                 _dateTime = value;
                 RaisePropertyChangedEvent("DateTime");
+                RaisePropertyChangedEvent("DateTimeStr");
+            }
+        }
+
+        public string DateTimeStr
+        {
+            get
+            {
+                string dTS = _dateTime.Month.ToString() + "/" + _dateTime.Day.ToString() + "/" + _dateTime.Year.ToString();
+
+                Console.WriteLine(dTS);
+
+                return "12/5/2017";
+
             }
         }
 
@@ -79,6 +109,7 @@ namespace Appointed.Classes
             {
                 _doctorName = value;
                 RaisePropertyChangedEvent("DoctorName");
+                RaisePropertyChangedEvent("DrColumn");
             }
 
         }
@@ -91,6 +122,7 @@ namespace Appointed.Classes
                 _type = value;
                 RaisePropertyChangedEvent("Type");
                 RaisePropertyChangedEvent("AppointmentInfo");
+                RaisePropertyChangedEvent("TypeIndex");
             }
         }
 
@@ -100,10 +132,35 @@ namespace Appointed.Classes
             set
             {
                 _patient = value;
+                RaisePropertyChangedEvent("PatientNameAbbrev");
                 RaisePropertyChangedEvent("Patient");
                 RaisePropertyChangedEvent("AppointmentInfo");
             }
+        }
 
+        public string PatientNameAbbrev
+        {
+            get
+            {
+                    string shortenedInfo;
+                    int whiteSpaceIndex;
+
+                    if (Patient.Length > 12)
+                    {
+                        whiteSpaceIndex = Patient.IndexOf(' ');
+                        shortenedInfo = Patient.ElementAt(0).ToString() + "." + Patient.Substring(whiteSpaceIndex);
+                    }
+                    else
+                        return Patient;
+                    
+                    if (shortenedInfo.Length > 12)
+                    {
+                        whiteSpaceIndex = shortenedInfo.IndexOf(' ');
+                        shortenedInfo = shortenedInfo.Substring(0, whiteSpaceIndex) + " " + shortenedInfo.Substring(whiteSpaceIndex+1, 8) + "..";
+                    }
+
+                    return shortenedInfo;
+            }
         }
 
         public string Colour
@@ -230,6 +287,20 @@ namespace Appointed.Classes
             {
                 _startTime = value;
                 RaisePropertyChangedEvent("StartTime");
+                RaisePropertyChangedEvent("StartTimeStr");
+            }
+        }
+
+        public string StartTimeStr
+        {
+            get
+            {
+                string startTimeStr = _startTime.ToString();
+
+                if (startTimeStr.Length >= 3)
+                    return startTimeStr.Substring(0, startTimeStr.Length - 2) + ":" + startTimeStr.Substring(startTimeStr.Length - 2);
+                else
+                    return startTimeStr;
             }
         }
 
@@ -241,8 +312,67 @@ namespace Appointed.Classes
             {
                 _endTime = value;
                 RaisePropertyChangedEvent("EndTime");
+                RaisePropertyChangedEvent("EndTimeStr");
             }
         }
+
+        public string EndTimeStr
+        {
+            get
+            {
+                string endTimeStr = _endTime.ToString();
+
+                if (endTimeStr.Length >= 3)
+                    return endTimeStr.Substring(0, endTimeStr.Length - 2) + ":" + endTimeStr.Substring(endTimeStr.Length - 2);
+                else
+                    return endTimeStr;
+            }
+        }
+
+        public int DrColumn
+        {
+            get
+            {
+                DayInformationViewModel DIVM = new DayInformationViewModel();
+
+                return DIVM.AVM.FindDrColumnForDrName(_doctorName);
+            }
+        }
+
+
+        public int TypeIndex
+        {
+            get { return _type == "Standard" ? 0 : 1; }
+        }
+
+        public int TimeIndex
+        {
+            get { return ( (_startTime % 100)  / 15)   +   (((_startTime / 100) - 7) * 4)  ; }
+        }
+
+        public int RemDaysIndex
+        {
+            get { return _reminderDays == null ? 1 : Int32.Parse(_reminderDays); }
+        }
+
+        public int RemTypeIndex
+        {
+            get
+            {
+                if ( _reminderType == null || _reminderType == "Email" )
+                    return 0;
+                else if ( _reminderType == "Text" )
+                    return 1;
+                else
+                    return 2;
+            }
+        }
+
+        public int RemTODIndex
+        {
+            get { return _reminderTimeOfDay == "AM" ? 0 : 1; }
+        }
+
 
         public bool Missed
         {
@@ -252,6 +382,17 @@ namespace Appointed.Classes
             {
                 _missed = value;
                 RaisePropertyChangedEvent("Missed");
+            }
+        }
+
+        public bool Arrived
+        {
+            get { return _arrived; }
+
+            set
+            {
+                _arrived = value;
+                RaisePropertyChangedEvent("Arrived");                
             }
         }
 
@@ -266,6 +407,74 @@ namespace Appointed.Classes
             }
 
         }
+
+
+        public string WaitlistPos
+        {
+            get
+            {
+                if (_waitlisted)
+                {
+                    return _waitlistPos;
+                }
+                else
+                    return "N/A";
+            }
+
+            set
+            {
+                _waitlistPos = value;
+                RaisePropertyChangedEvent("WaitlistPos");
+            }
+        }
+
+
+        public string IsClickable
+        {
+            get { return _isClickable; }
+            set
+            {
+                _isClickable = value;
+                RaisePropertyChangedEvent("IsClickable");
+            }
+        }
+
+        public string ReminderType
+        {
+            get { return _reminderType; }
+            set
+            {
+                _reminderType = value;
+                RaisePropertyChangedEvent("ReminderType");
+            }
+
+        }
+
+
+        public string ReminderTimeOfDay
+        {
+            get { return _reminderTimeOfDay; }
+            set
+            {
+                _reminderTimeOfDay = value;
+                RaisePropertyChangedEvent("ReminderTimeOfDay");
+            }
+
+        }
+
+
+        public string ReminderDays
+        {
+            get { return _reminderDays; }
+            set
+            {
+                _reminderDays = value;
+                RaisePropertyChangedEvent("ReminderDays");
+            }
+
+        }
+
+
     }
 
 }
