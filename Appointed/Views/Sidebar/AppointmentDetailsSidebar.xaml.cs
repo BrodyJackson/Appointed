@@ -113,7 +113,7 @@ namespace Appointed.Views
                 
                 MessageBox.Show
                 (
-                    "Are you sure you wish to delete this patient?",
+                    "Are you sure you wish to delete this appointment?",
                     "Confirm Selection",
                     MessageBoxButton.YesNo,
                     MessageBoxImage.Asterisk

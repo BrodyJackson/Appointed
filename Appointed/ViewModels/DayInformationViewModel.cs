@@ -22,6 +22,7 @@ namespace Appointed.ViewModels
         private DayInformationModel _dim;
 
         public AppointmentViewModel AVM { get; set; }
+        public PatientViewModel PVM { get; set; }
 
  
         private ObservableCollection<Time> _timeOfDayStringsTwelveHour;
@@ -50,6 +51,7 @@ namespace Appointed.ViewModels
 
             _dim = new DayInformationModel();
             AVM = new AppointmentViewModel();
+            PVM = new PatientViewModel();
 
             _numAppointmentsPerDay = AVM._numAppointmentsPerDay;
 

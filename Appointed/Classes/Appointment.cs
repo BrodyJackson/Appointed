@@ -11,6 +11,49 @@ namespace Appointed.Classes
     // Need to add.. 
     //  Strings for start and end time, colon separated - StartTimeStr, EndTimeStr
     //  
+
+    // Fields can be accessed through:
+    //      Appointment a = new Appointment;
+    //      a.Type = "Standard";
+    //      ...
+
+
+    // Fields that need to be set and their possible values where applicable:
+    //
+    // ID = The hash code you constructed to add the appointment to the database.
+    //          (see AddAppointment function in AppointmentViewModel). -- CRUCIAL FIELD
+    //
+    // Type = "Standard" or "Consultation.
+    //
+    // Height = 
+    //      "35" when Type = "Standard"
+    //      "70" when Type = "Consultation"
+    //
+    // Margin = "0,1,0,0"   -- Always
+    // Patient = "Patient Name"
+    // DoctorName = "Dr. Name"
+    //
+    // Colour = 
+    //      "DarkTurquoise" when DoctorName = "Dr. Pearson"
+    //      "Violet"        when DoctorName = "Dr. Specter"
+    //      "Orange"        when DoctorName = "Dr. Paulsen"
+    //
+    // Visibility = "Visible"   -- Always, unless the new appointment is empty for some reason.
+    // Cursor = "Hand"  -- Always
+    // Opacity = "0.4"  -- Always
+    // DateTime = The DateTime object that represents the appointment's date and time.
+    // Comments = Any comments they entered.
+    // WaitlistPos = Their waitlist pos.
+    // IsClickable = true -- always.
+    // StartTime = Start time in 24 hr format, no leading 0's.
+    // EndTime = Same as above but for end time.
+    // Missed = false probably, since it's for a future appointment.
+    // Waitlisted = true or false
+    // Arrived = false
+    // ReminderType = "Email", "Phone", "Text"
+    // ReminderDays = whatever was selected
+    // ReminderTimeOfDay = whatever was selected.
+
     public class Appointment : ObservableObject
     {
         DateTime _dateTime;
@@ -329,50 +372,7 @@ namespace Appointed.Classes
             }
         }
 
-        public int DrColumn
-        {
-            get
-            {
-                DayInformationViewModel DIVM = new DayInformationViewModel();
-
-                return DIVM.AVM.FindDrColumnForDrName(_doctorName);
-            }
-        }
-
-
-        public int TypeIndex
-        {
-            get { return _type == "Standard" ? 0 : 1; }
-        }
-
-        public int TimeIndex
-        {
-            get { return ( (_startTime % 100)  / 15)   +   (((_startTime / 100) - 7) * 4)  ; }
-        }
-
-        public int RemDaysIndex
-        {
-            get { return _reminderDays == null ? 1 : Int32.Parse(_reminderDays); }
-        }
-
-        public int RemTypeIndex
-        {
-            get
-            {
-                if ( _reminderType == null || _reminderType == "Email" )
-                    return 0;
-                else if ( _reminderType == "Text" )
-                    return 1;
-                else
-                    return 2;
-            }
-        }
-
-        public int RemTODIndex
-        {
-            get { return _reminderTimeOfDay == "AM" ? 0 : 1; }
-        }
-
+       
 
         public bool Missed
         {
@@ -473,6 +473,53 @@ namespace Appointed.Classes
             }
 
         }
+
+
+
+        // Inferred properties (get their values from values of existing properties or instance variables).
+        public int DrColumn
+        {
+            get
+            {
+                DayInformationViewModel DIVM = new DayInformationViewModel();
+
+                return DIVM.AVM.FindDrColumnForDrName(_doctorName);
+            }
+        }
+
+        public int TypeIndex
+        {
+            get { return _type == "Standard" ? 0 : 1; }
+        }
+
+        public int TimeIndex
+        {
+            get { return ((_startTime % 100) / 15) + (((_startTime / 100) - 7) * 4); }
+        }
+
+        public int RemDaysIndex
+        {
+            get { return _reminderDays == null ? 1 : Int32.Parse(_reminderDays); }
+        }
+
+        public int RemTypeIndex
+        {
+            get
+            {
+                if (_reminderType == null || _reminderType == "Email")
+                    return 0;
+                else if (_reminderType == "Text")
+                    return 1;
+                else
+                    return 2;
+            }
+        }
+
+        public int RemTODIndex
+        {
+            get { return _reminderTimeOfDay == "AM" ? 0 : 1; }
+        }
+
 
 
     }
