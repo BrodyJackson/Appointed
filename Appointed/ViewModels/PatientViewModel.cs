@@ -13,7 +13,7 @@ namespace Appointed.ViewModels
     {
         private PatientDatabaseModel _pdm;
 
-        private Patient _activePatient;
+        public Patient _activePatient;
 
 
         public PatientViewModel()
