@@ -1,4 +1,5 @@
 ﻿using Appointed.Classes;
+using Appointed.Models;
 using Appointed.ViewModels;
 using Appointed.Views.Sidebar.ListItems;
 using System;
@@ -60,8 +61,7 @@ namespace Appointed.Views.Sidebar
 
         public void Search(string searchTerm)
         {
-            //TODO: Search Patient Database
-            //TODO: Get Results, then Add them to _resultPatients
+            //TODO search
 
             UpdatePatientResultList();
         }

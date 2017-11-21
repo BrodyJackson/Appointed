@@ -28,9 +28,14 @@ namespace Appointed.Views.Dialogs
         {
             InitializeComponent();
 
+            //Set Exit Actions On Close Event
             Closing += (object sender, System.ComponentModel.CancelEventArgs e) => { ExitAction = EXIT_ACTION.DISCARD; };
             DiscardBtn.Click += (object sender, RoutedEventArgs e) => { ExitAction = EXIT_ACTION.DISCARD; };
+            SaveBtn.Click += (object sender, RoutedEventArgs e) => { ExitAction = EXIT_ACTION.SAVE; };
+            SaveBookBtn.Click += (object sender, RoutedEventArgs e) => { ExitAction = EXIT_ACTION.SAVEBOOK; };
         }
+
+
 
     }
 }

@@ -19,8 +19,10 @@
         <Grid.RowDefinitions>
             <RowDefinition
                 Height="auto" />
+            <RowDefinition
+                Height="auto" />
         </Grid.RowDefinitions>
-        
+
         <local:InputText
             x:Name="InputText"
             Hint="YYYY-MM-DD"
@@ -29,17 +31,15 @@
             Grid.Column="0"
             Grid.Row="0"
             VerticalAlignment="Center"
-            HorizontalAlignment="Stretch"
-        />
+            HorizontalAlignment="Stretch" />
         <Button
+            Name="ShowCalendarButton"
             Grid.Column="1"
             Grid.Row="0"
             HorizontalAlignment="Right"
             VerticalAlignment="Center"
             Margin="4,0,0,0"
-            Height="20"
-            PreviewMouseLeftButtonUp="OnLeftMouseRelease_PickDate"
-            >
+            Height="20">
             <Image
                 Height="Auto"
                 Source="/Appointed;component/Assets/DayIcon.png" />
