@@ -32,6 +32,7 @@ namespace Appointed.Views.Sidebar
         public SearchResultsSidebar(string searchTerm)
         {
             InitializeComponent();
+
             _resultPatients = new List<Patient>();
 
             SearchBar.InputField.TextField.Text = searchTerm;
@@ -61,7 +62,53 @@ namespace Appointed.Views.Sidebar
 
         public void Search(string searchTerm)
         {
-            //TODO search
+            DayInformationViewModel divm = App.Current.MainWindow.DataContext as DayInformationViewModel;//this.DataContext as DayInformationViewModel;
+
+            //Sanitize input
+            searchTerm = new String(searchTerm.Where(c => Char.IsLetterOrDigit(c) || Char.IsWhiteSpace(c)).ToArray()).ToLower();
+
+            //Only search if searchTerm exists
+            if (!String.IsNullOrWhiteSpace(searchTerm))
+            {
+                string[] searchTerms = searchTerm.Split(' ');
+
+                Dictionary<int, Patient> patientDict = divm.PVM.GetPatientDatabaseModel().GetPatientDictionary();
+
+                foreach (KeyValuePair<int, Patient> entry in patientDict)
+                {
+                    //Check for match or partial match of 
+                    if (entry.Key.ToString().Contains(searchTerm))
+                    {
+                        _resultPatients.Add(entry.Value);
+                    }
+                    else
+                    {
+                        foreach (string term in searchTerms)
+                        {
+                            //Check for a match to first name
+                            if (!String.IsNullOrEmpty(entry.Value.FirstName) && entry.Value.FirstName.ToLower().Contains(term))
+                            {
+                                _resultPatients.Add(entry.Value);
+                                break;
+                            }
+
+                            //Check for last name match
+                            if (!String.IsNullOrEmpty(entry.Value.LastName) && entry.Value.LastName.ToLower().Contains(term))
+                            {
+                                _resultPatients.Add(entry.Value);
+                                break;
+                            }
+
+                            //Check middle name match
+                            if (!String.IsNullOrEmpty(entry.Value.MiddleName) && entry.Value.MiddleName.ToLower().Contains(term))
+                            {
+                                _resultPatients.Add(entry.Value);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
 
             UpdatePatientResultList();
         }
@@ -81,15 +128,18 @@ namespace Appointed.Views.Sidebar
         {
             SearchResultsList.Children.Clear();
 
-            foreach(Patient p in _resultPatients)
+            //Sort by last name, then first name, then middle name, then healthid
+            _resultPatients = _resultPatients.OrderBy(x => x.LastName + x.FirstName + x.MiddleName + x.HealthID).ToList();
+
+            foreach (Patient p in _resultPatients)
             {
                 SearchResultsList.Children.Add(new SearchResult(p));
             }
 
             CreateNewPatientResultItem newPatientItem = new CreateNewPatientResultItem(_resultPatients.Count > 0 ? "Can't Find Patient?" : "No Patients Found");
 
-            newPatientItem.Action.Click += 
-                (object sender, RoutedEventArgs e) => 
+            newPatientItem.Action.Click +=
+                (object sender, RoutedEventArgs e) =>
                 {
                     Dialogs.NewPatientDialog newPatientDialog = new Dialogs.NewPatientDialog();
 

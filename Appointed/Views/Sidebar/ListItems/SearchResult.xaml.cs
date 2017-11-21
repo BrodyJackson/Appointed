@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static Appointed.Views.Controls.InputText;
 
 namespace Appointed.Views.Sidebar.ListItems
 {
@@ -30,7 +31,7 @@ namespace Appointed.Views.Sidebar.ListItems
             {
                 patient = value;
                 PatientName.Text = patient.LastName + ", " + patient.FirstName + " " + patient.MiddleName[0] + ".";
-                PatientID.Text = patient.GetHealthIdAsString();
+                PatientID.Text = new HealthCareIDMask().FormatText(patient.HealthID.ToString());
                 PatientSex.Text = "Sex: " + patient.GetSexAsString();
                 PatientBirthday.Text = "Birthdate: " + patient.BirthDate.ToShortDateString();
             }
