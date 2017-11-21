@@ -293,17 +293,38 @@ namespace Appointed.ViewModels
          }
 
 
-
-        // Since empty appointment slots also have a unique key, get that key first to use this function.
-        // The key is automatically bound to the "<appt>.Tag" property and is easily accessed in an event handler.
-        // In this scenario, the key refers to the key of the slot you would like to create the appointment in.
+        // All appointments - even empty - are stored in the mock database.
+        // Since empty appointments also have a unique key, you need to construct that key to use this function.
+        //     The key for an appt on December 01, 2017 @ 14:45:00 with Dr. Specter is constructed as follows:
+        //          - set the appointment's DateTime property.
+        //                  newAppt.DateTime = new DateTime(2017, 12, 01, 14, 45, 0);
+        //          - get the hash code of the DateTime property.
+        //                  hashCode = newAppt.DateTime.GetHashCode();
+        //          - add the doctor column corresponding to Dr. Specter (which is 1) to the hash code. This value can be obtained
+        //            using the function in this class with signature "public int FindDrColumnForDrName(string name)",
+        //            or by manually entering the value --    Dr. Pearson = 0     Dr. Specter = 1     Dr. Paulsen = 2.
+        //                  - Example using function.
+        //                      DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
+        //                      hashCode = hashCode + DIVM.AVM.FindDrColumnForDrName("Dr. Specter");
+        //                  - Example using hardcoded value.
+        //                      hashCode = hashCode + 1; -- This may not be possible depending on how the view is set up.
+        //                                               -- One possible way could be to make sure the Dr. Combo Box in the
+        //                                                      new appt sidebar an ordering coinciding with the Dr columns.
+        //                                                      Then when the appt is created add the value of DrComboBox.SelectedIndex
+        //                                                      to the hash code.
+        //          - Set the values of the appointment.
+        //          - Use this function with "hashCode" as the key and "newAppt" as the appointment.
+        //          - See the "Appointment" class for some comments on creating a new appointment since there are a ton of fields.
+        //              and not all of them are necessary, some are not accessible, and some are crucial.
+        //          
         // The appointment is the appointment you would like to place in that slot.
-        // If the slot is not empty, it returns false and does nothing to the database.
+        // If the appointment is a standard appointment and the slot is not empty, it returns false and does not effect the database.
+        // If the appointment is a consultation and two contiguous slots are not empty, it returns false and does not effect the database.
         public bool AddAppointment (Appointment appointment, int key)
         {
-            if (!(_appointmentLookup[key].Type.Length == 0))
+            if (!(_appointmentLookup[key].Type != ""))
             {
-                Console.WriteLine("Appointment Type: " + _appointmentLookup[key].Type);
+                Console.WriteLine("Appointment Slot Not Empty, type is: " + _appointmentLookup[key].Type);
                 return false;
             }
 
@@ -311,12 +332,17 @@ namespace Appointed.ViewModels
             {
                 Appointment apptThatFollows = FindAppointmentThatFollows(appointment);
                 if (apptThatFollows.Type != "")
+                {
+                    Console.WriteLine("Consultations require 30 mins, only 15 available from appointment start time.");
                     return false;
+                }
             }
 
-            int doctorColumn = 0;
             _appointmentLookup[key] = appointment;
 
+
+            
+            int doctorColumn = 0;
             for (int i = 0; i < DoctorsOnShiftCount; i++)
             {
                 if (DoctorsOnShift.ElementAt(i).DoctorName.Equals(appointment.DoctorName))

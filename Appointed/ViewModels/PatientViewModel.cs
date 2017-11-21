@@ -9,7 +9,7 @@ using Appointed.Classes;
 
 namespace Appointed.ViewModels
 {
-    class PatientViewModel : ObservableObject
+    public class PatientViewModel : ObservableObject
     {
         private PatientDatabaseModel _pdm;
 
