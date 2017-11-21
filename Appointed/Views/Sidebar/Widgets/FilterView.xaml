@@ -31,21 +31,25 @@
             VerticalAlignment="Stretch">
 
             <CheckBox 
+                Name="PaulsenCheckBox"
                 Content="Dr. Paulsen"
                 FontSize="14"
                 Padding="4"
                 VerticalContentAlignment="Center"/>
-            <CheckBox 
+            <CheckBox
+                Name="PearsonCheckBox"
                 Content="Dr. Pearson"
                 FontSize="14"
                 Padding="4"
                 VerticalContentAlignment="Center"/>
-            <CheckBox 
+            <CheckBox
+                Name="SpecterCheckBox"
                 Content="Dr. Specter"
                 FontSize="14"
                 Padding="4"
                 VerticalContentAlignment="Center"/>
             <Button
+                Name="AllDocBtn"
                 Content="All Doctors"
                 FontSize="14"
                 Margin="4,0,4,0"
@@ -59,11 +63,13 @@
             VerticalAlignment="Stretch">
 
             <CheckBox 
+                Name="ConsultCheckBox"
                 Content="Consultations"
                 FontSize="14"
                 Padding="4"
                 VerticalContentAlignment="Center"/>
-            <CheckBox 
+            <CheckBox
+                Name="RegCheckBox"
                 Content="Regular"
                 FontSize="14"
                 Padding="4"
@@ -75,6 +81,7 @@
                 Padding="4"
                 VerticalContentAlignment="Center"/>
             <Button
+                Name="AllApptsBtn"
                 Content="All Appointments"
                 FontSize="14"
                 Padding="2"

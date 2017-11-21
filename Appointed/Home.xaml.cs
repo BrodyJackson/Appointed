@@ -28,44 +28,16 @@ namespace Appointed
         {
             InitializeComponent();
 
-
-            //ShowHomeSidebar();
-            SidebarView.SetSidebarView(new NewAppointmentSidebar());
-
-            SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
-
-            
-            //SidebarView.SetSidebarView(new SearchResultsSidebar());
-            //SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
-            SidebarView.SetSidebarView(new ModifyAppointmentSidebar());
-
             ShowHomeSidebar();
 
-
-
-            //SidebarView.SetSidebarView(new PatientInfoSidebar());
         }
 
         private void ShowHomeSidebar()
         {
-            SidebarView.SetSidebarView(new HomeSidebar());
+            HomeSidebar homeSidebar = new HomeSidebar();
 
-            Button newPatientBtn = new Button
-            {
-                Content = new Image()
-                {
-                    Source = Assets.ResourceManager.Instance.Images["NewPatientIcon"],
-                    VerticalAlignment = VerticalAlignment.Center,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    Margin = new Thickness(8d)
-                }
-            };
+            SidebarView.SetSidebarView(homeSidebar);
 
-            SidebarView.SetLeftQuickNavButton(newPatientBtn);
-            SidebarView.SetRightQuickNavButton(null);
-            Grid.SetColumnSpan(newPatientBtn, 2);
-
-            newPatientBtn.Click += (object sender, RoutedEventArgs args) => { new NewPatientDialog().ShowDialog(); };
         }
     }
 }

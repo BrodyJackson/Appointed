@@ -21,6 +21,12 @@ namespace Appointed.Views
     public partial class SearchBar : UserControl
     {
 
+        public event EventHandler<EventArgs> SearchTextChanged;
+        /// <summary>
+        /// Invoked when search button is clicked, or enter is pressed with the input field focused
+        /// </summary>
+        public event EventHandler<EventArgs> Search;
+
         public SearchBar()
         {
             //Manual workaround for showing hint text
@@ -32,6 +38,28 @@ namespace Appointed.Views
 
             InputField.ShowHintText(InputField.TextField);
 
+            SearchBtn.Click += SearchBtn_Click;
+            InputField.KeyUp += InputField_EnterUp;
+
+        }
+
+        private void InputField_EnterUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (InputField.TextField.Text != InputField.Hint && !String.IsNullOrWhiteSpace(InputField.TextField.Text))
+                {
+                    Search?.Invoke(sender, e);
+                }
+            }
+        }
+
+        private void SearchBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if(InputField.TextField.Text != InputField.Hint && !String.IsNullOrWhiteSpace( InputField.TextField.Text ))
+            {
+                Search?.Invoke(sender, e);
+            }
         }
     }
 }

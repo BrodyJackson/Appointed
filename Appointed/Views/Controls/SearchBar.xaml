@@ -24,6 +24,7 @@
             FontSize="20"
             />
         <Button
+            Name="SearchBtn"
             Grid.Column="1"
             Grid.Row="0"
             HorizontalAlignment="Right"

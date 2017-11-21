@@ -18,7 +18,7 @@ namespace Appointed.Models
         // Shouldn't need these functions. They are used by the ViewModel
         // allowing the view logic to be spearated from the logic of the data class.
         // See PatientViewModel for add/get/remove functions.
-        public bool putPatient(Patient p)
+        public bool PutPatient(Patient p)
         {
             if (_patientDictionary.ContainsKey(p.HealthID))
                 return false;
@@ -28,7 +28,7 @@ namespace Appointed.Models
             return true;
         }
 
-        public bool removePatient(Patient p)
+        public bool RemovePatient(Patient p)
         {
             if (!_patientDictionary.ContainsKey(p.HealthID))
                 return false;
@@ -39,12 +39,19 @@ namespace Appointed.Models
         }
 
 
-        public Patient getPatient(int key)
+        public Patient GetPatient(int key)
         {
             return _patientDictionary[key];
         }
 
-
+        /// <summary>
+        /// This method allows for searching of dictionary items if key is not known
+        /// </summary>
+        /// <returns></returns>
+        public Dictionary<int, Patient> GetPatientDictionary()
+        {
+            return _patientDictionary;
+        }
 
         
 

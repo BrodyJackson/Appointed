@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Appointed.Views.Dialogs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,13 +25,29 @@ namespace Appointed.Views
         Button _rightQuickNavButton;
         UserControl _sidebarView;
 
+        Stack<UserControl> _sidebarHistory = new Stack<UserControl>();
+
         public SidebarFrameView()
         {
             InitializeComponent();
         }
 
-        public void SetSidebarView(UserControl view)
+        public UserControl GetSidebarView()
         {
+            return _sidebarView;
+        }
+
+        /// <summary>
+        /// Used to change sidebar view.
+        /// Set pushToHistoryStack to false to avoid infinite loops. (Whenever using the back button, set push to false)
+        /// </summary>
+        /// <param name="view">new view to set sidebar to</param>
+        /// <param name="pushToHistoryStack"> Defaults to true, if false the current view will not be pushed to the history stack</param>
+        public void SetSidebarView(UserControl view, bool pushToHistoryStack = true)
+        {
+            if(pushToHistoryStack)
+                _sidebarHistory.Push(_sidebarView);
+
             SidebarGridLayout.Children.Remove(_sidebarView);
             _sidebarView = view;
             SidebarGridLayout.Children.Add(view);
@@ -38,6 +55,85 @@ namespace Appointed.Views
             Grid.SetRow(view, 0);
             view.VerticalAlignment = VerticalAlignment.Stretch;
             view.HorizontalAlignment = HorizontalAlignment.Stretch;
+
+            //Auto set buttons based on special case for the home view, all other sidebars should have standard back/home buttons
+            if(view is HomeSidebar)
+            {
+                //Clear history stack
+                _sidebarHistory.Clear();
+                SetHomeSidebarQuickNavButtons();
+            }
+            else
+            {
+                SetStandardQuickNavButtons();
+            }
+
+        }
+
+        private void SetStandardQuickNavButtons()
+        {
+            Button homeButton = new Button
+            {
+                Content = new Image()
+                {
+                    Source = Assets.ResourceManager.Instance.Images["HomeIcon"],
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Margin = new Thickness(8d)
+                }
+            };
+
+            Button backButton = new Button
+            {
+                Content = new Image()
+                {
+                    Source = Assets.ResourceManager.Instance.Images["ReturnIcon"],
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Margin = new Thickness(8d)
+                }
+            };
+
+            SetLeftQuickNavButton(backButton);
+            SetRightQuickNavButton(homeButton);
+
+            backButton.Click += (object s, RoutedEventArgs args) =>
+            {
+                SetSidebarView(GetPreviousSidebar(), false);
+            };
+
+            homeButton.Click += (object s, RoutedEventArgs args) =>
+            {
+                SetSidebarView(new HomeSidebar());
+            };
+        }
+
+        private void SetHomeSidebarQuickNavButtons()
+        {
+            Button newPatientBtn = new Button
+            {
+                Content = new Image()
+                {
+                    Source = Assets.ResourceManager.Instance.Images["NewPatientIcon"],
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Margin = new Thickness(8d)
+                }
+            };
+
+            SetLeftQuickNavButton(newPatientBtn);
+            SetRightQuickNavButton(null);
+            Grid.SetColumnSpan(newPatientBtn, 2);
+
+            newPatientBtn.Click += (object sender, RoutedEventArgs args) => { new NewPatientDialog().ShowDialog(); };
+        }
+
+        public UserControl GetPreviousSidebar()
+        {
+            if (_sidebarHistory.Count > 0)
+                return _sidebarHistory.Pop();
+            else
+                return this;
         }
 
         /// <summary>

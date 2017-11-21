@@ -30,20 +30,20 @@ namespace Appointed.ViewModels
         // using Appointed.ViewModels; -- at the top ^
         // DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
         // DIVM.PVM.addPatient(p);
-        public bool addPatient(Patient p)
+        public bool AddPatient(Patient p)
         {
-            return _pdm.putPatient(p);
+            return _pdm.PutPatient(p);
         }
 
-        public bool removePatient(Patient p)
+        public bool RemovePatient(Patient p)
         {
-            return _pdm.removePatient(p);
+            return _pdm.RemovePatient(p);
         }
 
 
-        public Patient getPatient(int HealthCareID)
+        public Patient GetPatient(int HealthCareID)
         {
-            return _pdm.getPatient(HealthCareID);
+            return _pdm.GetPatient(HealthCareID);
         }
 
 

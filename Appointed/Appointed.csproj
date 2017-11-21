@@ -85,9 +85,6 @@
     <Compile Include="Views\Controls\InputText.xaml.cs">
       <DependentUpon>InputText.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\ShowableCalendar.xaml.cs">
-      <DependentUpon>ShowableCalendar.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Dialogs\EditPatientAddress.xaml.cs">
       <DependentUpon>EditPatientAddress.xaml</DependentUpon>
     </Compile>
@@ -213,10 +210,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Controls\InputText.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Controls\ShowableCalendar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
