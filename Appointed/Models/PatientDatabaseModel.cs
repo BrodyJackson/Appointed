@@ -61,10 +61,22 @@ namespace Appointed.Models
             // One fake patient corresponding to Mike Ross.
             _patientDictionary[12345678] = new Patient
             {
-                BirthDate=new DateTime(1990, 12, 5), Cell="403-555-5655", City="Calgary", Email="DonJuan@donjuan.com",
-                EmergencyContact=e, FirstName="Mike", HealthID=12345678, LastName="Ross",
-                MiddleName ="Jean", Phone="555-555-5555", PostalCode="T3A-333", Province=Patient.PROVINCE.AB,
-                Sex =Patient.SEX.MALE, Street="23 Ave", Building="182", Suite="12"
+                FirstName = "Mike",
+                MiddleName = "Jean",
+                LastName = "Ross",
+                HealthID = 12345678,
+                BirthDate = new DateTime(1990, 12, 5),
+                Sex = Patient.SEX.MALE,
+                City = "Calgary",
+                Province = Patient.PROVINCE.AB,
+                PostalCode = "T3A-333",
+                Street ="23 Ave",
+                Building ="182",
+                Suite ="12",
+                Phone = "555-555-5555",
+                Cell = "403-555-5655",
+                Email = "DonJuan@donjuan.com",
+                EmergencyContact = e
             };
 
             _patientDictionary[12345679] = new Patient
