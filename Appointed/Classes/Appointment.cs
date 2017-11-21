@@ -135,12 +135,8 @@ namespace Appointed.Classes
         {
             get
             {
-                string dTS = _dateTime.Month.ToString() + "/" + _dateTime.Day.ToString() + "/" + _dateTime.Year.ToString();
-
-                Console.WriteLine(dTS);
-
-                return "12/5/2017";
-
+                string dTS = _dateTime.Year.ToString() + '-' + _dateTime.Month.ToString() + "-" + _dateTime.Day.ToString();
+                return dTS;
             }
         }
 

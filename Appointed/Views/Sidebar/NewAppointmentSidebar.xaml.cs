@@ -120,6 +120,7 @@ namespace Appointed.Views.Sidebar
             }
 
             DIVM._activeDate.HasChanged = false;
+           
         }
 
         //Appointment _newAppointment = new Appointment();

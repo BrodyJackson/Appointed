@@ -29,7 +29,19 @@ namespace Appointed.Views.Sidebar
         {
             InitializeComponent();
             ReminderToggle.IsChecked = true;
+
+
+            this.Loaded += new RoutedEventHandler(ModifyAppointmentSidebar_Loaded);
         }
+
+
+        void ModifyAppointmentSidebar_Loaded(object sender, RoutedEventArgs e)
+        {
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
+            DatePicker.InputText.TextField.Text = DIVM.AVM._activeAppointment.DateTimeStr;
+        }
+
+
 
 
         private void OnMouseLeftRelease_Discard(object sender, MouseButtonEventArgs e)
@@ -94,15 +106,15 @@ namespace Appointed.Views.Sidebar
             string drName = ((Doctor)DoctorComboBox.SelectedItem).DoctorName;
             string dateString = DatePicker.InputText.TextField.Text;
 
-                // Build the key to look up the appointment slot they wish to book in.
-                int time = Int32.Parse(stTime);
-                int year = Int32.Parse(dateString.Substring(0, dateString.IndexOf('-')));
+            // Build the key to look up the appointment slot they wish to book in.
+            int time = Int32.Parse(stTime);
+            int year = Int32.Parse(dateString.Substring(0, dateString.IndexOf('-')));
 
-                int firstInd = dateString.IndexOf('-') + 1;
-                int secondInd = dateString.LastIndexOf('-');
-                int month = Int32.Parse(dateString.Substring(firstInd, secondInd - firstInd));
+            int firstInd = dateString.IndexOf('-') + 1;
+            int secondInd = dateString.LastIndexOf('-');
+            int month = Int32.Parse(dateString.Substring(firstInd, secondInd - firstInd));
 
-                int day = Int32.Parse(dateString.Substring(dateString.LastIndexOf('-') + 1));
+            int day = Int32.Parse(dateString.Substring(dateString.LastIndexOf('-') + 1));
 
                 // The hashcode of the DateTime + <DrColumn> form the key for appointment lookups.
                 DateTime dt = new DateTime(year, month, day, time / 100, time % 100, 0);
@@ -179,7 +191,9 @@ namespace Appointed.Views.Sidebar
                 activeAppt.EndTime += 40;
 
 
-            DIVM.AVM._activeAppointment = targetAppointment;
+            DIVM.AVM._activeAppointment = new Appointment(targetAppointment);
+
+            //targetAppointment = null;
 
             Home h = App.Current.MainWindow as Home;
             h.SidebarView.SetSidebarView(new AppointmentDetailsSidebar());

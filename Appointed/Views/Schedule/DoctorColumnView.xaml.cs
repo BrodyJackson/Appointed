@@ -32,14 +32,16 @@ namespace Appointed.Views
         {
             InitializeComponent();
 
+            // This constructor can finish before the visual tree and corresponding elements are loaded.
+            // The initialization depends on some elements of the visual tree so this must be used
+            // to ensure the entire view is loaded before this set of instructions is executed.
             this.Loaded += new RoutedEventHandler(DoctorColumnView_Loaded);
-            
-
         }
 
 
         void DoctorColumnView_Loaded(object sender, RoutedEventArgs e)
         {
+            // This registers the OnScheduleAltered Delegate to the ScheduleShifted Event.            
             DayInformationViewModel DIVM = (DayInformationViewModel)this.DataContext;
             DIVM.ScheduleShifted += new EventHandler<EventArgs>(OnScheduleAltered);
 
@@ -229,7 +231,6 @@ namespace Appointed.Views
             if (apptSlot != null && e.LeftButton == MouseButtonState.Pressed)
             {
                 DragDrop.DoDragDrop(apptSlot, apptSlot.Tag.ToString(), DragDropEffects.All);
-                // Refresh slot that was dragged to..
             }
         }
         

@@ -41,6 +41,7 @@ namespace Appointed.ViewModels
         }
 
 
+
         public Patient GetPatient(int HealthCareID)
         {
             return _pdm.GetPatient(HealthCareID);
