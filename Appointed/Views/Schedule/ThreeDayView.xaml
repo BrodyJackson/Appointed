@@ -54,7 +54,15 @@
         <local:DoctorsOnShiftView Grid.Row="0" Grid.Column="6"/>
 
 
-        <ScrollViewer Grid.Row="1" Grid.Column="0" CanContentScroll="True" VerticalScrollBarVisibility="Hidden" PreviewMouseWheel="OnThreeDayViewVerticalScroll">
+        <ScrollViewer 
+            x:Name="TimeStampScrollView"
+            Grid.Row="1" 
+            Grid.Column="0" 
+            CanContentScroll="True" 
+            VerticalScrollBarVisibility="Hidden" 
+            PreviewMouseWheel="OnThreeDayViewVerticalScroll"
+            PreviewKeyUp="OnThreeDayViewKeyUp"
+            >
             <ItemsControl ItemsSource="{Binding TimeStamps}"
                                   Foreground="#FF0023FF" FontFamily="Yu Gothic UI Light" FontSize="14">
                 <ItemsControl.ItemTemplate>
@@ -98,8 +106,14 @@
         </Rectangle>
 
         <!-- Day One -->
-        <ScrollViewer x:Name="DayOneScroller" Grid.Column="2" Grid.Row="1" VerticalScrollBarVisibility="Hidden"  PreviewMouseWheel="OnThreeDayViewVerticalScroll" 
-                      CanContentScroll="True">
+        <ScrollViewer 
+            x:Name="DayOneScroller" 
+            Grid.Column="2" 
+            Grid.Row="1" 
+            VerticalScrollBarVisibility="Hidden"  
+            PreviewMouseWheel="OnThreeDayViewVerticalScroll" 
+            PreviewKeyUp="OnThreeDayViewKeyUp"
+            CanContentScroll="True">
             <local:SingleDayView x:Name="DayOne"/>
         </ScrollViewer>
  
@@ -119,8 +133,14 @@
         </Rectangle>
 
         <!-- Day Two -->
-        <ScrollViewer x:Name ="DayTwoScroller" Grid.Column="4" Grid.Row="1" VerticalScrollBarVisibility="Hidden"  PreviewMouseWheel="OnThreeDayViewVerticalScroll" 
-                      CanContentScroll="True">
+        <ScrollViewer 
+            x:Name ="DayTwoScroller" 
+            Grid.Column="4" 
+            Grid.Row="1" 
+            VerticalScrollBarVisibility="Hidden"  
+            PreviewMouseWheel="OnThreeDayViewVerticalScroll" 
+            PreviewKeyUp="OnThreeDayViewKeyUp"
+            CanContentScroll="True">
             <local:SingleDayView x:Name="DayTwo"/>
         </ScrollViewer>
 
@@ -140,8 +160,14 @@
         </Rectangle>
 
         <!-- Day Three -->
-        <ScrollViewer x:Name="DayThreeScroller" Grid.Column="6" Grid.Row="1" VerticalScrollBarVisibility="Hidden" PreviewMouseWheel="OnThreeDayViewVerticalScroll" 
-                      CanContentScroll="True">
+        <ScrollViewer 
+            x:Name="DayThreeScroller" 
+            Grid.Column="6" 
+            Grid.Row="1" 
+            VerticalScrollBarVisibility="Hidden" 
+            PreviewMouseWheel="OnThreeDayViewVerticalScroll"
+            PreviewKeyUp="OnThreeDayViewKeyUp"
+            CanContentScroll="True">
             <local:SingleDayView x:Name="DayThree"/>
         </ScrollViewer>
  
