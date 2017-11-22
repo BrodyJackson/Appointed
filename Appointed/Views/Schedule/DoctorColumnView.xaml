@@ -12,29 +12,6 @@
              
              
              >
-
-    <UserControl.Resources>
-        <Thickness x:Key="ControlMargin">0 5 0 0</Thickness>
-        <Storyboard x:Key="AlertArea" >
-            <DoubleAnimation Storyboard.TargetName="gdPersonData"
-                     Storyboard.TargetProperty="Opacity"
-                     From="0"
-                     To="1"
-                     RepeatBehavior="3x"
-                     AutoReverse="True"
-                     Duration="0:0:0.1"/>
-        </Storyboard>
-        <Storyboard x:Key="AlertArea2"  >
-            <DoubleAnimation Storyboard.TargetName="gdPersonData"
-                     Storyboard.TargetProperty="Opacity"
-                     From="1"
-                     To="0"
-                     RepeatBehavior="1x"
-                     AutoReverse="True"
-                     Duration="0:0:0.1"/>
-        </Storyboard>
-    </UserControl.Resources>
-
     <!-- Each doctor consists of a number of rows that represent 15 minute intervals 
                 in the day being viewed.
     
