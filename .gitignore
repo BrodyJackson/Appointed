@@ -38,6 +38,9 @@ x64/
 *.vssscc
 .builds
 
+# Java Build results
+*.class
+
 # Visual C++ cache files
 ipch/
 *.aps
