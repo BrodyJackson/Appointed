@@ -30,7 +30,7 @@ namespace Appointed
             CalendarDocFilter.Add("Paulsen", true);
             CalendarDocFilter.Add("Specter", true);
 
-            CalendarApptFilter.Add("Regular", true);
+            CalendarApptFilter.Add("Standard", true);
             CalendarApptFilter.Add("Consultation", true);
 
 

@@ -14,8 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Appointed.ViewModels;
 using Appointed.Classes;
-
-
+using System.Windows.Media.Animation;
 
 namespace Appointed.Views
 
@@ -37,6 +36,7 @@ namespace Appointed.Views
             // to ensure the entire view is loaded before this set of instructions is executed.
             this.Loaded += new RoutedEventHandler(DoctorColumnView_Loaded);
         }
+ 
 
 
         void DoctorColumnView_Loaded(object sender, RoutedEventArgs e)
@@ -309,7 +309,10 @@ namespace Appointed.Views
                 sourceAppointment.Margin = "0,1,0,0";
                 sourceAppointment.Missed = false;
                 sourceAppointment.Arrived = false;
-                sourceAppointment.Opacity = "0";
+
+                if (sourceAppointment.Colour != "SlateGray")
+                    sourceAppointment.Opacity = "0";
+
                 sourceAppointment.Patient = "";
                 sourceAppointment.Type = "";
                 sourceAppointment.Waitlisted = false;

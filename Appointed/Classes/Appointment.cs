@@ -71,6 +71,8 @@ namespace Appointed.Classes
         string _comments;
         string _waitlistPos;
         string _isClickable;
+        string _borderColour;
+        string _strokeThickness;
         int _startTime;
         int _endTime;
         bool _missed;
@@ -113,6 +115,7 @@ namespace Appointed.Classes
             this.Waitlisted = toCopy.Waitlisted;
             this.WaitlistPos = toCopy.WaitlistPos;
             this.IsClickable = toCopy.IsClickable;
+            this.BorderColour = toCopy.BorderColour;
             this.Visibility = toCopy.Visibility;
             this.ReminderDays = toCopy.ReminderDays;
             this.ReminderTimeOfDay = toCopy.ReminderTimeOfDay;
@@ -432,6 +435,26 @@ namespace Appointed.Classes
             {
                 _isClickable = value;
                 RaisePropertyChangedEvent("IsClickable");
+            }
+        }
+
+        public string BorderColour
+        {
+            get { return _borderColour; }
+            set
+            {
+                _borderColour = value;
+                RaisePropertyChangedEvent("BorderColour");
+            }
+        }
+
+        public string StrokeThickness
+        {
+            get { return _strokeThickness; }
+            set
+            {
+                _strokeThickness = value;
+                RaisePropertyChangedEvent("StrokeThickness");
             }
         }
 

@@ -12,9 +12,6 @@
              
              
              >
-
-
-
     <!-- Each doctor consists of a number of rows that represent 15 minute intervals 
                 in the day being viewed.
     
@@ -67,7 +64,8 @@
                                 Drop="OnDropInAppointmentSlot" 
                                 Cursor="Hand" 
                                 Opacity="0.5" 
-                                IsHitTestVisible="{Binding IsClickable}">
+                                IsHitTestVisible="{Binding IsClickable}"
+                                >
                         <Rectangle.Fill>
                             <SolidColorBrush Color="{Binding Colour}" Opacity="{Binding Opacity}"/>
                         </Rectangle.Fill>

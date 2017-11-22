@@ -72,8 +72,8 @@ namespace Appointed.Views.Controls
 
             if (input.Text != InputText.Hint)
             {
-
-                if (DateTime.TryParse(input.Text, out DateTime date))
+                DateTime date;
+                if (DateTime.TryParse(input.Text, out date))
                 {
                     DateSelected = date;
                     input.BorderBrush = _textBorderBrush;

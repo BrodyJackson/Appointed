@@ -12,10 +12,10 @@
     <!--It was necessary to separate the doctor's names from the scroll viewer in each single day view-->
 
     <ItemsControl x:Name="DoctorsOnShiftItemsControl" FontFamily="Yu Gothic UI Light" FontSize="16"
-                  ItemsSource="{Binding AVM.DoctorsOnShift}">
+                  ItemsSource="{Binding AVM.DoctorsOnShiftFiltered}">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
-                <UniformGrid Columns="{Binding AVM.DoctorsOnShiftCount}"/>
+                <UniformGrid Columns="{Binding AVM.DoctorsOnShiftFilteredCount}"/>
             </ItemsPanelTemplate>
         </ItemsControl.ItemsPanel>
 

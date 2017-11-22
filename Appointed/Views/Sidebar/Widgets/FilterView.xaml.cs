@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Appointed.ViewModels;
+using Appointed.Classes;
 
 namespace Appointed.Views
 {
@@ -38,7 +40,7 @@ namespace Appointed.Views
             RegisterFilterOption("Pearson", PearsonCheckBox);
             RegisterFilterOption("Paulsen", PaulsenCheckBox);
             RegisterFilterOption("Specter", SpecterCheckBox);
-            RegisterFilterOption("Regular", RegCheckBox);
+            RegisterFilterOption("Standard", RegCheckBox);
             RegisterFilterOption("Consultation", ConsultCheckBox);
 
             //Set Visual filter checkboxes based on the global state
@@ -63,6 +65,7 @@ namespace Appointed.Views
             RegCheckBox.Unchecked += AppFilter_Unchecked;
             ConsultCheckBox.Unchecked += AppFilter_Unchecked;
 
+
         }
 
         private void AppFilter_Unchecked(object sender, RoutedEventArgs e)
@@ -70,6 +73,7 @@ namespace Appointed.Views
             App.CalendarApptFilter[_checkboxToFilterName[sender as CheckBox]] = false;
             UpdateApptFilters();
             ApptFilterChanged?.Invoke(sender, EventArgs.Empty);
+            (this.DataContext as DayInformationViewModel).changeAppointmentFilterSelection();
         }
 
         private void DocFilter_Unchecked(object sender, RoutedEventArgs e)
@@ -77,6 +81,7 @@ namespace Appointed.Views
             App.CalendarDocFilter[_checkboxToFilterName[sender as CheckBox]] = false;
             UpdateDocFilters();
             DoctorFilterChanged?.Invoke(sender, EventArgs.Empty);
+            (this.DataContext as DayInformationViewModel).changeDoctorFilterSelection();
         }
 
         private void RegisterFilterOption(string name, CheckBox checkBox)
@@ -90,6 +95,7 @@ namespace Appointed.Views
             App.CalendarDocFilter[_checkboxToFilterName[sender as CheckBox]] = true;
             UpdateDocFilters();
             DoctorFilterChanged?.Invoke(sender, EventArgs.Empty);
+            (this.DataContext as DayInformationViewModel).changeDoctorFilterSelection();
         }
 
         private void ApptFilter_Checked(object sender, RoutedEventArgs e)
@@ -97,6 +103,7 @@ namespace Appointed.Views
             App.CalendarApptFilter[_checkboxToFilterName[sender as CheckBox]] = true;
             UpdateApptFilters();
             ApptFilterChanged?.Invoke(sender, EventArgs.Empty);
+            (this.DataContext as DayInformationViewModel).changeAppointmentFilterSelection();
         }
 
         private void AllApptsBtn_Click(object sender, RoutedEventArgs e)
@@ -117,6 +124,7 @@ namespace Appointed.Views
         private void UpdateDocFilters()
         {
             //TODO: Update What is Shown in the Calendar View
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
 
             foreach (KeyValuePair<string, bool> filter in App.CalendarDocFilter.ToList())
             {

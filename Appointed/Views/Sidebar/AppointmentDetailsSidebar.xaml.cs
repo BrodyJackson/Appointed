@@ -63,7 +63,7 @@ namespace Appointed.Views
                 DIVM.AVM._appointmentLookup[Int32.Parse(DIVM.AVM._activeAppointment.ID)].Arrived = false;
             }
 
-
+  
             Window w = new EditPatientEmergencyContacts();
             w.Show();            
         }
