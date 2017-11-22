@@ -16,9 +16,21 @@ namespace Appointed.ViewModels
 
     public class DayInformationViewModel : ObservableObject, ISchedule
     {
-        // Delegate -- Classes can subscribe their methods to this event to be called when event is raised. 
+        // Classes can subscribe their methods to this event to be called when the event is raised. 
         public event EventHandler<EventArgs> ScheduleShifted;
-        
+
+        /// <summary>
+        /// Invoked whenever a filter option is changed.
+        /// When all or no doctors is clicked, this event will fire for each of the filter options that have changed.
+        /// </summary>
+        public event EventHandler<EventArgs> DoctorFilterChangedDIVM;
+        /// <summary>
+        /// Invoked whenever a filter option is changed.
+        /// When all or no appts is clicked, this event will fire for each of the filter options that have changed.
+        /// </summary>
+        public event EventHandler<EventArgs> ApptFilterChangedDIVM;
+
+
         private DayInformationModel _dim;
 
         public AppointmentViewModel AVM { get; set; }
@@ -88,6 +100,19 @@ namespace Appointed.ViewModels
         public ShiftScheduleViewCommand ShiftView
         {
             get { return new ShiftScheduleViewCommand(ChangeDaysInScope); }
+        }
+
+
+        public void changeDoctorFilterSelection()
+        {
+            if (DoctorFilterChangedDIVM != null)
+                DoctorFilterChangedDIVM(this, new EventArgs());
+        }
+
+        public void changeAppointmentFilterSelection()
+        {
+            if (ApptFilterChangedDIVM != null)
+                ApptFilterChangedDIVM(this, new EventArgs());
         }
 
 

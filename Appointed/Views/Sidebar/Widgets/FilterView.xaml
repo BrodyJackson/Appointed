@@ -70,7 +70,7 @@
                 VerticalContentAlignment="Center"/>
             <CheckBox
                 Name="RegCheckBox"
-                Content="Regular"
+                Content="Standard"
                 FontSize="14"
                 Padding="4"
                 VerticalContentAlignment="Center"/>

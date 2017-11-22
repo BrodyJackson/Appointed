@@ -103,6 +103,7 @@
         
         <!-- -->
         <Views:ThreeDayView
+            x:Name="ThreeDayView"
             Grid.Row="2"
             Grid.Column="1" />
 

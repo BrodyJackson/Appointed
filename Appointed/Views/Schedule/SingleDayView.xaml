@@ -18,9 +18,9 @@
 
         <!-- Default is three for three doctors on shift. -->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition x:Name="Column0" Width="{Binding AVM.DoctorsOnShift[0].ColumnWidth}"/>
+            <ColumnDefinition x:Name="Column1" Width="{Binding AVM.DoctorsOnShift[1].ColumnWidth}"/>
+            <ColumnDefinition x:Name="Column2" Width="{Binding AVM.DoctorsOnShift[2].ColumnWidth}"/>
 
             <!--
             <ColumnDefinition Width="*"/>
@@ -32,10 +32,10 @@
         
         <!-- Could make this an ItemsControl with a uniform grid as a panel type that gets its columns from the AVM.DoctorsOnShiftCount  - See DoctorsOnShiftView for example -->
 
-        
-        <local:DoctorColumnView Grid.Column="0" x:Name="DrColumn0"/>
-        <local:DoctorColumnView Grid.Column="1" x:Name="DrColumn1"/>
-        <local:DoctorColumnView Grid.Column="2" x:Name="DrColumn2"/>
+
+        <local:DoctorColumnView Grid.Column="0" x:Name="DrColumn0" Visibility="{Binding AVM.DoctorsOnShift[0].Visibility}"/>
+        <local:DoctorColumnView Grid.Column="1" x:Name="DrColumn1" Visibility="{Binding AVM.DoctorsOnShift[1].Visibility}"/>
+        <local:DoctorColumnView Grid.Column="2" x:Name="DrColumn2" Visibility="{Binding AVM.DoctorsOnShift[2].Visibility}"/>
 
         <!--
         <local:DoctorColumnView Grid.Column="3" x:Name="DrColumn4"/>
