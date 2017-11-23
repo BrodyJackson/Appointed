@@ -32,7 +32,7 @@ namespace Appointed.Views.Controls
 
             _textBorderBrush = InputText.TextField.BorderBrush;
 
-            DateSelected = DateTime.Today;
+            DateSelected = null;
 
             ShowCalendarButton.Click += ShowCalendarButton_Click;
 
@@ -45,16 +45,17 @@ namespace Appointed.Views.Controls
             Popup popup = new Popup();
             Calendar calendar = new Calendar();
             calendar.Margin = new Thickness(0, -3, 0, -3);
-            calendar.SelectedDate = DateSelected.Value;
-            calendar.DisplayDate = DateSelected.Value;
+            calendar.SelectedDate = (DateSelected != null) ? DateSelected.Value : DateTime.Today;
+            calendar.DisplayDate = (DateSelected != null) ? DateSelected.Value : DateTime.Today;
             popup.Child = calendar;
             popup.Placement = PlacementMode.Bottom;
             popup.PlacementTarget = this;
             popup.IsOpen = true;
-            popup.HorizontalOffset = (calendar.ActualWidth - this.ActualWidth) / -2d;
+            popup.HorizontalOffset = (Math.Abs(calendar.ActualWidth - this.ActualWidth)) / -2d;
             popup.AllowsTransparency = true;
             popup.StaysOpen = false;
             calendar.SelectedDatesChanged += Calendar_SelectedDatesChanged;
+            calendar.Focus();
 
         }
 
@@ -64,6 +65,7 @@ namespace Appointed.Views.Controls
             DateSelected = c.SelectedDate;
             InputText.TextField.Text = DateSelected.Value.ToShortDateString();
             (c.Parent as Popup).IsOpen = false;
+            InputText.TextField.Focus();
         }
 
         private void DateTextInputChanged(object sender, TextChangedEventArgs e)
@@ -80,13 +82,13 @@ namespace Appointed.Views.Controls
                 }
                 else
                 {
-                    DateSelected = new DateTime();
+                    DateSelected = null;
                     input.BorderBrush = Brushes.Red;
                 }
             }
             else
             {
-                DateSelected = new DateTime();
+                DateSelected = null;
                 input.BorderBrush = _textBorderBrush;
             }
         }

@@ -101,6 +101,7 @@
                 </TextBlock>
 
                 <Controls:InputText
+                    x:Name="FirstName"
                     Margin="4,4,6,4"
                     Grid.Row="1"
                     Grid.Column="1"
@@ -135,6 +136,7 @@
                 </TextBlock>
 
                 <Controls:InputText
+                    x:Name="MiddleNames"
                     Margin="4"
                     Grid.Row="1"
                     Grid.Column="3"
@@ -160,6 +162,7 @@
                 </TextBlock>
 
                 <Controls:InputText
+                    x:Name="LastName"
                     Margin="4,4,6,4"
                     Grid.Row="1"
                     Grid.Column="5"
@@ -229,6 +232,7 @@
                 </TextBlock>
 
                 <CustomControls:DatePicker
+                    x:Name="Birthdate"
                     Grid.Column="3"
                     Grid.Row="2"
                     Margin="4,4,6,4"
@@ -259,6 +263,7 @@
 
 
                 <ComboBox
+                    x:Name="Sex"
                     Grid.Row="2"
                     Grid.Column="5"
                     Margin="4,4,6,4"
@@ -341,6 +346,7 @@
                 </TextBlock>
 
                 <Controls:InputText
+                    x:Name="Address"
                     Margin="4,4,6,4"
                     Grid.Row="1"
                     Grid.Column="1"
@@ -374,6 +380,7 @@
                 </TextBlock>
 
                 <Controls:InputText
+                    x:Name="City"
                     Margin="4,4,6,4"
                     Grid.Row="1"
                     Grid.Column="5"
@@ -407,6 +414,7 @@
                 </TextBlock>
 
                 <Controls:InputText
+                    x:Name="PostalCode"
                     Margin="4,4,6,4"
                     Grid.Row="2"
                     Grid.Column="1"
@@ -441,6 +449,7 @@
                 </TextBlock>
 
                 <ComboBox
+                    x:Name="Province"
                     Grid.Row="2"
                     Grid.Column="3"
                     Margin="4,4,6,4"
@@ -543,6 +552,7 @@
                 </TextBlock>
 
                 <Controls:InputText
+                    x:Name="HomePhone"
                     Margin="4,4,6,4"
                     Grid.Row="1"
                     Grid.Column="1"
@@ -577,6 +587,7 @@
                 </TextBlock>
 
                 <Controls:InputText
+                    x:Name="BusinessPhone"
                     Margin="4"
                     Mask="PHONENUMBER_WITHEXT"
                     Hint="(ex. (587) 555-5555+ext)"
@@ -602,6 +613,7 @@
                 </TextBlock>
 
                 <Controls:InputText
+                    x:Name="CellPhone"
                     Margin="4"
                     Mask="PHONENUMBER"
                     Hint="(ex. (587) 989-8899)"
@@ -627,6 +639,7 @@
                 </TextBlock>
 
                 <Controls:InputText
+                    x:Name="Email"
                     Margin="4"
                     Hint="(ex. jason.briggs@shaw.ca)"
                     Grid.Row="2"
@@ -696,6 +709,7 @@
                 </TextBlock>
 
                 <Controls:InputText
+                    x:Name="ContactName"
                     Margin="4,4,6,4"
                     Grid.Row="1"
                     Grid.Column="1"
@@ -729,6 +743,7 @@
                 </TextBlock>
 
                 <Controls:InputText
+                    x:Name="ContactRelation"
                     Margin="4,4,6,4"
                     Grid.Row="1"
                     Grid.Column="3"
@@ -762,6 +777,7 @@
                 </TextBlock>
 
                 <Controls:InputText
+                    x:Name="ContactPhone"
                     Margin="4,4,6,4"
                     Grid.Row="1"
                     Grid.Column="5"
@@ -813,11 +829,14 @@
                     </TextBlock.Foreground>
                 </TextBlock>
 
-                <RichTextBox
+                <TextBox
+                    x:Name="Notes"
                     Grid.Row="1"
                     Margin="4"
                     HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch" />
+                    VerticalAlignment="Stretch"
+                    TextWrapping="Wrap"
+                    AcceptsReturn="True" />
 
             </Grid>
 

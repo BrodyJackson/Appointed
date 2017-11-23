@@ -51,10 +51,8 @@ namespace Appointed.ViewModels
 
             _dim = new DayInformationModel();
             AVM = new AppointmentViewModel();
-
-            PVM = new PatientViewModel(); //I added this so that we could implement the active patient functionality in search and new appointment, I hope this is ok (BRODY)
-
-          
+            PVM = new PatientViewModel();
+			
             _numAppointmentsPerDay = AVM._numAppointmentsPerDay;
 
         

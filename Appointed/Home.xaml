@@ -98,6 +98,7 @@
 
 
         <Views:ThreeDayHeaderView
+            x:Name="ThreeDayHeader"
             Grid.Row="1"
             Grid.Column="1" />
         
