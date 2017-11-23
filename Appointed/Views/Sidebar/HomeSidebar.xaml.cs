@@ -1,6 +1,8 @@
 ﻿using Appointed.Views.Sidebar;
 using System.Windows;
 using System.Windows.Controls;
+using Appointed.ViewModels;
+using System;
 
 namespace Appointed.Views
 {
@@ -9,6 +11,7 @@ namespace Appointed.Views
     /// </summary>
     public partial class HomeSidebar : UserControl
     {
+
         public HomeSidebar()
         {
             InitializeComponent();
@@ -21,8 +24,10 @@ namespace Appointed.Views
 
             //AlertBox.UpdateAlertsBox();
 
-            Loaded += HomeSidebar_Loaded;
+            JumpCalendar.Calendar.SelectedDatesChanged += Calendar_SelectedDatesChanged;
 
+
+            Loaded += HomeSidebar_Loaded;
         }
 
         //Gross work-around for going back to home sidebar from search results
@@ -38,5 +43,30 @@ namespace Appointed.Views
 
             home.SidebarView.SetSidebarView(new SearchResultsSidebar(SearchInput.InputField.TextField.Text));
         }
+
+        private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
+
+            DateTime activeDT = new DateTime(DIVM._activeDate.Year, DIVM._activeDate.Month, DIVM._activeDate.Day);
+
+            DateTime selectedDT = (DateTime)(JumpCalendar.Calendar.SelectedDate);
+
+            TimeSpan diff = selectedDT - activeDT;
+
+            ShiftScheduleView(diff.Days + 1);
+        }
+
+        
+
+        void ShiftScheduleView(int amount)
+        {
+            DayInformationViewModel DIVM = (DayInformationViewModel)this.DataContext;
+
+            if (DIVM.ShiftView.CanExecute(null))
+                DIVM.ShiftView.Execute(amount);
+        }
+
+
     }
 }

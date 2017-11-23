@@ -61,6 +61,7 @@ namespace Appointed.ViewModels
             _activeDate = new Date();
 
 
+
             _dim = new DayInformationModel();
             AVM = new AppointmentViewModel();
             PVM = new PatientViewModel();
@@ -75,6 +76,11 @@ namespace Appointed.ViewModels
             InitDayInformation();
         
             InitTimeOfDayStrings();
+
+            _activeDate.Year = _dim.YearAsInt;
+            _activeDate.Month = _dim.MonthAsInt;
+            _activeDate.Day = _dim.DayAsInt;
+
 
             return;
         }
@@ -92,6 +98,9 @@ namespace Appointed.ViewModels
 
             InitDayInformation();
 
+            _activeDate.Year = _dim.YearAsInt;
+            _activeDate.Month = _dim.MonthAsInt;
+            _activeDate.Day = _dim.DayAsInt;
 
             if (ScheduleShifted != null)
                 ScheduleShifted(this, new EventArgs());
