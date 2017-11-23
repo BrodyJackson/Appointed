@@ -1,4 +1,5 @@
-﻿using Appointed.Views.Sidebar;
+﻿using Appointed.ViewModels;
+using Appointed.Views.Sidebar;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -15,6 +16,9 @@ namespace Appointed.Views
 
             SearchInput.Search += SearchInput_Search;
 
+            JumpCalendar.Calendar.SelectedDatesChanged += Calendar_SelectedDatesChanged;
+            JumpCalendar.Today_Btn.Click += Today_Btn_Click;
+
             //AlertBox.AddAlert(new Classes.Alert() { ButtonText = "Reschedule", Title = "Appt. Bump Available for Mike Ross" });
             //AlertBox.AddAlert(new Classes.Alert() { ButtonText = "Reschedule", Title = "Jerry Sienfeld Missed Appointment" });
             //AlertBox.AddAlert(new Classes.Alert() { ButtonText = "Reschedule", Title = "Arnold P. Jenkins Missed Appointment" });
@@ -23,6 +27,16 @@ namespace Appointed.Views
 
             Loaded += HomeSidebar_Loaded;
 
+        }
+
+        private void Today_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO Jump to today
+        }
+
+        private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //TODO Jump To Date
         }
 
         //Gross work-around for going back to home sidebar from search results

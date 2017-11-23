@@ -33,6 +33,7 @@
             VerticalAlignment="Center"
             HorizontalAlignment="Stretch" />
         <Button
+            IsTabStop="False"
             Name="ShowCalendarButton"
             Grid.Column="1"
             Grid.Row="0"

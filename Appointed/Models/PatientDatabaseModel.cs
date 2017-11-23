@@ -63,7 +63,7 @@ namespace Appointed.Models
 
             // One fake emergency contact.
             EmergencyContact e = new EmergencyContact
-            { EmergencyName="Don Ling Juan", EmergencyPhone="567-890-1234", EmergencyRelation=EmergencyContact.RELATION.SIBLING };
+            { EmergencyName="Don Ling Juan", EmergencyPhone="567-890-1234", EmergencyRelation="Brother" };
 
             // One fake patient corresponding to Mike Ross.
             _patientDictionary[12345678] = new Patient
@@ -78,8 +78,6 @@ namespace Appointed.Models
                 Province = Patient.PROVINCE.AB,
                 PostalCode = "T3A-333",
                 Street ="23 Ave",
-                Building ="182",
-                Suite ="12",
                 Phone = "555-555-5555",
                 Cell = "403-555-5655",
                 Email = "DonJuan@donjuan.com",
@@ -98,8 +96,6 @@ namespace Appointed.Models
                 Province = Patient.PROVINCE.AB,
                 PostalCode = "T3A-333",
                 Street = "23 Ave",
-                Building = "182",
-                Suite = "12",
                 Phone = "555-555-5555",
                 Cell = "403-555-5655",
                 Email = "DonJuan@donjuan.com",
@@ -118,8 +114,6 @@ namespace Appointed.Models
                 Province = Patient.PROVINCE.AB,
                 PostalCode = "T3A-333",
                 Street = "23 Ave",
-                Building = "182",
-                Suite = "12",
                 Phone = "555-555-5555",
                 Cell = "403-555-5655",
                 Email = "DonJuan@donjuan.com",

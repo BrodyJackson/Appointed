@@ -17,8 +17,11 @@ namespace Appointed.Views.Controls
 
         private ITextMask _textMask;
 
+        private Brush _defaultBorder;
 
         private string _hint = "";
+
+        public bool Valid { get; private set; }
 
         public string Hint
         {
@@ -68,6 +71,9 @@ namespace Appointed.Views.Controls
         {
             InitializeComponent();
 
+            _defaultBorder = TextField.BorderBrush;
+            Valid = true;
+
             TextField.TextChanged += TextField_TextChanged;
             TextField.TextChanged += TextField_ApplyTextMask;
 
@@ -75,6 +81,18 @@ namespace Appointed.Views.Controls
 
             Loaded += InputTextLoaded;
 
+        }
+
+        public void MarkValid()
+        {
+            TextField.BorderBrush = _defaultBorder;
+            Valid = true;
+        }
+
+        public void MarkInvalid()
+        {
+            TextField.BorderBrush = Brushes.Red;
+            Valid = false;
         }
 
         private void InputTextLoaded(object sender, RoutedEventArgs e)

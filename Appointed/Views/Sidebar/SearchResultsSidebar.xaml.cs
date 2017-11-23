@@ -62,7 +62,7 @@ namespace Appointed.Views.Sidebar
 
         public void Search(string searchTerm)
         {
-            DayInformationViewModel divm = App.Current.MainWindow.DataContext as DayInformationViewModel;//this.DataContext as DayInformationViewModel;
+            DayInformationViewModel divm = App.Current.MainWindow.DataContext as DayInformationViewModel;
 
             //Sanitize input
             searchTerm = new String(searchTerm.Where(c => Char.IsLetterOrDigit(c) || Char.IsWhiteSpace(c)).ToArray()).ToLower();
@@ -85,25 +85,28 @@ namespace Appointed.Views.Sidebar
                     {
                         foreach (string term in searchTerms)
                         {
-                            //Check for a match to first name
-                            if (!String.IsNullOrEmpty(entry.Value.FirstName) && entry.Value.FirstName.ToLower().Contains(term))
+                            if (!String.IsNullOrWhiteSpace(term))
                             {
-                                _resultPatients.Add(entry.Value);
-                                break;
-                            }
+                                //Check for a match to first name
+                                if (!String.IsNullOrEmpty(entry.Value.FirstName) && entry.Value.FirstName.ToLower().Contains(term))
+                                {
+                                    _resultPatients.Add(entry.Value);
+                                    break;
+                                }
 
-                            //Check for last name match
-                            if (!String.IsNullOrEmpty(entry.Value.LastName) && entry.Value.LastName.ToLower().Contains(term))
-                            {
-                                _resultPatients.Add(entry.Value);
-                                break;
-                            }
+                                //Check for last name match
+                                if (!String.IsNullOrEmpty(entry.Value.LastName) && entry.Value.LastName.ToLower().Contains(term))
+                                {
+                                    _resultPatients.Add(entry.Value);
+                                    break;
+                                }
 
-                            //Check middle name match
-                            if (!String.IsNullOrEmpty(entry.Value.MiddleName) && entry.Value.MiddleName.ToLower().Contains(term))
-                            {
-                                _resultPatients.Add(entry.Value);
-                                break;
+                                //Check middle name match
+                                if (!String.IsNullOrEmpty(entry.Value.MiddleName) && entry.Value.MiddleName.ToLower().Contains(term))
+                                {
+                                    _resultPatients.Add(entry.Value);
+                                    break;
+                                }
                             }
                         }
                     }
@@ -142,14 +145,23 @@ namespace Appointed.Views.Sidebar
                 (object sender, RoutedEventArgs e) =>
                 {
                     Dialogs.NewPatientDialog newPatientDialog = new Dialogs.NewPatientDialog();
+                    newPatientDialog.ShowDi
+alog();
 
-                    newPatientDialog.ShowDialog();
-
-                    //Re-Search the patients
-                    if (newPatientDialog.ExitAction == Dialogs.NewPatientDialog.EXIT_ACTION.SAVE)
+                    switch (newPatientDialog.ExitAction)
                     {
-                        Search(_searchTerm);
+                        case Dialogs.NewPatientDialog.EXIT_ACTION.SAVE:
+                            _resultPatients.Clear();
+                            Search(_searchTerm);
+                            break;
+                        case Dialogs.NewPatientDialog.EXIT_ACTION.SAVEBOOK:
+                            break;
+                        case Dialogs.NewPatientDialog.EXIT_ACTION.DISCARD:
+                            break;
+                        default:
+                            break;
                     }
+
                 };
 
             SearchResultsList.Children.Add(newPatientItem);

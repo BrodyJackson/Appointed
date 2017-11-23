@@ -12,12 +12,11 @@ namespace Appointed.Classes
 {
 	public class EmergencyContact : ObservableObject
 	{
-        public enum RELATION { OTHER, SPOUSE, PARENT, CHILD, EXTENDED_FAMILY, SIBLING, FRIEND };
 
         string _emergencyName;
 		string _emergencyPhone;
 
-        RELATION _relation;
+        string _relation;
 
 		//Properties
 
@@ -32,7 +31,7 @@ namespace Appointed.Classes
 			}
 		}
 
-  		public RELATION EmergencyRelation
+  		public string EmergencyRelation
 		{
 			get { return _relation; }
 

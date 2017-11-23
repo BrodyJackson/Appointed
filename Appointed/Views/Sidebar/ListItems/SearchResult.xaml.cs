@@ -30,7 +30,8 @@ namespace Appointed.Views.Sidebar.ListItems
             set
             {
                 patient = value;
-                PatientName.Text = patient.LastName + ", " + patient.FirstName + " " + patient.MiddleName[0] + ".";
+                PatientName.Text = patient.LastName + ", " + patient.FirstName;
+                if (patient.MiddleName.Length > 0) PatientName.Text += " " + patient.MiddleName[0] + ".";
                 PatientID.Text = new HealthCareIDMask().FormatText(patient.HealthID.ToString());
                 PatientSex.Text = "Sex: " + patient.GetSexAsString();
                 PatientBirthday.Text = "Birthdate: " + patient.BirthDate.ToShortDateString();
@@ -43,8 +44,29 @@ namespace Appointed.Views.Sidebar.ListItems
             InitializeComponent();
 
             Patient = p;
+
+            BookApptBtn.Click += BookApptBtn_Click;
+            MoreInfoBtn.Click += MoreInfoBtn_Click;
+            NextApptBtn.Click += NextApptBtn_Click;
+
         }
 
-        
+        private void NextApptBtn_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void MoreInfoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            (App.Current.MainWindow.DataContext as DayInformationViewModel).PVM.ActivePatient = patient;
+            (App.Current.MainWindow as Home).SidebarView.SetSidebarView(new PatientInfoSidebar());
+        }
+
+        private void BookApptBtn_Click(object sender, RoutedEventArgs e)
+        {
+            (App.Current.MainWindow.DataContext as DayInformationViewModel).PVM.ActivePatient = patient;
+            (App.Current.MainWindow as Home).SidebarView.SetSidebarView(new NewAppointmentSidebar());
+        }
+
     }
 }
