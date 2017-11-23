@@ -145,8 +145,7 @@ namespace Appointed.Views.Sidebar
                 (object sender, RoutedEventArgs e) =>
                 {
                     Dialogs.NewPatientDialog newPatientDialog = new Dialogs.NewPatientDialog();
-                    newPatientDialog.ShowDi
-alog();
+                    newPatientDialog.ShowDialog();
 
                     switch (newPatientDialog.ExitAction)
                     {
