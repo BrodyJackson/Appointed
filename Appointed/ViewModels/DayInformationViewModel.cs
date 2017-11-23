@@ -22,7 +22,8 @@ namespace Appointed.ViewModels
         private DayInformationModel _dim;
 
         public AppointmentViewModel AVM { get; set; }
-
+       
+        public PatientViewModel PVM { get; set; }
  
         private ObservableCollection<Time> _timeOfDayStringsTwelveHour;
         private ObservableCollection<Time> _timeOfDayStringsTwentyFourHour;
@@ -51,6 +52,9 @@ namespace Appointed.ViewModels
             _dim = new DayInformationModel();
             AVM = new AppointmentViewModel();
 
+            PVM = new PatientViewModel(); //I added this so that we could implement the active patient functionality in search and new appointment, I hope this is ok (BRODY)
+
+          
             _numAppointmentsPerDay = AVM._numAppointmentsPerDay;
 
         

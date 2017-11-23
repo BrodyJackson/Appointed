@@ -55,7 +55,9 @@
                 Grid.Row="1"
                 Style="{StaticResource text_HeadingXXLarge}" 
                 HorizontalAlignment="Center"
-                Text="Mike Ross"/>
+                Text="{Binding DIVM.PVM.ActivePatient.FirstName}"/>
+            <!--tried to make this update to the current patient, the binding may not work -->
+
 
             <Separator Grid.Row="2" BorderBrush="#FFFF1E1E" BorderThickness="1" Margin="20,0,20,0"/>
 
@@ -300,6 +302,7 @@
             Margin="20,0,20,0">
 
                 <TextBox
+                x:Name="CommentBox"
                 BorderBrush="SteelBlue"
                 Background="{x:Null}"
                 SpellCheck.IsEnabled="True"
