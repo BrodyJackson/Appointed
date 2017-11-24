@@ -164,7 +164,8 @@
 
             <Button
             x:Name="checkIn"
-            Content="Check In"
+            Content="{Binding AVM._activeAppointment.CheckInButtonContent}"
+            ToolTip="{Binding AVM._activeAppointment.CheckInButtonToolTip}"
             HorizontalAlignment="Center" 
             VerticalAlignment="Bottom" 
             MaxWidth="200" 
@@ -172,7 +173,6 @@
             Height="30" 
             Margin="0"
             PreviewMouseLeftButtonUp="OnMouseLeftRelease_CheckIn"
-            ToolTip="Click To Check Patient In"
             DockPanel.Dock="Top"
             />
 
@@ -207,6 +207,7 @@
             >
 
                 <TextBox
+                Text="{Binding AVM._activeAppointment.Comments}"
                 AcceptsReturn="True"
                 AcceptsTab="True"
                 BorderBrush="SteelBlue" 

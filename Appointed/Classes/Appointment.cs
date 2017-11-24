@@ -391,7 +391,10 @@ namespace Appointed.Classes
             set
             {
                 _arrived = value;
-                RaisePropertyChangedEvent("Arrived");                
+               
+                RaisePropertyChangedEvent("Arrived");
+                RaisePropertyChangedEvent("CheckInButtonContent");
+                RaisePropertyChangedEvent("CheckInButtonToolTip");   
             }
         }
 
@@ -540,6 +543,16 @@ namespace Appointed.Classes
         }
 
 
+        public string CheckInButtonContent
+        {
+            get { return _arrived ? "Undo Check-In" : "Check-In"; }
+        }
+
+
+        public string CheckInButtonToolTip
+        {
+            get { return _arrived ? "Click To Undo Check In" : "Click To Check Patient In"; }
+        }
 
     }
 

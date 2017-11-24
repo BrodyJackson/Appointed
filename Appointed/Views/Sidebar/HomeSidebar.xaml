@@ -28,7 +28,6 @@
         <local:JumpCalendarView
             x:Name="JumpCalendar"
             DockPanel.Dock="Top" 
-            Calendar.SelectedDatesChanged="Calendar_SelectedDatesChanged"
             />
 
         <Separator

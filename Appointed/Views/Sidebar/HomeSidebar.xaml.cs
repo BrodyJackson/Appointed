@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Appointed.ViewModels;
 using System;
+using System.Windows.Input;
 
 namespace Appointed.Views
 {
@@ -25,7 +26,7 @@ namespace Appointed.Views
             //AlertBox.UpdateAlertsBox();
 
             JumpCalendar.Calendar.SelectedDatesChanged += Calendar_SelectedDatesChanged;
-
+            JumpCalendar.Today_Btn.PreviewMouseUp += TodayButton_MouseRelease;
 
             Loaded += HomeSidebar_Loaded;
         }
@@ -54,10 +55,23 @@ namespace Appointed.Views
 
             TimeSpan diff = selectedDT - activeDT;
 
-            ShiftScheduleView(diff.Days + 1);
+            ShiftScheduleView(diff.Days - 1);
         }
 
-        
+
+        private void TodayButton_MouseRelease(object sender, MouseButtonEventArgs e)
+        {
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
+
+            DateTime activeDT = new DateTime(DIVM._activeDate.Year, DIVM._activeDate.Month, DIVM._activeDate.Day);
+
+            DateTime selectedDT = DateTime.Today;
+
+            TimeSpan diff = selectedDT - activeDT;
+
+            ShiftScheduleView(diff.Days - 1);
+        }
+
 
         void ShiftScheduleView(int amount)
         {

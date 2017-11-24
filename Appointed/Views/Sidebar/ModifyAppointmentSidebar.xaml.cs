@@ -116,44 +116,44 @@ namespace Appointed.Views.Sidebar
 
             int day = Int32.Parse(dateString.Substring(dateString.LastIndexOf('-') + 1));
 
-                // The hashcode of the DateTime + <DrColumn> form the key for appointment lookups.
-                DateTime dt = new DateTime(year, month, day, time / 100, time % 100, 0);
-                int drColumn = DIVM.AVM.FindDrColumnForDrName(drName);
-                int key = dt.GetHashCode() + drColumn;
+            // The hashcode of the DateTime + <DrColumn> form the key for appointment lookups.
+            DateTime dt = new DateTime(year, month, day, time / 100, time % 100, 0);
+            int drColumn = DIVM.AVM.FindDrColumnForDrName(drName);
+            int key = dt.GetHashCode() + drColumn;
 
-                targetAppointment = DIVM.AVM._appointmentLookup[key];
-                if (targetAppointment != null)
+            targetAppointment = DIVM.AVM._appointmentLookup[key];
+            if (targetAppointment != null && targetAppointment != activeAppt)
+            {
+                if (type == "Consultation")
+                    apptThatFollowsTarget = DIVM.AVM.FindAppointmentThatFollows(targetAppointment);
+
+                if ((targetAppointment.Type != "") || (type == "Consultation" && apptThatFollowsTarget.Type != ""))
                 {
-                    if (type == "Consultation")
-                        apptThatFollowsTarget = DIVM.AVM.FindAppointmentThatFollows(targetAppointment);
+                    MessageBox.Show(
+                        "The Time Slot Specified Is Taken!",
+                        "Unable to Modify Appointment",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Asterisk);
 
-                    if ((targetAppointment.Type != "") || (type == "Consultation" && apptThatFollowsTarget.Type != ""))
-                    {
-                        MessageBox.Show(
-                            "The Time Slot Specified Is Taken!",
-                            "Unable to Modify Appointment",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Asterisk);
-
-                        return;
-                    }
-
-                    if ((!DIVM.AVM.DoctorsOnShift.ElementAt(drColumn).IsAvailable(Int32.Parse(stTime))) ||
-                            (!DIVM.AVM.DoctorsOnShift.ElementAt(drColumn).IsAvailable(Int32.Parse(endTime))))
-                    {
-                        MessageBox.Show(
-                            "The Doctor Specified Is Unavaliable At That Time!",
-                            "Unable to Modify Appointment",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Asterisk);
-
-                        return;
-                    }
-
-
+                    return;
                 }
 
-                DIVM._activeDate.HasChanged = false;
+                if ((!DIVM.AVM.DoctorsOnShift.ElementAt(drColumn).IsAvailable(Int32.Parse(stTime))) ||
+                        (!DIVM.AVM.DoctorsOnShift.ElementAt(drColumn).IsAvailable(Int32.Parse(endTime))))
+                {
+                    MessageBox.Show(
+                        "The Doctor Specified Is Unavaliable At That Time!",
+                        "Unable to Modify Appointment",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Asterisk);
+
+                    return;
+                }
+
+
+            }
+
+            DIVM._activeDate.HasChanged = false;
 
 
             targetAppointment.DoctorName = ((Doctor)DoctorComboBox.SelectedItem).DoctorName;
@@ -168,32 +168,34 @@ namespace Appointed.Views.Sidebar
             targetAppointment.Patient = activeAppt.Patient;
             targetAppointment.Opacity = activeAppt.Opacity;
 
-            if (targetAppointment.Type == "Consultation")
+            if (targetAppointment.Type == "Consultation" && targetAppointment != activeAppt)
                 apptThatFollowsTarget.Visibility = "Collapsed";
 
 
 
 
-            if (activeAppt.Type == "Consultation")
+            if (activeAppt.Type == "Consultation" && targetAppointment != activeAppt)
             {
                 Appointment apptThatFollowsActive = DIVM.AVM.FindAppointmentThatFollows(activeAppt);
                 apptThatFollowsActive.Visibility = "Visible";
             }
 
-            activeAppt.Arrived = false;
-            activeAppt.Height = "35";
-            activeAppt.Opacity = "0";
-            activeAppt.Type = "";
-            activeAppt.Patient = "";
-            activeAppt.Comments = "";
-            activeAppt.EndTime = activeAppt.StartTime + 15;
-            if (activeAppt.EndTime % 100 > 60)
-                activeAppt.EndTime += 40;
+            if (targetAppointment != activeAppt)
+            {
+                activeAppt.Arrived = false;
+                activeAppt.Height = "35";
+                activeAppt.Opacity = "0";
+                activeAppt.Type = "";
+                activeAppt.Patient = "";
+                activeAppt.Comments = "";
+                activeAppt.EndTime = activeAppt.StartTime + 15;
+                if (activeAppt.EndTime % 100 > 60)
+                    activeAppt.EndTime += 40;
 
+            }
 
             DIVM.AVM._activeAppointment = new Appointment(targetAppointment);
 
-            //targetAppointment = null;
 
             Home h = App.Current.MainWindow as Home;
             h.SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
