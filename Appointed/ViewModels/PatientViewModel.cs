@@ -23,7 +23,7 @@ namespace Appointed.ViewModels
             patientDatabaseModel = value;
         }
 
-        private Patient _activePatient;
+        public Patient _activePatient;
 
 
         public PatientViewModel()
@@ -49,6 +49,7 @@ namespace Appointed.ViewModels
         {
             return GetPatientDatabaseModel().RemovePatient(p);
         }
+
 
 
         public Patient GetPatient(int HealthCareID)

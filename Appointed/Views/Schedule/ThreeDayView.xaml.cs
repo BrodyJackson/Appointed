@@ -78,5 +78,41 @@ namespace Appointed.Views
                 Console.WriteLine("FOUND CHILD SCOLL VIEWER: \n");
             }
         }
+
+        private void OnThreeDayViewKeyUp(object sender, KeyEventArgs e)
+        {
+            ScrollViewer sv = this.DayOneScroller;
+            sv.ScrollToHorizontalOffset(sv.HorizontalOffset - 10);
+
+            sv = this.DayTwoScroller;
+            sv.ScrollToHorizontalOffset(sv.HorizontalOffset + 10);
+
+            sv = this.DayThreeScroller;
+            sv.ScrollToHorizontalOffset(sv.HorizontalOffset - 10);
+
+            if (e.Key == Key.Up)
+            {
+                ScrollViewer sv2 = (ScrollViewer)sender;
+                var scrollViewersOfGrid = ((Grid)sv2.Parent).Children.OfType<ScrollViewer>();
+
+                foreach (ScrollViewer scroller in scrollViewersOfGrid)
+                {
+                    scroller.ScrollToHorizontalOffset(sv.VerticalOffset + 10);
+                    Console.WriteLine("FOUND CHILD SCOLL VIEWER: \n");
+                }
+            }
+            else if (e.Key == Key.Down)
+            {
+                ScrollViewer sv2 = (ScrollViewer)sender;
+                var scrollViewersOfGrid = ((Grid)sv2.Parent).Children.OfType<ScrollViewer>();
+
+                foreach (ScrollViewer scroller in scrollViewersOfGrid)
+                {
+                    scroller.ScrollToHorizontalOffset(sv.VerticalOffset - 10);
+                    Console.WriteLine("FOUND CHILD SCOLL VIEWER: \n");
+                }
+            }
+
+        }
     }
 }

@@ -58,11 +58,11 @@ namespace Appointed.ViewModels
         //      the beginning of time where the index is the number of days since the beginning of time. (October 14, 2017)
         //
         // Each dictionary entry corresponds to one doctor's array of lists of appointments.
-        private Dictionary<int, List<Appointment>[]> _appointmentDictionary;
+        public Dictionary<int, List<Appointment>[]> _appointmentDictionary;
 
         // A list of strings of doctor names allowing the doctor names to be bound and changed dynamically if required.
         private ObservableCollection<Doctor> _doctorsOnShift;
-
+        private ObservableCollection<Doctor> _visibleDocs;
 
         DayTemplate DT;
 
@@ -106,11 +106,18 @@ namespace Appointed.ViewModels
             _numAppointmentsPerDay = 48;
 
 
+            _visibleDocs = new ObservableCollection<Doctor>
+            {
+                new Doctor (800, 1700, "Visible", "*") { DoctorName = "Dr. Pearson", Position = "0", Colour = "DarkTurquoise"},
+                new Doctor (830, 1730, "Visible", "*") { DoctorName = "Dr. Specter", Position = "1", Colour = "Violet"},
+                new Doctor (730, 1630, "Visible", "*") { DoctorName = "Dr. Paulsen", Position = "2", Colour = "Orange"}
+            };
+
             _doctorsOnShift = new ObservableCollection<Doctor>
             {
-                new Doctor (800, 1700) { DoctorName = "Dr. Pearson", Position = "0"},
-                new Doctor (830, 1730) { DoctorName = "Dr. Specter", Position = "1"},
-                new Doctor (730, 1630) { DoctorName = "Dr. Paulsen", Position = "2"}
+                new Doctor (800, 1700, "Visible", "*") { DoctorName = "Dr. Pearson", Position = "0", Colour = "DarkTurquoise"},
+                new Doctor (830, 1730, "Visible", "*") { DoctorName = "Dr. Specter", Position = "1", Colour = "Violet"},
+                new Doctor (730, 1630, "Visible", "*") { DoctorName = "Dr. Paulsen", Position = "2", Colour = "Orange"}
             };
 
 
@@ -429,7 +436,15 @@ namespace Appointed.ViewModels
 
         }
 
+        
+        public string FindDrColourForDrName(string name)
+        {
+            for (int i = 0; i < DoctorsOnShiftCount; i++)
+                if (DoctorsOnShift.ElementAt(i).DoctorName.Equals(name))
+                    return DoctorsOnShift.ElementAt(i).Colour;
 
+            return "Black";
+        }
 
 
         public Appointment FindAppointmentThatFollows(Appointment appointment)
@@ -477,12 +492,26 @@ namespace Appointed.ViewModels
             }
         }
 
-
         public int DoctorsOnShiftCount
         {
             get { return DoctorsOnShift.Count; }            
         }
-        
+
+        public ObservableCollection<Doctor> DoctorsOnShiftFiltered
+        {
+            get { return _visibleDocs; }
+            set
+            {
+                _visibleDocs = new ObservableCollection<Doctor>(value);
+                RaisePropertyChangedEvent("DoctorsOnShiftFiltered");
+                RaisePropertyChangedEvent("DoctorsOnShiftFilteredCount");
+            }
+        }
+
+        public int DoctorsOnShiftFilteredCount
+        {
+            get { return _visibleDocs.Count; }
+        }
 
 
         public List<Appointment> PearsonEmpty

@@ -14,8 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Appointed.ViewModels;
 using Appointed.Classes;
-
-
+using System.Windows.Media.Animation;
 
 namespace Appointed.Views
 
@@ -32,14 +31,17 @@ namespace Appointed.Views
         {
             InitializeComponent();
 
+            // This constructor can finish before the visual tree and corresponding elements are loaded.
+            // The initialization depends on some elements of the visual tree so this must be used
+            // to ensure the entire view is loaded before this set of instructions is executed.
             this.Loaded += new RoutedEventHandler(DoctorColumnView_Loaded);
-            
-
         }
+ 
 
 
         void DoctorColumnView_Loaded(object sender, RoutedEventArgs e)
         {
+            // This registers the OnScheduleAltered Delegate to the ScheduleShifted Event.            
             DayInformationViewModel DIVM = (DayInformationViewModel)this.DataContext;
             DIVM.ScheduleShifted += new EventHandler<EventArgs>(OnScheduleAltered);
 
@@ -205,6 +207,7 @@ namespace Appointed.Views
             DIVM.AVM._activeAppointment.Type = appt.Type;
             DIVM.AVM._activeAppointment.Waitlisted = appt.Waitlisted;
             DIVM.AVM._activeAppointment.Visibility = appt.Visibility;
+            DIVM.AVM._activeAppointment.Arrived = appt.Arrived;
 
             DIVM._activeDate.Day = appt.DateTime.Day;
             DIVM._activeDate.Month = appt.DateTime.Month;
@@ -229,7 +232,6 @@ namespace Appointed.Views
             if (apptSlot != null && e.LeftButton == MouseButtonState.Pressed)
             {
                 DragDrop.DoDragDrop(apptSlot, apptSlot.Tag.ToString(), DragDropEffects.All);
-                // Refresh slot that was dragged to..
             }
         }
         
@@ -308,7 +310,10 @@ namespace Appointed.Views
                 sourceAppointment.Margin = "0,1,0,0";
                 sourceAppointment.Missed = false;
                 sourceAppointment.Arrived = false;
-                sourceAppointment.Opacity = "0";
+
+                if (sourceAppointment.Colour != "SlateGray")
+                    sourceAppointment.Opacity = "0";
+
                 sourceAppointment.Patient = "";
                 sourceAppointment.Type = "";
                 sourceAppointment.Waitlisted = false;

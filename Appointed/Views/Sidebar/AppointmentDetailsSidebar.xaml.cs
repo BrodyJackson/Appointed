@@ -28,44 +28,25 @@ namespace Appointed.Views
         public AppointmentDetailsSidebar()
         {
             InitializeComponent();
+
         }
+
 
         private void OnMouseLeftRelease_CheckIn(object sender, MouseButtonEventArgs e)
         {
             DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
             Button checkIn = sender as Button;
 
-            //Color a = (Color)ColorConverter.ConvertFromString("#FFA5DFFF");
-            //Color b = (Color)ColorConverter.ConvertFromString("#FF789DEC");
-            //Color c = (Color)ColorConverter.ConvertFromString("#FFA0BAFF");
-            //Color d = (Color)ColorConverter.ConvertFromString("#FF86ABF7");
-
-
-            //LinearGradientBrush gradientBrush = new LinearGradientBrush(
-            //    a,
-            //    b, 
-            //    new Point(0.8, 0), 
-            //    new Point(0.8, 1));
-
-
-            if (checkIn.Content.ToString() == "Check In")
-            {
-                checkIn.Content = "Undo Check-In";
-                checkIn.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
-                checkIn.ToolTip = "Click To Undo Check In";
+            if (checkIn.Content.ToString() == "Check-In")
+            { 
                 DIVM.AVM._appointmentLookup[Int32.Parse(DIVM.AVM._activeAppointment.ID)].Arrived = true;
+                DIVM.AVM._activeAppointment.Arrived = true;
             }
             else
             {
-                checkIn.Content = "Check In";
-                checkIn.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
-                checkIn.ToolTip = "Click To Check Patient In";
                 DIVM.AVM._appointmentLookup[Int32.Parse(DIVM.AVM._activeAppointment.ID)].Arrived = false;
+                DIVM.AVM._activeAppointment.Arrived = false;
             }
-
-
-            Window w = new EditPatientEmergencyContacts();
-            w.Show();            
         }
 
 

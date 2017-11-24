@@ -151,7 +151,6 @@ namespace Appointed.Views.Sidebar
 
             DIVM.AVM.AddAppointment(targetAppointment, key);
             DIVM.PVM.ActivePatient.AddUpcommingAppointment(key);
-
         }
 
        

@@ -71,6 +71,8 @@ namespace Appointed.Classes
         string _comments;
         string _waitlistPos;
         string _isClickable;
+        string _borderColour;
+        string _strokeThickness;
         int _startTime;
         int _endTime;
         bool _missed;
@@ -113,6 +115,7 @@ namespace Appointed.Classes
             this.Waitlisted = toCopy.Waitlisted;
             this.WaitlistPos = toCopy.WaitlistPos;
             this.IsClickable = toCopy.IsClickable;
+            this.BorderColour = toCopy.BorderColour;
             this.Visibility = toCopy.Visibility;
             this.ReminderDays = toCopy.ReminderDays;
             this.ReminderTimeOfDay = toCopy.ReminderTimeOfDay;
@@ -135,12 +138,8 @@ namespace Appointed.Classes
         {
             get
             {
-                string dTS = _dateTime.Month.ToString() + "/" + _dateTime.Day.ToString() + "/" + _dateTime.Year.ToString();
-
-                Console.WriteLine(dTS);
-
-                return "12/5/2017";
-
+                string dTS = _dateTime.Year.ToString() + '-' + _dateTime.Month.ToString() + "-" + _dateTime.Day.ToString();
+                return dTS;
             }
         }
 
@@ -392,7 +391,10 @@ namespace Appointed.Classes
             set
             {
                 _arrived = value;
-                RaisePropertyChangedEvent("Arrived");                
+               
+                RaisePropertyChangedEvent("Arrived");
+                RaisePropertyChangedEvent("CheckInButtonContent");
+                RaisePropertyChangedEvent("CheckInButtonToolTip");   
             }
         }
 
@@ -436,6 +438,26 @@ namespace Appointed.Classes
             {
                 _isClickable = value;
                 RaisePropertyChangedEvent("IsClickable");
+            }
+        }
+
+        public string BorderColour
+        {
+            get { return _borderColour; }
+            set
+            {
+                _borderColour = value;
+                RaisePropertyChangedEvent("BorderColour");
+            }
+        }
+
+        public string StrokeThickness
+        {
+            get { return _strokeThickness; }
+            set
+            {
+                _strokeThickness = value;
+                RaisePropertyChangedEvent("StrokeThickness");
             }
         }
 
@@ -521,6 +543,16 @@ namespace Appointed.Classes
         }
 
 
+        public string CheckInButtonContent
+        {
+            get { return _arrived ? "Undo Check-In" : "Check-In"; }
+        }
+
+
+        public string CheckInButtonToolTip
+        {
+            get { return _arrived ? "Click To Undo Check In" : "Click To Check Patient In"; }
+        }
 
     }
 

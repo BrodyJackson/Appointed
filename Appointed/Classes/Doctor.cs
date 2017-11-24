@@ -13,14 +13,19 @@ namespace Appointed.Classes
         string _doctorName;
         string _position;
         string _colour;
+        string _visibility;
+        string _columnWidth;
         int _shiftStart;
         int _shiftEnd;
 
 
-        public Doctor(int start, int end)
+        
+        public Doctor(int start, int end, string visibility, string colWidth)
         {
             _shiftStart = start;
             _shiftEnd = end;
+            _visibility = visibility;
+            _columnWidth = colWidth;
         }
 
         public string DoctorName
@@ -51,6 +56,26 @@ namespace Appointed.Classes
             {
                 _colour = value;
                 RaisePropertyChangedEvent("Colour");
+            }
+        }
+
+        public string Visibility
+        {
+            get { return _visibility; }
+            set
+            {
+                _visibility = value;
+                RaisePropertyChangedEvent("Visibility");
+            }
+        }
+
+        public string ColumnWidth
+        {
+            get { return _columnWidth; }
+            set
+            {
+                _columnWidth = value;
+                RaisePropertyChangedEvent("ColumnWidth");
             }
         }
 
