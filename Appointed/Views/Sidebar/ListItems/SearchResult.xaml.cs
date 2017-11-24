@@ -47,16 +47,33 @@ namespace Appointed.Views.Sidebar.ListItems
 
             BookApptBtn.Click += BookApptBtn_Click;
             MoreInfoBtn.Click += MoreInfoBtn_Click;
-            NextApptBtn.Click += NextApptBtn_Click;
+
+            if (patient.GetUpcomingAppointmentKeys().Count > 0)
+            {
+                NextApptBtn.Click += NextApptBtn_Click;
+            }
+            else
+            {
+                NextApptBtn.IsEnabled = false;
+            }
 
         }
 
         private void NextApptBtn_Click(object sender, RoutedEventArgs e)
         {
-            int nextApptKey = patient.GetUpcomingAppointmentKeys()[0];
-            Appointment nextAppt = (App.Current.MainWindow.DataContext as DayInformationViewModel).AVM._appointmentLookup[nextApptKey];
+            if (patient.GetUpcomingAppointmentKeys().Count > 0)
+            {
+                int nextApptKey = patient.GetUpcomingAppointmentKeys()[0];
 
-            //(App.Current.MainWindow as Home).
+                DayInformationViewModel DIVM = (App.Current.MainWindow.DataContext as DayInformationViewModel);
+
+                Appointment nextAppt = DIVM.AVM._appointmentLookup[nextApptKey];
+                DateTime activeDT = new DateTime(DIVM._activeDate.Year, DIVM._activeDate.Month, DIVM._activeDate.Day);
+                TimeSpan diff = activeDT - nextAppt.DateTime;
+
+                if (DIVM.ShiftView.CanExecute(null))
+                    DIVM.ShiftView.Execute(diff.Days - 1);
+            }
 
         }
 
