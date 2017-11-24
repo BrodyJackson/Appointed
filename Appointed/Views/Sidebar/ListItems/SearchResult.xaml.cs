@@ -53,7 +53,11 @@ namespace Appointed.Views.Sidebar.ListItems
 
         private void NextApptBtn_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            int nextApptKey = patient.GetUpcomingAppointmentKeys()[0];
+            Appointment nextAppt = (App.Current.MainWindow.DataContext as DayInformationViewModel).AVM._appointmentLookup[nextApptKey];
+
+            //(App.Current.MainWindow as Home).
+
         }
 
         private void MoreInfoBtn_Click(object sender, RoutedEventArgs e)

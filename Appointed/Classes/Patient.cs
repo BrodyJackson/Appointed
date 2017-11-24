@@ -48,9 +48,41 @@ namespace Appointed.Classes
         //Notes
         string _notes;
 
+        //Appointments
+        List<int> _upcomingAppointments;
+        List<int> _pastAppointments;
+
+
+        public Patient()
+        {
+            _upcomingAppointments = new List<int>();
+            _pastAppointments = new List<int>();
+        }
+
 		//Property methods
 
-		public string FirstName
+        public void MoveAppointmentToPast(int key)
+        {
+            _upcomingAppointments.Remove(key);
+            _pastAppointments.Add(key);
+        }
+
+        public List<int> GetPastAppointmentKeys()
+        {
+            return _pastAppointments;
+        }
+
+        public void AddUpcommingAppointment(int key)
+        {
+            _upcomingAppointments.Add(key);
+        }
+
+        public List<int> GetUpcomingAppointmentKeys()
+        {
+            return _upcomingAppointments;
+        }
+
+        public string FirstName
 		{
 			get { return _firstName; }
 				
@@ -132,12 +164,6 @@ namespace Appointed.Classes
 				RaisePropertyChangedEvent("HealthID");
 			}
 		}
-
-        internal string GetHealthIdAsString()
-        {
-            return _healthID.ToString().Substring(0, 5) + "-" + _healthID.ToString().Substring(4);
-        }
-
 
         public string Street
 		{

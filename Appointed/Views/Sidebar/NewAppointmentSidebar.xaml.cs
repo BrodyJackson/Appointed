@@ -149,7 +149,9 @@ namespace Appointed.Views.Sidebar
             //    apptThatFollowsActive.Visibility = "Visible";
             //}
 
-            DIVM.AVM.AddAppointment(targetAppointment, key); 
+            DIVM.AVM.AddAppointment(targetAppointment, key);
+            DIVM.PVM.ActivePatient.AddUpcommingAppointment(key);
+
         }
 
        
