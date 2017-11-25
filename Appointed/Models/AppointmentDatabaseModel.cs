@@ -104,6 +104,13 @@ namespace Appointed.Models
 
             _pearsonNovember032017 = new List<Appointment>
             {
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+
             // One
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0"},
             new Appointment ( ){ DateTime = DateTime.Today, Type = "Standard", Height = "35", Margin = "0,1,0,0", Patient = "Mike Ross", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0.4" },
@@ -167,19 +174,21 @@ namespace Appointed.Models
             // Eleven
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
 
             // Twelve
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             };
 
 
             _pearsonNovember042017 = new List<Appointment>
             {
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+
             // One
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "Standard", Height = "35", Margin = "0,1,0,0", Patient = "Mike Ross", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0.4" },
@@ -243,19 +252,14 @@ namespace Appointed.Models
             // Eleven
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-
-            // Twelve
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             };
 
 
             _pearsonNovember052017 = new List<Appointment>
             {
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+
             // One
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
@@ -325,14 +329,24 @@ namespace Appointed.Models
             // Twelve
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
 
             };
 
 
             _pearsonNovember062017 = new List<Appointment>
             {
+            // Eleven
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+
+            // Twelve
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+
             // One
             new Appointment ( ){ DateTime = DateTime.Today, Type = "Consultation", Height = "70", Margin = "0,2,0,0", Patient = "Freddison", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "2", Opacity = "0.4" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Collapsed", Cursor = "Hand", RowSpan = "1", Opacity = "0"},
@@ -393,6 +407,18 @@ namespace Appointed.Models
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
 
+
+            };
+
+
+            _pearsonNovember072017 = new List<Appointment>
+            {
+             // Ten
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+
             // Eleven
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
@@ -405,12 +431,7 @@ namespace Appointed.Models
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
 
-            };
-
-
-            _pearsonNovember072017 = new List<Appointment>
-            {
-            // One
+                // One
             new Appointment ( ){ DateTime = DateTime.Today, Type = "Consultation", Height = "70", Margin = "0,2,0,0", Patient = "George Martin", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "2", Opacity = "0.4" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Collapsed", Cursor = "Hand", RowSpan = "1", Opacity = "0"},
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
@@ -464,23 +485,6 @@ namespace Appointed.Models
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
 
-            // Ten
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-
-            // Eleven
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-
-            // Twelve
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
 
             };
 
@@ -563,6 +567,9 @@ namespace Appointed.Models
 
             _pearsonDecember052017 = new List<Appointment>
             {
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+ 
             // One
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
@@ -631,13 +638,35 @@ namespace Appointed.Models
             // Twelve
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            };
+           };
 
 
             _pearsonDecember152017 = new List<Appointment>
             {
+            // Ten
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+
+            // Eleven
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "Standard", Height = "35", Margin = "0,1,0,0", Patient = "Marylin Ross", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0.4" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "Standard", Height = "35", Margin = "0,1,0,0", Patient = "Mr. No Chill", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0.4" },
+
+            // Nine
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+
+            // Twelve
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+
             // One
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "Standard", Height = "35", Margin = "0,1,0,0", Patient = "Marc Ross", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0.4" },
@@ -684,19 +713,11 @@ namespace Appointed.Models
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            
-            // Nine
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "Standard", Height = "35", Margin = "0,1,0,0", Patient = "Marylin Ross", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0.4" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "Standard", Height = "35", Margin = "0,1,0,0", Patient = "Mr. No Chill", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0.4" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            };
 
-            // Ten
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
 
+            _pearsonDecember162017 = new List<Appointment>
+            {
             // Eleven
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
@@ -708,11 +729,7 @@ namespace Appointed.Models
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            };
 
-
-            _pearsonDecember162017 = new List<Appointment>
-            {
             // One
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
@@ -767,18 +784,6 @@ namespace Appointed.Models
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
 
             // Ten
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-
-            // Eleven
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-
-            // Twelve
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Pearson", Colour = "DarkTurquoise", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
@@ -851,6 +856,18 @@ namespace Appointed.Models
 
             _specterNovember032017 = new List<Appointment>
             {
+            // Eleven
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+
+            // Twelve
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+ 
             // One
             new Appointment ( ){ DateTime = DateTime.Today, Type = "Consultation", Height = "70", Margin = "0,2,0,0", Patient = "Francis Francois", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "2", Opacity = "0.4" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Collapsed", Cursor = "Hand", RowSpan = "1", Opacity = "0"},
@@ -909,6 +926,16 @@ namespace Appointed.Models
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+           };
+
+
+            _specterNovember042017 = new List<Appointment>
+            {
+            // Ten
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
+            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
 
             // Eleven
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
@@ -921,11 +948,7 @@ namespace Appointed.Models
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            };
 
-
-            _specterNovember042017 = new List<Appointment>
-            {
             // One
             new Appointment ( ){ DateTime = DateTime.Today, Type = "Standard", Height = "35", Margin = "0,1,0,0", Patient = "Daryll Dogood", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0.4" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "Consultation", Height = "70", Margin = "0,2,0,0", Patient = "Odor Onus", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "2", Opacity = "0.4" },
@@ -974,24 +997,6 @@ namespace Appointed.Models
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             
             // Nine
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-
-            // Ten
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-
-            // Eleven
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-            new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
-
-            // Twelve
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },
             new Appointment ( ){ DateTime = DateTime.Today, Type = "", Height = "35", Margin = "0,1,0,0", Patient = "", DoctorName = "Dr. Specter", Colour = "Violet", Visibility = "Visible", Cursor = "Hand", RowSpan = "1", Opacity = "0" },

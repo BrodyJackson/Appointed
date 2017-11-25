@@ -93,6 +93,7 @@ namespace Appointed.Views.Sidebar
             Appointment targetAppointment = null;
             Appointment apptThatFollowsTarget = null;
 
+            // BEGIN PARSE DATA FROM SIDEBAR FIELDS
             string stTime = ((Time)StartTime.SelectedItem).TimeString;
             string timeCmp = stTime;
             stTime = stTime.Substring(0, stTime.IndexOf(':')) + stTime.Substring(stTime.IndexOf(':') + 1);
@@ -115,6 +116,8 @@ namespace Appointed.Views.Sidebar
             int month = Int32.Parse(dateString.Substring(firstInd, secondInd - firstInd));
 
             int day = Int32.Parse(dateString.Substring(dateString.LastIndexOf('-') + 1));
+            // END PARSE DATA FROM SIDEBAR FIELDS
+
 
             // The hashcode of the DateTime + <DrColumn> form the key for appointment lookups.
             DateTime dt = new DateTime(year, month, day, time / 100, time % 100, 0);
@@ -127,7 +130,8 @@ namespace Appointed.Views.Sidebar
                 if (type == "Consultation")
                     apptThatFollowsTarget = DIVM.AVM.FindAppointmentThatFollows(targetAppointment);
 
-                if ((targetAppointment.Type != "") || (type == "Consultation" && apptThatFollowsTarget.Type != ""))
+                if ((targetAppointment.Type != "")   ||
+                    (type == "Consultation" && apptThatFollowsTarget.Type != ""  && apptThatFollowsTarget != activeAppt))
                 {
                     MessageBox.Show(
                         "The Time Slot Specified Is Taken!",
@@ -149,8 +153,6 @@ namespace Appointed.Views.Sidebar
 
                     return;
                 }
-
-
             }
 
             DIVM._activeDate.HasChanged = false;

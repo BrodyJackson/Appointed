@@ -60,7 +60,7 @@ namespace Appointed.Views.Sidebar
             Appointment apptThatFollowsTarget = null;
 
             string stTime = ((Time)StartTime.SelectedItem).TimeString;
-            string timeCmp = stTime;
+//            string timeCmp = stTime;
             stTime = stTime.Substring(0, stTime.IndexOf(':')) + stTime.Substring(stTime.IndexOf(':') + 1);
 
             string endTime = EndTime.Text;

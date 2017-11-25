@@ -185,29 +185,34 @@ namespace Appointed.Views
 
             Appointment appt = DIVM.AVM._appointmentLookup[Int32.Parse(apptSlotID)];
 
+            if (appt.Type == "")
+                return;
+
             //            Application.Current.MainWindow.OpacityMask = Brushes.Black;
             //            Application.Current.MainWindow.Opacity = 0.2;
             //            Application.Current.MainWindow.IsHitTestVisible = false;
 
 
-            DIVM.AVM._activeAppointment.Colour = appt.Colour;
-            DIVM.AVM._activeAppointment.Comments = appt.Comments;
-            DIVM.AVM._activeAppointment.Cursor = appt.Cursor;
-            DIVM.AVM._activeAppointment.DateTime = appt.DateTime;
-            DIVM.AVM._activeAppointment.DoctorName = appt.DoctorName;
-            DIVM.AVM._activeAppointment.EndTime = appt.EndTime;
-            DIVM.AVM._activeAppointment.Height = appt.Height;
-            DIVM.AVM._activeAppointment.ID = appt.ID;
-            DIVM.AVM._activeAppointment.Margin = appt.Margin;
-            DIVM.AVM._activeAppointment.Missed = appt.Missed;
-            DIVM.AVM._activeAppointment.Opacity = appt.Opacity;
-            DIVM.AVM._activeAppointment.Patient = appt.Patient;
-            DIVM.AVM._activeAppointment.RowSpan = appt.RowSpan;
-            DIVM.AVM._activeAppointment.StartTime = appt.StartTime;
-            DIVM.AVM._activeAppointment.Type = appt.Type;
-            DIVM.AVM._activeAppointment.Waitlisted = appt.Waitlisted;
-            DIVM.AVM._activeAppointment.Visibility = appt.Visibility;
-            DIVM.AVM._activeAppointment.Arrived = appt.Arrived;
+            DIVM.AVM._activeAppointment = new Appointment(appt);
+
+            //DIVM.AVM._activeAppointment.Colour = appt.Colour;
+            //DIVM.AVM._activeAppointment.Comments = appt.Comments;
+            //DIVM.AVM._activeAppointment.Cursor = appt.Cursor;
+            //DIVM.AVM._activeAppointment.DateTime = appt.DateTime;
+            //DIVM.AVM._activeAppointment.DoctorName = appt.DoctorName;
+            //DIVM.AVM._activeAppointment.EndTime = appt.EndTime;
+            //DIVM.AVM._activeAppointment.Height = appt.Height;
+            //DIVM.AVM._activeAppointment.ID = appt.ID;
+            //DIVM.AVM._activeAppointment.Margin = appt.Margin;
+            //DIVM.AVM._activeAppointment.Missed = appt.Missed;
+            //DIVM.AVM._activeAppointment.Arrived = appt.Arrived;
+            //DIVM.AVM._activeAppointment.Opacity = appt.Opacity;
+            //DIVM.AVM._activeAppointment.Patient = appt.Patient;
+            //DIVM.AVM._activeAppointment.RowSpan = appt.RowSpan;
+            //DIVM.AVM._activeAppointment.StartTime = appt.StartTime;
+            //DIVM.AVM._activeAppointment.Type = appt.Type;
+            //DIVM.AVM._activeAppointment.Waitlisted = appt.Waitlisted;
+            //DIVM.AVM._activeAppointment.Visibility = appt.Visibility;
 
             DIVM._activeDate.Day = appt.DateTime.Day;
             DIVM._activeDate.Month = appt.DateTime.Month;
@@ -238,7 +243,7 @@ namespace Appointed.Views
         // If there was data from the source appt slot and the target is not itself, show drag icon near mouse pointer
         private void OnDragEnterAppointmentSlot(object sender, DragEventArgs e)
         {
-            if (!e.Data.GetDataPresent(DataFormats.StringFormat) || sender == e.Source)
+            if (!e.Data.GetDataPresent(DataFormats.StringFormat))// || sender == e.Source)
                 e.Effects = DragDropEffects.None;
             else
                 e.Effects = DragDropEffects.All;
@@ -253,73 +258,83 @@ namespace Appointed.Views
             string keyForSourceAppointment;
             string keyForTargetAppointment;
 
+            if (!e.Data.GetDataPresent(DataFormats.StringFormat))
+                return;
 
-            if (e.Data.GetDataPresent(DataFormats.StringFormat))
+            Appointment apptFollowingTarget = null;
+            Appointment apptFollowingSource = null;
+
+            keyForSourceAppointment = (string)e.Data.GetData(DataFormats.StringFormat);
+            sourceAppointment = DIVM.AVM._appointmentLookup[Int32.Parse(keyForSourceAppointment)];
+
+            keyForTargetAppointment = ((Rectangle)sender).Tag.ToString();
+            targetAppointment = DIVM.AVM._appointmentLookup[Int32.Parse(keyForTargetAppointment)];
+
+            if (targetAppointment == sourceAppointment)
             {
-                Appointment apptFollowingTarget = null;
-                Appointment apptFollowingSource = null;
-
-                keyForSourceAppointment = (string)e.Data.GetData(DataFormats.StringFormat);
-                sourceAppointment = DIVM.AVM._appointmentLookup[Int32.Parse(keyForSourceAppointment)];
-
-                keyForTargetAppointment = ((Rectangle)sender).Tag.ToString();
-                targetAppointment = DIVM.AVM._appointmentLookup[Int32.Parse(keyForTargetAppointment)];
-
-                Console.WriteLine("Source Appointment Date: " + sourceAppointment.DateTime);
-                Console.WriteLine("Target Appointment Date: " + targetAppointment.DateTime);
-
-                if (targetAppointment.Type.Length != 0)
+                if (sourceAppointment.Type == "Standard")
                     return;
-
-                // If the source is a consultation, collapse the empty appointment following the target to make room for two appointments.
-                // Expand the collapsed (by default) appointment following the source appointment.
-                if (sourceAppointment.Type.Equals("Consultation"))
+                else
                 {
-                    apptFollowingTarget = DIVM.AVM.FindAppointmentThatFollows(targetAppointment);
-                    if (apptFollowingTarget == null || apptFollowingTarget.Type.Length != 0)
-                        return;
-                    else
-                        apptFollowingTarget.Visibility = "Collapsed";
+                    Point p = e.GetPosition((Rectangle)sender);
 
-                    // Cannot be null since every consultation has a collapsed empty appointment following it by default. \
-                    apptFollowingSource = DIVM.AVM.FindAppointmentThatFollows(sourceAppointment);
-                    apptFollowingSource.Visibility = "Visible";
-
-                    targetAppointment.EndTime = targetAppointment.StartTime + 30;
+                    if (p.Y > 35)
+                        targetAppointment = DIVM.AVM.FindAppointmentThatFollows(targetAppointment); 
                 }
-
-
-                if (targetAppointment.EndTime % 100 >= 60)
-                    targetAppointment.EndTime += 40;
-                targetAppointment.Height = sourceAppointment.Height;
-                targetAppointment.Margin = sourceAppointment.Margin;
-                targetAppointment.Missed = sourceAppointment.Missed;
-                targetAppointment.Arrived = sourceAppointment.Arrived;
-                targetAppointment.Opacity = sourceAppointment.Opacity;
-                targetAppointment.Patient = sourceAppointment.Patient;
-                targetAppointment.RowSpan = sourceAppointment.RowSpan;
-                targetAppointment.Type = sourceAppointment.Type;
-                targetAppointment.Waitlisted = sourceAppointment.Waitlisted;
-
-
-                sourceAppointment.EndTime = sourceAppointment.StartTime + 15;
-                if (sourceAppointment.EndTime % 100 >= 60)
-                    sourceAppointment.EndTime += 40;
-                sourceAppointment.Comments = "";
-                sourceAppointment.Height = "35";
-                sourceAppointment.Margin = "0,1,0,0";
-                sourceAppointment.Missed = false;
-                sourceAppointment.Arrived = false;
-
-                if (sourceAppointment.Colour != "SlateGray")
-                    sourceAppointment.Opacity = "0";
-
-                sourceAppointment.Patient = "";
-                sourceAppointment.Type = "";
-                sourceAppointment.Waitlisted = false;
-
-
             }
+            else if (targetAppointment.Type.Length != 0)
+                return;
+
+
+            // If the source is a consultation, collapse the empty appointment following the target to make room for two appointments.
+            // Expand the collapsed (by default) appointment following the source appointment.
+            if (sourceAppointment.Type.Equals("Consultation"))
+            {
+                apptFollowingTarget = DIVM.AVM.FindAppointmentThatFollows(targetAppointment);
+                if (apptFollowingTarget == null || apptFollowingTarget.Type.Length != 0)
+                    return;
+                else
+                    apptFollowingTarget.Visibility = "Collapsed";
+
+                // Cannot be null since every consultation has a collapsed empty appointment following it by default. \
+                apptFollowingSource = DIVM.AVM.FindAppointmentThatFollows(sourceAppointment);
+                apptFollowingSource.Visibility = "Visible";
+
+                targetAppointment.EndTime = targetAppointment.StartTime + 30;
+            }
+
+
+            if (targetAppointment.EndTime % 100 >= 60)
+                targetAppointment.EndTime += 40;
+            targetAppointment.Height = sourceAppointment.Height;
+            targetAppointment.Margin = sourceAppointment.Margin;
+            targetAppointment.Missed = sourceAppointment.Missed;
+            targetAppointment.Arrived = sourceAppointment.Arrived;
+            targetAppointment.Opacity = sourceAppointment.Opacity;
+            targetAppointment.Patient = sourceAppointment.Patient;
+            targetAppointment.RowSpan = sourceAppointment.RowSpan;
+            targetAppointment.Type = sourceAppointment.Type;
+            targetAppointment.Waitlisted = sourceAppointment.Waitlisted;
+
+
+
+            sourceAppointment.EndTime = sourceAppointment.StartTime + 15;
+            if (sourceAppointment.EndTime % 100 >= 60)
+                sourceAppointment.EndTime += 40;
+            sourceAppointment.Comments = "";
+            sourceAppointment.Height = "35";
+            sourceAppointment.Margin = "0,1,0,0";
+            sourceAppointment.Missed = false;
+            sourceAppointment.Arrived = false;
+
+            if (sourceAppointment.Colour != "SlateGray")
+                sourceAppointment.Opacity = "0";
+
+            sourceAppointment.Patient = "";
+            sourceAppointment.Type = "";
+            sourceAppointment.Waitlisted = false;
+
+
 
         }
 
