@@ -68,7 +68,7 @@ namespace Appointed.Views.Sidebar
 
         private void ComboBox_StartTimeSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (StartTime.SelectedItem == null)
+            if (StartTime.SelectedItem == null || ApptTypeComboBox.SelectedItem == null)
             {
                 Console.WriteLine("Gotcha: \n");
                 return;
@@ -85,6 +85,12 @@ namespace Appointed.Views.Sidebar
         }
 
 
+        private void ComboBox_ApptTypeSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox_StartTimeSelectionChanged(sender, e);
+        }
+
+
 
         private void OnMouseLeftRelease_Save(object sender, MouseButtonEventArgs e)
         {
@@ -95,8 +101,8 @@ namespace Appointed.Views.Sidebar
 
             // BEGIN PARSE DATA FROM SIDEBAR FIELDS
             string stTime = ((Time)StartTime.SelectedItem).TimeString;
-            string timeCmp = stTime;
             stTime = stTime.Substring(0, stTime.IndexOf(':')) + stTime.Substring(stTime.IndexOf(':') + 1);
+//          string timeCmp = stTime;
 
             string endTime = EndTime.Text;
             endTime = endTime.Substring(0, endTime.IndexOf(':')) + endTime.Substring(endTime.IndexOf(':') + 1, 2);
@@ -125,10 +131,10 @@ namespace Appointed.Views.Sidebar
             int key = dt.GetHashCode() + drColumn;
 
             targetAppointment = DIVM.AVM._appointmentLookup[key];
+            apptThatFollowsTarget = DIVM.AVM.FindAppointmentThatFollows(targetAppointment);
             if (targetAppointment != null && targetAppointment != activeAppt)
             {
-                if (type == "Consultation")
-                    apptThatFollowsTarget = DIVM.AVM.FindAppointmentThatFollows(targetAppointment);
+
 
                 if ((targetAppointment.Type != "")   ||
                     (type == "Consultation" && apptThatFollowsTarget.Type != ""  && apptThatFollowsTarget != activeAppt))
@@ -170,8 +176,10 @@ namespace Appointed.Views.Sidebar
             targetAppointment.Patient = activeAppt.Patient;
             targetAppointment.Opacity = activeAppt.Opacity;
 
-            if (targetAppointment.Type == "Consultation" && targetAppointment != activeAppt)
+            if (targetAppointment.Type == "Consultation")// && targetAppointment != activeAppt)
                 apptThatFollowsTarget.Visibility = "Collapsed";
+            else
+                apptThatFollowsTarget.Visibility = "Visible";
 
 
 
@@ -202,7 +210,6 @@ namespace Appointed.Views.Sidebar
             Home h = App.Current.MainWindow as Home;
             h.SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
         }
-
 
     }
 }

@@ -279,7 +279,9 @@ namespace Appointed.Views
                     Point p = e.GetPosition((Rectangle)sender);
 
                     if (p.Y > 35)
-                        targetAppointment = DIVM.AVM.FindAppointmentThatFollows(targetAppointment); 
+                        targetAppointment = DIVM.AVM.FindAppointmentThatFollows(targetAppointment);
+                    else
+                        return;
                 }
             }
             else if (targetAppointment.Type.Length != 0)

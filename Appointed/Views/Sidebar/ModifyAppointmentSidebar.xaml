@@ -203,7 +203,8 @@
                 Grid.Column="1"
                 Margin="4,4,6,4"
                 SelectedIndex="{Binding AVM._activeAppointment.TypeIndex, Mode=OneWay}"
-                VerticalContentAlignment="Center">
+                VerticalContentAlignment="Center"
+                SelectionChanged="ComboBox_ApptTypeSelectionChanged">
 
                 <ComboBoxItem
                     Content="Standard" />
