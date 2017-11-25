@@ -293,7 +293,7 @@ namespace Appointed.Views
             if (sourceAppointment.Type.Equals("Consultation"))
             {
                 apptFollowingTarget = DIVM.AVM.FindAppointmentThatFollows(targetAppointment);
-                if (apptFollowingTarget == null || apptFollowingTarget.Type.Length != 0)
+                if ((apptFollowingTarget == null || apptFollowingTarget.Type.Length != 0) && (apptFollowingTarget != sourceAppointment))
                     return;
                 else
                     apptFollowingTarget.Visibility = "Collapsed";
