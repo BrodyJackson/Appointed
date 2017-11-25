@@ -36,6 +36,7 @@ namespace Appointed.ViewModels
         public AppointmentViewModel AVM { get; set; }
         public PatientViewModel PVM { get; set; }
 
+        public Waitlist WaitList;
  
         private ObservableCollection<Time> _timeOfDayStringsTwelveHour;
         private ObservableCollection<Time> _timeOfDayStringsTwentyFourHour;
@@ -58,6 +59,8 @@ namespace Appointed.ViewModels
 
         public DayInformationViewModel()
         {
+            WaitList = new Waitlist(); 
+
             _activeDate = new Date();
 
 

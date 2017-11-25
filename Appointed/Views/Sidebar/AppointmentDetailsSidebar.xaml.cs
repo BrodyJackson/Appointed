@@ -47,6 +47,7 @@ namespace Appointed.Views
                 DIVM.AVM._appointmentLookup[Int32.Parse(DIVM.AVM._activeAppointment.ID)].Arrived = false;
                 DIVM.AVM._activeAppointment.Arrived = false;
             }
+
         }
 
 
@@ -89,8 +90,9 @@ namespace Appointed.Views
                 appt.EndTime -= 15;
 
                 if (appt.EndTime % 100 > 60)
-                    appt.EndTime += 40;
-            }
+                    appt.EndTime -= 40;
+           }
+
 
             appt.Comments = "";
             appt.Height = "35";
@@ -101,6 +103,7 @@ namespace Appointed.Views
             appt.Patient = "";
             appt.Type = "";
             appt.Waitlisted = false;
+
         }
 
 

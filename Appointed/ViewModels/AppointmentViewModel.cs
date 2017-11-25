@@ -329,7 +329,7 @@ namespace Appointed.ViewModels
         // If the appointment is a consultation and two contiguous slots are not empty, it returns false and does not effect the database.
         public bool AddAppointment (Appointment appointment, int key)
         {
-            if (!(_appointmentLookup[key].Type != ""))
+            if ((_appointmentLookup[key].Type != ""))
             {
                 Console.WriteLine("Appointment Slot Not Empty, type is: " + _appointmentLookup[key].Type);
                 return false;
