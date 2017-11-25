@@ -37,7 +37,7 @@ namespace Appointed.ViewModels
        
         public PatientViewModel PVM { get; set; }
 
-        public Waitlist WaitList; { get; set; }
+        public Waitlist WaitList { get; set; }
  
         private ObservableCollection<Time> _timeOfDayStringsTwelveHour;
         private ObservableCollection<Time> _timeOfDayStringsTwentyFourHour;

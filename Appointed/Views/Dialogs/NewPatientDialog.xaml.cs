@@ -83,11 +83,13 @@ namespace Appointed.Views.Dialogs
 
         private bool IsHealthcareIDValid()
         {
+            int id;
+
             if (HealthID.TextField.Text == HealthID.Hint)
             {
                 return true;
             }
-            else if (int.TryParse(new String(HealthID.TextField.Text.Where(x => Char.IsDigit(x)).ToArray()), out int id))
+            else if (Int32.TryParse(new String(HealthID.TextField.Text.Where(x => Char.IsDigit(x)).ToArray()), out id))
             {
                 return !(App.Current.MainWindow.DataContext as DayInformationViewModel).PVM.GetPatientDatabaseModel().GetPatientDictionary().ContainsKey(id);
             }

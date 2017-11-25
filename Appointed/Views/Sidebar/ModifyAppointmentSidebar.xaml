@@ -391,7 +391,7 @@
 
         <TextBlock
             Style="{StaticResource text_BlackMedium}"
-            Text="Notes"
+            Text="Comments"
             Margin="4"
             DockPanel.Dock="Top" />
 
@@ -408,6 +408,7 @@
             MaxHeight="200">
 
             <TextBox
+                Text="{Binding AVM._activeAppointment.Comments}"
                 x:Name="CommentBox"
                 BorderBrush="SteelBlue"
                 Background="{x:Null}"

@@ -108,7 +108,9 @@ namespace Appointed.Views
 
         private void SaveNotesBtn_Click(object sender, RoutedEventArgs e)
         {
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
 
+            DIVM.AVM._appointmentLookup[Int32.Parse(DIVM.AVM._activeAppointment.ID)].Comments = CommentBox.Text;
         }
     }
 }

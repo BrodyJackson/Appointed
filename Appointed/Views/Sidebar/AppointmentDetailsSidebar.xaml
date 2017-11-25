@@ -198,7 +198,7 @@
                 <TextBlock
                     Grid.Column="0"
                     Style="{StaticResource text_OrangeRedMedium}"
-                    Text="Notes"
+                    Text="Comments"
                     Margin="10,0,10,0"
                 />
 
@@ -227,27 +227,28 @@
 
 
             <ScrollViewer
-            MinHeight="125" 
-            CanContentScroll="True" 
-            BorderBrush="Black" 
-            BorderThickness="1" 
-            Background="Lavender" 
-            Margin="10,10,10,0"
-            VerticalScrollBarVisibility="Auto"
-            DockPanel.Dock="Top"
-            MaxHeight="200"
+                MinHeight="125" 
+                CanContentScroll="True" 
+                BorderBrush="Black" 
+                BorderThickness="1" 
+                Background="Lavender" 
+                Margin="10,10,10,0"
+                VerticalScrollBarVisibility="Auto"
+                DockPanel.Dock="Top"
+                MaxHeight="200"
             >
 
                 <TextBox
-                Text="{Binding AVM._activeAppointment.Comments}"
-                AcceptsReturn="True"
-                AcceptsTab="True"
-                BorderBrush="SteelBlue" 
-                Background="{x:Null}" 
-                SpellCheck.IsEnabled="True" 
-                Cursor="Pen" 
-                ToolTip="Click to edit Notes"
-                TextWrapping="Wrap"
+                    x:Name="CommentBox"
+                    Text="{Binding AVM._activeAppointment.Comments}"
+                    AcceptsReturn="True"
+                    AcceptsTab="True"
+                    BorderBrush="SteelBlue" 
+                    Background="{x:Null}" 
+                    SpellCheck.IsEnabled="True" 
+                    Cursor="Pen" 
+                    ToolTip="Click to edit Comments"
+                    TextWrapping="Wrap"
                 />
 
             </ScrollViewer>
