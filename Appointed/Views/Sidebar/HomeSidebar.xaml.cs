@@ -1,4 +1,5 @@
-﻿using Appointed.Views.Sidebar;
+﻿using Appointed.ViewModels;
+using Appointed.Views.Sidebar;
 using System.Windows;
 using System.Windows.Controls;
 using Appointed.ViewModels;
@@ -26,10 +27,11 @@ namespace Appointed.Views
             //AlertBox.UpdateAlertsBox();
 
             JumpCalendar.Calendar.SelectedDatesChanged += Calendar_SelectedDatesChanged;
-            JumpCalendar.Today_Btn.PreviewMouseUp += TodayButton_MouseRelease;
+            JumpCalendar.Today_Btn.Click += TodayButton_MouseRelease;
 
             Loaded += HomeSidebar_Loaded;
         }
+
 
         //Gross work-around for going back to home sidebar from search results
         private void HomeSidebar_Loaded(object sender, RoutedEventArgs e)
@@ -59,7 +61,7 @@ namespace Appointed.Views
         }
 
 
-        private void TodayButton_MouseRelease(object sender, MouseButtonEventArgs e)
+        private void TodayButton_MouseRelease(object sender, RoutedEventArgs e)
         {
             DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
 

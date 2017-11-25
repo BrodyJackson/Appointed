@@ -89,9 +89,7 @@
         </Grid>
 
 
-        <Separator
-                Background="Gray" 
-                Foreground="Gray" 
+        <Separator 
                 BorderThickness="1" 
                 Margin="15,10,15,10" 
                 DockPanel.Dock="Top" 
@@ -102,6 +100,8 @@
         <Grid
             DockPanel.Dock="Top">
             <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="auto" />
                 <RowDefinition
                     Height="auto" />
                 <RowDefinition
@@ -274,9 +274,17 @@
                 Style="{StaticResource text_BlackMedium}"
                 TextAlignment="Left" />
 
+            <Separator
+                Grid.Row="8"
+                Grid.ColumnSpan="2"
+                BorderThickness="1"
+                Margin="15,10,15,10"
+                BorderBrush="Gray"
+                Height="2" />
+
             <CheckBox
                 Name="ReminderToggle"
-                Grid.Row="8"
+                Grid.Row="9"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 VerticalAlignment="Center"
@@ -288,7 +296,7 @@
             <TextBlock
                 Name="RemTypeLable"
                 Grid.Column="0"
-                Grid.Row="9"
+                Grid.Row="10"
                 Style="{StaticResource text_BlackMedium}"
                 Margin="4"
                 Text="Type:" />
@@ -296,7 +304,7 @@
             <TextBlock
                 Name="RemDaysLable"
                 Grid.Column="0"
-                Grid.Row="10"
+                Grid.Row="11"
                 Margin="4"
                 Style="{StaticResource text_BlackMedium}"
                 Text="Day(s) Before:" />
@@ -304,14 +312,14 @@
             <TextBlock
                 Name="RemTODLable"
                 Grid.Column="0"
-                Grid.Row="11"
+                Grid.Row="12"
                 Margin="4"
                 Style="{StaticResource text_BlackMedium}"
                 Text="Time:" />
 
             <ComboBox
                 x:Name="RemType"
-                Grid.Row="9"
+                Grid.Row="10"
                 Grid.Column="1"
                 Margin="4"
                 SelectedIndex="{Binding AVM._activeAppointment.RemTypeIndex, Mode=OneWay}">
@@ -325,7 +333,7 @@
 
             <ComboBox
                 x:Name="RemDays"
-                Grid.Row="10"
+                Grid.Row="11"
                 Grid.Column="1"
                 Margin="4"
                 SelectedIndex="{Binding AVM._activeAppointment.RemDaysIndex, Mode=OneWay}">
@@ -355,10 +363,10 @@
 
             <ComboBox
                 Name="RemTOD"
-                Grid.Column="{Binding AVM._activeAppointment.RemTODIndex, Mode=OneWay}"
-                Grid.Row="11"
-                Margin="4"
-                SelectedIndex="0">
+                Grid.Column="1"
+                Grid.Row="12"
+                Margin="5,4,3,4"
+                SelectedIndex="{Binding AVM._activeAppointment.RemTODIndex, Mode=OneWay}">
                 <ComboBoxItem
                     Content="AM" />
                 <ComboBoxItem
@@ -367,7 +375,7 @@
 
             <CheckBox
                 Grid.Column="0"
-                Grid.Row="12"
+                Grid.Row="13"
                 Grid.ColumnSpan="2"
                 Margin="4"
                 HorizontalAlignment="Center"

@@ -89,7 +89,7 @@
             Grid.Column="2"
             Grid.Row="2"
             VerticalAlignment="Center"
-            Content="More Info" />
+            Content="Patient Info" />
 
     </Grid>
 </UserControl>

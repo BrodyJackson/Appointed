@@ -7,7 +7,7 @@ using Appointed.Classes;
 
 namespace Appointed.Models
 {
-    class PatientDatabaseModel
+    public class PatientDatabaseModel
     {
 
         // The patient's health care ID is the key to the Patient Object.
@@ -63,7 +63,7 @@ namespace Appointed.Models
 
             // One fake emergency contact.
             EmergencyContact e = new EmergencyContact
-            { EmergencyName="Don Ling Juan", EmergencyPhone="567-890-1234", EmergencyRelation=EmergencyContact.RELATION.SIBLING };
+            { EmergencyName="Don Ling Juan", EmergencyPhone="567-890-1234", EmergencyRelation="Brother" };
 
             // One fake patient corresponding to Mike Ross.
             _patientDictionary[12345678] = new Patient
@@ -78,8 +78,6 @@ namespace Appointed.Models
                 Province = Patient.PROVINCE.AB,
                 PostalCode = "T3A-333",
                 Street ="23 Ave",
-                Building ="182",
-                Suite ="12",
                 Phone = "555-555-5555",
                 Cell = "403-555-5655",
                 Email = "DonJuan@donjuan.com",
@@ -88,73 +86,104 @@ namespace Appointed.Models
 
             _patientDictionary[12345679] = new Patient
             {
-
+                FirstName="Mikala",
+                MiddleName = "Joan",
+                LastName = "Ross",
+                HealthID = 12345679,
+                BirthDate = new DateTime(1996, 12, 5),
+                Sex = Patient.SEX.FEMALE,
+                City = "Calgary",
+                Province = Patient.PROVINCE.AB,
+                PostalCode = "T3A-333",
+                Street = "23 Ave",
+                Phone = "555-555-5555",
+                Cell = "403-555-5655",
+                Email = "DonJuan@donjuan.com",
+                EmergencyContact = e
             };
 
-            _patientDictionary[12345680] = new Patient
+            _patientDictionary[86753090] = new Patient
             {
-
+                FirstName = "Mike",
+                MiddleName = "Jean",
+                LastName = "Ross",
+                HealthID = 86753090,
+                BirthDate = new DateTime(1983, 01, 17),
+                Sex = Patient.SEX.MALE,
+                City = "Calgary",
+                Province = Patient.PROVINCE.AB,
+                PostalCode = "T3A-333",
+                Street = "23 Ave",
+                Phone = "555-555-5555",
+                Cell = "403-555-5655",
+                Email = "DonJuan@donjuan.com",
+                EmergencyContact = e
             };
 
-            _patientDictionary[12345681] = new Patient
-            {
+            //_patientDictionary[12345680] = new Patient
+            //{
 
-            };
+            //};
 
-            _patientDictionary[12345682] = new Patient
-            {
+            //_patientDictionary[12345681] = new Patient
+            //{
 
-            };
+            //};
 
-            _patientDictionary[12345683] = new Patient
-            {
+            //_patientDictionary[12345682] = new Patient
+            //{
 
-            };
+            //};
 
-            _patientDictionary[12345684] = new Patient
-            {
+            //_patientDictionary[12345683] = new Patient
+            //{
 
-            };
+            //};
 
-            _patientDictionary[12345685] = new Patient
-            {
-                
-            };
+            //_patientDictionary[12345684] = new Patient
+            //{
 
-            _patientDictionary[12345686] = new Patient
-            {
+            //};
 
-            };
+            //_patientDictionary[12345685] = new Patient
+            //{
 
-            _patientDictionary[12345687] = new Patient
-            {
+            //};
 
-            };
+            //_patientDictionary[12345686] = new Patient
+            //{
 
-            _patientDictionary[12345688] = new Patient
-            {
+            //};
 
-            };
+            //_patientDictionary[12345687] = new Patient
+            //{
 
-            _patientDictionary[12345689] = new Patient
-            {
+            //};
 
-            };
+            //_patientDictionary[12345688] = new Patient
+            //{
 
-            _patientDictionary[12345690] = new Patient
-            {
+            //};
 
-            };
+            //_patientDictionary[12345689] = new Patient
+            //{
 
-            _patientDictionary[12345691] = new Patient
-            {
+            //};
 
-            };
+            //_patientDictionary[12345690] = new Patient
+            //{
 
-            _patientDictionary[12345692] = new Patient
-            {
+            //};
 
-            };
+            //_patientDictionary[12345691] = new Patient
+            //{
+
+            //};
+
+            //_patientDictionary[12345692] = new Patient
+            //{
+
+            //};
 
 
         }

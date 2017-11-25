@@ -31,14 +31,13 @@ namespace Appointed.Classes
 
         //Address
         string _street;
-        string _building;
-		string _suite;
         string _city;
 		PROVINCE _province;        
 		string _postalCode;
 
 
-		//Contact
+        //Contact
+        string _business;
 		string _phone;
 		string _cell;
 		string _email;
@@ -46,9 +45,44 @@ namespace Appointed.Classes
 		//Emergency Contact
 		EmergencyContact _emergencyContact;
 
+        //Notes
+        string _notes;
+
+        //Appointments
+        List<int> _upcomingAppointments;
+        List<int> _pastAppointments;
+
+
+        public Patient()
+        {
+            _upcomingAppointments = new List<int>();
+            _pastAppointments = new List<int>();
+        }
+
 		//Property methods
 
-		public string FirstName
+        public void MoveAppointmentToPast(int key)
+        {
+            _upcomingAppointments.Remove(key);
+            _pastAppointments.Add(key);
+        }
+
+        public List<int> GetPastAppointmentKeys()
+        {
+            return _pastAppointments;
+        }
+
+        public void AddUpcommingAppointment(int key)
+        {
+            _upcomingAppointments.Add(key);
+        }
+
+        public List<int> GetUpcomingAppointmentKeys()
+        {
+            return _upcomingAppointments;
+        }
+
+        public string FirstName
 		{
 			get { return _firstName; }
 				
@@ -131,12 +165,6 @@ namespace Appointed.Classes
 			}
 		}
 
-        internal string GetHealthIdAsString()
-        {
-            return _healthID.ToString().Substring(0, 5) + "-" + _healthID.ToString().Substring(4);
-        }
-
-
         public string Street
 		{
 			get { return _street; }
@@ -145,27 +173,6 @@ namespace Appointed.Classes
 			{
 				_street = value;
 				RaisePropertyChangedEvent("Street");
-			}
-		}
-
-        public string Building
-        {
-            get { return _building; }
-            set
-            {
-                _building = value;
-                RaisePropertyChangedEvent("Building");
-            }
-        }
-
-		public string Suite
-		{
-			get { return _suite; }
-
-			set
-			{
-				_suite = value;
-				RaisePropertyChangedEvent("Suite");
 			}
 		}
 
@@ -202,6 +209,16 @@ namespace Appointed.Classes
 			}
 		}
 
+        public string Business
+        {
+            get { return _business; }
+            set
+            {
+                _business = value;
+                RaisePropertyChangedEvent("Business");
+            }
+        }
+
 		public string Phone
 		{
 			get { return _phone; }
@@ -234,6 +251,45 @@ namespace Appointed.Classes
 				RaisePropertyChangedEvent("Email");
 			}
 		}
+
+        public string Notes
+        {
+            get { return _notes; }
+
+            set
+            {
+                _notes = value;
+                RaisePropertyChangedEvent("Notes");
+            }
+        }
+
+        public static SEX SexStringToEnum(string sex)
+        {
+            if (sex == "Male") return SEX.MALE;
+            if (sex == "Female") return SEX.FEMALE;
+
+            return SEX.OTHER;
+        }
+
+        public static PROVINCE ProvinceStringToEnum(string prov)
+        {
+            if (prov == "Alberta") return PROVINCE.AB;
+            if (prov == "British Columbia") return PROVINCE.BC;
+            if (prov == "Manitoba") return PROVINCE.MB;
+            if (prov == "New Brunswick") return PROVINCE.NB;
+            if (prov == "Newfoundland and Labrador") return PROVINCE.NL;
+            if (prov == "Nova Scotia") return PROVINCE.NS;
+            if (prov == "Northwest Territories") return PROVINCE.NT;
+            if (prov == "Nunavut") return PROVINCE.NU;
+            if (prov == "Ontario") return PROVINCE.ON;
+            if (prov == "Prince Edward Island") return PROVINCE.PE;
+            if (prov == "Quebec") return PROVINCE.QC;
+            if (prov == "Saskatchewan") return PROVINCE.SK;
+            if (prov == "Yukon") return PROVINCE.YT;
+
+            //if all else fails, assume alberta
+            return PROVINCE.AB;
+        }
 
 		public EmergencyContact EmergencyContact
 		{

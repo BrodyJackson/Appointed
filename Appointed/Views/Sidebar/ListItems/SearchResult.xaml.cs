@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static Appointed.Views.Controls.InputText;
 
 namespace Appointed.Views.Sidebar.ListItems
 {
@@ -29,8 +30,9 @@ namespace Appointed.Views.Sidebar.ListItems
             set
             {
                 patient = value;
-                PatientName.Text = patient.LastName + ", " + patient.FirstName + " " + patient.MiddleName[0] + ".";
-                PatientID.Text = patient.GetHealthIdAsString();
+                PatientName.Text = patient.LastName + ", " + patient.FirstName;
+                if (patient.MiddleName.Length > 0) PatientName.Text += " " + patient.MiddleName[0] + ".";
+                PatientID.Text = new HealthCareIDMask().FormatText(patient.HealthID.ToString());
                 PatientSex.Text = "Sex: " + patient.GetSexAsString();
                 PatientBirthday.Text = "Birthdate: " + patient.BirthDate.ToShortDateString();
             }
@@ -42,8 +44,50 @@ namespace Appointed.Views.Sidebar.ListItems
             InitializeComponent();
 
             Patient = p;
+
+            BookApptBtn.Click += BookApptBtn_Click;
+            MoreInfoBtn.Click += MoreInfoBtn_Click;
+
+            if (patient.GetUpcomingAppointmentKeys().Count > 0)
+            {
+                NextApptBtn.Click += NextApptBtn_Click;
+            }
+            else
+            {
+                NextApptBtn.IsEnabled = false;
+            }
+
         }
 
-        
+        private void NextApptBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (patient.GetUpcomingAppointmentKeys().Count > 0)
+            {
+                int nextApptKey = patient.GetUpcomingAppointmentKeys()[0];
+
+                DayInformationViewModel DIVM = (App.Current.MainWindow.DataContext as DayInformationViewModel);
+
+                Appointment nextAppt = DIVM.AVM._appointmentLookup[nextApptKey];
+                DateTime activeDT = new DateTime(DIVM._activeDate.Year, DIVM._activeDate.Month, DIVM._activeDate.Day);
+                TimeSpan diff = activeDT - nextAppt.DateTime;
+
+                if (DIVM.ShiftView.CanExecute(null))
+                    DIVM.ShiftView.Execute(diff.Days - 1);
+            }
+
+        }
+
+        private void MoreInfoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            (App.Current.MainWindow.DataContext as DayInformationViewModel).PVM.ActivePatient = patient;
+            (App.Current.MainWindow as Home).SidebarView.SetSidebarView(new PatientInfoSidebar());
+        }
+
+        private void BookApptBtn_Click(object sender, RoutedEventArgs e)
+        {
+            (App.Current.MainWindow.DataContext as DayInformationViewModel).PVM.ActivePatient = patient;
+            (App.Current.MainWindow as Home).SidebarView.SetSidebarView(new NewAppointmentSidebar());
+        }
+
     }
 }

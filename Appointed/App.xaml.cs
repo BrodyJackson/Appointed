@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -33,9 +35,18 @@ namespace Appointed
             CalendarApptFilter.Add("Standard", true);
             CalendarApptFilter.Add("Consultation", true);
 
-
+            
         }
 
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            //This should fix the date picker date format
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-CA");
+            Thread.CurrentThread.CurrentCulture = CultureInfo.DefaultThreadCurrentCulture;
+
+            base.OnStartup(e);
+        }
 
     }
 }

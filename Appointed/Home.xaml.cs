@@ -84,7 +84,7 @@ namespace Appointed
             }
             else if (e.Key == Key.Enter || e.Key == Key.Return)
             {
-                MessageBox.Show("Enter or Return Up!");
+                //MessageBox.Show("Enter or Return Up!");
             }
         }
 

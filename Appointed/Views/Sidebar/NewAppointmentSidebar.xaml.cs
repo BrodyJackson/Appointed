@@ -35,6 +35,8 @@ namespace Appointed.Views.Sidebar
             h.SidebarView.SetSidebarView(new SearchResultsSidebar());
         }
 
+        //need to add a function so that when the sidebar loads, it takes the value that is passed in as the active patient
+
         private void ComboBox_TimeSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (StartTime.SelectedItem == null)
@@ -120,11 +122,38 @@ namespace Appointed.Views.Sidebar
             }
 
             DIVM._activeDate.HasChanged = false;
-           
+
+            Appointment _newAppointment = new Appointment();
+
+            targetAppointment.DoctorName = ((Doctor)DoctorComboBox.SelectedItem).DoctorName;
+            targetAppointment.Type = type;
+            targetAppointment.StartTime = Int32.Parse(stTime);
+            targetAppointment.EndTime = Int32.Parse(endTime);
+            targetAppointment.ReminderType = ((ComboBoxItem)RemType.SelectedItem).Content.ToString();
+            targetAppointment.ReminderTimeOfDay = ((ComboBoxItem)RemTOD.SelectedItem).Content.ToString();
+            targetAppointment.ReminderDays = ((ComboBoxItem)RemDays.SelectedItem).Content.ToString();
+            targetAppointment.Comments = CommentBox.Text;
+            targetAppointment.Height = (type == "Consultation" ? "70" : "35");
+            targetAppointment.Patient = DIVM.PVM.ActivePatient.FirstName; //I tried to make this update to the active patient value that will be set by search bar
+            targetAppointment.Opacity = "0";
+
+            if (targetAppointment.Type == "Consultation")
+                apptThatFollowsTarget.Visibility = "Collapsed";
+
+
+
+
+            //if (activeAppt.Type == "Consultation")
+            //{
+            //    Appointment apptThatFollowsActive = DIVM.AVM.FindAppointmentThatFollows(activeAppt);
+            //    apptThatFollowsActive.Visibility = "Visible";
+            //}
+
+            DIVM.AVM.AddAppointment(targetAppointment, key);
+            DIVM.PVM.ActivePatient.AddUpcommingAppointment(key);
         }
 
-        //Appointment _newAppointment = new Appointment();
-        //Now need to figure out the way to create a new appointment, store the values into it
+       
 
        
 

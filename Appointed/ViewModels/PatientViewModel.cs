@@ -11,7 +11,17 @@ namespace Appointed.ViewModels
 {
     public class PatientViewModel : ObservableObject
     {
-        private PatientDatabaseModel _pdm;
+        private PatientDatabaseModel patientDatabaseModel;
+
+        public PatientDatabaseModel GetPatientDatabaseModel()
+        {
+            return patientDatabaseModel;
+        }
+
+        public void SetPatientDatabaseModel(PatientDatabaseModel value)
+        {
+            patientDatabaseModel = value;
+        }
 
         public Patient _activePatient;
 
@@ -19,7 +29,7 @@ namespace Appointed.ViewModels
         public PatientViewModel()
         {
             _activePatient = new Patient();
-            _pdm = new PatientDatabaseModel();
+            SetPatientDatabaseModel(new PatientDatabaseModel());
         }
 
 
@@ -32,19 +42,19 @@ namespace Appointed.ViewModels
         // DIVM.PVM.addPatient(p);
         public bool AddPatient(Patient p)
         {
-            return _pdm.PutPatient(p);
+            return GetPatientDatabaseModel().PutPatient(p);
         }
 
         public bool RemovePatient(Patient p)
         {
-            return _pdm.RemovePatient(p);
+            return GetPatientDatabaseModel().RemovePatient(p);
         }
 
 
 
         public Patient GetPatient(int HealthCareID)
         {
-            return _pdm.GetPatient(HealthCareID);
+            return GetPatientDatabaseModel().GetPatient(HealthCareID);
         }
 
 
