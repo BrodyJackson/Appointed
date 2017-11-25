@@ -106,7 +106,9 @@ namespace Appointed.Views
 
         }
 
+        private void SaveNotesBtn_Click(object sender, RoutedEventArgs e)
+        {
 
-
+        }
     }
 }

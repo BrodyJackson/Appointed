@@ -21,7 +21,10 @@
             Grid.Row="0"
             Grid.Column="0"
             Text="Alerts"
-            VerticalAlignment="Center" />
+            VerticalAlignment="Center"
+            Margin="0,0,0,5"
+            />
+        
         <Rectangle
             Grid.Row="1"
             Stroke="DarkGray"

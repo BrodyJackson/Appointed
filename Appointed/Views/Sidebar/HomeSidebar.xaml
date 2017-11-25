@@ -22,7 +22,7 @@
 
         <Separator
             Height="1"
-            Margin="0,6,0,0"
+            Margin="0,10,0,10"
             DockPanel.Dock="Top" />
 
         <local:JumpCalendarView
@@ -32,15 +32,16 @@
 
         <Separator
             Height="1"
-            Margin="0,6,0,0"
+            Margin="0,10,0,10"
             DockPanel.Dock="Top" />
 
         <local:FilterView
             x:Name="Filters"
             DockPanel.Dock="Top" />
+
         <Separator
             Height="1"
-            Margin="0,6,0,0"
+            Margin="0,10,0,10"
             DockPanel.Dock="Top" />
 
         <localSidebar:AlertBoxView

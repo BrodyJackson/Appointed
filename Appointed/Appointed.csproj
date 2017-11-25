@@ -392,5 +392,8 @@
   <ItemGroup>
     <Resource Include="Assets\DayIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\SaveIcon.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
