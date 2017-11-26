@@ -200,7 +200,6 @@ namespace Appointed.Views.Sidebar
 //            DIVM.AVM.AddAppointment(_newAppointment, key);
             DIVM.PVM.ActivePatient.AddUpcommingAppointment(key);
 
-
             DIVM.AVM._activeAppointment = new Appointment(_newAppointment);
 
             Home h = App.Current.MainWindow as Home;

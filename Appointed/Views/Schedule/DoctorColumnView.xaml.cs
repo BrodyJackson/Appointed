@@ -43,7 +43,7 @@ namespace Appointed.Views
         {
             // This registers the OnScheduleAltered Delegate to the ScheduleShifted Event.            
             DayInformationViewModel DIVM = (DayInformationViewModel)this.DataContext;
-            DIVM.ScheduleShifted += new EventHandler<EventArgs>(OnScheduleAltered);
+            DIVM.ScheduleShifted += OnScheduleAltered;
 
             OnScheduleAltered(null, new EventArgs());
         }
@@ -113,8 +113,12 @@ namespace Appointed.Views
 
             Console.WriteLine("Binding Code: " + bindingCode);
 
+
             if (DIVM.AVM._drScheduleMap.ContainsKey(Int32.Parse(bindingCode)))
-                this.DrColumnItemsControl.ItemsSource = DIVM.AVM._drScheduleMap[Int32.Parse(bindingCode)];
+            {
+                List<Appointment> appts = DIVM.AVM._drScheduleMap[Int32.Parse(bindingCode)];
+                this.DrColumnItemsControl.ItemsSource = appts;
+            }
             else
             {
                 if (drColumn == 0)
@@ -186,12 +190,17 @@ namespace Appointed.Views
             Appointment appt = DIVM.AVM._appointmentLookup[Int32.Parse(apptSlotID)];
 
 
+            //string bindingCode = "1" + "5" + "12" + "2017";
+
+            //List <Appointment> appts = DIVM.AVM._drScheduleMap[Int32.Parse(bindingCode)];
+
+
             //            Application.Current.MainWindow.OpacityMask = Brushes.Black;
             //            Application.Current.MainWindow.Opacity = 0.2;
             //            Application.Current.MainWindow.IsHitTestVisible = false;
 
 
-//            DIVM.AVM._activeAppointment = new Appointment(appt);
+            //            DIVM.AVM._activeAppointment = new Appointment(appt);
 
             DIVM.AVM._activeAppointment.Colour = appt.Colour;
             DIVM.AVM._activeAppointment.Comments = appt.Comments;

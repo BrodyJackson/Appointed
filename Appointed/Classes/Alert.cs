@@ -14,6 +14,7 @@ namespace Appointed.Classes
         public string ButtonText { get; set; }
         public EventHandler OnActionButtonClick { get; set; }
         public EventHandler OnDeleteButtonClick { get; set; }
+        public WaitlistEventArgs WLE { get; set; }
 
 
         public Alert()

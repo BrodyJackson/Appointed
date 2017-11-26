@@ -106,7 +106,6 @@ namespace Appointed.Views
             appt.Patient = "";
             appt.Type = "";
             appt.Waitlisted = false;
-
         }
 
         private void SaveNotesBtn_Click(object sender, RoutedEventArgs e)

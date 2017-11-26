@@ -2,7 +2,6 @@
 using Appointed.Views.Sidebar;
 using System.Windows;
 using System.Windows.Controls;
-using Appointed.ViewModels;
 using System;
 using System.Windows.Input;
 

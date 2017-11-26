@@ -16,14 +16,15 @@ namespace Appointed.ViewModels
 
     public class DayInformationViewModel : ObservableObject, ISchedule
     {
-        // Raised when the days in scope in the three day view are changed.
-        // Classes can subscribe their methods to this to be called when the event is raised. 
-        public event EventHandler<EventArgs> ScheduleShifted;
-
         // Raised when an appointment holding up a waitlist is removed.
         // Classes can subscribe their methods to this to be called when the event is raised. 
         public event EventHandler<WaitlistEventArgs> WaitlistAlert;
 
+
+        // Raised when the days in scope in the three day view are changed.
+        // Classes can subscribe their methods to this to be called when the event is raised. 
+        public event EventHandler<EventArgs> ScheduleShifted;
+        
         /// <summary>
         /// Invoked whenever a filter option is changed.
         /// When all or no doctors is clicked, this event will fire for each of the filter options that have changed.
@@ -41,6 +42,9 @@ namespace Appointed.ViewModels
         public AppointmentViewModel AVM { get; set; }
        
         public PatientViewModel PVM { get; set; }
+
+        public SidebarViewModel SVM { get; set; }
+
 
         public Waitlist WaitList { get; set; }
  
@@ -74,7 +78,8 @@ namespace Appointed.ViewModels
             _dim = new DayInformationModel();
             AVM = new AppointmentViewModel();
             PVM = new PatientViewModel();
-			
+            SVM = new SidebarViewModel();
+
             _numAppointmentsPerDay = AVM._numAppointmentsPerDay;
 
         
@@ -89,6 +94,9 @@ namespace Appointed.ViewModels
             _activeDate.Year = _dim.YearAsInt;
             _activeDate.Month = _dim.MonthAsInt;
             _activeDate.Day = _dim.DayAsInt;
+
+
+            AVM.AppointmentMoved += OnAppointmentMoved;
 
 
             return;
@@ -156,7 +164,24 @@ namespace Appointed.ViewModels
                         },
 
                         Key = Int32.Parse(a.ID)
-                    });
+                    }
+                );
+        }
+
+        public void UpdateSchedule()
+        {
+            if (ScheduleShifted != null)
+                ScheduleShifted(this, new EventArgs());
+        }
+
+        private void OnAppointmentMoved(object sender, WaitlistEventArgs e)
+        {
+            Appointment a = sender as Appointment;
+
+            ShiftView.Execute(1);
+            ShiftView.Execute(-1);
+
+            FreeAppointmentSlot(a);
         }
 
         // END COMMANDS ====================================================

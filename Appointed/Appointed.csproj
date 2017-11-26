@@ -81,6 +81,7 @@
     <Compile Include="Classes\EmeregencyContact.cs" />
     <Compile Include="Classes\Patient.cs" />
     <Compile Include="ViewModels\PatientViewModel.cs" />
+    <Compile Include="ViewModels\SidebarViewModel.cs" />
     <Compile Include="Views\Controls\DatePicker.xaml.cs">
       <DependentUpon>DatePicker.xaml</DependentUpon>
     </Compile>

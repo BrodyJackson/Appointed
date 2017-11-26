@@ -37,7 +37,9 @@ namespace Appointed.Views.Sidebar
         {
             DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
             DIVM.WaitlistAlert += OnWaitlistSpotOpen;
+            UpdateAlertsBox();
         }
+
 
         // sender is the appt that was deleted.
         // e has information on the slot for the date and doctor that just opened as well as the key
@@ -53,19 +55,21 @@ namespace Appointed.Views.Sidebar
             alert.OnActionButtonClick += OnRescheduleAppointment;
             alert.Title = "Appt Bump Available For " + a.PatientNameAbbrev;
             alert.OnDeleteButtonClick += OnRemoveAlert;
+            alert.WLE = e;
 
-            AddWaitlistAlert(alert, e);
-            UpdateAlertsBox();
+            DIVM.SVM.AddWaitlistAlert(alert);
         }
 
    
         // Pass in the alert as the sender
         private void OnRescheduleAppointment(object sender, EventArgs e)
         {
+            DayInformationViewModel DIVM = App.Current.MainWindow.DataContext as DayInformationViewModel;
+
             MessageBoxResult result =
                 MessageBox.Show
                 (
-                    "Are you sure you wish to reschedule this appointment?\nTo undo, you must delete it start over.",
+                    "Are you sure you wish to reschedule this appointment?\nTo undo, you must delete it and start over.\n\n",
                     "Confirm Selection",
                     MessageBoxButton.YesNo,
                     MessageBoxImage.Asterisk
@@ -76,51 +80,21 @@ namespace Appointed.Views.Sidebar
 
             Alert a = sender as Alert;
 
-            WaitlistEventArgs wle = _alertParams[a.Title];
+            DIVM.AVM.RescheduleAppointment(a);
+            DIVM.SVM.RemoveAlert(a);
 
-            bumpAppointment(wle.Key, wle.DoctorName, wle.Date);
+            Home h = App.Current.MainWindow as Home;
+            h.SidebarView.SetSidebarView(new HomeSidebar());
         }
+        
 
 
-        // Finds the appointment to be bumped by it's key.
-        // Changes it's time slot and doctor according to the other parameters.
-        private void bumpAppointment(int key, string drName, Date date)
-        {
-            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
-            Appointment apptToRelocate = DIVM.AVM._appointmentLookup[key];
-            Appointment apptThatFollows = null;
-
-            if (apptToRelocate.Type == "Consultation")
-            {
-                apptThatFollows = DIVM.AVM.FindAppointmentThatFollows(apptToRelocate);
-                if (apptThatFollows.Type != "")
-                    return;
-            }
-
-            DateTime dt = new DateTime(date.Year, date.Month, date.Day, date.Time24Hr / 100, date.Time24Hr % 100, 0);
-
-            apptToRelocate.DoctorName = drName;
-            apptToRelocate.Colour = DIVM.AVM.FindDrColourForDrName(apptToRelocate.DoctorName);
-            apptToRelocate.DateTime = dt;
-            apptToRelocate.StartTime = date.Time24Hr;
-            apptToRelocate.EndTime = apptToRelocate.StartTime + (apptToRelocate.Type == "Consultation" ? 30 : 15);
-            apptToRelocate.Waitlisted = false;
-
-        }
-
-
-        // If the alert removed corresponds to a waitlisted item, I need to signal to the DIVM
-        // that an appointment slot may be open.
         private void OnRemoveAlert(object sender, EventArgs e)
         {
             DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
             Alert a = sender as Alert;
 
-            if (_alertParams.ContainsKey(a.Title))
-            {
-                Appointment appt = DIVM.AVM._appointmentLookup[_alertParams[a.Title].Key];
-                DIVM.FreeAppointmentSlot(appt);
-            }
+            DIVM.SVM.RemoveAlert(a);
         }
 
 
@@ -136,21 +110,20 @@ namespace Appointed.Views.Sidebar
 
         public void UpdateAlertsBox()
         {
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
             AlertsList.Children.Clear();
 
-            foreach(Alert a in _alerts)
+            //foreach(Alert a in _alerts)
+            //{
+            //    ListItems.Alert alert = new ListItems.Alert(a, this);
+            //    AlertsList.Children.Add(alert);
+            //}
+
+            foreach (KeyValuePair<int, Alert> entry in DIVM.SVM.WaitlistAlerts)
             {
-                ListItems.Alert alert = new ListItems.Alert(a, this);
+                ListItems.Alert alert = new ListItems.Alert(entry.Value, this);
                 AlertsList.Children.Add(alert);
             }
-        }
-
-
-
-        private void AddWaitlistAlert(Alert a, WaitlistEventArgs e)
-        {
-            AddAlert(a);
-            _alertParams[a.Title] = e;
         }
 
     }
