@@ -185,39 +185,41 @@ namespace Appointed.Views
 
             Appointment appt = DIVM.AVM._appointmentLookup[Int32.Parse(apptSlotID)];
 
-            if (appt.Type == "")
-                return;
 
             //            Application.Current.MainWindow.OpacityMask = Brushes.Black;
             //            Application.Current.MainWindow.Opacity = 0.2;
             //            Application.Current.MainWindow.IsHitTestVisible = false;
 
 
-            DIVM.AVM._activeAppointment = new Appointment(appt);
+//            DIVM.AVM._activeAppointment = new Appointment(appt);
 
-            //DIVM.AVM._activeAppointment.Colour = appt.Colour;
-            //DIVM.AVM._activeAppointment.Comments = appt.Comments;
-            //DIVM.AVM._activeAppointment.Cursor = appt.Cursor;
-            //DIVM.AVM._activeAppointment.DateTime = appt.DateTime;
-            //DIVM.AVM._activeAppointment.DoctorName = appt.DoctorName;
-            //DIVM.AVM._activeAppointment.EndTime = appt.EndTime;
-            //DIVM.AVM._activeAppointment.Height = appt.Height;
-            //DIVM.AVM._activeAppointment.ID = appt.ID;
-            //DIVM.AVM._activeAppointment.Margin = appt.Margin;
-            //DIVM.AVM._activeAppointment.Missed = appt.Missed;
-            //DIVM.AVM._activeAppointment.Arrived = appt.Arrived;
-            //DIVM.AVM._activeAppointment.Opacity = appt.Opacity;
-            //DIVM.AVM._activeAppointment.Patient = appt.Patient;
-            //DIVM.AVM._activeAppointment.RowSpan = appt.RowSpan;
-            //DIVM.AVM._activeAppointment.StartTime = appt.StartTime;
-            //DIVM.AVM._activeAppointment.Type = appt.Type;
-            //DIVM.AVM._activeAppointment.Waitlisted = appt.Waitlisted;
-            //DIVM.AVM._activeAppointment.Visibility = appt.Visibility;
+            DIVM.AVM._activeAppointment.Colour = appt.Colour;
+            DIVM.AVM._activeAppointment.Comments = appt.Comments;
+            DIVM.AVM._activeAppointment.Cursor = appt.Cursor;
+            DIVM.AVM._activeAppointment.DateTime = appt.DateTime;
+            DIVM.AVM._activeAppointment.DoctorName = appt.DoctorName;
+            DIVM.AVM._activeAppointment.EndTime = appt.EndTime;
+            DIVM.AVM._activeAppointment.Height = appt.Height;
+            DIVM.AVM._activeAppointment.ID = appt.ID;
+            DIVM.AVM._activeAppointment.Margin = appt.Margin;
+            DIVM.AVM._activeAppointment.Missed = appt.Missed;
+            DIVM.AVM._activeAppointment.Arrived = appt.Arrived;
+            DIVM.AVM._activeAppointment.Opacity = appt.Opacity;
+            DIVM.AVM._activeAppointment.Patient = appt.Patient;
+            DIVM.AVM._activeAppointment.RowSpan = appt.RowSpan;
+            DIVM.AVM._activeAppointment.StartTime = appt.StartTime;
+            DIVM.AVM._activeAppointment.Type = appt.Type;
+            DIVM.AVM._activeAppointment.Waitlisted = appt.Waitlisted;
+            DIVM.AVM._activeAppointment.Visibility = appt.Visibility;
 
             DIVM._activeDate.Day = appt.DateTime.Day;
             DIVM._activeDate.Month = appt.DateTime.Month;
             DIVM._activeDate.Year = appt.DateTime.Year;
             DIVM._activeDate.Time24Hr = appt.StartTime;
+
+
+            if (appt.Type == "")
+                return;
 
             Home h = App.Current.MainWindow as Home;
             h.SidebarView.SetSidebarView(new AppointmentDetailsSidebar());

@@ -87,7 +87,7 @@ namespace Appointed.Views.Sidebar
 
         private void ComboBox_ApptTypeSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ComboBox_StartTimeSelectionChanged(sender, e);
+            ComboBox_StartTimeSelectionChanged(null, null);
         }
 
 

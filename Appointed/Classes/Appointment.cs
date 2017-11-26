@@ -330,6 +330,7 @@ namespace Appointed.Classes
                 _startTime = value;
                 RaisePropertyChangedEvent("StartTime");
                 RaisePropertyChangedEvent("StartTimeStr");
+                RaisePropertyChangedEvent("TimeIndex");
             }
         }
 

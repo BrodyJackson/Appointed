@@ -135,7 +135,8 @@
                     Grid.Column="1"
                     SelectedIndex="0"
                     Margin="4"
-                    HorizontalAlignment="Stretch">
+                    HorizontalAlignment="Stretch"
+                    >
 
                     <ComboBoxItem
                         Content="Standard" />
@@ -149,11 +150,13 @@
                     Text="Date:"
                     HorizontalAlignment="Stretch"
                     Margin="4" />
+
                 <Controls:DatePicker
                     x:Name="DatePicker"
                     Grid.Row="5"
                     Grid.Column="1"
-                    Margin="4" />
+                    Margin="4"     
+                    />
 
                 <TextBlock
                     Grid.Row="6"

@@ -26,7 +26,27 @@ namespace Appointed.Views.Sidebar
         public NewAppointmentSidebar()
         {
             InitializeComponent();
+
+            this.Loaded += new RoutedEventHandler(NewAppointmentSidebar_Loaded);
         }
+
+
+        void NewAppointmentSidebar_Loaded(object sender, RoutedEventArgs e)
+        {
+            (this.DataContext as DayInformationViewModel)._activeDate.ActiveDateChanged += ActiveDateChanged;
+
+            ApptTypeComboBox.SelectionChanged += ComboBox_ApptTypeSelectionChanged;
+
+            ActiveDateChanged(null, null);
+        }
+
+
+        private void ActiveDateChanged(object sender, EventArgs e)
+        {
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
+            DatePicker.InputText.TextField.Text = DIVM.AVM._activeAppointment.DateTimeStr;
+        }
+
 
         private void OnMouseLeftRelease_Discard(object sender, MouseButtonEventArgs e)
         {
@@ -37,10 +57,12 @@ namespace Appointed.Views.Sidebar
 
         //need to add a function so that when the sidebar loads, it takes the value that is passed in as the active patient
 
+
         private void ComboBox_TimeSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (StartTime.SelectedItem == null)
+            if (StartTime.SelectedItem == null || ApptTypeComboBox.SelectedItem == null)
             {
+                Console.WriteLine("Gotcha: \n");
                 return;
             }
 
@@ -53,6 +75,13 @@ namespace Appointed.Views.Sidebar
                 EndTime.Text = DateTime.Parse((StartTime.SelectedItem as Classes.Time).TimeString).AddMinutes(30).ToShortTimeString();
             }
         }
+
+
+        private void ComboBox_ApptTypeSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox_TimeSelectionChanged(null, null);
+        }
+
 
         private void OnMouseLeftRelease_Save(object sender, MouseButtonEventArgs e)
         {
