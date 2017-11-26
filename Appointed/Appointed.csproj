@@ -67,6 +67,7 @@
     <Compile Include="Classes\TextMasks.cs" />
     <Compile Include="Classes\Time.cs" />
     <Compile Include="Classes\Waitlist.cs" />
+    <Compile Include="Classes\WaitlistEventArgs.cs" />
     <Compile Include="Commands\ChangeMonthCommand.cs" />
     <Compile Include="Commands\ShiftScheduleViewCommand.cs" />
     <Compile Include="Events\ObservableObject.cs" />

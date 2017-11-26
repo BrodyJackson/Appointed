@@ -186,20 +186,7 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
 
-                <!--<ComboBox
-                x:Name="StartTime"
-                Grid.Row="5"
-                Grid.Column="0"                 
-                Width="100" Margin="88,27,88,28"
-                Padding="5"
-                VerticalContentAlignment="Center"
-                HorizontalAlignment="Center"
-                SelectionChanged="ComboBox_TimeSelectionChanged">
-                -->
-                <!--These will be changed so that the time intervals reflect the currently selected appointment
-                The values that are in the comboBox right now, are just placeholders-->
-                <!--
-            </ComboBox>-->
+
                 <TextBlock
                     Grid.Column="0"
                     Grid.Row="7"
@@ -327,6 +314,7 @@
                     Grid.ColumnSpan="2" />
 
                 <CheckBox
+                    x:Name="AddToWaitlistCheckBox"
                     Grid.Row="14"
                     Style="{StaticResource checkBoxes}"
                     Content="Add to Waitlist"

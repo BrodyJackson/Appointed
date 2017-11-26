@@ -82,6 +82,7 @@
             VerticalAlignment="Bottom"
             Margin="4"
             Padding="2"
+            Click="AlertActionBtn_Click"
             />
 
     </Grid>

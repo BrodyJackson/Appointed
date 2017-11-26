@@ -43,8 +43,11 @@ namespace Appointed.Views.Sidebar
 
         private void ActiveDateChanged(object sender, EventArgs e)
         {
+            
             DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
-            DatePicker.InputText.TextField.Text = DIVM.AVM._activeAppointment.DateTimeStr;
+
+            if (DIVM != null && DIVM.AVM._activeAppointment != null)
+                DatePicker.InputText.TextField.Text = DIVM.AVM._activeAppointment.DateTimeStr;
         }
 
 
@@ -91,7 +94,6 @@ namespace Appointed.Views.Sidebar
             Appointment apptThatFollowsTarget = null;
 
             string stTime = ((Time)StartTime.SelectedItem).TimeString;
-//            string timeCmp = stTime;
             stTime = stTime.Substring(0, stTime.IndexOf(':')) + stTime.Substring(stTime.IndexOf(':') + 1);
 
             string endTime = EndTime.Text;
@@ -105,16 +107,9 @@ namespace Appointed.Views.Sidebar
 
             // Build the key to look up the appointment slot they wish to book in.
             int time = Int32.Parse(stTime);
-            int year = Int32.Parse(dateString.Substring(0, dateString.IndexOf('-')));
-
-            int firstInd = dateString.IndexOf('-') + 1;
-            int secondInd = dateString.LastIndexOf('-');
-            int month = Int32.Parse(dateString.Substring(firstInd, secondInd - firstInd));
-
-            int day = Int32.Parse(dateString.Substring(dateString.LastIndexOf('-') + 1));
 
             // The hashcode of the DateTime + <DrColumn> form the key for appointment lookups.
-            DateTime dt = new DateTime(year, month, day, time / 100, time % 100, 0);
+            DateTime dt = getDateTime(time, dateString);
             int drColumn = DIVM.AVM.FindDrColumnForDrName(drName);
             int key = dt.GetHashCode() + drColumn;
 
@@ -150,43 +145,84 @@ namespace Appointed.Views.Sidebar
 
             }
 
-            DIVM._activeDate.HasChanged = false;
 
-            Appointment _newAppointment = new Appointment();
+            Appointment _newAppointment = DIVM.AVM._appointmentLookup[key];
 
-            targetAppointment.DoctorName = ((Doctor)DoctorComboBox.SelectedItem).DoctorName;
-            targetAppointment.Type = type;
-            targetAppointment.StartTime = Int32.Parse(stTime);
-            targetAppointment.EndTime = Int32.Parse(endTime);
-            targetAppointment.ReminderType = ((ComboBoxItem)RemType.SelectedItem).Content.ToString();
-            targetAppointment.ReminderTimeOfDay = ((ComboBoxItem)RemTOD.SelectedItem).Content.ToString();
-            targetAppointment.ReminderDays = ((ComboBoxItem)RemDays.SelectedItem).Content.ToString();
-            targetAppointment.Comments = CommentBox.Text;
-            targetAppointment.Height = (type == "Consultation" ? "70" : "35");
-            targetAppointment.Patient = DIVM.PVM.ActivePatient.FirstName; //I tried to make this update to the active patient value that will be set by search bar
-            targetAppointment.Opacity = "0";
+            _newAppointment.ID = key.ToString();
+            _newAppointment.Margin = "0,1,0,0";
+            _newAppointment.DoctorName = ((Doctor)DoctorComboBox.SelectedItem).DoctorName;
+            _newAppointment.Colour = DIVM.AVM.FindDrColourForDrName(_newAppointment.DoctorName);
+            _newAppointment.Cursor = "Hand";
+            _newAppointment.DateTime = dt;
+            _newAppointment.IsClickable = "True";
+            _newAppointment.Missed = false;
+            _newAppointment.Arrived = false;
 
-            if (targetAppointment.Type == "Consultation")
+            if ((bool)AddToWaitlistCheckBox.IsChecked)
+            {
+                dateString = WaitlistDatePicker.InputText.TextField.Text;
+
+                stTime = ((Time)WaitlistStartTime.SelectedItem).TimeString;
+                stTime = stTime.Substring(0, stTime.IndexOf(':')) + stTime.Substring(stTime.IndexOf(':') + 1);
+                time = Int32.Parse(stTime);
+
+                DateTime date = getDateTime(time, dateString);
+
+                drName = ((Doctor)WaitlistDoctorComboBox.SelectedItem).DoctorName;
+
+                _newAppointment.WaitlistPos = DIVM.WaitList.AddAppointment(_newAppointment, date, drName).ToString();
+                _newAppointment.Waitlisted = true;
+            }
+
+            _newAppointment.Type = type;
+            _newAppointment.StartTime = Int32.Parse(stTime);
+            _newAppointment.EndTime = Int32.Parse(endTime);
+            _newAppointment.ReminderType = ((ComboBoxItem)RemType.SelectedItem).Content.ToString();
+            _newAppointment.ReminderTimeOfDay = ((ComboBoxItem)RemTOD.SelectedItem).Content.ToString();
+            _newAppointment.ReminderDays = ((ComboBoxItem)RemDays.SelectedItem).Content.ToString();
+            _newAppointment.Comments = CommentBox.Text;
+            _newAppointment.Height = (type == "Consultation" ? "70" : "35");
+            _newAppointment.Patient = DIVM.PVM.ActivePatient.FirstName + " " + DIVM.PVM.ActivePatient.LastName;
+            //I tried to make this update to the active patient value that will be set by search bar
+            _newAppointment.Opacity = "0.4";
+            _newAppointment.Visibility = "Visible";
+
+            if (_newAppointment.Type == "Consultation")
                 apptThatFollowsTarget.Visibility = "Collapsed";
 
-
-
-
+            
             //if (activeAppt.Type == "Consultation")
             //{
             //    Appointment apptThatFollowsActive = DIVM.AVM.FindAppointmentThatFollows(activeAppt);
             //    apptThatFollowsActive.Visibility = "Visible";
             //}
 
-            DIVM.AVM.AddAppointment(targetAppointment, key);
+//            DIVM.AVM.AddAppointment(_newAppointment, key);
             DIVM.PVM.ActivePatient.AddUpcommingAppointment(key);
+
+
+            DIVM.AVM._activeAppointment = new Appointment(_newAppointment);
+
+            Home h = App.Current.MainWindow as Home;
+            h.SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
         }
 
-       
-
-       
 
 
+
+
+        public DateTime getDateTime(int startTime, string yearMonthDay)
+        {
+            int year = Int32.Parse(yearMonthDay.Substring(0, yearMonthDay.IndexOf('-')));
+
+            int firstInd = yearMonthDay.IndexOf('-') + 1;
+            int secondInd = yearMonthDay.LastIndexOf('-');
+            int month = Int32.Parse(yearMonthDay.Substring(firstInd, secondInd - firstInd));
+
+            int day = Int32.Parse(yearMonthDay.Substring(yearMonthDay.LastIndexOf('-') + 1));
+
+            return new DateTime(year, month, day, startTime / 100, startTime % 100, 0);
+        }
        
         
 

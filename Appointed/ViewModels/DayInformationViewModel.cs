@@ -16,8 +16,13 @@ namespace Appointed.ViewModels
 
     public class DayInformationViewModel : ObservableObject, ISchedule
     {
-        // Classes can subscribe their methods to this event to be called when the event is raised. 
+        // Raised when the days in scope in the three day view are changed.
+        // Classes can subscribe their methods to this to be called when the event is raised. 
         public event EventHandler<EventArgs> ScheduleShifted;
+
+        // Raised when an appointment holding up a waitlist is removed.
+        // Classes can subscribe their methods to this to be called when the event is raised. 
+        public event EventHandler<WaitlistEventArgs> WaitlistAlert;
 
         /// <summary>
         /// Invoked whenever a filter option is changed.
@@ -128,6 +133,31 @@ namespace Appointed.ViewModels
                 ApptFilterChangedDIVM(this, new EventArgs());
         }
 
+        public void FreeAppointmentSlot(Appointment appt)
+        {
+            Appointment a = WaitList.GetApptWaiting(appt);
+
+            if (a == null || a == appt)
+                return;
+
+            if (WaitlistAlert != null)
+                WaitlistAlert
+                (
+                    appt,
+                    new WaitlistEventArgs
+                    {
+                        DoctorName = appt.DoctorName,
+                        Date = new Date
+                        {
+                            Day = appt.DateTime.Day,
+                            Month = appt.DateTime.Month,
+                            Year = appt.DateTime.Year,
+                            Time24Hr = appt.StartTime
+                        },
+
+                        Key = Int32.Parse(a.ID)
+                    });
+        }
 
         // END COMMANDS ====================================================
 

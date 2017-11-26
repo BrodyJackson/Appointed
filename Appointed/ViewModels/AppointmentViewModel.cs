@@ -249,9 +249,6 @@ namespace Appointed.ViewModels
 
                     bindingCode = (i + 1).ToString() + date.Day.ToString() + date.Month.ToString() + date.Year.ToString();
                     _drScheduleMap.Add(Int32.Parse(bindingCode), listOfAppointments);
-
-                    Console.WriteLine("Binding Code in dictionary: " + bindingCode);
-
                 }
             }
         }
@@ -345,18 +342,18 @@ namespace Appointed.ViewModels
                 }
             }
 
-            _appointmentLookup[key] = appointment;
+            _appointmentLookup[key] = new Appointment(appointment);
 
 
             
-            int doctorColumn = 0;
-            for (int i = 0; i < DoctorsOnShiftCount; i++)
-            {
-                if (DoctorsOnShift.ElementAt(i).DoctorName.Equals(appointment.DoctorName))
-                    doctorColumn = i;
-            }
+//            int doctorColumn = 0;
+//            for (int i = 0; i < DoctorsOnShiftCount; i++)
+//            {
+//                if (DoctorsOnShift.ElementAt(i).DoctorName.Equals(appointment.DoctorName))
+//                    doctorColumn = i;
+//            }
 
-            InsertAppointment(doctorColumn, appointment);
+//            InsertAppointment(doctorColumn, appointment);
 
             return true;
         }

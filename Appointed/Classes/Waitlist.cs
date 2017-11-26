@@ -28,7 +28,7 @@ namespace Appointed.Classes
         // be used as the key to find the appointment in the dictionary '_appointmentLookup' where the reference to the appointment that was
         // waiting can be retrieved and used directly to modify it's fields. Modifying the fields of the return value may not have any effect
         // on the appointment in the database.
-        public Appointment getApptWaiting(Appointment a)
+        public Appointment GetApptWaiting(Appointment a)
         {
             DayInformationViewModel DIVM = App.Current.MainWindow.DataContext as DayInformationViewModel;
 
@@ -58,15 +58,16 @@ namespace Appointed.Classes
 
 
         // Add Appointment 'apptToAdd' to the waitlist for the appointment slot identified by the 'dateDesired' and the 'nameOfDocDesired'.
-        // If 'nameOfDoc' is invalid it returns without modifying the waitlist.
+        // If 'nameOfDoc' is invalid it returns -1 and does not modify the waitlist.
         // 'apptToAdd' should have it's DateTime and ID set according to the slot it currently occupies, not the slot
         // it wishes to wait for.
-        public void addAppointment(Appointment apptToAdd, DateTime dateDesired, string nameOfDocDesired)
+        // Returns the zero based waitlist position of this Appointment for this slot.
+        public int AddAppointment(Appointment apptToAdd, DateTime dateDesired, string nameOfDocDesired)
         {
             DayInformationViewModel DIVM = App.Current.MainWindow.DataContext as DayInformationViewModel;
 
             if (DIVM.AVM.DoctorsOnShift.All(x => x.DoctorName != nameOfDocDesired))
-                return;
+                return -1;
 
             int key = dateDesired.GetHashCode() + DIVM.AVM.FindDrColumnForDrName(nameOfDocDesired);
 
@@ -75,13 +76,13 @@ namespace Appointed.Classes
             else
                 waitlist[key] = new List<Appointment> { apptToAdd };
 
-            return;
+            return (waitlist[key].Count - 1);
         }
 
 
         // Remove Appointment 'apptToRemove' from the waitlist.
         // Cannot be undone - have to be placed at the back of the queue to re-enter waitlist.
-        public void removeAppointment(Appointment apptToRemove)
+        public void RemoveAppointment(Appointment apptToRemove)
         {
             DayInformationViewModel DIVM = App.Current.MainWindow.DataContext as DayInformationViewModel;
 
