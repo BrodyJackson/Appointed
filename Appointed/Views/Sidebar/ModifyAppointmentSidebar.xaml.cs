@@ -46,8 +46,19 @@ namespace Appointed.Views.Sidebar
 
         private void OnMouseLeftRelease_Discard(object sender, MouseButtonEventArgs e)
         {
-            Home h = App.Current.MainWindow as Home;
+            MessageBoxResult result =
+                MessageBox.Show
+                (
+                    "Are you sure you wish to discard your changes?",
+                    "Confirm Selection",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Asterisk
+                );
 
+            if (result == MessageBoxResult.No || result == MessageBoxResult.None)
+                return;
+
+            Home h = App.Current.MainWindow as Home;
             h.SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
         }
 

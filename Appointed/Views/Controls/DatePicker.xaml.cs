@@ -90,7 +90,12 @@ namespace Appointed.Views.Controls
         {
             Calendar c = sender as Calendar;
             DateSelected = c.SelectedDate;
-            InputText.TextField.Text = DateSelected.Value.ToShortDateString();
+
+            InputText.TextField.Text = 
+                DateSelected.Value.Year.ToString()  + "-" + 
+                DateSelected.Value.Month.ToString() + "-" +
+                DateSelected.Value.Day.ToString();
+
             (c.Parent as Popup).IsOpen = false;
             InputText.TextField.Focus();
         }
