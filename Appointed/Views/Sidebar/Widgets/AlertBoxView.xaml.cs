@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Appointed.ViewModels;
+using Appointed.Views.Sidebar.Widgets;
+using System.Windows.Controls.Primitives;
 
 namespace Appointed.Views.Sidebar
 {
@@ -24,6 +26,8 @@ namespace Appointed.Views.Sidebar
     {
         List<Alert> _alerts = new List<Alert>();
         Dictionary<string, WaitlistEventArgs> _alertParams = new Dictionary<string, WaitlistEventArgs>();
+
+        Alert activeAlert;
 
         public AlertBoxView()
         {
@@ -65,11 +69,72 @@ namespace Appointed.Views.Sidebar
         private void OnRescheduleAppointment(object sender, EventArgs e)
         {
             DayInformationViewModel DIVM = App.Current.MainWindow.DataContext as DayInformationViewModel;
+            Alert a = sender as Alert;
 
+            activeAlert = a;
+
+            Appointment apptToReschedule = DIVM.AVM._appointmentLookup[a.WLE.Key];
+
+            string currDay = DIVM.GetDayString(apptToReschedule.DateTime.Day);
+            string currMonth = DIVM.GetMonthString(apptToReschedule.DateTime.Month);
+            string currYear = apptToReschedule.DateTime.Year.ToString();
+            string currStart = apptToReschedule.StartTimeStr;
+
+            string newDay = DIVM.GetDayString(a.WLE.Date.Day);
+            string newMonth = DIVM.GetMonthString(a.WLE.Date.Month);
+            string newYear = a.WLE.Date.Year.ToString();
+            string newStart = a.WLE.Date.Time24Hr.ToString();
+            newStart = newStart.Insert(newStart.Length - 2, ":");
+
+            RescheduleConfirmation r = new RescheduleConfirmation();
+            r.TypeNameTextCurrent.Text = "Appointment for " + apptToReschedule.Patient + " with " + apptToReschedule.DoctorName;
+            r.DateTimeTextCurrent.Text =
+                "On " + currDay + ", " + currMonth + " " + apptToReschedule.DateTime.Day + ", " + currYear + " at " + currStart;
+
+            r.TypeNameTextNew.Text =  "Appointment for " + apptToReschedule.Patient + " with " + a.WLE.DoctorName;
+            r.DateTimeTextNew.Text =
+                 "On " + newDay + ", " + newMonth + " " + a.WLE.Date.Day + ", " + newYear + " at " + newStart;
+
+
+            SidebarFrameView s = ((App.Current.MainWindow as Home).SidebarView) as SidebarFrameView;
+            HomeSidebar h = s.SidebarGridLayout.Children.OfType<HomeSidebar>().ElementAt(0);
+
+            Popup popup = new Popup
+            {
+                Child = r,
+                StaysOpen = true,
+                AllowsTransparency = true,
+                PlacementTarget = h.AlertBox,
+                Placement = PlacementMode.Right,
+                VerticalOffset = 50
+            };
+
+
+            popup.IsOpen = true;
+
+            r.RescheduleButton.Click += OnDoReschedule;            
+        }
+
+
+        private void OnDoReschedule(object sender, EventArgs e)
+        {
+            DayInformationViewModel DIVM = App.Current.MainWindow.DataContext as DayInformationViewModel;
+
+            DIVM.AVM.RescheduleAppointment(activeAlert);
+            DIVM.SVM.RemoveAlert(activeAlert);
+
+            Home home = App.Current.MainWindow as Home;
+            home.SidebarView.SetSidebarView(new HomeSidebar());
+        }
+
+
+
+        private void OnRemoveAlert(object sender, EventArgs e)
+        {
             MessageBoxResult result =
                 MessageBox.Show
                 (
-                    "Are you sure you wish to reschedule this appointment?\nTo undo, you must delete it and start over.\n\n",
+                    "Are you sure you wish to remove this appointment from the waitlist?",
                     "Confirm Selection",
                     MessageBoxButton.YesNo,
                     MessageBoxImage.Asterisk
@@ -78,23 +143,23 @@ namespace Appointed.Views.Sidebar
             if (result == MessageBoxResult.No || result == MessageBoxResult.None)
                 return;
 
-            Alert a = sender as Alert;
 
-            DIVM.AVM.RescheduleAppointment(a);
+            DayInformationViewModel DIVM = App.Current.MainWindow.DataContext as DayInformationViewModel;
+
+            Alert a = sender as Alert;
             DIVM.SVM.RemoveAlert(a);
 
-            Home h = App.Current.MainWindow as Home;
-            h.SidebarView.SetSidebarView(new HomeSidebar());
-        }
-        
+            int key = new DateTime(a.WLE.Date.Year, a.WLE.Date.Month, a.WLE.Date.Day, a.WLE.Date.Time24Hr / 100, a.WLE.Date.Time24Hr % 100, 0).GetHashCode();
+            key += DIVM.AVM.FindDrColumnForDrName(a.WLE.DoctorName);
 
+            Appointment apptToRemove = DIVM.AVM._appointmentLookup[a.WLE.Key];
+            DIVM.WaitList.RemoveAppointment(apptToRemove);
 
-        private void OnRemoveAlert(object sender, EventArgs e)
-        {
-            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
-            Alert a = sender as Alert;
+            Appointment freeApptSlot = DIVM.AVM._appointmentLookup[key];
+            DIVM.FreeAppointmentSlot(freeApptSlot);
 
-            DIVM.SVM.RemoveAlert(a);
+            Home home = App.Current.MainWindow as Home;
+            home.SidebarView.SetSidebarView(new HomeSidebar());
         }
 
 
@@ -110,7 +175,7 @@ namespace Appointed.Views.Sidebar
 
         public void UpdateAlertsBox()
         {
-            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
+            DayInformationViewModel DIVM = App.Current.MainWindow.DataContext as DayInformationViewModel;
             AlertsList.Children.Clear();
 
             //foreach(Alert a in _alerts)

@@ -145,8 +145,6 @@ namespace Appointed.Views.Sidebar
             apptThatFollowsTarget = DIVM.AVM.FindAppointmentThatFollows(targetAppointment);
             if (targetAppointment != null && targetAppointment != activeAppt)
             {
-
-
                 if ((targetAppointment.Type != "")   ||
                     (type == "Consultation" && apptThatFollowsTarget.Type != ""  && apptThatFollowsTarget != activeAppt))
                 {

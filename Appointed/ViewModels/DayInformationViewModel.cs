@@ -188,6 +188,17 @@ namespace Appointed.ViewModels
 
 
 
+        public string GetMonthString(int month)
+        {
+            return (_dim.GetMonthString(month));
+        }
+
+
+        public string GetDayString(int day)
+        {
+            return (_dim.GetDayString(day));
+        }
+
 
 
 

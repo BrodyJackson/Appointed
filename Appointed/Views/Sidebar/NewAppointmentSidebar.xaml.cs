@@ -43,13 +43,14 @@ namespace Appointed.Views.Sidebar
 
         private void ActiveDateChanged(object sender, EventArgs e)
         {
-            
             DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
 
             if (DIVM != null && DIVM.AVM._activeAppointment != null)
+            {
                 DatePicker.InputText.TextField.Text = DIVM.AVM._activeAppointment.DateTimeStr;
+                WaitlistDatePicker.InputText.TextField.Text = DIVM.AVM._activeAppointment.DateTimeStr;
+            }
         }
-
 
         private void OnMouseLeftRelease_Discard(object sender, MouseButtonEventArgs e)
         {
@@ -60,6 +61,24 @@ namespace Appointed.Views.Sidebar
 
         //need to add a function so that when the sidebar loads, it takes the value that is passed in as the active patient
 
+
+        private void ComboBox_WaitlistTimeSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (WaitlistStartTime.SelectedItem == null || ApptTypeComboBox.SelectedItem == null)
+            {
+                Console.WriteLine("Gotcha: \n");
+                return;
+            }
+
+            if (((ApptTypeComboBox.SelectedItem as ComboBoxItem).Content as string) == "Standard")
+            {
+                WaitlistEndTime.Text = DateTime.Parse((WaitlistStartTime.SelectedItem as Classes.Time).TimeString).AddMinutes(15).ToShortTimeString();
+            }
+            else
+            {
+                WaitlistEndTime.Text = DateTime.Parse((WaitlistStartTime.SelectedItem as Classes.Time).TimeString).AddMinutes(30).ToShortTimeString();
+            }
+        }
 
         private void ComboBox_TimeSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -79,10 +98,11 @@ namespace Appointed.Views.Sidebar
             }
         }
 
-
+        // Forces the appt end time/s to update when the appt type is changed.
         private void ComboBox_ApptTypeSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox_TimeSelectionChanged(null, null);
+            ComboBox_WaitlistTimeSelectionChanged(null, null);
         }
 
 
@@ -190,16 +210,8 @@ namespace Appointed.Views.Sidebar
             if (_newAppointment.Type == "Consultation")
                 apptThatFollowsTarget.Visibility = "Collapsed";
 
-            
-            //if (activeAppt.Type == "Consultation")
-            //{
-            //    Appointment apptThatFollowsActive = DIVM.AVM.FindAppointmentThatFollows(activeAppt);
-            //    apptThatFollowsActive.Visibility = "Visible";
-            //}
 
-//            DIVM.AVM.AddAppointment(_newAppointment, key);
             DIVM.PVM.ActivePatient.AddUpcommingAppointment(key);
-
             DIVM.AVM._activeAppointment = new Appointment(_newAppointment);
 
             Home h = App.Current.MainWindow as Home;

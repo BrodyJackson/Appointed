@@ -367,7 +367,8 @@
                     Style="{StaticResource text_BlackMedium}"
                     Text="Start Time:"
                     Margin="4"
-                    HorizontalAlignment="Stretch" />
+                    HorizontalAlignment="Stretch"
+                    />
 
                 <ComboBox
                     x:Name="WaitlistStartTime"
@@ -375,7 +376,9 @@
                     Grid.Column="1"
                     Margin="4"
                     ItemsSource="{Binding TimeStamps}"
-                    SelectedIndex="{Binding AVM._activeAppointment.TimeIndex, Mode=OneWay}">
+                    SelectedIndex="{Binding AVM._activeAppointment.TimeIndex, Mode=OneWay}"
+                    SelectionChanged="ComboBox_WaitlistTimeSelectionChanged"
+                    >
 
                     <ComboBox.ItemTemplate>
                         <DataTemplate>

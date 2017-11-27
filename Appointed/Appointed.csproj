@@ -41,6 +41,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -186,6 +187,9 @@
     </Compile>
     <Compile Include="Views\Schedule\ThreeDayView.xaml.cs">
       <DependentUpon>ThreeDayView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sidebar\Widgets\RescheduleConfirmation.xaml.cs">
+      <DependentUpon>RescheduleConfirmation.xaml</DependentUpon>
     </Compile>
     <Page Include="DesignTimeResources.xaml">
       <SubType>Designer</SubType>
@@ -345,6 +349,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Schedule\ThreeDayView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\Widgets\RescheduleConfirmation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

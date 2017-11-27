@@ -66,6 +66,7 @@ namespace Appointed.Views.Controls
             calendar.Focus();
         }
 
+
         private CustomPopupPlacement[] CustomPopupCallback(Size popupSize, Size targetSize, Point offset)
         {
             //Console.WriteLine(popupSize.Height + " " + popupSize.Width);
@@ -82,9 +83,9 @@ namespace Appointed.Views.Controls
                 Point = new Point(0d, targetSize.Height)
             };
 
-
             return new CustomPopupPlacement[] { popupPlacement, popupPlacementAlt };
         }
+
 
         private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {

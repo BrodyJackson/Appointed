@@ -40,8 +40,8 @@ namespace Appointed.Views.Sidebar.ListItems
         {
             _alert.OnDeleteButtonClick?.Invoke(_alert, new EventArgs());
 
-            _parent.RemoveAlert(_alert);
-            _parent.UpdateAlertsBox();
+//            _parent.RemoveAlert(_alert);
+//            _parent.UpdateAlertsBox();
         }
 
         private void AlertActionBtn_Click(object sender, RoutedEventArgs e)
