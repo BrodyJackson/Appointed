@@ -436,7 +436,6 @@
                     VerticalAlignment="Stretch"
                     HorizontalAlignment="Stretch"
                     x:Name="CommentBox"
-                    BorderBrush="SteelBlue"
                     Background="{x:Null}"
                     SpellCheck.IsEnabled="True"
                     Cursor="Pen"
