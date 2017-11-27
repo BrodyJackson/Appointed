@@ -153,7 +153,8 @@ namespace Appointed.Views.Sidebar
             key += DIVM.AVM.FindDrColumnForDrName(a.WLE.DoctorName);
 
             Appointment apptToRemove = DIVM.AVM._appointmentLookup[a.WLE.Key];
-            DIVM.WaitList.RemoveAppointment(apptToRemove);
+            apptToRemove.Waitlisted = false;
+            //DIVM.WaitList.RemoveAppointment(apptToRemove);
 
             Appointment freeApptSlot = DIVM.AVM._appointmentLookup[key];
             DIVM.FreeAppointmentSlot(freeApptSlot);

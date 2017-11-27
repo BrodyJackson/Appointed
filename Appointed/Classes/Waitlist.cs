@@ -93,7 +93,7 @@ namespace Appointed.Classes
                     Appointment a = Q.Value.ElementAt(i);
                     if (a.ID == apptToRemove.ID)
                     {
-                        Q.Value.RemoveAt(i);
+                         Q.Value.RemoveAt(i);
                         return;
                     }
                 }
