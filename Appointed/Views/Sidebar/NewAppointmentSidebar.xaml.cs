@@ -215,7 +215,7 @@ namespace Appointed.Views.Sidebar
             DIVM.AVM._activeAppointment = new Appointment(_newAppointment);
 
             Home h = App.Current.MainWindow as Home;
-            h.SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
+            h.SidebarView.SetSidebarView(new AppointmentDetailsSidebar(), false);
         }
 
 

@@ -25,7 +25,7 @@ namespace Appointed.Views
         Button _rightQuickNavButton;
         UserControl _sidebarView;
 
-        Stack<UserControl> _sidebarHistory = new Stack<UserControl>();
+        public Stack<UserControl> _sidebarHistory = new Stack<UserControl>();
 
         public SidebarFrameView()
         {
@@ -46,8 +46,11 @@ namespace Appointed.Views
         public void SetSidebarView(UserControl view, bool pushToHistoryStack = true)
         {
             if(pushToHistoryStack)
+            {
                 _sidebarHistory.Push(_sidebarView);
-
+            }
+            
+               
             SidebarGridLayout.Children.Remove(_sidebarView);
             _sidebarView = view;
             SidebarGridLayout.Children.Add(view);
@@ -69,6 +72,8 @@ namespace Appointed.Views
             }
 
         }
+
+        
 
         private void SetStandardQuickNavButtons()
         {
