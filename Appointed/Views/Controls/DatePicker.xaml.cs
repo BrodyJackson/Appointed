@@ -66,6 +66,7 @@ namespace Appointed.Views.Controls
             calendar.Focus();
         }
 
+
         private CustomPopupPlacement[] CustomPopupCallback(Size popupSize, Size targetSize, Point offset)
         {
             //Console.WriteLine(popupSize.Height + " " + popupSize.Width);
@@ -82,15 +83,20 @@ namespace Appointed.Views.Controls
                 Point = new Point(0d, targetSize.Height)
             };
 
-
             return new CustomPopupPlacement[] { popupPlacement, popupPlacementAlt };
         }
+
 
         private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
             Calendar c = sender as Calendar;
             DateSelected = c.SelectedDate;
-            InputText.TextField.Text = DateSelected.Value.ToShortDateString();
+
+            InputText.TextField.Text = 
+                DateSelected.Value.Year.ToString()  + "-" + 
+                DateSelected.Value.Month.ToString() + "-" +
+                DateSelected.Value.Day.ToString();
+
             (c.Parent as Popup).IsOpen = false;
             InputText.TextField.Focus();
         }

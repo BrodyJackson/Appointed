@@ -28,7 +28,6 @@ namespace Appointed.Views
         public AppointmentDetailsSidebar()
         {
             InitializeComponent();
-
         }
 
 
@@ -47,6 +46,7 @@ namespace Appointed.Views
                 DIVM.AVM._appointmentLookup[Int32.Parse(DIVM.AVM._activeAppointment.ID)].Arrived = false;
                 DIVM.AVM._activeAppointment.Arrived = false;
             }
+
         }
 
 
@@ -77,8 +77,12 @@ namespace Appointed.Views
 
 
             DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
-
             Appointment appt = DIVM.AVM._appointmentLookup[Int32.Parse(DIVM.AVM._activeAppointment.ID)];
+
+            // May need to call twice if the appt was a consultation.
+            // Once for the appt that was following it and once the appt itself.
+            DIVM.FreeAppointmentSlot(appt);
+
 
             if (DIVM.AVM._activeAppointment.Type == "Consultation")
             {
@@ -89,8 +93,9 @@ namespace Appointed.Views
                 appt.EndTime -= 15;
 
                 if (appt.EndTime % 100 > 60)
-                    appt.EndTime += 40;
-            }
+                    appt.EndTime -= 40;
+           }
+
 
             appt.Comments = "";
             appt.Height = "35";
@@ -103,7 +108,11 @@ namespace Appointed.Views
             appt.Waitlisted = false;
         }
 
+        private void SaveNotesBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
 
-
+            DIVM.AVM._appointmentLookup[Int32.Parse(DIVM.AVM._activeAppointment.ID)].Comments = CommentBox.Text;
+        }
     }
 }

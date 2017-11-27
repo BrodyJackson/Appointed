@@ -206,7 +206,8 @@
                 Grid.Column="1"
                 Margin="4,4,6,4"
                 SelectedIndex="{Binding AVM._activeAppointment.TypeIndex, Mode=OneWay}"
-                VerticalContentAlignment="Center">
+                VerticalContentAlignment="Center"
+                SelectionChanged="ComboBox_ApptTypeSelectionChanged">
 
                 <ComboBoxItem
                     Content="Standard" />
@@ -375,7 +376,7 @@
             </ComboBox>
 
             <!--TODO: MAKE DROPDOWN AND ADD FIELDS-->
-            
+
             <CheckBox
                 Grid.Column="0"
                 Grid.Row="13"
@@ -389,7 +390,7 @@
 
         <TextBlock
             Style="{StaticResource text_BlackMedium}"
-            Text="Notes"
+            Text="Comments"
             Margin="4"
             DockPanel.Dock="Top" />
 
@@ -400,6 +401,7 @@
             Margin="4"
             VerticalScrollBarVisibility="Auto"
             DockPanel.Dock="Top"
+            Text="{Binding AVM._activeAppointment.Comments}"
             x:Name="CommentBox"
             Background="{x:Null}"
             SpellCheck.IsEnabled="True"

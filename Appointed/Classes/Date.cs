@@ -16,10 +16,15 @@ namespace Appointed.Classes
         int _time24Hr;
 
 
+        /// <summary>
+        /// Invoked whenever the active date is changed
+        /// </summary>
+        public event EventHandler<EventArgs> ActiveDateChanged;
+
         // This is meant to be used within the current sidebar context. Ie, if hasChanged is set to true during some operation
         // with sidebar "x" active, sidebar "x" will use that information and subsequently set hasChanged back to false before it
         // goes out of context.
-        
+
         // Specifically used to signal the DatePicker within the ModifyAppointmentDetails sidebar when a date is selected in the
         // mini calendar popup rather than the window just being closed. If the calendar popup modifies DIVM._activeDate, it sets
         // hasChanged to true so the date picker knows to use the value in DIVM._activeDate and so if the modifications are saved,
@@ -39,6 +44,7 @@ namespace Appointed.Classes
             {
                 _day = value;
                 RaisePropertyChangedEvent("Day");
+                ActiveDateChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -51,6 +57,7 @@ namespace Appointed.Classes
             {
                 _month = value;
                 RaisePropertyChangedEvent("Month");
+                ActiveDateChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -63,6 +70,7 @@ namespace Appointed.Classes
             {
                 _year = value;
                 RaisePropertyChangedEvent("Year");
+                ActiveDateChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -75,6 +83,7 @@ namespace Appointed.Classes
             {
                 _time24Hr = value;
                 RaisePropertyChangedEvent("Time24Hr");
+                ActiveDateChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 

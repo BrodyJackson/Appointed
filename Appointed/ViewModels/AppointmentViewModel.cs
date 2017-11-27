@@ -8,11 +8,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Appointed.Classes;
+using System.Windows;
 
 namespace Appointed.ViewModels
 {
     public class AppointmentViewModel : ObservableObject
     {
+        // Raised when an appointment is rescheduled
+        // Classes can subscribe their methods to this to be called when the event is raised. 
+        public event EventHandler<WaitlistEventArgs> AppointmentMoved;
+
+
         private AppointmentDatabaseModel _adm;
         private int _numDaysPopulated = 70;
 
@@ -66,8 +72,7 @@ namespace Appointed.ViewModels
 
         DayTemplate DT;
 
-
-
+        
 
 
         public AppointmentViewModel()
@@ -249,9 +254,6 @@ namespace Appointed.ViewModels
 
                     bindingCode = (i + 1).ToString() + date.Day.ToString() + date.Month.ToString() + date.Year.ToString();
                     _drScheduleMap.Add(Int32.Parse(bindingCode), listOfAppointments);
-
-                    Console.WriteLine("Binding Code in dictionary: " + bindingCode);
-
                 }
             }
         }
@@ -329,7 +331,8 @@ namespace Appointed.ViewModels
         // If the appointment is a consultation and two contiguous slots are not empty, it returns false and does not effect the database.
         public bool AddAppointment (Appointment appointment, int key)
         {
-            if (!(_appointmentLookup[key].Type != ""))
+            Appointment a = _appointmentLookup[key];
+            if (a.Type != "")
             {
                 Console.WriteLine("Appointment Slot Not Empty, type is: " + _appointmentLookup[key].Type);
                 return false;
@@ -345,18 +348,7 @@ namespace Appointed.ViewModels
                 }
             }
 
-            _appointmentLookup[key] = appointment;
-
-
-            
-            int doctorColumn = 0;
-            for (int i = 0; i < DoctorsOnShiftCount; i++)
-            {
-                if (DoctorsOnShift.ElementAt(i).DoctorName.Equals(appointment.DoctorName))
-                    doctorColumn = i;
-            }
-
-            InsertAppointment(doctorColumn, appointment);
+            _appointmentLookup[key] = new Appointment(appointment);
 
             return true;
         }
@@ -389,6 +381,40 @@ namespace Appointed.ViewModels
 
 
 
+        public bool AddAppointmentDeep(Appointment appointment, int key)
+        {
+            Appointment a = _appointmentLookup[key];
+            if (a.Type != "")
+            {
+                Console.WriteLine("Appointment Slot Not Empty, type is: " + _appointmentLookup[key].Type);
+            }
+
+            if (appointment.Type == "Consultation")
+            {
+                Appointment apptThatFollows = FindAppointmentThatFollows(appointment);
+                if (apptThatFollows.Type != "")
+                {
+                    Console.WriteLine("Consultations require 30 mins, only 15 available from appointment start time.");
+                }
+            }
+
+            _appointmentLookup[key] = new Appointment(appointment);
+
+
+            int doctorColumn = 0;
+            for (int i = 0; i < DoctorsOnShiftCount; i++)
+            {
+                if (DoctorsOnShift.ElementAt(i).DoctorName.Equals(appointment.DoctorName))
+                    doctorColumn = i;
+            }
+
+            InsertAppointment(doctorColumn, appointment);
+
+            return true;
+        }
+
+
+
         // Uses the date and doctor name in the argument "appointment" to overwrite an existing appointment with the argument's details.
         private void InsertAppointment(int doctorColumn, Appointment appointment)
         {
@@ -406,10 +432,6 @@ namespace Appointed.ViewModels
                     listOfAppointments.Insert(i, appointment);
                     break;
                 }
-
-            _drScheduleMap.Remove(Int32.Parse(bindingCode));
-            _drScheduleMap.Add(Int32.Parse(bindingCode), listOfAppointments);
-
         }
 
 
@@ -469,6 +491,101 @@ namespace Appointed.ViewModels
 
             return null;
         }
+
+
+
+
+
+        public void RescheduleAppointment(Alert a)
+        {
+            Appointment apptToRelocate = _appointmentLookup[a.WLE.Key];
+            Appointment apptThatFollows = null;
+            Appointment relocationTarget = null;
+
+            DateTime dt = new DateTime(a.WLE.Date.Year, a.WLE.Date.Month, a.WLE.Date.Day, a.WLE.Date.Time24Hr / 100, a.WLE.Date.Time24Hr % 100, 0);
+            int keyTarget = dt.GetHashCode() + FindDrColumnForDrName(a.WLE.DoctorName);
+            relocationTarget = _appointmentLookup[keyTarget];
+
+            if (apptToRelocate.Type == "Consultation")
+            {
+                apptThatFollows = FindAppointmentThatFollows(relocationTarget);
+                if (apptThatFollows.Type != "")
+                {
+                    MessageBox.Show
+                    (
+                        "Cannot reschedule consultation, only 15 minutes available in desired slot.",
+                        "Oops",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Asterisk
+                    );
+
+                    return;
+                }
+
+                apptThatFollows.Visibility = "Collapsed";
+            }
+
+            // Target appointment takes on may of apptToRelocate's values
+            relocationTarget = new Appointment(apptToRelocate);
+            relocationTarget.ID = keyTarget.ToString();
+            relocationTarget.DoctorName = a.WLE.DoctorName;
+            relocationTarget.Colour = FindDrColourForDrName(relocationTarget.DoctorName);
+            relocationTarget.DateTime = dt;
+            relocationTarget.StartTime = a.WLE.Date.Time24Hr;
+            relocationTarget.EndTime = relocationTarget.StartTime + (relocationTarget.Type == "Consultation" ? 30 : 15);
+            if (relocationTarget.EndTime % 100 >= 60)
+                relocationTarget.EndTime += 40;
+            relocationTarget.Waitlisted = false;
+            relocationTarget.Visibility = "Visible";
+            AddAppointmentDeep(relocationTarget, keyTarget);
+
+
+            // apptToRelocate becomes empty placeholder appointment.
+            if (apptToRelocate.Type == "Consultation")
+            {
+                apptThatFollows = FindAppointmentThatFollows(apptToRelocate);
+                _appointmentLookup[Int32.Parse(apptThatFollows.ID)].Visibility = "Visible";
+                apptToRelocate.EndTime -= 15;
+                if (apptToRelocate.EndTime % 100 > 60)
+                    apptToRelocate.EndTime -= 40;
+            }
+            apptToRelocate.Comments = "";
+            apptToRelocate.Height = "35";
+            apptToRelocate.Margin = "0,1,0,0";
+            apptToRelocate.Missed = false;
+            apptToRelocate.Arrived = false;
+            apptToRelocate.Opacity = "0";
+            apptToRelocate.Patient = "";
+            apptToRelocate.Type = "";
+            apptToRelocate.Waitlisted = false;
+
+            if (AppointmentMoved != null)
+               AppointmentMoved
+               (
+                   apptToRelocate,
+                   new WaitlistEventArgs
+                   {
+                       DoctorName = apptToRelocate.DoctorName,
+                       Date = new Date
+                       {
+                           Day = apptToRelocate.DateTime.Day,
+                           Month = apptToRelocate.DateTime.Month,
+                           Year = apptToRelocate.DateTime.Year,
+                           Time24Hr = apptToRelocate.StartTime
+                       },
+
+                       Key = Int32.Parse(apptToRelocate.ID)
+                   }
+               );
+        }
+
+
+
+
+
+
+
+
 
 
 

@@ -33,7 +33,7 @@
 
             <Grid DockPanel.Dock="Top">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="40"/>
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
@@ -60,13 +60,13 @@
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="135"/>
                 </Grid.ColumnDefinitions>
 
 
                 <!-- Labels Stack Panel -->
-                <StackPanel Grid.Column="0" Margin="0,10,0,0">
+                <StackPanel Grid.Column="0" Margin="0,5,0,0">
                     <TextBlock 
                     Text="Patient Name:" Margin="10,10,0,0" Style="{StaticResource text_GrayMedium}">
                     </TextBlock>
@@ -99,7 +99,7 @@
 
 
                 <!-- Values Stack Panel -->
-                <StackPanel Grid.Column="1" Margin="0,10,0,0">
+                <StackPanel Grid.Column="1" Margin="0,5,0,0">
                     <TextBlock 
                     Style="{StaticResource text_GrayMedium}"
                     x:Name="patientName" 
@@ -157,7 +157,7 @@
                 Background="Gray" 
                 Foreground="Gray" 
                 BorderThickness="1" 
-                Margin="15,10,15,10" 
+                Margin="15,30,15,10" 
                 DockPanel.Dock="Top" 
                 BorderBrush="Gray" 
                 Height="2"/>
@@ -181,41 +181,74 @@
                 Background="Gray" 
                 Foreground="Gray" 
                 BorderThickness="1" 
-                Margin="15,10,15,10" 
+                Margin="15,10,15,20" 
                 DockPanel.Dock="Top" 
                 BorderBrush="Gray" 
                 Height="2"/>
+
+
+            <Grid DockPanel.Dock="Top">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+
+                <TextBlock
+                    Grid.Column="0"
+                    Style="{StaticResource text_OrangeRedMedium}"
+                    Text="Comments"
+                    Margin="10,0,10,0"
+                />
+
+
+                <Button
+                    Name="AlertDeleteBtn"
+                    Grid.Column="2"
+                    Grid.Row="0"
+                    Margin="2"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Click="SaveNotesBtn_Click"
+                    BorderBrush="Transparent"
+                    Background="Transparent"
+                    Height="24"
+                    Width="24">
+                        <Image
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            SnapsToDevicePixels="True"
+                            Source="/Appointed;component/Assets/SaveIcon.jpg" />
+                </Button>
+
+            </Grid>
             
-            
-            <TextBlock 
-            Text="Notes"
-            Margin="10,0,0,0"
-            DockPanel.Dock="Top"
-            />
 
 
             <ScrollViewer
-            MinHeight="125" 
-            CanContentScroll="True" 
-            BorderBrush="Black" 
-            BorderThickness="1" 
-            Background="Lavender" 
-            Margin="10,10,10,0"
-            VerticalScrollBarVisibility="Auto"
-            DockPanel.Dock="Top"
-            MaxHeight="200"
+                MinHeight="125" 
+                CanContentScroll="True" 
+                BorderBrush="Black" 
+                BorderThickness="1" 
+                Background="Lavender" 
+                Margin="10,10,10,0"
+                VerticalScrollBarVisibility="Auto"
+                DockPanel.Dock="Top"
+                MaxHeight="200"
             >
 
                 <TextBox
-                Text="{Binding AVM._activeAppointment.Comments}"
-                AcceptsReturn="True"
-                AcceptsTab="True"
-                BorderBrush="SteelBlue" 
-                Background="{x:Null}" 
-                SpellCheck.IsEnabled="True" 
-                Cursor="Pen" 
-                ToolTip="Click to edit Notes"
-                TextWrapping="Wrap"
+                    x:Name="CommentBox"
+                    Text="{Binding AVM._activeAppointment.Comments}"
+                    AcceptsReturn="True"
+                    AcceptsTab="True"
+                    BorderBrush="SteelBlue" 
+                    Background="{x:Null}" 
+                    SpellCheck.IsEnabled="True" 
+                    Cursor="Pen" 
+                    ToolTip="Click to edit Comments"
+                    TextWrapping="Wrap"
                 />
 
             </ScrollViewer>

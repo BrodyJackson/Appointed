@@ -17,7 +17,7 @@
             LastChildFill="False">
             <Grid
                 DockPanel.Dock="Top">
-                
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition
                         Width="auto" />
@@ -149,6 +149,7 @@
                     Text="Date:"
                     HorizontalAlignment="Stretch"
                     Margin="4" />
+
                 <Controls:DatePicker
                     x:Name="DatePicker"
                     Grid.Row="5"
@@ -183,20 +184,7 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
 
-                <!--<ComboBox
-                x:Name="StartTime"
-                Grid.Row="5"
-                Grid.Column="0"                 
-                Width="100" Margin="88,27,88,28"
-                Padding="5"
-                VerticalContentAlignment="Center"
-                HorizontalAlignment="Center"
-                SelectionChanged="ComboBox_TimeSelectionChanged">
-                -->
-                <!--These will be changed so that the time intervals reflect the currently selected appointment
-                The values that are in the comboBox right now, are just placeholders-->
-                <!--
-            </ComboBox>-->
+
                 <TextBlock
                     Grid.Column="0"
                     Grid.Row="7"
@@ -222,10 +210,31 @@
                     Margin="15,10,15,10"
                     Height="2"
                     Grid.ColumnSpan="2" />
+            </Grid>
 
+            <Grid
+                DockPanel.Dock="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="auto" />
+                    <ColumnDefinition
+                        Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                </Grid.RowDefinitions>
                 <CheckBox
                     Name="ReminderToggle"
-                    Grid.Row="9"
+                    Grid.Row="0"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
                     VerticalAlignment="Center"
@@ -238,7 +247,7 @@
                 <TextBlock
                     Name="RemTypeLable"
                     Grid.Column="0"
-                    Grid.Row="10"
+                    Grid.Row="1"
                     Style="{StaticResource text_BlackMedium}"
                     Margin="4"
                     Text="Type:" />
@@ -246,7 +255,7 @@
                 <TextBlock
                     Name="RemDaysLable"
                     Grid.Column="0"
-                    Grid.Row="11"
+                    Grid.Row="2"
                     Margin="4"
                     Style="{StaticResource text_BlackMedium}"
                     Text="Day(s) Before:" />
@@ -254,14 +263,14 @@
                 <TextBlock
                     Name="RemTODLable"
                     Grid.Column="0"
-                    Grid.Row="12"
+                    Grid.Row="3"
                     Margin="4"
                     Style="{StaticResource text_BlackMedium}"
                     Text="Time:" />
 
                 <ComboBox
                     Name="RemType"
-                    Grid.Row="10"
+                    Grid.Row="1"
                     Grid.Column="1"
                     Margin="4"
                     SelectedIndex="0">
@@ -275,7 +284,7 @@
 
                 <ComboBox
                     Name="RemDays"
-                    Grid.Row="11"
+                    Grid.Row="2"
                     Grid.Column="1"
                     Margin="4"
                     SelectedIndex="1">
@@ -306,7 +315,7 @@
                 <ComboBox
                     Name="RemTOD"
                     Grid.Column="2"
-                    Grid.Row="12"
+                    Grid.Row="3"
                     Margin="4"
                     SelectedIndex="0">
                     <ComboBoxItem
@@ -316,15 +325,40 @@
                 </ComboBox>
 
                 <Separator
-                    Grid.Row="13"
+                    Grid.Row="4"
                     BorderBrush="Gray"
                     Height="2"
-                    BorderThickness="1"
-                    Margin="15,10,15,10"
-                    Grid.ColumnSpan="2" />
+                    Grid.ColumnSpan="2"
+                    Margin="15,10,15,10" />
+            </Grid>
+
+            <Grid
+                DockPanel.Dock="Top">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="auto" />
+                    <ColumnDefinition
+                        Width="*" />
+                </Grid.ColumnDefinitions>
 
                 <CheckBox
-                    Grid.Row="14"
+                    x:Name="AddToWaitlistCheckBox"
+                    Grid.Row="0"
                     Style="{StaticResource checkBoxes}"
                     Content="Add to Waitlist"
                     VerticalAlignment="Center"
@@ -332,8 +366,9 @@
                     Grid.ColumnSpan="2" />
 
                 <TextBlock
+                    Name="WaitlistDocLabel"
                     Grid.Column="0"
-                    Grid.Row="15"
+                    Grid.Row="1"
                     HorizontalAlignment="Stretch"
                     Style="{StaticResource text_BlackMedium}"
                     Text="Practitioner:"
@@ -341,7 +376,7 @@
 
                 <ComboBox
                     x:Name="WaitlistDoctorComboBox"
-                    Grid.Row="15"
+                    Grid.Row="1"
                     Grid.Column="1"
                     ItemsSource="{Binding AVM.DoctorsOnShift}"
                     SelectedIndex="{Binding AVM._activeAppointment.DrColumn, Mode=OneWay}"
@@ -359,19 +394,21 @@
                 </ComboBox>
 
                 <TextBlock
-                    Grid.Row="16"
+                    Name="WaitlistDateLabel"
+                    Grid.Row="2"
                     Style="{StaticResource text_BlackMedium}"
                     Text="Date:"
                     HorizontalAlignment="Stretch"
                     Margin="4" />
                 <Controls:DatePicker
                     x:Name="WaitlistDatePicker"
-                    Grid.Row="16"
+                    Grid.Row="2"
                     Grid.Column="1"
                     Margin="4" />
 
                 <TextBlock
-                    Grid.Row="17"
+                    Name="WaitlistStartTimeLabel"
+                    Grid.Row="3"
                     Grid.Column="0"
                     Style="{StaticResource text_BlackMedium}"
                     Text="Start Time:"
@@ -380,11 +417,12 @@
 
                 <ComboBox
                     x:Name="WaitlistStartTime"
-                    Grid.Row="17"
+                    Grid.Row="3"
                     Grid.Column="1"
                     Margin="4"
                     ItemsSource="{Binding TimeStamps}"
-                    SelectedIndex="{Binding AVM._activeAppointment.TimeIndex, Mode=OneWay}">
+                    SelectedIndex="{Binding AVM._activeAppointment.TimeIndex, Mode=OneWay}"
+                    SelectionChanged="ComboBox_WaitlistTimeSelectionChanged">
 
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
@@ -398,8 +436,9 @@
                 </ComboBox>
 
                 <TextBlock
+                    Name="WaitlistEndTimeLabel"
                     Grid.Column="0"
-                    Grid.Row="18"
+                    Grid.Row="4"
                     Style="{StaticResource text_BlackMedium}"
                     HorizontalAlignment="Stretch"
                     Text="End Time:"
@@ -407,7 +446,7 @@
 
                 <TextBlock
                     Name="WaitlistEndTime"
-                    Grid.Row="18"
+                    Grid.Row="4"
                     Grid.Column="1"
                     HorizontalAlignment="Stretch"
                     Style="{StaticResource text_BlackMedium}"
@@ -415,21 +454,37 @@
                     Margin="4" />
 
                 <Separator
-                    Grid.Row="19"
+                    Grid.Row="5"
                     BorderBrush="Gray"
                     Height="2"
                     BorderThickness="1"
                     Margin="15,10,15,10"
                     Grid.ColumnSpan="2" />
+            </Grid>
 
+            <Grid
+                DockPanel.Dock="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="auto" />
+                    <ColumnDefinition
+                        Width="*" />
+                </Grid.ColumnDefinitions>
                 <TextBlock
-                    Grid.Row="20"
+                    Grid.Row="0"
                     Margin="4"
                     Style="{StaticResource text_BlackMedium}"
                     Text="Comments" />
 
                 <TextBox
-                    Grid.Row="21"
+                    Grid.Row="1"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
                     Margin="4"
@@ -443,47 +498,47 @@
                     TextWrapping="Wrap"
                     VerticalScrollBarVisibility="Auto"
                     MinHeight="100"
-                    MaxHeight="200"/>
-            </Grid>
+                    MaxHeight="200" />
+                </Grid>
 
-            <Grid
-                DockPanel.Dock="Bottom"
-                Margin="0,0,0,0">
+                <Grid
+                    DockPanel.Dock="Bottom"
+                    Margin="0,0,0,0">
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition
-                        Width="*" />
-                    <ColumnDefinition
-                        Width="*" />
-                </Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition
+                            Width="*" />
+                        <ColumnDefinition
+                            Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition
-                        Height="*" />
-                </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition
+                            Height="*" />
+                    </Grid.RowDefinitions>
 
-                <Button
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Content="Save"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Bottom"
-                    MaxWidth="200"
-                    MinWidth="100"
-                    Height="30"
-                    PreviewMouseLeftButtonUp="OnMouseLeftRelease_Save" />
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Content="Save"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        MaxWidth="200"
+                        MinWidth="100"
+                        Height="30"
+                        PreviewMouseLeftButtonUp="OnMouseLeftRelease_Save" />
 
-                <Button
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Content="Discard"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Bottom"
-                    MaxWidth="200"
-                    MinWidth="100"
-                    Height="30"
-                    PreviewMouseLeftButtonUp="OnMouseLeftRelease_Discard" />
-            </Grid>
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Content="Discard"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        MaxWidth="200"
+                        MinWidth="100"
+                        Height="30"
+                        PreviewMouseLeftButtonUp="OnMouseLeftRelease_Discard" />
+                </Grid>
 
 
 

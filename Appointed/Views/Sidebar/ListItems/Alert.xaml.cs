@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Appointed.Classes;
 
 namespace Appointed.Views.Sidebar.ListItems
 {
@@ -23,6 +24,7 @@ namespace Appointed.Views.Sidebar.ListItems
 
         private AlertBoxView _parent;
         private Classes.Alert _alert;
+
 
         public Alert(Classes.Alert alert, AlertBoxView parent)
         {
@@ -36,8 +38,16 @@ namespace Appointed.Views.Sidebar.ListItems
 
         private void AlertDeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            _parent.RemoveAlert(_alert);
-            _parent.UpdateAlertsBox();
+            _alert.OnDeleteButtonClick?.Invoke(_alert, new EventArgs());
+
+//            _parent.RemoveAlert(_alert);
+//            _parent.UpdateAlertsBox();
         }
+
+        private void AlertActionBtn_Click(object sender, RoutedEventArgs e)
+        {
+            _alert.OnActionButtonClick?.Invoke(_alert, new EventArgs());
+        }
+
     }
 }

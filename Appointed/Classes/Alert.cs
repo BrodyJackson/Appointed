@@ -13,6 +13,9 @@ namespace Appointed.Classes
         public BitmapImage Icon { get; set; }
         public string ButtonText { get; set; }
         public EventHandler OnActionButtonClick { get; set; }
+        public EventHandler OnDeleteButtonClick { get; set; }
+        public WaitlistEventArgs WLE { get; set; }
+
 
         public Alert()
         {

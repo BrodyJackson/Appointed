@@ -16,9 +16,15 @@ namespace Appointed.ViewModels
 
     public class DayInformationViewModel : ObservableObject, ISchedule
     {
-        // Classes can subscribe their methods to this event to be called when the event is raised. 
-        public event EventHandler<EventArgs> ScheduleShifted;
+        // Raised when an appointment holding up a waitlist is removed.
+        // Classes can subscribe their methods to this to be called when the event is raised. 
+        public event EventHandler<WaitlistEventArgs> WaitlistAlert;
 
+
+        // Raised when the days in scope in the three day view are changed.
+        // Classes can subscribe their methods to this to be called when the event is raised. 
+        public event EventHandler<EventArgs> ScheduleShifted;
+        
         /// <summary>
         /// Invoked whenever a filter option is changed.
         /// When all or no doctors is clicked, this event will fire for each of the filter options that have changed.
@@ -36,6 +42,11 @@ namespace Appointed.ViewModels
         public AppointmentViewModel AVM { get; set; }
        
         public PatientViewModel PVM { get; set; }
+
+        public SidebarViewModel SVM { get; set; }
+
+
+        public Waitlist WaitList { get; set; }
  
         private ObservableCollection<Time> _timeOfDayStringsTwelveHour;
         private ObservableCollection<Time> _timeOfDayStringsTwentyFourHour;
@@ -58,6 +69,8 @@ namespace Appointed.ViewModels
 
         public DayInformationViewModel()
         {
+            WaitList = new Waitlist(); 
+
             _activeDate = new Date();
 
 
@@ -65,7 +78,8 @@ namespace Appointed.ViewModels
             _dim = new DayInformationModel();
             AVM = new AppointmentViewModel();
             PVM = new PatientViewModel();
-			
+            SVM = new SidebarViewModel();
+
             _numAppointmentsPerDay = AVM._numAppointmentsPerDay;
 
         
@@ -80,6 +94,9 @@ namespace Appointed.ViewModels
             _activeDate.Year = _dim.YearAsInt;
             _activeDate.Month = _dim.MonthAsInt;
             _activeDate.Day = _dim.DayAsInt;
+
+
+            AVM.AppointmentMoved += OnAppointmentMoved;
 
 
             return;
@@ -124,10 +141,63 @@ namespace Appointed.ViewModels
                 ApptFilterChangedDIVM(this, new EventArgs());
         }
 
+        public void FreeAppointmentSlot(Appointment appt)
+        {
+            Appointment a = WaitList.GetApptWaiting(appt);
+
+            if (a == null || a == appt)
+                return;
+
+            if (WaitlistAlert != null)
+                WaitlistAlert
+                (
+                    appt,
+                    new WaitlistEventArgs
+                    {
+                        DoctorName = appt.DoctorName,
+                        Date = new Date
+                        {
+                            Day = appt.DateTime.Day,
+                            Month = appt.DateTime.Month,
+                            Year = appt.DateTime.Year,
+                            Time24Hr = appt.StartTime
+                        },
+
+                        Key = Int32.Parse(a.ID)
+                    }
+                );
+        }
+
+        public void UpdateSchedule()
+        {
+            if (ScheduleShifted != null)
+                ScheduleShifted(this, new EventArgs());
+        }
+
+        private void OnAppointmentMoved(object sender, WaitlistEventArgs e)
+        {
+            Appointment a = sender as Appointment;
+
+            ShiftView.Execute(1);
+            ShiftView.Execute(-1);
+
+            FreeAppointmentSlot(a);
+        }
 
         // END COMMANDS ====================================================
 
 
+
+        public string GetMonthString(int month)
+        {
+            return (_dim.GetMonthString(month));
+        }
+
+
+        public string GetDayString(int day)
+        {
+            return (_dim.GetDayString(day));
+        }
 
 
 

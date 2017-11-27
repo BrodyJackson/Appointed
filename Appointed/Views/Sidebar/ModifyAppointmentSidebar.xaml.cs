@@ -46,8 +46,19 @@ namespace Appointed.Views.Sidebar
 
         private void OnMouseLeftRelease_Discard(object sender, MouseButtonEventArgs e)
         {
-            Home h = App.Current.MainWindow as Home;
+            MessageBoxResult result =
+                MessageBox.Show
+                (
+                    "Are you sure you wish to discard your changes?",
+                    "Confirm Selection",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Asterisk
+                );
 
+            if (result == MessageBoxResult.No || result == MessageBoxResult.None)
+                return;
+
+            Home h = App.Current.MainWindow as Home;
             h.SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
         }
 
@@ -68,7 +79,7 @@ namespace Appointed.Views.Sidebar
 
         private void ComboBox_StartTimeSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (StartTime.SelectedItem == null)
+            if (StartTime.SelectedItem == null || ApptTypeComboBox.SelectedItem == null)
             {
                 Console.WriteLine("Gotcha: \n");
                 return;
@@ -85,6 +96,12 @@ namespace Appointed.Views.Sidebar
         }
 
 
+        private void ComboBox_ApptTypeSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox_StartTimeSelectionChanged(null, null);
+        }
+
+
 
         private void OnMouseLeftRelease_Save(object sender, MouseButtonEventArgs e)
         {
@@ -93,9 +110,10 @@ namespace Appointed.Views.Sidebar
             Appointment targetAppointment = null;
             Appointment apptThatFollowsTarget = null;
 
+            // BEGIN PARSE DATA FROM SIDEBAR FIELDS
             string stTime = ((Time)StartTime.SelectedItem).TimeString;
-            string timeCmp = stTime;
             stTime = stTime.Substring(0, stTime.IndexOf(':')) + stTime.Substring(stTime.IndexOf(':') + 1);
+//          string timeCmp = stTime;
 
             string endTime = EndTime.Text;
             endTime = endTime.Substring(0, endTime.IndexOf(':')) + endTime.Substring(endTime.IndexOf(':') + 1, 2);
@@ -115,6 +133,8 @@ namespace Appointed.Views.Sidebar
             int month = Int32.Parse(dateString.Substring(firstInd, secondInd - firstInd));
 
             int day = Int32.Parse(dateString.Substring(dateString.LastIndexOf('-') + 1));
+            // END PARSE DATA FROM SIDEBAR FIELDS
+
 
             // The hashcode of the DateTime + <DrColumn> form the key for appointment lookups.
             DateTime dt = new DateTime(year, month, day, time / 100, time % 100, 0);
@@ -122,12 +142,11 @@ namespace Appointed.Views.Sidebar
             int key = dt.GetHashCode() + drColumn;
 
             targetAppointment = DIVM.AVM._appointmentLookup[key];
+            apptThatFollowsTarget = DIVM.AVM.FindAppointmentThatFollows(targetAppointment);
             if (targetAppointment != null && targetAppointment != activeAppt)
             {
-                if (type == "Consultation")
-                    apptThatFollowsTarget = DIVM.AVM.FindAppointmentThatFollows(targetAppointment);
-
-                if ((targetAppointment.Type != "") || (type == "Consultation" && apptThatFollowsTarget.Type != ""))
+                if ((targetAppointment.Type != "")   ||
+                    (type == "Consultation" && apptThatFollowsTarget.Type != ""  && apptThatFollowsTarget != activeAppt))
                 {
                     MessageBox.Show(
                         "The Time Slot Specified Is Taken!",
@@ -149,8 +168,6 @@ namespace Appointed.Views.Sidebar
 
                     return;
                 }
-
-
             }
 
             DIVM._activeDate.HasChanged = false;
@@ -168,8 +185,10 @@ namespace Appointed.Views.Sidebar
             targetAppointment.Patient = activeAppt.Patient;
             targetAppointment.Opacity = activeAppt.Opacity;
 
-            if (targetAppointment.Type == "Consultation" && targetAppointment != activeAppt)
+            if (targetAppointment.Type == "Consultation")// && targetAppointment != activeAppt)
                 apptThatFollowsTarget.Visibility = "Collapsed";
+            else
+                apptThatFollowsTarget.Visibility = "Visible";
 
 
 
@@ -200,7 +219,6 @@ namespace Appointed.Views.Sidebar
             Home h = App.Current.MainWindow as Home;
             h.SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
         }
-
 
     }
 }
