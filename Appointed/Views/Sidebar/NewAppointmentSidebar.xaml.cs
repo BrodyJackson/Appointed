@@ -38,6 +38,8 @@ namespace Appointed.Views.Sidebar
             AddToWaitlistCheckBox.IsChecked = true;
             AddToWaitlistCheckBox.IsChecked = false;
 
+
+            //Really don't know why this is needed?
             this.Loaded += new RoutedEventHandler(NewAppointmentSidebar_Loaded);
 
         }
@@ -93,7 +95,7 @@ namespace Appointed.Views.Sidebar
 
             ApptTypeComboBox.SelectionChanged += ComboBox_ApptTypeSelectionChanged;
 
-            ActiveDateChanged(null, null);
+            //ActiveDateChanged(null, null);
         }
 
 
@@ -103,7 +105,7 @@ namespace Appointed.Views.Sidebar
 
             if (DIVM != null && DIVM.AVM._activeAppointment != null)
             {
-                DatePicker.InputText.TextField.Text = DIVM.AVM._activeAppointment.DateTimeStr;
+                DatePicker.InputText.TextField.Text = DIVM.AVM._activeAppointment.DateTimeStr; 
                 WaitlistDatePicker.InputText.TextField.Text = DIVM.AVM._activeAppointment.DateTimeStr;
             }
         }
@@ -130,11 +132,11 @@ namespace Appointed.Views.Sidebar
 
             if (((ApptTypeComboBox.SelectedItem as ComboBoxItem).Content as string) == "Standard")
             {
-                WaitlistEndTime.Text = DateTime.Parse((WaitlistStartTime.SelectedItem as Classes.Time).TimeString).AddMinutes(15).ToShortTimeString();
+                WaitlistEndTime.Text = DateTime.Parse((WaitlistStartTime.SelectedItem as Classes.Time).TimeString).AddMinutes(15).ToString("HH:mm");
             }
             else
             {
-                WaitlistEndTime.Text = DateTime.Parse((WaitlistStartTime.SelectedItem as Classes.Time).TimeString).AddMinutes(30).ToShortTimeString();
+                WaitlistEndTime.Text = DateTime.Parse((WaitlistStartTime.SelectedItem as Classes.Time).TimeString).AddMinutes(30).ToString("HH:mm");
             }
         }
 
@@ -142,17 +144,17 @@ namespace Appointed.Views.Sidebar
         {
             if (StartTime.SelectedItem == null || ApptTypeComboBox.SelectedItem == null)
             {
-                Console.WriteLine("Gotcha: \n");
+                //Console.WriteLine("Gotcha: \n");
                 return;
             }
 
             if (((ApptTypeComboBox.SelectedItem as ComboBoxItem).Content as string) == "Standard")
             {
-                EndTime.Text = DateTime.Parse((StartTime.SelectedItem as Classes.Time).TimeString).AddMinutes(15).ToShortTimeString();
+                EndTime.Text = DateTime.Parse((StartTime.SelectedItem as Classes.Time).TimeString).AddMinutes(15).ToString("HH:mm").TrimStart('0');
             }
             else
             {
-                EndTime.Text = DateTime.Parse((StartTime.SelectedItem as Classes.Time).TimeString).AddMinutes(30).ToShortTimeString();
+                EndTime.Text = DateTime.Parse((StartTime.SelectedItem as Classes.Time).TimeString).AddMinutes(30).ToString("HH:mm").TrimStart('0');
             }
         }
 
@@ -255,6 +257,7 @@ namespace Appointed.Views.Sidebar
             _newAppointment.Type = type;
             _newAppointment.StartTime = Int32.Parse(stTime);
             _newAppointment.EndTime = Int32.Parse(endTime);
+            _newAppointment.Reminder = ReminderToggle.IsChecked.Value;
             _newAppointment.ReminderType = ((ComboBoxItem)RemType.SelectedItem).Content.ToString();
             _newAppointment.ReminderTimeOfDay = ((ComboBoxItem)RemTOD.SelectedItem).Content.ToString();
             _newAppointment.ReminderDays = ((ComboBoxItem)RemDays.SelectedItem).Content.ToString();
@@ -274,6 +277,13 @@ namespace Appointed.Views.Sidebar
 
             Home h = App.Current.MainWindow as Home;
             h.SidebarView.SetSidebarView(new AppointmentDetailsSidebar(), false);
+
+            //Shift calendar view to focus on this appointment
+            DateTime activeDT = new DateTime(DIVM._activeDate.Year, DIVM._activeDate.Month, DIVM._activeDate.Day);
+            TimeSpan diff = _newAppointment.DateTime - activeDT;
+
+            if (DIVM.ShiftView.CanExecute(null))
+                DIVM.ShiftView.Execute(diff.Days - 1);
         }
 
 

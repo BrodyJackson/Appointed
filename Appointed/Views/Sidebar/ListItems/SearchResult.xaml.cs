@@ -69,7 +69,7 @@ namespace Appointed.Views.Sidebar.ListItems
 
                 Appointment nextAppt = DIVM.AVM._appointmentLookup[nextApptKey];
                 DateTime activeDT = new DateTime(DIVM._activeDate.Year, DIVM._activeDate.Month, DIVM._activeDate.Day);
-                TimeSpan diff = activeDT - nextAppt.DateTime;
+                TimeSpan diff = nextAppt.DateTime - activeDT;
 
                 if (DIVM.ShiftView.CanExecute(null))
                     DIVM.ShiftView.Execute(diff.Days - 1);

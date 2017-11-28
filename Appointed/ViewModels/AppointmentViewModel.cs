@@ -20,7 +20,7 @@ namespace Appointed.ViewModels
 
 
         private AppointmentDatabaseModel _adm;
-        private int _numDaysPopulated = 70;
+        private int _numDaysPopulated = 300; //Cant go above like 360 cause then the hash overlaps
 
         public Appointment _activeAppointment { get; set; }
 

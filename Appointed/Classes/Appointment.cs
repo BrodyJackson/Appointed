@@ -79,6 +79,7 @@ namespace Appointed.Classes
         bool _waitlisted;
         bool _arrived;
 
+        bool _reminder = false; //Default to false
         string _reminderType;
         string _reminderDays;
         string _reminderTimeOfDay;
@@ -117,6 +118,7 @@ namespace Appointed.Classes
             this.IsClickable = toCopy.IsClickable;
             this.BorderColour = toCopy.BorderColour;
             this.Visibility = toCopy.Visibility;
+            this.Reminder = toCopy.Reminder;
             this.ReminderDays = toCopy.ReminderDays;
             this.ReminderTimeOfDay = toCopy.ReminderTimeOfDay;
             this.ReminderType = toCopy.ReminderType;
@@ -518,6 +520,15 @@ namespace Appointed.Classes
         public int TimeIndex
         {
             get { return ((_startTime % 100) / 15) + (((_startTime / 100) - 7) * 4); }
+        }
+
+        public bool Reminder
+        {
+            get { return _reminder; }
+            set
+            {
+                _reminder = value;
+            }
         }
 
         public int RemDaysIndex

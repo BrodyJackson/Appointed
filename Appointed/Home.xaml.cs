@@ -47,7 +47,7 @@ namespace Appointed
         {
             if (e.Key == Key.Delete)
             {
-                MessageBox.Show("Delete Up!");
+                //MessageBox.Show("Delete Up!");
             }
             else if (e.Key == Key.Left)
             {

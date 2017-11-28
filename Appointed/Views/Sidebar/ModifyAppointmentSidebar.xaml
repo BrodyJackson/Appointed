@@ -13,241 +13,241 @@
     d:DesignWidth="300">
 
 
+    <ScrollViewer
+        Margin="12"
+        VerticalScrollBarVisibility="Hidden"
+        HorizontalScrollBarVisibility="Hidden">
+        <DockPanel>
 
-    <DockPanel
-        Margin="12">
+            <TextBlock
+                DockPanel.Dock="Top"
+                Style="{StaticResource text_HeadingLarge}"
+                HorizontalAlignment="Center"
+                Text="Modify Appointment" />
 
-        <TextBlock
-            DockPanel.Dock="Top"
-            Style="{StaticResource text_HeadingLarge}"
-            HorizontalAlignment="Center"
-            Text="Modify Appointment" />
+            <Separator
+                Background="Gray"
+                Foreground="Gray"
+                BorderThickness="1"
+                Margin="15,10,15,10"
+                DockPanel.Dock="Top"
+                BorderBrush="Gray"
+                Height="2" />
 
-
-
-        <Separator
-            Background="Gray"
-            Foreground="Gray"
-            BorderThickness="1"
-            Margin="15,10,15,10"
-            DockPanel.Dock="Top"
-            BorderBrush="Gray"
-            Height="2" />
-
-        <Grid
-            DockPanel.Dock="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition
-                    Width="150" />
-                <ColumnDefinition
-                    Width="*" />
-            </Grid.ColumnDefinitions>
-
-
-            <StackPanel
-                Grid.Column="0"
-                Margin="6,0,0,0">
-                <TextBlock
-                    Style="{StaticResource text_SlateGrayMedium}"
-                    HorizontalAlignment="Left"
-                    Text="{Binding AVM._activeAppointment.PatientNameAbbrev}" />
-
-                <TextBlock
-                    Style="{StaticResource text_SlateGrayMedium}"
-                    HorizontalAlignment="Left"
-                    Text="With:" />
-
-                <TextBlock
-                    Style="{StaticResource text_SlateGrayMedium}"
-                    HorizontalAlignment="Left"
-                    Text="From:" />
-            </StackPanel>
+            <Grid
+                DockPanel.Dock="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="150" />
+                    <ColumnDefinition
+                        Width="*" />
+                </Grid.ColumnDefinitions>
 
 
-            <StackPanel
-                Grid.Column="1">
-                <TextBlock
-                    Style="{StaticResource text_SlateGrayMedium}"
-                    HorizontalAlignment="Left"
-                    Text="{Binding AVM._activeAppointment.Type}" />
+                <StackPanel
+                    Grid.Column="0"
+                    Margin="6,0,0,0">
+                    <TextBlock
+                        Style="{StaticResource text_SlateGrayMedium}"
+                        HorizontalAlignment="Left"
+                        Text="{Binding AVM._activeAppointment.PatientNameAbbrev}" />
 
-                <TextBlock
-                    Style="{StaticResource text_SlateGrayMedium}"
-                    HorizontalAlignment="Left"
-                    Text="{Binding AVM._activeAppointment.DoctorName}" />
+                    <TextBlock
+                        Style="{StaticResource text_SlateGrayMedium}"
+                        HorizontalAlignment="Left"
+                        Text="With:" />
 
-                <TextBlock
-                    Style="{StaticResource text_SlateGrayMedium}"
-                    HorizontalAlignment="Left">
+                    <TextBlock
+                        Style="{StaticResource text_SlateGrayMedium}"
+                        HorizontalAlignment="Left"
+                        Text="From:" />
+                </StackPanel>
+
+
+                <StackPanel
+                    Grid.Column="1">
+                    <TextBlock
+                        Style="{StaticResource text_SlateGrayMedium}"
+                        HorizontalAlignment="Left"
+                        Text="{Binding AVM._activeAppointment.Type}" />
+
+                    <TextBlock
+                        Style="{StaticResource text_SlateGrayMedium}"
+                        HorizontalAlignment="Left"
+                        Text="{Binding AVM._activeAppointment.DoctorName}" />
+
+                    <TextBlock
+                        Style="{StaticResource text_SlateGrayMedium}"
+                        HorizontalAlignment="Left">
                     <Run
-                        Text="{Binding AVM._activeAppointment.StartTimeStr, Mode=OneWay}" />
+                            Text="{Binding AVM._activeAppointment.StartTimeStr, Mode=OneWay}" />
                     <Run
-                        Text=" - " />
+                            Text=" - " />
                     <Run
-                        Text="{Binding AVM._activeAppointment.EndTimeStr, Mode=OneWay}" />
-                </TextBlock>
-            </StackPanel>
+                            Text="{Binding AVM._activeAppointment.EndTimeStr, Mode=OneWay}" />
+                    </TextBlock>
+                </StackPanel>
 
 
-        </Grid>
+            </Grid>
 
 
-        <Separator
-            BorderThickness="1"
-            Margin="15,10,15,10"
-            DockPanel.Dock="Top"
-            BorderBrush="Gray"
-            Height="2" />
+            <Separator
+                BorderThickness="1"
+                Margin="15,10,15,10"
+                DockPanel.Dock="Top"
+                BorderBrush="Gray"
+                Height="2" />
 
-        <!-- 1 Row, 2 Column Grid, Appt Detail Labels in StackPanel in Column 1, Values in StackPanel in Column 2,-->
-        <Grid
-            DockPanel.Dock="Top">
-            <Grid.RowDefinitions>
-                <RowDefinition
-                    Height="auto" />
-                <RowDefinition
-                    Height="auto" />
-                <RowDefinition
-                    Height="auto" />
-                <RowDefinition
-                    Height="auto" />
-                <RowDefinition
-                    Height="auto" />
-                <RowDefinition
-                    Height="auto" />
-                <RowDefinition
-                    Height="auto" />
-                <RowDefinition
-                    Height="auto" />
-                <RowDefinition
-                    Height="auto" />
-                <RowDefinition
-                    Height="auto" />
-                <RowDefinition
-                    Height="auto" />
-                <RowDefinition
-                    Height="auto" />
-                <RowDefinition
-                    Height="auto" />
-                <RowDefinition
-                    Height="auto" />
-            </Grid.RowDefinitions>
+            <!-- 1 Row, 2 Column Grid, Appt Detail Labels in StackPanel in Column 1, Values in StackPanel in Column 2,-->
+            <Grid
+                DockPanel.Dock="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                </Grid.RowDefinitions>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition
-                    Width="auto" />
-                <ColumnDefinition
-                    Width="*" />
-            </Grid.ColumnDefinitions>
-
-
-            <TextBlock
-                Grid.Column="0"
-                Grid.Row="0"
-                Style="{StaticResource text_BlackMedium}"
-                Margin="4"
-                Text="Practitioner:" />
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="auto" />
+                    <ColumnDefinition
+                        Width="*" />
+                </Grid.ColumnDefinitions>
 
 
-            <TextBlock
-                Grid.Column="0"
-                Grid.Row="1"
-                Style="{StaticResource text_BlackMedium}"
-                Margin="4"
-                Text="Type:" />
-
-            <TextBlock
-                Grid.Column="0"
-                Grid.Row="2"
-                Style="{StaticResource text_BlackMedium}"
-                Margin="4"
-                Text="Date:" />
+                <TextBlock
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Style="{StaticResource text_BlackMedium}"
+                    Margin="4"
+                    Text="Practitioner:" />
 
 
-            <TextBlock
-                Grid.Column="0"
-                Grid.Row="3"
-                Style="{StaticResource text_BlackMedium}"
-                Margin="4"
-                Text="Start Time:" />
+                <TextBlock
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    Style="{StaticResource text_BlackMedium}"
+                    Margin="4"
+                    Text="Type:" />
+
+                <TextBlock
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    Style="{StaticResource text_BlackMedium}"
+                    Margin="4"
+                    Text="Date:" />
 
 
-            <TextBlock
-                Grid.Column="0"
-                Grid.Row="4"
-                Style="{StaticResource text_BlackMedium}"
-                Margin="4"
-                Text="End Time:" />
-
-            <ComboBox
-                x:Name="DoctorComboBox"
-                Grid.Row="0"
-                Grid.Column="1"
-                ItemsSource="{Binding AVM.DoctorsOnShift}"
-                Margin="4,4,6,4"
-                SelectedIndex="{Binding AVM._activeAppointment.DrColumn, Mode=OneWay}"
-                VerticalContentAlignment="Center">
-
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock
-                            Text="{Binding DoctorName}"
-                            HorizontalAlignment="Left"
-                            Margin="0,2,0,0"
-                            Foreground="Black" />
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+                <TextBlock
+                    Grid.Column="0"
+                    Grid.Row="3"
+                    Style="{StaticResource text_BlackMedium}"
+                    Margin="4"
+                    Text="Start Time:" />
 
 
-            <ComboBox
-                x:Name="ApptTypeComboBox"
-                Grid.Row="1"
-                Grid.Column="1"
-                Margin="4,4,6,4"
-                SelectedIndex="{Binding AVM._activeAppointment.TypeIndex, Mode=OneWay}"
-                VerticalContentAlignment="Center"
-                SelectionChanged="ComboBox_ApptTypeSelectionChanged">
+                <TextBlock
+                    Grid.Column="0"
+                    Grid.Row="4"
+                    Style="{StaticResource text_BlackMedium}"
+                    Margin="4"
+                    Text="End Time:" />
 
-                <ComboBoxItem
-                    Content="Standard" />
-                <ComboBoxItem
-                    Content="Consultation" />
-            </ComboBox>
+                <ComboBox
+                    x:Name="DoctorComboBox"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    ItemsSource="{Binding AVM.DoctorsOnShift}"
+                    Margin="4,4,6,4"
+                    SelectedIndex="{Binding AVM._activeAppointment.DrColumn, Mode=OneWay}"
+                    VerticalContentAlignment="Center">
 
-            <Controls:DatePicker
-                x:Name="DatePicker"
-                Grid.Row="2"
-                Grid.Column="1"
-                Margin="4,4,6,4"
-                VerticalAlignment="Center"
-                Height="22" />
-
-
-            <ComboBox
-                x:Name="StartTime"
-                Grid.Row="3"
-                Grid.Column="1"
-                Margin="4,4,6,4"
-                ItemsSource="{Binding TimeStamps}"
-                SelectedIndex="{Binding AVM._activeAppointment.TimeIndex, Mode=OneWay}"
-                VerticalContentAlignment="Center"
-                SelectionChanged="ComboBox_StartTimeSelectionChanged">
-
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock
-                            Text="{Binding TimeString}"
-                            HorizontalAlignment="Left"
-                            Margin="0,2,0,0"
-                            Foreground="Black" />
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock
+                                Text="{Binding DoctorName}"
+                                HorizontalAlignment="Left"
+                                Margin="0,2,0,0"
+                                Foreground="Black" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
 
 
+                <ComboBox
+                    x:Name="ApptTypeComboBox"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="4,4,6,4"
+                    SelectedIndex="{Binding AVM._activeAppointment.TypeIndex, Mode=OneWay}"
+                    VerticalContentAlignment="Center"
+                    SelectionChanged="ComboBox_ApptTypeSelectionChanged">
 
-            <!--<ComboBox
+                    <ComboBoxItem
+                        Content="Standard" />
+                    <ComboBoxItem
+                        Content="Consultation" />
+                </ComboBox>
+
+                <Controls:DatePicker
+                    x:Name="DatePicker"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="4,4,6,4"
+                    VerticalAlignment="Center"
+                    Height="22" />
+
+
+                <ComboBox
+                    x:Name="StartTime"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Margin="4,4,6,4"
+                    ItemsSource="{Binding TimeStamps}"
+                    SelectedIndex="{Binding AVM._activeAppointment.TimeIndex, Mode=OneWay}"
+                    VerticalContentAlignment="Center"
+                    SelectionChanged="ComboBox_StartTimeSelectionChanged">
+
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock
+                                Text="{Binding TimeString}"
+                                HorizontalAlignment="Left"
+                                Margin="0,2,0,0"
+                                Foreground="Black" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+
+
+                <!--<ComboBox
                     Grid.Row="4"
                     Grid.Column="1"
                     Margin="4"
@@ -266,211 +266,200 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>-->
 
+                <TextBlock
+                    Name="EndTime"
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Margin="4"
+                    Style="{StaticResource text_BlackMedium}"
+                    TextAlignment="Left" />
+
+                <Separator
+                    Grid.Row="8"
+                    Grid.ColumnSpan="2"
+                    BorderThickness="1"
+                    Margin="15,10,15,10"
+                    BorderBrush="Gray"
+                    Height="2" />
+
+                <CheckBox
+                    Name="ReminderToggle"
+                    Grid.Row="9"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    VerticalAlignment="Center"
+                    Margin="4"
+                    Style="{StaticResource checkBoxes}"
+                    Content="Appointment Reminder" />
+
+                <TextBlock
+                    Name="RemTypeLable"
+                    Grid.Column="0"
+                    Grid.Row="10"
+                    Style="{StaticResource text_BlackMedium}"
+                    Margin="4"
+                    Text="Type:" />
+
+                <TextBlock
+                    Name="RemDaysLable"
+                    Grid.Column="0"
+                    Grid.Row="11"
+                    Margin="4"
+                    Style="{StaticResource text_BlackMedium}"
+                    Text="Day(s) Before:" />
+
+                <TextBlock
+                    Name="RemTODLable"
+                    Grid.Column="0"
+                    Grid.Row="12"
+                    Margin="4"
+                    Style="{StaticResource text_BlackMedium}"
+                    Text="Time:" />
+
+                <ComboBox
+                    x:Name="RemType"
+                    Grid.Row="10"
+                    Grid.Column="1"
+                    Margin="4"
+                    SelectedIndex="{Binding AVM._activeAppointment.RemTypeIndex, Mode=OneWay}">
+                    <ComboBoxItem
+                        Content="Email" />
+                    <ComboBoxItem
+                        Content="Text" />
+                    <ComboBoxItem
+                        Content="Phone" />
+                </ComboBox>
+
+                <ComboBox
+                    x:Name="RemDays"
+                    Grid.Row="11"
+                    Grid.Column="1"
+                    Margin="4"
+                    SelectedIndex="{Binding AVM._activeAppointment.RemDaysIndex, Mode=OneWay}">
+                    <ComboBoxItem
+                        Content="0" />
+                    <ComboBoxItem
+                        Content="1" />
+                    <ComboBoxItem
+                        Content="2" />
+                    <ComboBoxItem
+                        Content="3" />
+                    <ComboBoxItem
+                        Content="4" />
+                    <ComboBoxItem
+                        Content="5" />
+                    <ComboBoxItem
+                        Content="6" />
+                    <ComboBoxItem
+                        Content="7" />
+                    <ComboBoxItem
+                        Content="8" />
+                    <ComboBoxItem
+                        Content="9" />
+                    <ComboBoxItem
+                        Content="10" />
+                </ComboBox>
+
+                <ComboBox
+                    Name="RemTOD"
+                    Grid.Column="1"
+                    Grid.Row="12"
+                    Margin="5,4,3,4"
+                    SelectedIndex="{Binding AVM._activeAppointment.RemTODIndex, Mode=OneWay}">
+                    <ComboBoxItem
+                        Content="AM" />
+                    <ComboBoxItem
+                        Content="PM" />
+                </ComboBox>
+
+                <!--TODO: MAKE DROPDOWN AND ADD FIELDS-->
+
+                <CheckBox
+                    Grid.Column="0"
+                    Grid.Row="13"
+                    Grid.ColumnSpan="2"
+                    Margin="4"
+                    HorizontalAlignment="Center"
+                    Style="{StaticResource checkBoxes}"
+                    Content="Add to Waitlist" />
+
+            </Grid>
+
             <TextBlock
-                Name="EndTime"
-                Grid.Row="4"
-                Grid.Column="1"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
-                Margin="4"
                 Style="{StaticResource text_BlackMedium}"
-                TextAlignment="Left" />
-
-            <Separator
-                Grid.Row="8"
-                Grid.ColumnSpan="2"
-                BorderThickness="1"
-                Margin="15,10,15,10"
-                BorderBrush="Gray"
-                Height="2" />
-
-            <CheckBox
-                Name="ReminderToggle"
-                Grid.Row="9"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                VerticalAlignment="Center"
+                Text="Comments"
                 Margin="4"
-                Style="{StaticResource checkBoxes}"
-                Content="Appointment Reminder"
-                Click="CheckBox_Click" />
+                DockPanel.Dock="Top" />
 
-            <TextBlock
-                Name="RemTypeLable"
-                Grid.Column="0"
-                Grid.Row="10"
-                Style="{StaticResource text_BlackMedium}"
+
+            <TextBox
+                MinHeight="100"
+                MaxHeight="200"
                 Margin="4"
-                Text="Type:" />
+                VerticalScrollBarVisibility="Auto"
+                DockPanel.Dock="Top"
+                Text="{Binding AVM._activeAppointment.Comments}"
+                x:Name="CommentBox"
+                Background="{x:Null}"
+                SpellCheck.IsEnabled="True"
+                Cursor="Pen"
+                ToolTip="Click to edit Notes"
+                TextWrapping="Wrap" />
 
-            <TextBlock
-                Name="RemDaysLable"
-                Grid.Column="0"
-                Grid.Row="11"
-                Margin="4"
-                Style="{StaticResource text_BlackMedium}"
-                Text="Day(s) Before:" />
+            <Grid
+                DockPanel.Dock="Bottom">
 
-            <TextBlock
-                Name="RemTODLable"
-                Grid.Column="0"
-                Grid.Row="12"
-                Margin="4"
-                Style="{StaticResource text_BlackMedium}"
-                Text="Time:" />
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="*" />
+                    <ColumnDefinition
+                        Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <ComboBox
-                x:Name="RemType"
-                Grid.Row="10"
-                Grid.Column="1"
-                Margin="4"
-                SelectedIndex="{Binding AVM._activeAppointment.RemTypeIndex, Mode=OneWay}">
-                <ComboBoxItem
-                    Content="Email" />
-                <ComboBoxItem
-                    Content="Text" />
-                <ComboBoxItem
-                    Content="Phone" />
-            </ComboBox>
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="*" />
+                </Grid.RowDefinitions>
 
-            <ComboBox
-                x:Name="RemDays"
-                Grid.Row="11"
-                Grid.Column="1"
-                Margin="4"
-                SelectedIndex="{Binding AVM._activeAppointment.RemDaysIndex, Mode=OneWay}">
-                <ComboBoxItem
-                    Content="0" />
-                <ComboBoxItem
-                    Content="1" />
-                <ComboBoxItem
-                    Content="2" />
-                <ComboBoxItem
-                    Content="3" />
-                <ComboBoxItem
-                    Content="4" />
-                <ComboBoxItem
-                    Content="5" />
-                <ComboBoxItem
-                    Content="6" />
-                <ComboBoxItem
-                    Content="7" />
-                <ComboBoxItem
-                    Content="8" />
-                <ComboBoxItem
-                    Content="9" />
-                <ComboBoxItem
-                    Content="10" />
-            </ComboBox>
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Content="Save"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    MaxWidth="200"
+                    MinWidth="100"
+                    Height="30"
+                    PreviewMouseLeftButtonUp="OnMouseLeftRelease_Save" />
 
-            <ComboBox
-                Name="RemTOD"
-                Grid.Column="1"
-                Grid.Row="12"
-                Margin="5,4,3,4"
-                SelectedIndex="{Binding AVM._activeAppointment.RemTODIndex, Mode=OneWay}">
-                <ComboBoxItem
-                    Content="AM" />
-                <ComboBoxItem
-                    Content="PM" />
-            </ComboBox>
-
-            <!--TODO: MAKE DROPDOWN AND ADD FIELDS-->
-
-            <CheckBox
-                Grid.Column="0"
-                Grid.Row="13"
-                Grid.ColumnSpan="2"
-                Margin="4"
-                HorizontalAlignment="Center"
-                Style="{StaticResource checkBoxes}"
-                Content="Add to Waitlist" />
-
-        </Grid>
-
-        <TextBlock
-            Style="{StaticResource text_BlackMedium}"
-            Text="Comments"
-            Margin="4"
-            DockPanel.Dock="Top" />
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Content="Discard"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    MaxWidth="200"
+                    MinWidth="100"
+                    Height="30"
+                    PreviewMouseLeftButtonUp="OnMouseLeftRelease_Discard" />
 
 
-        <TextBox
-            MinHeight="100"
-            MaxHeight="200"
-            Margin="4"
-            VerticalScrollBarVisibility="Auto"
-            DockPanel.Dock="Top"
-            Text="{Binding AVM._activeAppointment.Comments}"
-            x:Name="CommentBox"
-            Background="{x:Null}"
-            SpellCheck.IsEnabled="True"
-            Cursor="Pen"
-            ToolTip="Click to edit Notes"
-            TextWrapping="Wrap" />
-
-        <Grid
-            Margin="0,20,0,10"
-            DockPanel.Dock="Bottom">
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition
-                    Width="*" />
-                <ColumnDefinition
-                    Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <RowDefinition
-                    Height="*" />
-            </Grid.RowDefinitions>
-
-            <Button
-                Grid.Row="0"
-                Grid.Column="0"
-                Content="Save"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
-                MaxWidth="200"
-                MinWidth="100"
-                Height="30"
-                PreviewMouseLeftButtonUp="OnMouseLeftRelease_Save" />
-
-            <Button
-                Grid.Row="0"
-                Grid.Column="1"
-                Content="Discard"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
-                MaxWidth="200"
-                MinWidth="100"
-                Height="30"
-                PreviewMouseLeftButtonUp="OnMouseLeftRelease_Discard" />
-
-
-        </Grid>
+            </Grid>
 
 
 
 
 
-        <!--<Separator
+            <!--<Separator
                 BorderThickness="0"
                 Margin="0,30,0,30"
                 Background="{x:Null}"
                 Foreground="{x:Null}" />-->
 
-    </DockPanel>
+        </DockPanel>
 
-
-
-
-
-
-
-
-
-
-
+    </ScrollViewer>
 
 </UserControl>

@@ -22,13 +22,16 @@ namespace Appointed.Views.Sidebar
     /// </summary>
     public partial class ModifyAppointmentSidebar : UserControl
     {
-        private bool _reminderEnabled = true;
-
 
         public ModifyAppointmentSidebar()
         {
             InitializeComponent();
+
+            //Workaround set, then set so if it is disabled it still collapses
+            ReminderToggle.Checked += Reminder_Checked;
+            ReminderToggle.Unchecked += Reminder_Unchecked;
             ReminderToggle.IsChecked = true;
+            ReminderToggle.IsChecked = (App.Current.MainWindow.DataContext as DayInformationViewModel).AVM._activeAppointment.Reminder;
 
 
             this.Loaded += new RoutedEventHandler(ModifyAppointmentSidebar_Loaded);
@@ -62,20 +65,25 @@ namespace Appointed.Views.Sidebar
             h.SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
         }
 
-
-        private void CheckBox_Click(object sender, RoutedEventArgs e)
+        private void Reminder_Checked(object sender, RoutedEventArgs e)
         {
-            _reminderEnabled = !_reminderEnabled;
-
-            RemDaysLable.Visibility = _reminderEnabled ? Visibility.Visible : Visibility.Hidden;
-            RemTODLable.Visibility = _reminderEnabled ? Visibility.Visible : Visibility.Hidden;
-            RemType.Visibility = _reminderEnabled ? Visibility.Visible : Visibility.Hidden;
-            RemTypeLable.Visibility = _reminderEnabled ? Visibility.Visible : Visibility.Hidden;
-            RemTOD.Visibility = _reminderEnabled ? Visibility.Visible : Visibility.Hidden;
-            RemDays.Visibility = _reminderEnabled ? Visibility.Visible : Visibility.Hidden;
+            RemDaysLable.Visibility = Visibility.Visible;
+            RemTODLable.Visibility = Visibility.Visible;
+            RemType.Visibility = Visibility.Visible;
+            RemTypeLable.Visibility = Visibility.Visible;
+            RemTOD.Visibility = Visibility.Visible;
+            RemDays.Visibility = Visibility.Visible;
         }
 
-
+        private void Reminder_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RemDaysLable.Visibility = Visibility.Collapsed;
+            RemTODLable.Visibility = Visibility.Collapsed;
+            RemType.Visibility = Visibility.Collapsed;
+            RemTypeLable.Visibility = Visibility.Collapsed;
+            RemTOD.Visibility = Visibility.Collapsed;
+            RemDays.Visibility = Visibility.Collapsed;
+        }
 
         private void ComboBox_StartTimeSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -113,7 +121,7 @@ namespace Appointed.Views.Sidebar
             // BEGIN PARSE DATA FROM SIDEBAR FIELDS
             string stTime = ((Time)StartTime.SelectedItem).TimeString;
             stTime = stTime.Substring(0, stTime.IndexOf(':')) + stTime.Substring(stTime.IndexOf(':') + 1);
-//          string timeCmp = stTime;
+            //          string timeCmp = stTime;
 
             string endTime = EndTime.Text;
             endTime = endTime.Substring(0, endTime.IndexOf(':')) + endTime.Substring(endTime.IndexOf(':') + 1, 2);
@@ -145,8 +153,8 @@ namespace Appointed.Views.Sidebar
             apptThatFollowsTarget = DIVM.AVM.FindAppointmentThatFollows(targetAppointment);
             if (targetAppointment != null && targetAppointment != activeAppt)
             {
-                if ((targetAppointment.Type != "")   ||
-                    (type == "Consultation" && apptThatFollowsTarget.Type != ""  && apptThatFollowsTarget != activeAppt))
+                if ((targetAppointment.Type != "") ||
+                    (type == "Consultation" && apptThatFollowsTarget.Type != "" && apptThatFollowsTarget != activeAppt))
                 {
                     MessageBox.Show(
                         "The Time Slot Specified Is Taken!",
@@ -174,9 +182,10 @@ namespace Appointed.Views.Sidebar
 
 
             targetAppointment.DoctorName = ((Doctor)DoctorComboBox.SelectedItem).DoctorName;
-            targetAppointment.Type = type;    
+            targetAppointment.Type = type;
             targetAppointment.StartTime = Int32.Parse(stTime);
             targetAppointment.EndTime = Int32.Parse(endTime);
+            targetAppointment.Reminder = ReminderToggle.IsChecked.Value;
             targetAppointment.ReminderType = ((ComboBoxItem)RemType.SelectedItem).Content.ToString();
             targetAppointment.ReminderTimeOfDay = ((ComboBoxItem)RemTOD.SelectedItem).Content.ToString();
             targetAppointment.ReminderDays = ((ComboBoxItem)RemDays.SelectedItem).Content.ToString();
