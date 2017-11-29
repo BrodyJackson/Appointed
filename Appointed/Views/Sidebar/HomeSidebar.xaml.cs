@@ -48,15 +48,26 @@ namespace Appointed.Views
 
         private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
-            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
+            if (JumpCalendar.Calendar.SelectedDate.HasValue) //Catch setting date to null and don't change anything
+            {
+                DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
 
-            DateTime activeDT = new DateTime(DIVM._activeDate.Year, DIVM._activeDate.Month, DIVM._activeDate.Day);
+                DateTime activeDT = new DateTime(DIVM._activeDate.Year, DIVM._activeDate.Month, DIVM._activeDate.Day);
 
-            DateTime selectedDT = (DateTime)(JumpCalendar.Calendar.SelectedDate);
+                DateTime selectedDT = (DateTime)(JumpCalendar.Calendar.SelectedDate);
 
-            TimeSpan diff = selectedDT - activeDT;
+                TimeSpan diff = selectedDT - activeDT;
 
-            ShiftScheduleView(diff.Days - 1);
+                ShiftScheduleView(diff.Days - 1);
+
+                //Clear selection so this event will fire for the same day twice in a row
+                JumpCalendar.Calendar.SelectedDate = null;
+            }
+            else
+            {
+                //Handle event so that no other listeners attempt to do something with a null date
+                e.Handled = true;
+            }
         }
 
 

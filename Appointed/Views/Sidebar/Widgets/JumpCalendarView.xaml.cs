@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Appointed.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,14 @@ namespace Appointed.Views
         {
             InitializeComponent();
 
-            
+            //Blackout days that will cause exception
+
+            AppointmentViewModel AVM = (App.Current.MainWindow.DataContext as DayInformationViewModel).AVM;
+
+            DateTime beginningOfAllTime = AVM.BeginningOfAllTime;
+
+            Calendar.BlackoutDates.Add(new CalendarDateRange(DateTime.MinValue, beginningOfAllTime));
+            Calendar.BlackoutDates.Add(new CalendarDateRange(beginningOfAllTime.AddDays(AVM.NumOfDaysPopulated), DateTime.MaxValue));
 
         }
 

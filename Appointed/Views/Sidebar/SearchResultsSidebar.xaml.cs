@@ -39,9 +39,15 @@ namespace Appointed.Views.Sidebar
 
             _searchTerm = searchTerm;
 
-            Search(searchTerm);
-
             SearchBar.Search += SearchBar_Search;
+
+            Loaded += SearchResultsSidebar_Loaded;
+        }
+
+        private void SearchResultsSidebar_Loaded(object sender, RoutedEventArgs e)
+        {
+            _resultPatients.Clear();
+            Search(_searchTerm);
         }
 
         private void SearchBar_Search(object sender, EventArgs e)

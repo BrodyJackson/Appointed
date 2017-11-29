@@ -22,6 +22,11 @@ namespace Appointed.ViewModels
         private AppointmentDatabaseModel _adm;
         private int _numDaysPopulated = 300; //Cant go above like 360 cause then the hash overlaps
 
+        public int NumOfDaysPopulated
+        {
+            get { return _numDaysPopulated; }
+        }
+
         public Appointment _activeAppointment { get; set; }
 
         // Mapping of numeric codes in format <position><month><day><year> where position is the column they are in (starting at 1)

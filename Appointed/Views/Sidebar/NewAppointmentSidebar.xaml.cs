@@ -38,8 +38,6 @@ namespace Appointed.Views.Sidebar
             AddToWaitlistCheckBox.IsChecked = true;
             AddToWaitlistCheckBox.IsChecked = false;
 
-
-            //Really don't know why this is needed?
             this.Loaded += new RoutedEventHandler(NewAppointmentSidebar_Loaded);
 
         }
@@ -95,7 +93,11 @@ namespace Appointed.Views.Sidebar
 
             ApptTypeComboBox.SelectionChanged += ComboBox_ApptTypeSelectionChanged;
 
-            //ActiveDateChanged(null, null);
+            //Clear selected index so its not equal to whatever the last active appt was set to
+            StartTime.SelectedIndex = -1;
+            EndTime.Text = String.Empty;
+
+            //ActiveDateChanged(null, null); Dont do this, causes date to default to 1-1-1 
         }
 
 
@@ -189,7 +191,7 @@ namespace Appointed.Views.Sidebar
             int time = Int32.Parse(stTime);
 
             // The hashcode of the DateTime + <DrColumn> form the key for appointment lookups.
-            DateTime dt = getDateTime(time, dateString);
+            DateTime dt = GetDateTime(time, dateString);
             int drColumn = DIVM.AVM.FindDrColumnForDrName(drName);
             int key = dt.GetHashCode() + drColumn;
 
@@ -202,8 +204,8 @@ namespace Appointed.Views.Sidebar
                 if ((targetAppointment.Type != "") || (type == "Consultation" && apptThatFollowsTarget.Type != ""))
                 {
                     MessageBox.Show(
-                        "The Time Slot Specified Is Taken!",
-                        "Unable to Modify Appointment",
+                        "Dr. " + drName + " is Unavaliable " + dateString + " at " + (StartTime.SelectedItem as Time).TimeString,
+                        "Unable to Schedule Appointment",
                         MessageBoxButton.OK,
                         MessageBoxImage.Asterisk);
 
@@ -214,8 +216,8 @@ namespace Appointed.Views.Sidebar
                         (!DIVM.AVM.DoctorsOnShift.ElementAt(drColumn).IsAvailable(Int32.Parse(endTime))))
                 {
                     MessageBox.Show(
-                        "The Doctor Specified Is Unavaliable At That Time!",
-                        "Unable to Modify Appointment",
+                         "Dr. " + drName + "is Unavaliable " + dateString + " at " + (StartTime.SelectedItem as Time).TimeString,
+                        "Unable to Schedule Appointment",
                         MessageBoxButton.OK,
                         MessageBoxImage.Asterisk);
 
@@ -246,7 +248,7 @@ namespace Appointed.Views.Sidebar
                 stTime = stTime.Substring(0, stTime.IndexOf(':')) + stTime.Substring(stTime.IndexOf(':') + 1);
                 time = Int32.Parse(stTime);
 
-                DateTime date = getDateTime(time, dateString);
+                DateTime date = GetDateTime(time, dateString);
 
                 drName = ((Doctor)WaitlistDoctorComboBox.SelectedItem).DoctorName;
 
@@ -283,14 +285,14 @@ namespace Appointed.Views.Sidebar
             TimeSpan diff = _newAppointment.DateTime - activeDT;
 
             if (DIVM.ShiftView.CanExecute(null))
-                DIVM.ShiftView.Execute(diff.Days - 1);
+                DIVM.ShiftView.Execute(diff.Days);
         }
 
 
 
 
 
-        public DateTime getDateTime(int startTime, string yearMonthDay)
+        public DateTime GetDateTime(int startTime, string yearMonthDay)
         {
             int year = Int32.Parse(yearMonthDay.Substring(0, yearMonthDay.IndexOf('-')));
 

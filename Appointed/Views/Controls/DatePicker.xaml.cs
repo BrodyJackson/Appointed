@@ -45,7 +45,6 @@ namespace Appointed.Views.Controls
             Calendar calendar = new Calendar
             {
                 Margin = new Thickness(0, -3, 0, -3),
-                SelectedDate = (DateSelected != null) ? DateSelected.Value : DateTime.Today,
                 DisplayDate = (DateSelected != null) ? DateSelected.Value : DateTime.Today
             };
 
@@ -69,9 +68,6 @@ namespace Appointed.Views.Controls
 
         private CustomPopupPlacement[] CustomPopupCallback(Size popupSize, Size targetSize, Point offset)
         {
-            //Console.WriteLine(popupSize.Height + " " + popupSize.Width);
-            //Console.WriteLine(targetSize.Height);
-            //Console.WriteLine(offset);
 
             CustomPopupPlacement popupPlacement = new CustomPopupPlacement()
             {
@@ -92,8 +88,8 @@ namespace Appointed.Views.Controls
             Calendar c = sender as Calendar;
             DateSelected = c.SelectedDate;
 
-            InputText.TextField.Text = 
-                DateSelected.Value.Year.ToString()  + "-" + 
+            InputText.TextField.Text =
+                DateSelected.Value.Year.ToString() + "-" +
                 DateSelected.Value.Month.ToString() + "-" +
                 DateSelected.Value.Day.ToString();
 
