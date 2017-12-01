@@ -49,9 +49,9 @@
         -->
 
         
-        <local:DoctorsOnShiftView Grid.Row="0" Grid.Column="2"/>
-        <local:DoctorsOnShiftView Grid.Row="0" Grid.Column="4"/>
-        <local:DoctorsOnShiftView Grid.Row="0" Grid.Column="6"/>
+        <local:DoctorsOnShiftView x:Name="LeftDoc" Grid.Row="0" Grid.Column="2"/>
+        <local:DoctorsOnShiftView x:Name="CenterDoc" Grid.Row="0" Grid.Column="4"/>
+        <local:DoctorsOnShiftView  x:Name="RightDoc" Grid.Row="0" Grid.Column="6"/>
 
 
         <ScrollViewer 

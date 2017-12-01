@@ -310,31 +310,36 @@ namespace Appointed.Models
 
             int daysInMonth;
 
-            if (day <= 0)
+            //I added this while loop to solve some exceptions being thrown when navigating significant spans of time at once.
+            // if it causes issues, then we will need to rethink this
+            while (Math.Abs(day) > _numberOfDaysInMonth || day <= 0)
             {
-                month--;
-
-                if (month < 1)
+                if (day <= 0)
                 {
-                    year--;
-                    month = 12;
+                    month--;
+
+                    if (month < 1)
+                    {
+                        year--;
+                        month = 12;
+                    }
+
+                    daysInMonth = _myCal.GetDaysInMonth(year, month);
+
+                    day = daysInMonth + day;
                 }
-
-                daysInMonth = _myCal.GetDaysInMonth(year, month);
-
-                day = daysInMonth + day;
-            }
-            else if (day > _numberOfDaysInMonth)
-            {
-                month++;
-
-                if (month > 12)
+                else if (day > _numberOfDaysInMonth)
                 {
-                    year++;
-                    month = 1;
-                }
+                    month++;
 
-                day = day - _numberOfDaysInMonth;
+                    if (month > 12)
+                    {
+                        year++;
+                        month = 1;
+                    }
+
+                    day = day - _numberOfDaysInMonth;
+                }
             }
 
             _day = day;

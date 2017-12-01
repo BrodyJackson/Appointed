@@ -84,7 +84,6 @@ namespace Appointed.ViewModels
         {
             _activeAppointment = new Appointment();
 
-
             _activeAppointment.Colour = "";
             _activeAppointment.Comments = "";
             _activeAppointment.Cursor = "";
@@ -427,11 +426,11 @@ namespace Appointed.ViewModels
             string bindingCode;
    
             // Get the list of appointments this one belongs in (based on date and doctor)
-            bindingCode = (doctorColumn + 1).ToString() + appointment.DateTime.Day.ToString() + appointment.DateTime.Month.ToString() + appointment.DateTime.Year.ToString();
+            bindingCode = (doctorColumn + 1).ToString() + appointment.DateTime.Value.Day.ToString() + appointment.DateTime.Value.Month.ToString() + appointment.DateTime.Value.Year.ToString();
             listOfAppointments = _drScheduleMap[Int32.Parse(bindingCode)];
 
             for (int i = 0; i < listOfAppointments.Count; i++)
-                if (appointment.DateTime.Hour.Equals(listOfAppointments.ElementAt(i).DateTime.Hour) && appointment.DateTime.Minute.Equals(listOfAppointments.ElementAt(i).DateTime.Minute))
+                if (appointment.DateTime.Value.Hour.Equals(listOfAppointments.ElementAt(i).DateTime.Value.Hour) && appointment.DateTime.Value.Minute.Equals(listOfAppointments.ElementAt(i).DateTime.Value.Minute))
                 {
                     listOfAppointments.RemoveAt(i);
                     listOfAppointments.Insert(i, appointment);
@@ -482,7 +481,7 @@ namespace Appointed.ViewModels
             int drColumn;
 
 
-            date = appointment.DateTime;
+            date = appointment.DateTime.Value;
 
             drColumn = FindDrColumnForAppointment(appointment);
             bindingCode = (drColumn + 1).ToString() + date.Day.ToString() + date.Month.ToString() + date.Year.ToString();
@@ -573,9 +572,9 @@ namespace Appointed.ViewModels
                        DoctorName = apptToRelocate.DoctorName,
                        Date = new Date
                        {
-                           Day = apptToRelocate.DateTime.Day,
-                           Month = apptToRelocate.DateTime.Month,
-                           Year = apptToRelocate.DateTime.Year,
+                           Day = apptToRelocate.DateTime.Value.Day,
+                           Month = apptToRelocate.DateTime.Value.Month,
+                           Year = apptToRelocate.DateTime.Value.Year,
                            Time24Hr = apptToRelocate.StartTime
                        },
 

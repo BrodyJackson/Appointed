@@ -81,6 +81,19 @@ namespace Appointed.Views.Controls
 
             Loaded += InputTextLoaded;
 
+            GotKeyboardFocus += InputText_GotKeyboardFocus;
+            LostKeyboardFocus += InputText_LostKeyboardFocus;
+
+        }
+
+        private void InputText_LostKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
+        {
+            App.AllowArrowKeyCalendarNavigation = true;
+        }
+
+        private void InputText_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
+        {
+            App.AllowArrowKeyCalendarNavigation = false;
         }
 
         public void MarkValid()

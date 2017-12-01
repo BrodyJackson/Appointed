@@ -17,6 +17,18 @@ using System.Windows.Shapes;
 
 namespace Appointed.Views.Controls
 {
+    public class DateSelectedEventArgs : EventArgs
+    {
+        public DateTime Date { get; private set; }
+        public bool ShouldShiftView { get; private set; }
+
+        public DateSelectedEventArgs(DateTime date, bool doShift)
+        {
+            Date = date;
+            ShouldShiftView = doShift;
+        }
+    }
+
     /// <summary>
     /// Interaction logic for DatePicker.xaml
     /// </summary>
@@ -25,6 +37,9 @@ namespace Appointed.Views.Controls
         public DateTime? DateSelected { get; set; }
 
         private Brush _textBorderBrush;
+
+        public event EventHandler OnCalendarLoaded;
+        public event EventHandler<DateSelectedEventArgs> OnDateChosen;
 
         public DatePicker()
         {
@@ -61,6 +76,8 @@ namespace Appointed.Views.Controls
 
             popup.IsOpen = true;
 
+            OnCalendarLoaded?.Invoke(calendar, null);
+
             calendar.SelectedDatesChanged += Calendar_SelectedDatesChanged;
             calendar.Focus();
         }
@@ -86,28 +103,35 @@ namespace Appointed.Views.Controls
         private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
             Calendar c = sender as Calendar;
-            DateSelected = c.SelectedDate;
 
-            InputText.TextField.Text =
-                DateSelected.Value.Year.ToString() + "-" +
-                DateSelected.Value.Month.ToString() + "-" +
-                DateSelected.Value.Day.ToString();
+            if (c.SelectedDate.HasValue)
+            {
+                DateSelected = new DateTime(c.SelectedDate.Value.Year, c.SelectedDate.Value.Month, c.SelectedDate.Value.Day);
 
-            (c.Parent as Popup).IsOpen = false;
-            InputText.TextField.Focus();
+                InputText.TextField.Text = DateSelected.Value.ToString("yyyy-MM-dd");
+
+                (c.Parent as Popup).IsOpen = false;
+                InputText.TextField.Focus();
+
+                OnDateChosen?.Invoke(this, new DateSelectedEventArgs(DateSelected.Value, true));
+
+            }
         }
 
         private void DateTextInputChanged(object sender, TextChangedEventArgs e)
         {
             TextBox input = sender as TextBox;
 
-            if (input.Text != InputText.Hint)
+            if (input.Text != InputText.Hint )
             {
                 DateTime date;
-                if (DateTime.TryParse(input.Text, out date))
+                if (input.Text.Length == 10 && DateTime.TryParse(input.Text, out date))
                 {
-                    DateSelected = date;
+                    DateSelected = new DateTime(date.Year, date.Month, date.Day);
                     input.BorderBrush = _textBorderBrush;
+
+                    if (DateSelected.HasValue)
+                        OnDateChosen?.Invoke(input, new DateSelectedEventArgs(DateSelected.Value, false));
                 }
                 else
                 {

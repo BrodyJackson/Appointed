@@ -69,7 +69,7 @@ namespace Appointed.ViewModels
 
         public DayInformationViewModel()
         {
-            WaitList = new Waitlist(); 
+            WaitList = new Waitlist();
 
             _activeDate = new Date();
 
@@ -157,9 +157,9 @@ namespace Appointed.ViewModels
                         DoctorName = appt.DoctorName,
                         Date = new Date
                         {
-                            Day = appt.DateTime.Day,
-                            Month = appt.DateTime.Month,
-                            Year = appt.DateTime.Year,
+                            Day = appt.DateTime.Value.Day,
+                            Month = appt.DateTime.Value.Month,
+                            Year = appt.DateTime.Value.Year,
                             Time24Hr = appt.StartTime
                         },
 

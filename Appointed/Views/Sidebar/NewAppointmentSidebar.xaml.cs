@@ -38,8 +38,71 @@ namespace Appointed.Views.Sidebar
             AddToWaitlistCheckBox.IsChecked = true;
             AddToWaitlistCheckBox.IsChecked = false;
 
+            //Black out dates which are in the past, or beyond what we have doctor availablity for
+            DatePicker.OnCalendarLoaded += DatePicker_OnCalendarLoaded;
+            WaitlistDatePicker.OnCalendarLoaded += DatePicker_OnCalendarLoaded;
+
+            DatePicker.OnDateChosen += DatePicker_OnDateChosen;
+
             this.Loaded += new RoutedEventHandler(NewAppointmentSidebar_Loaded);
 
+            CommentBox.GotFocus += (s, e) => { App.AllowArrowKeyCalendarNavigation = false; };
+            CommentBox.LostFocus += (s, e) => { App.AllowArrowKeyCalendarNavigation = true; };
+
+            ThreeDayView tdv = (App.Current.MainWindow as Home).ThreeDayView;
+
+            tdv.DayOne.DrColumn0.OnEmptyApptClick += EmptySlotClick;
+            tdv.DayOne.DrColumn1.OnEmptyApptClick += EmptySlotClick;
+            tdv.DayOne.DrColumn2.OnEmptyApptClick += EmptySlotClick;
+
+            tdv.DayTwo.DrColumn0.OnEmptyApptClick += EmptySlotClick;
+            tdv.DayTwo.DrColumn1.OnEmptyApptClick += EmptySlotClick;
+            tdv.DayTwo.DrColumn2.OnEmptyApptClick += EmptySlotClick;
+
+            tdv.DayThree.DrColumn0.OnEmptyApptClick += EmptySlotClick;
+            tdv.DayThree.DrColumn1.OnEmptyApptClick += EmptySlotClick;
+            tdv.DayThree.DrColumn2.OnEmptyApptClick += EmptySlotClick;
+
+        }
+
+        private void EmptySlotClick(object sender, DoctorColumnView.ApptClickEventArgs e)
+        {
+            DatePicker.InputText.TextField.Text = e.Date.ToString("yyyy-MM-dd");
+
+            Console.WriteLine(e.Date.ToString("H:mm"));
+
+            StartTime.SelectedIndex = (App.Current.MainWindow.DataContext as DayInformationViewModel).TimeStamps.ToList().FindIndex(t => t.TimeString == e.Date.ToString("H:mm"));
+        }
+
+        private void DatePicker_OnDateChosen(object sender, Controls.DateSelectedEventArgs e)
+        {
+            DayInformationViewModel DIVM = App.Current.MainWindow.DataContext as DayInformationViewModel;
+
+            //Shift calendar view to focus on this appointment
+            DateTime activeDT = new DateTime(DIVM._activeDate.Year, DIVM._activeDate.Month, DIVM._activeDate.Day);
+            TimeSpan diff = e.Date - activeDT;
+
+            int shiftAmt = diff.Days;
+
+            if (e.ShouldShiftView)
+            {
+                shiftAmt -= 1;
+            }
+
+            if (DIVM.ShiftView.CanExecute(null))
+                DIVM.ShiftView.Execute(shiftAmt);
+
+            //TODO: Highlight appt slot
+
+        }
+
+        private void DatePicker_OnCalendarLoaded(object sender, EventArgs e)
+        {
+            Calendar calendar = sender as Calendar;
+            AppointmentViewModel AVM = (App.Current.MainWindow.DataContext as DayInformationViewModel).AVM;
+
+            calendar.BlackoutDates.AddDatesInPast();
+            calendar.BlackoutDates.Add(new CalendarDateRange(AVM.BeginningOfAllTime.AddDays(AVM.NumOfDaysPopulated), DateTime.MaxValue));
         }
 
         private void AddToWaitlistCheckBox_Unchecked(object sender, RoutedEventArgs e)
@@ -89,26 +152,24 @@ namespace Appointed.Views.Sidebar
 
         void NewAppointmentSidebar_Loaded(object sender, RoutedEventArgs e)
         {
-            (this.DataContext as DayInformationViewModel)._activeDate.ActiveDateChanged += ActiveDateChanged;
+            //(this.DataContext as DayInformationViewModel)._activeDate.ActiveDateChanged += ActiveDateChanged
 
             ApptTypeComboBox.SelectionChanged += ComboBox_ApptTypeSelectionChanged;
 
             //Clear selected index so its not equal to whatever the last active appt was set to
             StartTime.SelectedIndex = -1;
             EndTime.Text = String.Empty;
-
-            //ActiveDateChanged(null, null); Dont do this, causes date to default to 1-1-1 
         }
 
 
         private void ActiveDateChanged(object sender, EventArgs e)
         {
             DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
-
-            if (DIVM != null && DIVM.AVM._activeAppointment != null)
+            if (DIVM != null && DIVM.AVM._activeAppointment.DateTime.HasValue)
             {
-                DatePicker.InputText.TextField.Text = DIVM.AVM._activeAppointment.DateTimeStr; 
-                WaitlistDatePicker.InputText.TextField.Text = DIVM.AVM._activeAppointment.DateTimeStr;
+                Console.WriteLine(DIVM._activeDate + " | " + DIVM.AVM._activeAppointment.DateTime);
+
+                DatePicker.InputText.TextField.Text = DIVM.AVM._activeAppointment.DateTime.Value.ToString("yyyy-MM-dd");
             }
         }
 
@@ -204,7 +265,7 @@ namespace Appointed.Views.Sidebar
                 if ((targetAppointment.Type != "") || (type == "Consultation" && apptThatFollowsTarget.Type != ""))
                 {
                     MessageBox.Show(
-                        "Dr. " + drName + " is Unavaliable " + dateString + " at " + (StartTime.SelectedItem as Time).TimeString,
+                        drName + " is Unavaliable " + dateString + " at " + (StartTime.SelectedItem as Time).TimeString,
                         "Unable to Schedule Appointment",
                         MessageBoxButton.OK,
                         MessageBoxImage.Asterisk);
@@ -216,7 +277,7 @@ namespace Appointed.Views.Sidebar
                         (!DIVM.AVM.DoctorsOnShift.ElementAt(drColumn).IsAvailable(Int32.Parse(endTime))))
                 {
                     MessageBox.Show(
-                         "Dr. " + drName + "is Unavaliable " + dateString + " at " + (StartTime.SelectedItem as Time).TimeString,
+                         drName + " is Unavaliable " + dateString + " at " + (StartTime.SelectedItem as Time).TimeString,
                         "Unable to Schedule Appointment",
                         MessageBoxButton.OK,
                         MessageBoxImage.Asterisk);
@@ -282,7 +343,7 @@ namespace Appointed.Views.Sidebar
 
             //Shift calendar view to focus on this appointment
             DateTime activeDT = new DateTime(DIVM._activeDate.Year, DIVM._activeDate.Month, DIVM._activeDate.Day);
-            TimeSpan diff = _newAppointment.DateTime - activeDT;
+            TimeSpan diff = _newAppointment.DateTime.Value - activeDT;
 
             if (DIVM.ShiftView.CanExecute(null))
                 DIVM.ShiftView.Execute(diff.Days);
@@ -304,8 +365,8 @@ namespace Appointed.Views.Sidebar
 
             return new DateTime(year, month, day, startTime / 100, startTime % 100, 0);
         }
-       
-        
+
+
 
     }
 

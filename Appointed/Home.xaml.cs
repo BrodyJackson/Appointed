@@ -51,21 +51,27 @@ namespace Appointed
             }
             else if (e.Key == Key.Left)
             {
-                if (Keyboard.IsKeyDown(Key.LeftShift))
-                    ShiftScheduleView(-7);
-                else if (Keyboard.IsKeyDown(Key.LeftCtrl))
-                    ShiftScheduleView(-3);
-                else
-                    ShiftScheduleView(-1);
+                if (App.AllowArrowKeyCalendarNavigation) //So when in input text arrow keys dont move scheduel
+                {
+                    if (Keyboard.IsKeyDown(Key.LeftShift))
+                        ShiftScheduleView(-7);
+                    else if (Keyboard.IsKeyDown(Key.LeftCtrl))
+                        ShiftScheduleView(-3);
+                    else
+                        ShiftScheduleView(-1);
+                }
             }
             else if (e.Key == Key.Right)
             {
-                if (Keyboard.IsKeyDown(Key.LeftShift))
-                    ShiftScheduleView(7);
-                else if (Keyboard.IsKeyDown(Key.LeftCtrl))
-                    ShiftScheduleView(3);
-                else
-                    ShiftScheduleView(1);
+                if (App.AllowArrowKeyCalendarNavigation) //So when in input text arrow keys dont move scheduel
+                {
+                    if (Keyboard.IsKeyDown(Key.LeftShift))
+                        ShiftScheduleView(7);
+                    else if (Keyboard.IsKeyDown(Key.LeftCtrl))
+                        ShiftScheduleView(3);
+                    else
+                        ShiftScheduleView(1);
+                }
             }
             //else if (e.Key == Key.LeftShift)
             //{

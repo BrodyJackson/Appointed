@@ -33,10 +33,28 @@ namespace Appointed.Views.Sidebar
             ReminderToggle.IsChecked = true;
             ReminderToggle.IsChecked = (App.Current.MainWindow.DataContext as DayInformationViewModel).AVM._activeAppointment.Reminder;
 
-
             this.Loaded += new RoutedEventHandler(ModifyAppointmentSidebar_Loaded);
+
+            CommentBox.GotFocus += (s, e) => { App.AllowArrowKeyCalendarNavigation = false; };
+            CommentBox.LostFocus += (s, e) => { App.AllowArrowKeyCalendarNavigation = true; };
+
+            DatePicker.OnDateChosen += DatePicker_OnDateChosen;
         }
 
+        private void DatePicker_OnDateChosen(object sender, Controls.DateSelectedEventArgs e)
+        {
+            DayInformationViewModel DIVM = App.Current.MainWindow.DataContext as DayInformationViewModel;
+
+            //Shift calendar view to focus on this appointment
+            DateTime activeDT = new DateTime(DIVM._activeDate.Year, DIVM._activeDate.Month, DIVM._activeDate.Day);
+            TimeSpan diff = e.Date - activeDT;
+
+            if (DIVM.ShiftView.CanExecute(null))
+                DIVM.ShiftView.Execute(diff.Days - 1);
+
+            //TODO: Highlight appt slot
+
+        }
 
         void ModifyAppointmentSidebar_Loaded(object sender, RoutedEventArgs e)
         {

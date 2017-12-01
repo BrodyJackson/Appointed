@@ -56,7 +56,7 @@ namespace Appointed.Classes
 
     public class Appointment : ObservableObject
     {
-        DateTime _dateTime;
+        DateTime? _dateTime;
         string _doctorName;
         string _type;
         string _patient;
@@ -88,9 +88,6 @@ namespace Appointed.Classes
 
         public Appointment()
         {
-
-
-
         }
 
         // Make sure to add to this as fields are added to appointment class.
@@ -125,9 +122,20 @@ namespace Appointed.Classes
         }
 
 
-        public DateTime DateTime
+        public DateTime? DateTime
         {
-            get { return _dateTime; }
+            get
+            {
+
+                if(_dateTime.HasValue)
+                {
+                    return _dateTime.Value;
+                }
+                else
+                {
+                    return null;
+                }
+            }
             set
             {
                 _dateTime = value;
@@ -140,7 +148,9 @@ namespace Appointed.Classes
         {
             get
             {
-                string dTS = _dateTime.Year.ToString() + '-' + _dateTime.Month.ToString() + "-" + _dateTime.Day.ToString();
+                string dTS = "";
+                if (_dateTime.HasValue)
+                    dTS = _dateTime.Value.Year.ToString() + '-' + _dateTime.Value.Month.ToString() + "-" + _dateTime.Value.Day.ToString();
                 return dTS;
             }
         }
@@ -186,24 +196,24 @@ namespace Appointed.Classes
         {
             get
             {
-                    string shortenedInfo;
-                    int whiteSpaceIndex;
+                string shortenedInfo;
+                int whiteSpaceIndex;
 
-                    if (Patient.Length > 12)
-                    {
-                        whiteSpaceIndex = Patient.IndexOf(' ');
-                        shortenedInfo = Patient.ElementAt(0).ToString() + "." + Patient.Substring(whiteSpaceIndex);
-                    }
-                    else
-                        return Patient;
-                    
-                    if (shortenedInfo.Length > 12)
-                    {
-                        whiteSpaceIndex = shortenedInfo.IndexOf(' ');
-                        shortenedInfo = shortenedInfo.Substring(0, whiteSpaceIndex) + " " + shortenedInfo.Substring(whiteSpaceIndex+1, 8) + "..";
-                    }
+                if (Patient.Length > 12)
+                {
+                    whiteSpaceIndex = Patient.IndexOf(' ');
+                    shortenedInfo = Patient.ElementAt(0).ToString() + "." + Patient.Substring(whiteSpaceIndex);
+                }
+                else
+                    return Patient;
 
-                    return shortenedInfo;
+                if (shortenedInfo.Length > 12)
+                {
+                    whiteSpaceIndex = shortenedInfo.IndexOf(' ');
+                    shortenedInfo = shortenedInfo.Substring(0, whiteSpaceIndex) + " " + shortenedInfo.Substring(whiteSpaceIndex + 1, 8) + "..";
+                }
+
+                return shortenedInfo;
             }
         }
 
@@ -374,7 +384,7 @@ namespace Appointed.Classes
             }
         }
 
-       
+
 
         public bool Missed
         {
@@ -394,10 +404,10 @@ namespace Appointed.Classes
             set
             {
                 _arrived = value;
-               
+
                 RaisePropertyChangedEvent("Arrived");
                 RaisePropertyChangedEvent("CheckInButtonContent");
-                RaisePropertyChangedEvent("CheckInButtonToolTip");   
+                RaisePropertyChangedEvent("CheckInButtonToolTip");
             }
         }
 

@@ -33,7 +33,6 @@ namespace Appointed.Classes
 
         public Date()
         {
-
         }
 
         public int Day
@@ -95,5 +94,9 @@ namespace Appointed.Classes
             set { _hasChanged = value; }
         }
 
+        public override string ToString()
+        {
+            return _year + "-" + (_month < 10 ? "0" + _month : _month.ToString()) + "-" + (_day < 10 ? "0" + _day : _day.ToString());
+        }
     }
 }

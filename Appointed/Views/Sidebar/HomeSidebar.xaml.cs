@@ -54,9 +54,9 @@ namespace Appointed.Views
 
                 DateTime activeDT = new DateTime(DIVM._activeDate.Year, DIVM._activeDate.Month, DIVM._activeDate.Day);
 
-                DateTime selectedDT = (DateTime)(JumpCalendar.Calendar.SelectedDate);
+                //DateTime selectedDT = (sender as Calendar).SelectedDate.Value;
 
-                TimeSpan diff = selectedDT - activeDT;
+                TimeSpan diff = (sender as Calendar).SelectedDate.Value - activeDT;
 
                 ShiftScheduleView(diff.Days - 1);
 

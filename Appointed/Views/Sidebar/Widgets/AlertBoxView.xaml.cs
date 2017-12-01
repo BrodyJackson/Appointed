@@ -75,9 +75,9 @@ namespace Appointed.Views.Sidebar
 
             Appointment apptToReschedule = DIVM.AVM._appointmentLookup[a.WLE.Key];
 
-            string currDay = DIVM.GetDayString(apptToReschedule.DateTime.Day);
-            string currMonth = DIVM.GetMonthString(apptToReschedule.DateTime.Month);
-            string currYear = apptToReschedule.DateTime.Year.ToString();
+            string currDay = DIVM.GetDayString(apptToReschedule.DateTime.Value.Day);
+            string currMonth = DIVM.GetMonthString(apptToReschedule.DateTime.Value.Month);
+            string currYear = apptToReschedule.DateTime.Value.Year.ToString();
             string currStart = apptToReschedule.StartTimeStr;
 
             string newDay = DIVM.GetDayString(a.WLE.Date.Day);
@@ -89,7 +89,7 @@ namespace Appointed.Views.Sidebar
             RescheduleConfirmation r = new RescheduleConfirmation();
             r.TypeNameTextCurrent.Text = "Appointment for " + apptToReschedule.Patient + " with " + apptToReschedule.DoctorName;
             r.DateTimeTextCurrent.Text =
-                "On " + currDay + ", " + currMonth + " " + apptToReschedule.DateTime.Day + ", " + currYear + " at " + currStart;
+                "On " + currDay + ", " + currMonth + " " + apptToReschedule.DateTime.Value.Day + ", " + currYear + " at " + currStart;
 
             r.TypeNameTextNew.Text =  "Appointment for " + apptToReschedule.Patient + " with " + a.WLE.DoctorName;
             r.DateTimeTextNew.Text =

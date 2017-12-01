@@ -21,6 +21,8 @@ namespace Appointed
         public static Dictionary<string, bool> CalendarDocFilter { get; set; }
         public static Dictionary<string, bool> CalendarApptFilter { get; set; }
 
+        public static bool AllowArrowKeyCalendarNavigation { get; set; }
+
         public App()
         {
             //Initialize Global State Vars
@@ -35,6 +37,7 @@ namespace Appointed
             CalendarApptFilter.Add("Standard", true);
             CalendarApptFilter.Add("Consultation", true);
 
+            AllowArrowKeyCalendarNavigation = true;
             
         }
 

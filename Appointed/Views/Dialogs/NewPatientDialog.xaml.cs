@@ -27,6 +27,10 @@ namespace Appointed.Views.Dialogs
 
             ExitAction = EXIT_ACTION.DISCARD;
 
+            //Disable/Enable left/right keys from moving schedule
+            Notes.GotFocus += (s, e) => { App.AllowArrowKeyCalendarNavigation = false; };
+            Notes.LostFocus += (s, e) => { App.AllowArrowKeyCalendarNavigation = true; };
+
             //Valid Input Handlers
             HealthID.TextField.TextChanged += HealthID_Changed;
 
@@ -325,27 +329,3 @@ namespace Appointed.Views.Dialogs
         }
     }
 }
-
-
-/*
-    First Name*
-    Middle Name
-    Last Name*
-
-    Health ID*
-    Birth*
-    
-    Address*
-    City*
-    Postal*
-
-    Home*
-    Business
-    Cell
-    email
-
-    contact name*
-    contact relation*
-    contact phone*
-     
-     */

@@ -24,8 +24,12 @@ namespace Appointed.Views
     /// </summary>
     public partial class DoctorColumnView : UserControl
     {
+        public class ApptClickEventArgs : EventArgs
+        {
+            public DateTime Date { get; set; }
+        }
 
-
+        public event EventHandler<ApptClickEventArgs> OnEmptyApptClick;
 
         public DoctorColumnView()
         {
@@ -221,14 +225,19 @@ namespace Appointed.Views
             DIVM.AVM._activeAppointment.Waitlisted = appt.Waitlisted;
             DIVM.AVM._activeAppointment.Visibility = appt.Visibility;
 
-            DIVM._activeDate.Day = appt.DateTime.Day;
-            DIVM._activeDate.Month = appt.DateTime.Month;
-            DIVM._activeDate.Year = appt.DateTime.Year;
+            DIVM._activeDate.Day = appt.DateTime.Value.Day;
+            DIVM._activeDate.Month = appt.DateTime.Value.Month;
+            DIVM._activeDate.Year = appt.DateTime.Value.Year;
             DIVM._activeDate.Time24Hr = appt.StartTime;
 
 
-            if (appt.Type == "")
+            if (appt.Type == "") //This is a free appt slot so raise event
+            {
+                OnEmptyApptClick?.Invoke(this, new ApptClickEventArgs() { Date = appt.DateTime.Value /*new DateTime(appt.DateTime.Value.Year, appt.DateTime.Value.Month, appt.DateTime.Value.Day) }*/});
                 return;
+            }
+
+            //TODO: NEED TO CHECK HERE IF WE ARE ON THE NEW APPT SIDEBAR OR MODIFY APPT. IF SO DO NOT CHANGE VIEWS
 
             Home h = App.Current.MainWindow as Home;
             h.SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
