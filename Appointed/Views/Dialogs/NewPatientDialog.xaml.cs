@@ -36,6 +36,13 @@ namespace Appointed.Views.Dialogs
 
             //Valid Input Handlers
             HealthID.TextField.TextChanged += HealthID_Changed;
+            FirstName.TextField.TextChanged += FirstName_Changed;
+            LastName.TextField.TextChanged += LastName_Changed;
+            Address.TextField.TextChanged += Address_Changed;
+            City.TextField.TextChanged += City_Changed;
+            ContactName.TextField.TextChanged += ContactName_Changed;
+            ContactRelation.TextField.TextChanged += ContactRelation_Changed;
+            ContactPhone.TextField.TextChanged += ContactPhone_Changed;
 
             Closing += NewPatientDialog_Closing;
 
@@ -51,7 +58,7 @@ namespace Appointed.Views.Dialogs
 
             SaveBookBtn.Click += (object sender, RoutedEventArgs e) =>
             {
-                if(SavePatient())
+                if (SavePatient())
                 {
                     ExitAction = EXIT_ACTION.SAVEBOOK;
                     (App.Current.MainWindow.DataContext as DayInformationViewModel).PVM.ActivePatient = _patient;
@@ -59,6 +66,62 @@ namespace Appointed.Views.Dialogs
                     Close();
                 }
             };
+        }
+
+        private void ContactPhone_Changed(object sender, TextChangedEventArgs e)
+        {
+            if(IsPhoneNumberValid(ContactPhone) && !ContactPhone.Valid && ContactPhone.TextField.Text != ContactPhone.Hint && !String.IsNullOrWhiteSpace(ContactPhone.TextField.Text))
+            {
+                ContactPhone.MarkValid();
+            }
+        }
+
+        private void FirstName_Changed(object sender, TextChangedEventArgs e)
+        {
+            if (!FirstName.Valid && FirstName.TextField.Text != FirstName.Hint && !String.IsNullOrWhiteSpace(FirstName.TextField.Text))
+            {
+                FirstName.MarkValid();
+            }
+        }
+
+        private void LastName_Changed(object sender, TextChangedEventArgs e)
+        {
+            if (!LastName.Valid && LastName.TextField.Text != LastName.Hint && !String.IsNullOrWhiteSpace(LastName.TextField.Text))
+            {
+                LastName.MarkValid();
+            }
+        }
+
+        private void Address_Changed(object sender, TextChangedEventArgs e)
+        {
+            if (!Address.Valid && Address.TextField.Text != Address.Hint && !String.IsNullOrWhiteSpace(Address.TextField.Text))
+            {
+                Address.MarkValid();
+            }
+        }
+
+        private void City_Changed(object sender, TextChangedEventArgs e)
+        {
+            if (!City.Valid && City.TextField.Text != City.Hint && !String.IsNullOrWhiteSpace(City.TextField.Text))
+            {
+                City.MarkValid();
+            }
+        }
+
+        private void ContactName_Changed(object sender, TextChangedEventArgs e)
+        {
+            if (!ContactName.Valid && ContactName.TextField.Text != ContactName.Hint && !String.IsNullOrWhiteSpace(ContactName.TextField.Text))
+            {
+                ContactName.MarkValid();
+            }
+        }
+
+        private void ContactRelation_Changed(object sender, TextChangedEventArgs e)
+        {
+            if (!ContactRelation.Valid && ContactRelation.TextField.Text != ContactRelation.Hint && !String.IsNullOrWhiteSpace(ContactRelation.TextField.Text))
+            {
+                ContactRelation.MarkValid();
+            }
         }
 
         private bool IsPhoneNumberValid(InputText number)
@@ -79,7 +142,7 @@ namespace Appointed.Views.Dialogs
             {
                 HealthID.MarkInvalid();
                 WarningPopups.HCIDTakenMessageBox msgBox = new WarningPopups.HCIDTakenMessageBox();
-                msgBox.Message.Text = "A patient already exists with the Healthcare ID '"+ HealthID.TextField.Text +"'! \nWould you like to Search for this patient instead of \ncreating a new one, or change the Healthcare ID?";
+                msgBox.Message.Text = "A patient already exists with the Healthcare ID '" + HealthID.TextField.Text + "'! \nWould you like to Search for this patient instead of \ncreating a new one, or change the Healthcare ID?";
                 msgBox.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                 msgBox.SearchBtn.Click += (s, v) => { msgBox.Close(); (App.Current.MainWindow as Home).SidebarView.SetSidebarView(new SearchResultsSidebar(HealthID.TextField.Text)); forceClose = true; Close(); };
                 msgBox.NewIDBtn.Click += (s, v) => { msgBox.Close(); };
@@ -123,7 +186,7 @@ namespace Appointed.Views.Dialogs
 
         private bool VerifyDiscard()
         {
-            if(forceClose) return true;
+            if (forceClose) return true;
 
             MessageBoxResult res = MessageBox.Show("Are you sure you wish to discard patient info?", "Discard New Patient", MessageBoxButton.YesNo, MessageBoxImage.None, MessageBoxResult.No);
 
@@ -272,15 +335,16 @@ namespace Appointed.Views.Dialogs
                 PostalCode.MarkValid();
             }
 
-            if (!IsPhoneNumberValid(HomePhone))
-            {
-                HomePhone.MarkInvalid();
-                allValid = false;
-            }
-            else
-            {
-                HomePhone.MarkValid();
-            }
+            //TODO: Check for at least one contact method, and ensure it is correct
+            //if (!IsPhoneNumberValid(HomePhone))
+            //{
+            //    HomePhone.MarkInvalid();
+            //    allValid = false;
+            //}
+            //else
+            //{
+            //    HomePhone.MarkValid();
+            //}
 
             //Optional Business Phone, if it is filled in, ensure it is at least a 10 digit number
             if (BusinessPhone.TextField.Text != BusinessPhone.Hint && BusinessPhone.TextField.Text.Length < 14)

@@ -537,6 +537,18 @@
                 </TextBlock>
 
                 <TextBlock
+                    Name="ContactMethodReqText"
+                    Grid.Row="2"
+                    Grid.Column="3"
+                    Grid.ColumnSpan="3"
+                    Foreground="Red"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Margin="4"
+                    Text="At least one contact method is required."
+                    FontStyle="Italic" />
+
+                <TextBlock
                     Margin="4"
                     FontFamily="Yu Gothic UI Light"
                     FontSize="16"
@@ -553,7 +565,7 @@
 
                 <Controls:InputText
                     x:Name="HomePhone"
-                    Margin="4,4,6,4"
+                    Margin="4,4,4,4"
                     Grid.Row="1"
                     Grid.Column="1"
                     Mask="PHONENUMBER"
@@ -563,13 +575,13 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Stretch" />
 
-                <TextBlock
+                <!--<TextBlock
                     Grid.Column="1"
                     Grid.Row="1"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
                     Text="*"
-                    Foreground="Red" />
+                    Foreground="Red" />-->
 
                 <TextBlock
                     Margin="4"
