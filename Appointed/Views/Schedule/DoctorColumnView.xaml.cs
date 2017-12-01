@@ -237,9 +237,14 @@ namespace Appointed.Views
                 return;
             }
 
-            //TODO: NEED TO CHECK HERE IF WE ARE ON THE NEW APPT SIDEBAR OR MODIFY APPT. IF SO DO NOT CHANGE VIEWS
-
             Home h = App.Current.MainWindow as Home;
+
+            //Check if we are making a new appt or modifying one, if so, don't change the view, probably a miss click on a booked appt instead of a blank one
+            if (h.SidebarView.GetSidebarView() is Sidebar.NewAppointmentSidebar || h.SidebarView.GetSidebarView() is Sidebar.ModifyAppointmentSidebar)
+            {
+                return;
+            }
+
             h.SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
         }
 
