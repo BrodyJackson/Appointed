@@ -6,6 +6,7 @@ using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace Appointed.Views.Dialogs
 {
@@ -20,6 +21,8 @@ namespace Appointed.Views.Dialogs
         public EXIT_ACTION ExitAction { get; private set; }
 
         private Patient _patient;
+
+        private bool forceClose = false;
 
         public NewPatientDialog()
         {
@@ -75,9 +78,13 @@ namespace Appointed.Views.Dialogs
             if (!IsHealthcareIDValid())
             {
                 HealthID.MarkInvalid();
-                MessageBox.Show("A patient with this Healthcare ID: " + HealthID.TextField.Text + " already exists!", "Invalid Healthcare ID", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                HealthID.TextField.Text = "";
-                HealthID.TextField.Focus();
+                WarningPopups.HCIDTakenMessageBox msgBox = new WarningPopups.HCIDTakenMessageBox();
+                msgBox.Message.Text = "A patient already exists with the Healthcare ID '"+ HealthID.TextField.Text +"'! \nWould you like to Search for this patient instead of \ncreating a new one, or change the Healthcare ID?";
+                msgBox.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                msgBox.SearchBtn.Click += (s, v) => { msgBox.Close(); (App.Current.MainWindow as Home).SidebarView.SetSidebarView(new SearchResultsSidebar(HealthID.TextField.Text)); forceClose = true; Close(); };
+                msgBox.NewIDBtn.Click += (s, v) => { msgBox.Close(); };
+                msgBox.Closed += (s, v) => { HealthID.TextField.Focus(); };
+                msgBox.ShowDialog();
             }
             else
             {
@@ -116,6 +123,8 @@ namespace Appointed.Views.Dialogs
 
         private bool VerifyDiscard()
         {
+            if(forceClose) return true;
+
             MessageBoxResult res = MessageBox.Show("Are you sure you wish to discard patient info?", "Discard New Patient", MessageBoxButton.YesNo, MessageBoxImage.None, MessageBoxResult.No);
 
             return res == MessageBoxResult.Yes ? true : false;

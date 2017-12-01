@@ -1,0 +1,59 @@
+﻿<Window
+    x:Class="Appointed.Views.Dialogs.WarningPopups.HCIDTakenMessageBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Appointed.Views.Dialogs.WarningPopups"
+    mc:Ignorable="d"
+    Height="auto"
+    Width="auto"
+    SizeToContent="WidthAndHeight"
+    ShowInTaskbar="False"
+    Topmost="True"
+    ResizeMode="NoResize"
+    WindowStyle="SingleBorderWindow"
+    Title="Invalid Healthcare ID"
+    Icon="/Appointed;component/Assets/InfoIcon.png">
+    <Grid
+        Margin="8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="auto" />
+            <RowDefinition
+                Height="auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Name="Message"
+            Grid.Row="0"
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Stretch"
+            Margin="4"
+            Style="{StaticResource text_BlackMedium}"
+            TextAlignment="Center" />
+
+        <Button
+            Name="SearchBtn"
+            Margin="4"
+            Padding="2"
+            HorizontalAlignment="Stretch"
+            Grid.Row="1"
+            Grid.Column="0"
+            Content="Search ID" />
+
+        <Button
+            Name="NewIDBtn"
+            Margin="4"
+            Padding="2"
+            HorizontalAlignment="Stretch"
+            Grid.Row="1"
+            Grid.Column="1"
+            Content="Change Healthcare ID" />
+
+    </Grid>
+</Window>
