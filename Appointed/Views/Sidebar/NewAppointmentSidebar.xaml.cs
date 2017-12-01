@@ -69,8 +69,6 @@ namespace Appointed.Views.Sidebar
         {
             DatePicker.InputText.TextField.Text = e.Date.ToString("yyyy-MM-dd");
 
-            Console.WriteLine(e.Date.ToString("H:mm"));
-
             StartTime.SelectedIndex = (App.Current.MainWindow.DataContext as DayInformationViewModel).TimeStamps.ToList().FindIndex(t => t.TimeString == e.Date.ToString("H:mm"));
         }
 
@@ -152,25 +150,11 @@ namespace Appointed.Views.Sidebar
 
         void NewAppointmentSidebar_Loaded(object sender, RoutedEventArgs e)
         {
-            //(this.DataContext as DayInformationViewModel)._activeDate.ActiveDateChanged += ActiveDateChanged
-
             ApptTypeComboBox.SelectionChanged += ComboBox_ApptTypeSelectionChanged;
 
             //Clear selected index so its not equal to whatever the last active appt was set to
             StartTime.SelectedIndex = -1;
             EndTime.Text = String.Empty;
-        }
-
-
-        private void ActiveDateChanged(object sender, EventArgs e)
-        {
-            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
-            if (DIVM != null && DIVM.AVM._activeAppointment.DateTime.HasValue)
-            {
-                Console.WriteLine(DIVM._activeDate + " | " + DIVM.AVM._activeAppointment.DateTime);
-
-                DatePicker.InputText.TextField.Text = DIVM.AVM._activeAppointment.DateTime.Value.ToString("yyyy-MM-dd");
-            }
         }
 
         private void OnMouseLeftRelease_Discard(object sender, MouseButtonEventArgs e)
