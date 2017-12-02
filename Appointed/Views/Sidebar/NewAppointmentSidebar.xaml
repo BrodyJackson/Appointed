@@ -379,7 +379,7 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     ItemsSource="{Binding AVM.DoctorsOnShift}"
-                    SelectedIndex="{Binding AVM._activeAppointment.DrColumn, Mode=OneWay}"
+                    SelectedIndex="-1"
                     HorizontalAlignment="Stretch"
                     Margin="4">
                     <ComboBox.ItemTemplate>
@@ -421,7 +421,7 @@
                     Grid.Column="1"
                     Margin="4"
                     ItemsSource="{Binding TimeStamps}"
-                    SelectedIndex="{Binding AVM._activeAppointment.TimeIndex, Mode=OneWay}"
+                    SelectedIndex="-1"
                     SelectionChanged="ComboBox_WaitlistTimeSelectionChanged">
 
                     <ComboBox.ItemTemplate>

@@ -179,11 +179,11 @@ namespace Appointed.Views.Sidebar
 
             if (((ApptTypeComboBox.SelectedItem as ComboBoxItem).Content as string) == "Standard")
             {
-                WaitlistEndTime.Text = DateTime.Parse((WaitlistStartTime.SelectedItem as Classes.Time).TimeString).AddMinutes(15).ToString("HH:mm");
+                WaitlistEndTime.Text = DateTime.Parse((WaitlistStartTime.SelectedItem as Classes.Time).TimeString).AddMinutes(15).ToString("HH:mm").TrimStart('0');
             }
             else
             {
-                WaitlistEndTime.Text = DateTime.Parse((WaitlistStartTime.SelectedItem as Classes.Time).TimeString).AddMinutes(30).ToString("HH:mm");
+                WaitlistEndTime.Text = DateTime.Parse((WaitlistStartTime.SelectedItem as Classes.Time).TimeString).AddMinutes(30).ToString("HH:mm").TrimStart('0');
             }
         }
 
@@ -332,9 +332,6 @@ namespace Appointed.Views.Sidebar
             if (DIVM.ShiftView.CanExecute(null))
                 DIVM.ShiftView.Execute(diff.Days);
         }
-
-
-
 
 
         public DateTime GetDateTime(int startTime, string yearMonthDay)
