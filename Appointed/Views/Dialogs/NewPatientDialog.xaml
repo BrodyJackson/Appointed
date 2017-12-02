@@ -537,6 +537,29 @@
                 </TextBlock>
 
                 <TextBlock
+                    Name="ContactAstrix"
+                    Grid.Column="3"
+                    Grid.Row="2"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Text="*"
+                    Margin="6,0,0,0"
+                    Foreground="Gray" />
+                
+                <TextBlock
+                    Name="ContactAstrixTxt"
+                    Grid.Row="2"
+                    Grid.Column="3"
+                    Grid.ColumnSpan="2"
+                    Style="{StaticResource text_BlackXSmall}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Margin="12,4,4,4"
+                    Text="At least one contact method is required."
+                    FontStyle="Italic" />
+
+                <TextBlock
+                    Visibility="Hidden"
                     Name="ContactMethodReqText"
                     Grid.Row="2"
                     Grid.Column="3"
@@ -565,7 +588,7 @@
 
                 <Controls:InputText
                     x:Name="HomePhone"
-                    Margin="4,4,4,4"
+                    Margin="4,4,6,4"
                     Grid.Row="1"
                     Grid.Column="1"
                     Mask="PHONENUMBER"
@@ -575,13 +598,13 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Stretch" />
 
-                <!--<TextBlock
+                <TextBlock
                     Grid.Column="1"
                     Grid.Row="1"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
                     Text="*"
-                    Foreground="Red" />-->
+                    Foreground="Gray" />
 
                 <TextBlock
                     Margin="4"
@@ -600,7 +623,7 @@
 
                 <Controls:InputText
                     x:Name="BusinessPhone"
-                    Margin="4"
+                    Margin="4,4,6,4"
                     Mask="PHONENUMBER_WITHEXT"
                     Hint="(ex. (587) 555-5555+ext)"
                     Grid.Row="1"
@@ -609,6 +632,14 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Stretch" />
 
+                <TextBlock
+                    Grid.Column="3"
+                    Grid.Row="1"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Text="*"
+                    Foreground="Gray" />
+                
                 <TextBlock
                     Margin="4"
                     FontFamily="Yu Gothic UI Light"
@@ -626,7 +657,7 @@
 
                 <Controls:InputText
                     x:Name="CellPhone"
-                    Margin="4"
+                    Margin="4,4,6,4"
                     Mask="PHONENUMBER"
                     Hint="(ex. (587) 989-8899)"
                     Grid.Row="1"
@@ -635,6 +666,14 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Stretch" />
 
+                <TextBlock
+                    Grid.Column="6"
+                    Grid.Row="1"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Text="*"
+                    Foreground="Gray" />
+                
                 <TextBlock
                     Margin="4"
                     FontFamily="Yu Gothic UI Light"
@@ -652,7 +691,7 @@
 
                 <Controls:InputText
                     x:Name="Email"
-                    Margin="4"
+                    Margin="4,4,6,4"
                     Hint="(ex. jason.briggs@shaw.ca)"
                     Grid.Row="2"
                     Grid.Column="1"
@@ -660,6 +699,14 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Stretch" />
 
+                <TextBlock
+                    Grid.Column="2"
+                    Grid.Row="2"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Text="*"
+                    Foreground="Gray" />
+                
             </Grid>
 
             <Grid

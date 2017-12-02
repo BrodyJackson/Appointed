@@ -4,6 +4,7 @@ using Appointed.Views.Controls;
 using Appointed.Views.Sidebar;
 using System;
 using System.Linq;
+using System.Net.Mail;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -68,9 +69,11 @@ namespace Appointed.Views.Dialogs
             };
         }
 
+        #region InputTextChanged Handlers
+
         private void ContactPhone_Changed(object sender, TextChangedEventArgs e)
         {
-            if(IsPhoneNumberValid(ContactPhone) && !ContactPhone.Valid && ContactPhone.TextField.Text != ContactPhone.Hint && !String.IsNullOrWhiteSpace(ContactPhone.TextField.Text))
+            if (IsPhoneNumberValid(ContactPhone) && !ContactPhone.Valid && ContactPhone.TextField.Text != ContactPhone.Hint && !String.IsNullOrWhiteSpace(ContactPhone.TextField.Text))
             {
                 ContactPhone.MarkValid();
             }
@@ -124,21 +127,9 @@ namespace Appointed.Views.Dialogs
             }
         }
 
-        private bool IsPhoneNumberValid(InputText number)
-        {
-            return number.TextField.Text.Length >= 14 && number.TextField.Text != number.Hint;
-        }
-
-        private bool IsPostalCodeValid()
-        {
-            // XXX XXX
-            return (PostalCode.TextField.Text.Length == 7);
-
-        }
-
         private void HealthID_Changed(object sender, TextChangedEventArgs e)
         {
-            if (!IsHealthcareIDValid())
+            if (!IsHealthcareIDValid() && HealthID.Valid)
             {
                 HealthID.MarkInvalid();
                 WarningPopups.HCIDTakenMessageBox msgBox = new WarningPopups.HCIDTakenMessageBox();
@@ -153,6 +144,22 @@ namespace Appointed.Views.Dialogs
             {
                 HealthID.MarkValid();
             }
+        }
+
+        #endregion
+
+        #region InputValidators
+
+        private bool IsPhoneNumberValid(InputText number)
+        {
+            return number.TextField.Text.Length >= 14 && number.TextField.Text != number.Hint;
+        }
+
+        private bool IsPostalCodeValid()
+        {
+            // XXX XXX
+            return (PostalCode.TextField.Text.Length == 7);
+
         }
 
         private bool IsHealthcareIDValid()
@@ -172,6 +179,7 @@ namespace Appointed.Views.Dialogs
                 return true;
             }
         }
+        #endregion
 
         private void NewPatientDialog_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -238,7 +246,11 @@ namespace Appointed.Views.Dialogs
             }
             else
             {
-                MessageBox.Show("Please ensure all highlighted fields are filled correctly!", "Incomplete Patient Data", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                WarningPopups.InvalidNewPatientDialog msgBox = new WarningPopups.InvalidNewPatientDialog();
+                msgBox.Message.TextAlignment = TextAlignment.Center;
+                msgBox.Message.Text = "Unable to create a new patient!\nPlease ensure all highlighted fields are completed correctly.";
+                msgBox.OkBtn.Click += (s, v) => { msgBox.Close(); };
+                msgBox.ShowDialog();
             }
 
             return false;
@@ -335,26 +347,38 @@ namespace Appointed.Views.Dialogs
                 PostalCode.MarkValid();
             }
 
-            //TODO: Check for at least one contact method, and ensure it is correct
-            //if (!IsPhoneNumberValid(HomePhone))
-            //{
-            //    HomePhone.MarkInvalid();
-            //    allValid = false;
-            //}
-            //else
-            //{
-            //    HomePhone.MarkValid();
-            //}
+            int contactMethodCount = 0;
+
+            //Check for at least one contact method, and ensure it is correct
+            if (HomePhone.TextField.Text != HomePhone.Hint && !IsPhoneNumberValid(HomePhone))
+            {
+                HomePhone.MarkInvalid();
+                allValid = false;
+            }
+            else if(HomePhone.TextField.Text == HomePhone.Hint)
+            {
+                HomePhone.MarkValid();
+            }
+            else
+            {
+                HomePhone.MarkValid();
+                contactMethodCount++;
+            }
 
             //Optional Business Phone, if it is filled in, ensure it is at least a 10 digit number
-            if (BusinessPhone.TextField.Text != BusinessPhone.Hint && BusinessPhone.TextField.Text.Length < 14)
+            if (BusinessPhone.TextField.Text != BusinessPhone.Hint && !IsPhoneNumberValid(BusinessPhone))
             {
                 BusinessPhone.MarkInvalid();
                 allValid = false;
             }
+            else if(BusinessPhone.TextField.Text == BusinessPhone.Hint)
+            {
+                BusinessPhone.MarkValid();
+            }
             else
             {
                 BusinessPhone.MarkValid();
+                contactMethodCount++;
             }
 
             //Optional Cell Phone, if it is filled in, ensure it is at least a 10 digit number
@@ -363,9 +387,30 @@ namespace Appointed.Views.Dialogs
                 CellPhone.MarkInvalid();
                 allValid = false;
             }
+            else if(CellPhone.TextField.Text == CellPhone.Hint)
+            {
+                CellPhone.MarkValid();
+            }
             else
             {
                 CellPhone.MarkValid();
+                contactMethodCount++;
+            }
+
+            //Email Format Verification
+            if (Email.TextField.Text != Email.Hint)
+            {
+                try
+                {
+                    new MailAddress(Email.TextField.Text);
+                    Email.MarkValid();
+                    contactMethodCount++;
+                }
+                catch
+                {
+                    Email.MarkInvalid();
+                    allValid = false;
+                }
             }
 
             if (ContactName.TextField.Text == ContactName.Hint)
@@ -396,6 +441,20 @@ namespace Appointed.Views.Dialogs
             else
             {
                 ContactPhone.MarkValid();
+            }
+
+            if (contactMethodCount < 1)
+            {
+                ContactAstrix.Visibility = Visibility.Hidden;
+                ContactAstrixTxt.Visibility = Visibility.Hidden;
+                ContactMethodReqText.Visibility = Visibility.Visible;
+                allValid = false;
+            }
+            else
+            {
+                ContactAstrix.Visibility = Visibility.Visible;
+                ContactAstrixTxt.Visibility = Visibility.Visible;
+                ContactMethodReqText.Visibility = Visibility.Collapsed;
             }
 
             return allValid;

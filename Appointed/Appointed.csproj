@@ -107,6 +107,9 @@
     <Compile Include="Views\Dialogs\WarningPopups\HCIDTakenMessageBox.xaml.cs">
       <DependentUpon>HCIDTakenMessageBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Dialogs\WarningPopups\InvalidNewPatientDialog.xaml.cs">
+      <DependentUpon>InvalidNewPatientDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Sidebar\ModifyAppointmentSidebar.xaml.cs">
       <DependentUpon>ModifyAppointmentSidebar.xaml</DependentUpon>
     </Compile>
@@ -244,6 +247,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Dialogs\WarningPopups\HCIDTakenMessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialogs\WarningPopups\InvalidNewPatientDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
