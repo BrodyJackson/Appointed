@@ -230,10 +230,14 @@ namespace Appointed.Views
             DIVM._activeDate.Year = appt.DateTime.Value.Year;
             DIVM._activeDate.Time24Hr = appt.StartTime;
 
+            /*
+             It seems the order of all this matters quite a bit...
+             so while it would seem more logical not to do all this stuff if we click an empty slot, 
+             a lot of things rely on it so dont change this ordering :| */
 
             if (appt.Type == "") //This is a free appt slot so raise event
             {
-                OnEmptyApptClick?.Invoke(this, new ApptClickEventArgs() { Date = appt.DateTime.Value /*new DateTime(appt.DateTime.Value.Year, appt.DateTime.Value.Month, appt.DateTime.Value.Day) }*/});
+                OnEmptyApptClick?.Invoke(this, new ApptClickEventArgs() { Date = appt.DateTime.Value });
                 return;
             }
 

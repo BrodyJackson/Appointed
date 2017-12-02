@@ -21,7 +21,7 @@
 
             <TextBlock
                 DockPanel.Dock="Top"
-                Style="{StaticResource text_HeadingLarge}"
+                Style="{StaticResource text_HeadingXLarge}"
                 HorizontalAlignment="Center"
                 Text="Modify Appointment" />
 
@@ -35,59 +35,73 @@
                 Height="2" />
 
             <Grid
-                DockPanel.Dock="Top">
+                DockPanel.Dock="Top"
+                HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition
-                        Width="150" />
+                        Width="auto" />
                     <ColumnDefinition
-                        Width="*" />
+                        Width="auto" />
                 </Grid.ColumnDefinitions>
 
-
-                <StackPanel
+                <TextBlock
+                    Name="PatientName"
+                    Grid.Row="0"
                     Grid.Column="0"
-                    Margin="6,0,0,0">
-                    <TextBlock
-                        Style="{StaticResource text_SlateGrayMedium}"
-                        HorizontalAlignment="Left"
-                        Text="{Binding AVM._activeAppointment.PatientNameAbbrev}" />
+                    Grid.ColumnSpan="2"
+                    Margin="4"
+                    Style="{StaticResource text_BlackLarge}"
+                    HorizontalAlignment="Stretch"
+                    TextAlignment="Center" />
 
-                    <TextBlock
-                        Style="{StaticResource text_SlateGrayMedium}"
-                        HorizontalAlignment="Left"
-                        Text="With:" />
+                <TextBlock
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Margin="4"
+                    Style="{StaticResource text_SlateGrayMedium}"
+                    HorizontalAlignment="Stretch"
+                    Text="With:" />
 
-                    <TextBlock
-                        Style="{StaticResource text_SlateGrayMedium}"
-                        HorizontalAlignment="Left"
-                        Text="From:" />
-                </StackPanel>
+                <TextBlock
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Margin="4"
+                    Style="{StaticResource text_SlateGrayMedium}"
+                    HorizontalAlignment="Stretch"
+                    Text="From:" />
 
+                <TextBlock
+                    Name="CurrentApptType"
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Margin="4"
+                    Style="{StaticResource text_SlateGrayMedium}"
+                    HorizontalAlignment="Stretch"
+                    TextAlignment="Center" />
 
-                <StackPanel
-                    Grid.Column="1">
-                    <TextBlock
-                        Style="{StaticResource text_SlateGrayMedium}"
-                        HorizontalAlignment="Left"
-                        Text="{Binding AVM._activeAppointment.Type}" />
+                <TextBlock
+                    Name="CurrentApptDoc"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Style="{StaticResource text_SlateGrayMedium}"
+                    HorizontalAlignment="Stretch" />
 
-                    <TextBlock
-                        Style="{StaticResource text_SlateGrayMedium}"
-                        HorizontalAlignment="Left"
-                        Text="{Binding AVM._activeAppointment.DoctorName}" />
-
-                    <TextBlock
-                        Style="{StaticResource text_SlateGrayMedium}"
-                        HorizontalAlignment="Left">
-                    <Run
-                            Text="{Binding AVM._activeAppointment.StartTimeStr, Mode=OneWay}" />
-                    <Run
-                            Text=" - " />
-                    <Run
-                            Text="{Binding AVM._activeAppointment.EndTimeStr, Mode=OneWay}" />
-                    </TextBlock>
-                </StackPanel>
-
+                <TextBlock
+                    Name="CurrentApptTimespan"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Style="{StaticResource text_SlateGrayMedium}"
+                    HorizontalAlignment="Stretch" />
 
             </Grid>
 
@@ -103,6 +117,22 @@
             <Grid
                 DockPanel.Dock="Top">
                 <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
                     <RowDefinition
                         Height="auto" />
                     <RowDefinition
@@ -245,27 +275,6 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
 
-
-
-                <!--<ComboBox
-                    Grid.Row="4"
-                    Grid.Column="1"
-                    Margin="4"
-                    ItemsSource="{Binding TimeStamps}"
-                    SelectedIndex="0"
-                    VerticalContentAlignment="Center">
-
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock
-                                Text="{Binding TimeString}"
-                                HorizontalAlignment="Left"
-                                Margin="0,2,0,0"
-                                Foreground="Black" />
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>-->
-
                 <TextBlock
                     Name="EndTime"
                     Grid.Row="4"
@@ -284,7 +293,7 @@
                     BorderBrush="Gray"
                     Height="2" />
 
-                <CheckBox
+                <!--<CheckBox
                     Name="ReminderToggle"
                     Grid.Row="9"
                     Grid.Column="0"
@@ -374,16 +383,123 @@
                         Content="PM" />
                 </ComboBox>
 
+                -->
                 <!--TODO: MAKE DROPDOWN AND ADD FIELDS-->
+                <!--
 
-                <CheckBox
-                    Grid.Column="0"
+                <Separator
                     Grid.Row="13"
                     Grid.ColumnSpan="2"
+                    BorderThickness="1"
+                    Margin="15,10,15,10"
+                    BorderBrush="Gray"
+                    Height="2" />
+
+                <CheckBox
+                    Name="AddToWaitlistCheckBox"
+                    Grid.Column="0"
+                    Grid.Row="14"
+                    Grid.ColumnSpan="2"
                     Margin="4"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Stretch"
                     Style="{StaticResource checkBoxes}"
                     Content="Add to Waitlist" />
+
+                <TextBlock
+                    Name="WaitlistDocLabel"
+                    Grid.Column="0"
+                    Grid.Row="15"
+                    HorizontalAlignment="Stretch"
+                    Style="{StaticResource text_BlackMedium}"
+                    Text="Practitioner:"
+                    Margin="4" />
+
+                <ComboBox
+                    x:Name="WaitlistDoctorComboBox"
+                    Grid.Row="15"
+                    Grid.Column="1"
+                    ItemsSource="{Binding AVM.DoctorsOnShift}"
+                    SelectedIndex="-1"
+                    HorizontalAlignment="Stretch"
+                    Margin="4">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock
+                                Text="{Binding DoctorName}"
+                                HorizontalAlignment="Left"
+                                Margin="0,2,0,0"
+                                Foreground="Black" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <TextBlock
+                    Name="WaitlistDateLabel"
+                    Grid.Row="16"
+                    Style="{StaticResource text_BlackMedium}"
+                    Text="Date:"
+                    HorizontalAlignment="Stretch"
+                    Margin="4" />
+                <Controls:DatePicker
+                    x:Name="WaitlistDatePicker"
+                    Grid.Row="16"
+                    Grid.Column="1"
+                    Margin="4" />
+
+                <TextBlock
+                    Name="WaitlistStartTimeLabel"
+                    Grid.Row="17"
+                    Grid.Column="0"
+                    Style="{StaticResource text_BlackMedium}"
+                    Text="Start Time:"
+                    Margin="4"
+                    HorizontalAlignment="Stretch" />
+
+                <ComboBox
+                    x:Name="WaitlistStartTime"
+                    Grid.Row="17"
+                    Grid.Column="1"
+                    Margin="4"
+                    ItemsSource="{Binding TimeStamps}"
+                    SelectedIndex="-1"
+                    SelectionChanged="ComboBox_WaitlistTimeSelectionChanged">
+
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock
+                                Text="{Binding TimeString}"
+                                HorizontalAlignment="Left"
+                                Margin="0,2,0,0"
+                                Foreground="Black" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <TextBlock
+                    Name="WaitlistEndTimeLabel"
+                    Grid.Column="0"
+                    Grid.Row="18"
+                    Style="{StaticResource text_BlackMedium}"
+                    HorizontalAlignment="Stretch"
+                    Text="End Time:"
+                    Margin="4" />
+
+                <TextBlock
+                    Name="WaitlistEndTime"
+                    Grid.Row="18"
+                    Grid.Column="1"
+                    HorizontalAlignment="Stretch"
+                    Style="{StaticResource text_BlackMedium}"
+                    TextAlignment="Left"
+                    Margin="4" />
+
+                <Separator
+                    Grid.Row="19"
+                    BorderBrush="Gray"
+                    Height="2"
+                    BorderThickness="1"
+                    Margin="15,10,15,10"
+                    Grid.ColumnSpan="2" />
 
             </Grid>
 
@@ -395,8 +511,8 @@
 
 
             <TextBox
-                MinHeight="100"
-                MaxHeight="200"
+                MinHeight="75"
+                MaxHeight="150"
                 Margin="4"
                 VerticalScrollBarVisibility="Auto"
                 DockPanel.Dock="Top"
@@ -406,10 +522,302 @@
                 SpellCheck.IsEnabled="True"
                 Cursor="Pen"
                 ToolTip="Click to edit Notes"
-                TextWrapping="Wrap" />
+                TextWrapping="Wrap"/>-->
+
+            </Grid>
 
             <Grid
-                DockPanel.Dock="Bottom">
+                DockPanel.Dock="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="auto" />
+                    <ColumnDefinition
+                        Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                </Grid.RowDefinitions>
+                <CheckBox
+                    Name="ReminderToggle"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    VerticalAlignment="Center"
+                    Margin="4"
+                    Style="{StaticResource checkBoxes}"
+                    Content="Appointment Reminder" />
+
+
+
+                <TextBlock
+                    Name="RemTypeLable"
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    Style="{StaticResource text_BlackMedium}"
+                    Margin="4"
+                    Text="Type:" />
+
+                <TextBlock
+                    Name="RemDaysLable"
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    Margin="4"
+                    Style="{StaticResource text_BlackMedium}"
+                    Text="Day(s) Before:" />
+
+                <TextBlock
+                    Name="RemTODLable"
+                    Grid.Column="0"
+                    Grid.Row="3"
+                    Margin="4"
+                    Style="{StaticResource text_BlackMedium}"
+                    Text="Time:" />
+
+                <ComboBox
+                    Name="RemType"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="4"
+                    SelectedIndex="0">
+                    <ComboBoxItem
+                        Content="Email" />
+                    <ComboBoxItem
+                        Content="Text" />
+                    <ComboBoxItem
+                        Content="Phone" />
+                </ComboBox>
+
+                <ComboBox
+                    Name="RemDays"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="4"
+                    SelectedIndex="1">
+                    <ComboBoxItem
+                        Content="0" />
+                    <ComboBoxItem
+                        Content="1" />
+                    <ComboBoxItem
+                        Content="2" />
+                    <ComboBoxItem
+                        Content="3" />
+                    <ComboBoxItem
+                        Content="4" />
+                    <ComboBoxItem
+                        Content="5" />
+                    <ComboBoxItem
+                        Content="6" />
+                    <ComboBoxItem
+                        Content="7" />
+                    <ComboBoxItem
+                        Content="8" />
+                    <ComboBoxItem
+                        Content="9" />
+                    <ComboBoxItem
+                        Content="10" />
+                </ComboBox>
+
+                <ComboBox
+                    Name="RemTOD"
+                    Grid.Column="2"
+                    Grid.Row="3"
+                    Margin="4"
+                    SelectedIndex="0">
+                    <ComboBoxItem
+                        Content="AM" />
+                    <ComboBoxItem
+                        Content="PM" />
+                </ComboBox>
+
+                <Separator
+                    Grid.Row="4"
+                    BorderBrush="Gray"
+                    Height="2"
+                    Grid.ColumnSpan="2"
+                    Margin="15,10,15,10" />
+            </Grid>
+
+            <Grid
+                DockPanel.Dock="Top">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="auto" />
+                    <ColumnDefinition
+                        Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <CheckBox
+                    x:Name="AddToWaitlistCheckBox"
+                    Grid.Row="0"
+                    Style="{StaticResource checkBoxes}"
+                    Content="Add to Waitlist"
+                    VerticalAlignment="Center"
+                    Margin="4"
+                    Grid.ColumnSpan="2" />
+
+                <TextBlock
+                    Name="WaitlistDocLabel"
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    HorizontalAlignment="Stretch"
+                    Style="{StaticResource text_BlackMedium}"
+                    Text="Practitioner:"
+                    Margin="4" />
+
+                <ComboBox
+                    x:Name="WaitlistDoctorComboBox"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    ItemsSource="{Binding AVM.DoctorsOnShift}"
+                    SelectedIndex="-1"
+                    HorizontalAlignment="Stretch"
+                    Margin="4">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock
+                                Text="{Binding DoctorName}"
+                                HorizontalAlignment="Left"
+                                Margin="0,2,0,0"
+                                Foreground="Black" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <TextBlock
+                    Name="WaitlistDateLabel"
+                    Grid.Row="2"
+                    Style="{StaticResource text_BlackMedium}"
+                    Text="Date:"
+                    HorizontalAlignment="Stretch"
+                    Margin="4" />
+                <Controls:DatePicker
+                    x:Name="WaitlistDatePicker"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="4" />
+
+                <TextBlock
+                    Name="WaitlistStartTimeLabel"
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Style="{StaticResource text_BlackMedium}"
+                    Text="Start Time:"
+                    Margin="4"
+                    HorizontalAlignment="Stretch" />
+
+                <ComboBox
+                    x:Name="WaitlistStartTime"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Margin="4"
+                    ItemsSource="{Binding TimeStamps}"
+                    SelectedIndex="-1"
+                    SelectionChanged="ComboBox_WaitlistTimeSelectionChanged">
+
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock
+                                Text="{Binding TimeString}"
+                                HorizontalAlignment="Left"
+                                Margin="0,2,0,0"
+                                Foreground="Black" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <TextBlock
+                    Name="WaitlistEndTimeLabel"
+                    Grid.Column="0"
+                    Grid.Row="4"
+                    Style="{StaticResource text_BlackMedium}"
+                    HorizontalAlignment="Stretch"
+                    Text="End Time:"
+                    Margin="4" />
+
+                <TextBlock
+                    Name="WaitlistEndTime"
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    HorizontalAlignment="Stretch"
+                    Style="{StaticResource text_BlackMedium}"
+                    TextAlignment="Left"
+                    Margin="4" />
+
+                <Separator
+                    Grid.Row="5"
+                    BorderBrush="Gray"
+                    Height="2"
+                    BorderThickness="1"
+                    Margin="15,10,15,10"
+                    Grid.ColumnSpan="2" />
+            </Grid>
+
+            <Grid
+                DockPanel.Dock="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="auto" />
+                    <ColumnDefinition
+                        Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock
+                    Grid.Row="0"
+                    Margin="4"
+                    Style="{StaticResource text_BlackMedium}"
+                    Text="Comments" />
+
+                <TextBox
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="4"
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Stretch"
+                    x:Name="CommentBox"
+                    Background="{x:Null}"
+                    SpellCheck.IsEnabled="True"
+                    Cursor="Pen"
+                    ToolTip="Click to edit Notes"
+                    TextWrapping="Wrap"
+                    VerticalScrollBarVisibility="Auto"
+                    MinHeight="75"
+                    MaxHeight="150" />
+            </Grid>
+
+            <Grid
+                DockPanel.Dock="Bottom"
+                Margin="0,0,0,0">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition
@@ -444,19 +852,8 @@
                     MinWidth="100"
                     Height="30"
                     PreviewMouseLeftButtonUp="OnMouseLeftRelease_Discard" />
-
-
             </Grid>
 
-
-
-
-
-            <!--<Separator
-                BorderThickness="0"
-                Margin="0,30,0,30"
-                Background="{x:Null}"
-                Foreground="{x:Null}" />-->
 
         </DockPanel>
 

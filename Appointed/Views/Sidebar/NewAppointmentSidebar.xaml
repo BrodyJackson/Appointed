@@ -497,8 +497,8 @@
                     ToolTip="Click to edit Notes"
                     TextWrapping="Wrap"
                     VerticalScrollBarVisibility="Auto"
-                    MinHeight="100"
-                    MaxHeight="200" />
+                    MinHeight="75"
+                    MaxHeight="150" />
                 </Grid>
 
                 <Grid

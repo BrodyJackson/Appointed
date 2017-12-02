@@ -27,18 +27,80 @@ namespace Appointed.Views.Sidebar
         {
             InitializeComponent();
 
-            //Workaround set, then set so if it is disabled it still collapses
+            DayInformationViewModel DIVM = App.Current.MainWindow.DataContext as DayInformationViewModel;
+
+            //Hide/Show the options
             ReminderToggle.Checked += Reminder_Checked;
             ReminderToggle.Unchecked += Reminder_Unchecked;
+            AddToWaitlistCheckBox.Checked += AddToWaitlistCheckBox_Checked;
+            AddToWaitlistCheckBox.Unchecked += AddToWaitlistCheckBox_Unchecked;
+
             ReminderToggle.IsChecked = true;
-            ReminderToggle.IsChecked = (App.Current.MainWindow.DataContext as DayInformationViewModel).AVM._activeAppointment.Reminder;
+            AddToWaitlistCheckBox.IsChecked = true;
 
             this.Loaded += new RoutedEventHandler(ModifyAppointmentSidebar_Loaded);
 
             CommentBox.GotFocus += (s, e) => { App.AllowArrowKeyCalendarNavigation = false; };
             CommentBox.LostFocus += (s, e) => { App.AllowArrowKeyCalendarNavigation = true; };
 
+            DatePicker.OnCalendarLoaded += DatePicker_OnCalendarLoaded;
+            WaitlistDatePicker.OnCalendarLoaded += DatePicker_OnCalendarLoaded;
+
             DatePicker.OnDateChosen += DatePicker_OnDateChosen;
+
+            ThreeDayView tdv = (App.Current.MainWindow as Home).ThreeDayView;
+
+            tdv.DayOne.DrColumn0.OnEmptyApptClick += EmptySlotClick;
+            tdv.DayOne.DrColumn1.OnEmptyApptClick += EmptySlotClick;
+            tdv.DayOne.DrColumn2.OnEmptyApptClick += EmptySlotClick;
+
+            tdv.DayTwo.DrColumn0.OnEmptyApptClick += EmptySlotClick;
+            tdv.DayTwo.DrColumn1.OnEmptyApptClick += EmptySlotClick;
+            tdv.DayTwo.DrColumn2.OnEmptyApptClick += EmptySlotClick;
+
+            tdv.DayThree.DrColumn0.OnEmptyApptClick += EmptySlotClick;
+            tdv.DayThree.DrColumn1.OnEmptyApptClick += EmptySlotClick;
+            tdv.DayThree.DrColumn2.OnEmptyApptClick += EmptySlotClick;
+        }
+
+        private void EmptySlotClick(object sender, DoctorColumnView.ApptClickEventArgs e)
+        {
+            DatePicker.InputText.TextField.Text = e.Date.ToString("yyyy-MM-dd");
+
+            StartTime.SelectedIndex = (App.Current.MainWindow.DataContext as DayInformationViewModel).TimeStamps.ToList().FindIndex(t => t.TimeString == e.Date.ToString("H:mm"));
+        }
+
+        private void DatePicker_OnCalendarLoaded(object sender, EventArgs e)
+        {
+            Calendar calendar = sender as Calendar;
+            AppointmentViewModel AVM = (App.Current.MainWindow.DataContext as DayInformationViewModel).AVM;
+
+            calendar.BlackoutDates.AddDatesInPast();
+            calendar.BlackoutDates.Add(new CalendarDateRange(AVM.BeginningOfAllTime.AddDays(AVM.NumOfDaysPopulated), DateTime.MaxValue));
+        }
+
+        private void AddToWaitlistCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            WaitlistDocLabel.Visibility = Visibility.Collapsed;
+            WaitlistDoctorComboBox.Visibility = Visibility.Collapsed;
+            WaitlistDateLabel.Visibility = Visibility.Collapsed;
+            WaitlistDatePicker.Visibility = Visibility.Collapsed;
+            WaitlistEndTimeLabel.Visibility = Visibility.Collapsed;
+            WaitlistEndTime.Visibility = Visibility.Collapsed;
+            WaitlistStartTimeLabel.Visibility = Visibility.Collapsed;
+            WaitlistStartTime.Visibility = Visibility.Collapsed;
+        }
+
+        private void AddToWaitlistCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            WaitlistDocLabel.Visibility = Visibility.Visible;
+            WaitlistDoctorComboBox.Visibility = Visibility.Visible;
+            WaitlistDateLabel.Visibility = Visibility.Visible;
+            WaitlistDatePicker.Visibility = Visibility.Visible;
+            WaitlistEndTimeLabel.Visibility = Visibility.Visible;
+            WaitlistEndTime.Visibility = Visibility.Visible;
+            WaitlistStartTimeLabel.Visibility = Visibility.Visible;
+            WaitlistStartTime.Visibility = Visibility.Visible;
         }
 
         private void DatePicker_OnDateChosen(object sender, Controls.DateSelectedEventArgs e)
@@ -49,8 +111,15 @@ namespace Appointed.Views.Sidebar
             DateTime activeDT = new DateTime(DIVM._activeDate.Year, DIVM._activeDate.Month, DIVM._activeDate.Day);
             TimeSpan diff = e.Date - activeDT;
 
+            int shiftAmt = diff.Days;
+
+            if (e.ShouldShiftView)
+            {
+                shiftAmt -= 1;
+            }
+
             if (DIVM.ShiftView.CanExecute(null))
-                DIVM.ShiftView.Execute(diff.Days - 1);
+                DIVM.ShiftView.Execute(shiftAmt);
 
             //TODO: Highlight appt slot
 
@@ -59,11 +128,20 @@ namespace Appointed.Views.Sidebar
         void ModifyAppointmentSidebar_Loaded(object sender, RoutedEventArgs e)
         {
             DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
-            DatePicker.InputText.TextField.Text = DIVM.AVM._activeAppointment.DateTimeStr;
+            DatePicker.InputText.TextField.Text = DIVM.AVM._activeAppointment.DateTime.Value.ToString("yyyy-MM-dd");
+            PatientName.Text = DIVM.AVM._activeAppointment.Patient;
+            CurrentApptType.Text = DIVM.AVM._activeAppointment.Type;
+            CurrentApptDoc.Text = DIVM.AVM._activeAppointment.DoctorName;
+            CurrentApptTimespan.Text = DIVM.AVM._activeAppointment.StartTimeStr + " - " + DIVM.AVM._activeAppointment.EndTimeStr;
+            ReminderToggle.IsChecked = DIVM.AVM._activeAppointment.Reminder;
+            RemDays.SelectedIndex = DIVM.AVM._activeAppointment.RemDaysIndex;
+            RemTOD.SelectedIndex = DIVM.AVM._activeAppointment.RemTODIndex;
+            RemType.SelectedIndex = DIVM.AVM._activeAppointment.RemTypeIndex;
+            AddToWaitlistCheckBox.IsChecked = DIVM.AVM._activeAppointment.Waitlisted;            
+            WaitlistDatePicker.InputText.TextField.Text = DIVM.WaitList.GetApptWaiting(DIVM.AVM._activeAppointment).DateTime.Value.ToString("yyyy-MM-dd");
+            WaitlistDoctorComboBox.SelectedIndex = DIVM.WaitList.GetApptWaiting(DIVM.AVM._activeAppointment).DrColumn;
+            WaitlistStartTime.SelectedIndex = DIVM.WaitList.GetApptWaiting(DIVM.AVM._activeAppointment).TimeIndex;
         }
-
-
-
 
         private void OnMouseLeftRelease_Discard(object sender, MouseButtonEventArgs e)
         {
@@ -80,7 +158,7 @@ namespace Appointed.Views.Sidebar
                 return;
 
             Home h = App.Current.MainWindow as Home;
-            h.SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
+            h.SidebarView.SetSidebarView(h.SidebarView.GetPreviousSidebar());
         }
 
         private void Reminder_Checked(object sender, RoutedEventArgs e)
@@ -107,17 +185,16 @@ namespace Appointed.Views.Sidebar
         {
             if (StartTime.SelectedItem == null || ApptTypeComboBox.SelectedItem == null)
             {
-                Console.WriteLine("Gotcha: \n");
                 return;
             }
 
             if (((ApptTypeComboBox.SelectedItem as ComboBoxItem).Content as string) == "Standard")
             {
-                EndTime.Text = DateTime.Parse((StartTime.SelectedItem as Classes.Time).TimeString).AddMinutes(15).ToShortTimeString();
+                EndTime.Text = DateTime.Parse((StartTime.SelectedItem as Classes.Time).TimeString).AddMinutes(15).ToString("HH:mm").TrimStart('0');
             }
             else
             {
-                EndTime.Text = DateTime.Parse((StartTime.SelectedItem as Classes.Time).TimeString).AddMinutes(30).ToShortTimeString();
+                EndTime.Text = DateTime.Parse((StartTime.SelectedItem as Classes.Time).TimeString).AddMinutes(30).ToString("HH:mm").TrimStart('0');
             }
         }
 
@@ -127,8 +204,25 @@ namespace Appointed.Views.Sidebar
             ComboBox_StartTimeSelectionChanged(null, null);
         }
 
+        private void ComboBox_WaitlistTimeSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (WaitlistStartTime.SelectedItem == null || ApptTypeComboBox.SelectedItem == null)
+            {
+                Console.WriteLine("Gotcha: \n");
+                return;
+            }
 
-
+            if (((ApptTypeComboBox.SelectedItem as ComboBoxItem).Content as string) == "Standard")
+            {
+                WaitlistEndTime.Text = DateTime.Parse((WaitlistStartTime.SelectedItem as Classes.Time).TimeString).AddMinutes(15).ToString("HH:mm").TrimStart('0');
+            }
+            else
+            {
+                WaitlistEndTime.Text = DateTime.Parse((WaitlistStartTime.SelectedItem as Classes.Time).TimeString).AddMinutes(30).ToString("HH:mm").TrimStart('0');
+            }
+        }
+        
+        //TODO: Add in reminder and waitlist info to be saved
         private void OnMouseLeftRelease_Save(object sender, MouseButtonEventArgs e)
         {
             DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
