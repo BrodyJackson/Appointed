@@ -50,6 +50,7 @@
             FontFamily="Yu Gothic UI Light"
             Grid.ColumnSpan="1" />
         <TextBox 
+			Name="Comments"
             AcceptsReturn="True"
             AcceptsTab="True"
             FontSize="14"

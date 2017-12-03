@@ -1,4 +1,6 @@
-﻿using Appointed.Views.Dialogs;
+﻿using Appointed.Classes;
+using Appointed.ViewModels;
+using Appointed.Views.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,13 +23,21 @@ namespace Appointed.Views.Sidebar.Widgets
     /// </summary>
     public partial class PatientNotesView : UserControl
     {
+
         public PatientNotesView()
-        {
+        { 
+            
             InitializeComponent();
 
             EditBtn.MouseLeftButtonUp += EditBtn_MouseLeftButtonUp;
         }
-
+        public void StartUp(int ID)
+        {
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
+            Patient P = DIVM.PVM.GetPatient(ID);
+            //Get this done
+            Comments.Text = P.Address;
+        }
         private void EditBtn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             
