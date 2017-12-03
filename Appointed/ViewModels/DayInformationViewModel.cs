@@ -224,6 +224,8 @@ namespace Appointed.ViewModels
 
         public void HighlightDate(object sender, EventArgs e)
         {
+            ResetHighlightedAppointment();
+
             Home h = App.Current.MainWindow as Home;
             NewAppointmentSidebar n;
             ModifyAppointmentSidebar m;
@@ -248,7 +250,7 @@ namespace Appointed.ViewModels
                 apptType = apptType.Substring(apptType.LastIndexOf(':') + 2);
                 stTimeStr = ((Time)(n.StartTime).SelectedItem).TimeString;
                 stTimeStr = stTimeStr.Substring(0, stTimeStr.IndexOf(':')) + stTimeStr.Substring(stTimeStr.IndexOf(':') + 1);
-                stTime = Int32.Parse(stTimeStr);
+                stTime = _activeDate.Time24Hr;
 
                 year = n.DatePicker.DateSelected.Value.Year;
                 month = n.DatePicker.DateSelected.Value.Month;
@@ -289,8 +291,6 @@ namespace Appointed.ViewModels
 
         private void HighlightAppointment(DateTime dt, string drName, string apptType)
         {
-            ResetHighlightedAppointment();
-
             int drColumn = AVM.FindDrColumnForDrName(drName);
             int key = dt.GetHashCode() + drColumn;
 
@@ -325,7 +325,32 @@ namespace Appointed.ViewModels
             if (diff.Days > 1 || diff.Days < -1)
                 ShiftView.Execute(diff.Days);
         }
+        
 
+        public void ResetHighlightedAppointment()
+        {
+            if (AVM._highlightedAppointment == null)
+                return;
+
+            Appointment a;
+
+            if (AVM._highlightedAppointment.Height == "70")
+            {
+                a = AVM.FindAppointmentThatFollows(AVM._highlightedAppointment);
+                a.Visibility = "Visible";
+
+                AVM._highlightedAppointment.Height = "35";
+            }
+
+            string colour = AVM.FindDrColourForDrName(AVM._highlightedAppointment.DoctorName);
+
+            AVM._highlightedAppointment.BorderColour = colour;
+            AVM._highlightedAppointment.Opacity = "0";
+            AVM._highlightedAppointment.StrokeThickness = "1";
+            AVM._highlightedAppointment.Colour = colour;
+
+            AVM._highlightedAppointment = new Appointment(AVM.SpecterEmpty.ElementAt(0));
+        }
 
 
 
@@ -347,31 +372,7 @@ namespace Appointed.ViewModels
         }
 
 
-        private void ResetHighlightedAppointment()
-        {
-            if (AVM._highlightedAppointment == null)
-                return;
-
-            Appointment a;
-            
-            if (AVM._highlightedAppointment.Height == "70")
-            {
-                a = AVM.FindAppointmentThatFollows(AVM._highlightedAppointment);
-                a.Visibility = "Visible";
-
-                AVM._highlightedAppointment.Height = "35";
-            }
-
-            string colour = AVM.FindDrColourForDrName(AVM._highlightedAppointment.DoctorName);
-
-            AVM._highlightedAppointment.BorderColour = colour;
-            AVM._highlightedAppointment.Opacity = "0";
-            AVM._highlightedAppointment.StrokeThickness = "1";
-            AVM._highlightedAppointment.Colour = colour;
-        }
-
-
-
+  
         // PROPERTIES ====================================================
 
         public List<string> DaysInScope

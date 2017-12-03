@@ -34,19 +34,7 @@ namespace Appointed.Views.Sidebar
             this.Loaded += new RoutedEventHandler(ModifyAppointmentSidebar_Loaded);
         }
 
-
-        private void ActiveDateChanged(object sender, EventArgs e)
-        {
-            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
-
-            if (DIVM != null && DIVM.AVM._activeAppointment != null)
-            {
-                DatePicker.InputText.TextField.Text = DIVM.AVM._activeAppointment.DateTimeStr;
-            }
-        }
-
-
-
+        
         void ModifyAppointmentSidebar_Loaded(object sender, RoutedEventArgs e)
         {
             DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
@@ -57,6 +45,18 @@ namespace Appointed.Views.Sidebar
             ApptTypeComboBox.SelectionChanged += DIVM.HighlightDate;
 
             ActiveDateChanged(null, null);
+        }
+
+
+
+        private void ActiveDateChanged(object sender, EventArgs e)
+        {
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
+
+            if (DIVM != null && DIVM.AVM._activeAppointment != null)
+            {
+                DatePicker.InputText.TextField.Text = DIVM.AVM._activeAppointment.DateTimeStr;
+            }
         }
 
 
@@ -105,11 +105,11 @@ namespace Appointed.Views.Sidebar
 
             if (((ApptTypeComboBox.SelectedItem as ComboBoxItem).Content as string) == "Standard")
             {
-                EndTime.Text = DateTime.Parse((StartTime.SelectedItem as Classes.Time).TimeString).AddMinutes(15).ToShortTimeString();
+                EndTime.Text = DateTime.Parse((StartTime.SelectedItem as Time).TimeString).AddMinutes(15).ToShortTimeString();
             }
             else
             {
-                EndTime.Text = DateTime.Parse((StartTime.SelectedItem as Classes.Time).TimeString).AddMinutes(30).ToShortTimeString();
+                EndTime.Text = DateTime.Parse((StartTime.SelectedItem as Time).TimeString).AddMinutes(30).ToShortTimeString();
             }
         }
 
@@ -175,8 +175,10 @@ namespace Appointed.Views.Sidebar
                     return;
                 }
 
-                if ((!DIVM.AVM.DoctorsOnShift.ElementAt(drColumn).IsAvailable(Int32.Parse(stTime))) ||
-                        (!DIVM.AVM.DoctorsOnShift.ElementAt(drColumn).IsAvailable(Int32.Parse(endTime))))
+                int sTime = Int32.Parse(stTime); int eTime = Int32.Parse(endTime); if (eTime < sTime) eTime += 1200; 
+
+                if ((!DIVM.AVM.DoctorsOnShift.ElementAt(drColumn).IsAvailable(sTime)) ||
+                        (!DIVM.AVM.DoctorsOnShift.ElementAt(drColumn).IsAvailable(eTime)))
                 {
                     MessageBox.Show(
                         "The Doctor Specified Is Unavaliable At That Time!",
@@ -188,6 +190,8 @@ namespace Appointed.Views.Sidebar
                 }
             }
 
+
+            DIVM.ResetHighlightedAppointment();
             DIVM._activeDate.HasChanged = false;
 
 
@@ -232,7 +236,6 @@ namespace Appointed.Views.Sidebar
             }
 
             DIVM.AVM._activeAppointment = new Appointment(targetAppointment);
-
 
             Home h = App.Current.MainWindow as Home;
             h.SidebarView.SetSidebarView(new AppointmentDetailsSidebar());

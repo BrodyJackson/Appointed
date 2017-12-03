@@ -45,6 +45,7 @@ namespace Appointed.Classes
             {
                 _day = value;
                 RaisePropertyChangedEvent("Day");
+                RaisePropertyChangedEvent("DateTimeStr");
                 ActiveDateChanged?.Invoke(this, EventArgs.Empty);
             }
         }
@@ -58,6 +59,7 @@ namespace Appointed.Classes
             {
                 _month = value;
                 RaisePropertyChangedEvent("Month");
+                RaisePropertyChangedEvent("DateTimeStr");
                 ActiveDateChanged?.Invoke(this, EventArgs.Empty);
             }
         }
@@ -71,6 +73,7 @@ namespace Appointed.Classes
             {
                 _year = value;
                 RaisePropertyChangedEvent("Year");
+                RaisePropertyChangedEvent("DateTimeStr");
                 ActiveDateChanged?.Invoke(this, EventArgs.Empty);
             }
         }
@@ -96,8 +99,15 @@ namespace Appointed.Classes
             set { _hasChanged = value; }
         }
 
-        
 
+        public string DateTimeStr
+        {
+            get
+            {
+                string dTS = Year.ToString() + '-' + Month.ToString() + "-" + Day.ToString();
+                return dTS;
+            }
+        }
 
 
         public void addDays(int amount)

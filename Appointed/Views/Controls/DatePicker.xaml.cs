@@ -74,10 +74,6 @@ namespace Appointed.Views.Controls
 
         private CustomPopupPlacement[] CustomPopupCallback(Size popupSize, Size targetSize, Point offset)
         {
-            //Console.WriteLine(popupSize.Height + " " + popupSize.Width);
-            //Console.WriteLine(targetSize.Height);
-            //Console.WriteLine(offset);
-
             CustomPopupPlacement popupPlacement = new CustomPopupPlacement()
             {
                 Point = new Point(Math.Abs(popupSize.Width - targetSize.Width) / -2d, targetSize.Height)

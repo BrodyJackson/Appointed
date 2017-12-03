@@ -201,6 +201,10 @@ namespace Appointed.Views
             if (home.SidebarView.SidebarGridLayout.Children.OfType<ModifyAppointmentSidebar>().Count() == 1)
                 return;
 
+            DIVM._activeDate.Day = appt.DateTime.Day;
+            DIVM._activeDate.Month = appt.DateTime.Month;
+            DIVM._activeDate.Year = appt.DateTime.Year;
+            DIVM._activeDate.Time24Hr = appt.StartTime;
 
             DIVM.AVM._activeAppointment.Colour = appt.Colour;
             DIVM.AVM._activeAppointment.Comments = appt.Comments;
@@ -221,12 +225,7 @@ namespace Appointed.Views
             DIVM.AVM._activeAppointment.Waitlisted = appt.Waitlisted;
             DIVM.AVM._activeAppointment.Visibility = appt.Visibility;
 
-            DIVM._activeDate.Day = appt.DateTime.Day;
-            DIVM._activeDate.Month = appt.DateTime.Month;
-            DIVM._activeDate.Year = appt.DateTime.Year;
-            DIVM._activeDate.Time24Hr = appt.StartTime;
-
-
+       
             if (appt.Type == "")
                 return;
 

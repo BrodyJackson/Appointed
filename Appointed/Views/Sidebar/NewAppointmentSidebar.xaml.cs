@@ -53,8 +53,8 @@ namespace Appointed.Views.Sidebar
 
             if (DIVM != null && DIVM.AVM._activeAppointment != null)
             {
-                DatePicker.InputText.TextField.Text = DIVM.AVM._activeAppointment.DateTimeStr;
-                WaitlistDatePicker.InputText.TextField.Text = DIVM.AVM._activeAppointment.DateTimeStr;
+                DatePicker.InputText.TextField.Text = DIVM._activeDate.DateTimeStr;
+                WaitlistDatePicker.InputText.TextField.Text = DIVM._activeDate.DateTimeStr;
             }
         }
 
@@ -62,9 +62,20 @@ namespace Appointed.Views.Sidebar
 
         private void OnMouseLeftRelease_Discard(object sender, MouseButtonEventArgs e)
         {
-            Home h = App.Current.MainWindow as Home;
+            MessageBoxResult result =
+             MessageBox.Show
+             (
+                 "Are you sure you wish to discard your changes?",
+                 "Confirm Selection",
+                 MessageBoxButton.YesNo,
+                 MessageBoxImage.Asterisk
+             );
 
-            h.SidebarView.SetSidebarView(new SearchResultsSidebar());
+            if (result == MessageBoxResult.No || result == MessageBoxResult.None)
+                return;
+
+            Home h = App.Current.MainWindow as Home;
+            h.SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
         }
 
         //need to add a function so that when the sidebar loads, it takes the value that is passed in as the active patient
@@ -173,6 +184,7 @@ namespace Appointed.Views.Sidebar
 
             }
 
+            DIVM.ResetHighlightedAppointment();
 
             Appointment _newAppointment = DIVM.AVM._appointmentLookup[key];
 
