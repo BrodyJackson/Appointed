@@ -49,7 +49,13 @@ namespace Appointed.Views.Sidebar
 
         void ModifyAppointmentSidebar_Loaded(object sender, RoutedEventArgs e)
         {
-            (this.DataContext as DayInformationViewModel)._activeDate.ActiveDateChanged += ActiveDateChanged;
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
+            DIVM._activeDate.ActiveDateChanged += ActiveDateChanged;
+
+            StartTime.SelectionChanged += DIVM.HighlightDate;
+            DoctorComboBox.SelectionChanged += DIVM.HighlightDate;
+            ApptTypeComboBox.SelectionChanged += DIVM.HighlightDate;
+
             ActiveDateChanged(null, null);
         }
 

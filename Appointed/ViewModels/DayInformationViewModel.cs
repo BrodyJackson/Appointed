@@ -12,6 +12,7 @@ using Appointed.Classes;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Controls;
+using Appointed.Views.Sidebar;
 
 namespace Appointed.ViewModels
 {
@@ -218,7 +219,75 @@ namespace Appointed.ViewModels
             FreeAppointmentSlot(a);
         }
 
-        public void HighlightAppointment(DateTime dt, string drName, string apptType)
+        // END COMMANDS ====================================================
+
+
+        public void HighlightDate(object sender, EventArgs e)
+        {
+            Home h = App.Current.MainWindow as Home;
+            NewAppointmentSidebar n;
+            ModifyAppointmentSidebar m;
+
+            DateTime dt;
+
+            int year;// = DateSelected.Value.Year;
+            int month;// = DateSelected.Value.Month;
+            int day;// = DateSelected.Value.Day;
+            int stTime;
+
+            string drName;
+            string apptType;
+            string stTimeStr;
+
+            n = GetSidebar<NewAppointmentSidebar>(h);
+            m = GetSidebar<ModifyAppointmentSidebar>(h);
+            if (n != null)
+            {
+                drName = ((Doctor)(n.DoctorComboBox).SelectedItem).DoctorName;
+                apptType = n.ApptTypeComboBox.SelectedValue.ToString();
+                apptType = apptType.Substring(apptType.LastIndexOf(':') + 2);
+                stTimeStr = ((Time)(n.StartTime).SelectedItem).TimeString;
+                stTimeStr = stTimeStr.Substring(0, stTimeStr.IndexOf(':')) + stTimeStr.Substring(stTimeStr.IndexOf(':') + 1);
+                stTime = Int32.Parse(stTimeStr);
+
+                year = n.DatePicker.DateSelected.Value.Year;
+                month = n.DatePicker.DateSelected.Value.Month;
+                day = n.DatePicker.DateSelected.Value.Day;
+
+                dt = new DateTime(year, month, day, stTime / 100, stTime % 100, 0);
+
+                HighlightAppointment(dt, drName, apptType);
+            }
+            else if (m != null)
+            {
+                drName = ((Doctor)(m.DoctorComboBox).SelectedItem).DoctorName;
+                apptType = m.ApptTypeComboBox.SelectedValue.ToString();
+                apptType = apptType.Substring(apptType.LastIndexOf(':') + 2);
+                stTimeStr = ((Time)(m.StartTime).SelectedItem).TimeString;
+                stTimeStr = stTimeStr.Substring(0, stTimeStr.IndexOf(':')) + stTimeStr.Substring(stTimeStr.IndexOf(':') + 1);
+                stTime = Int32.Parse(stTimeStr);
+
+                year = m.DatePicker.DateSelected.Value.Year;
+                month = m.DatePicker.DateSelected.Value.Month;
+                day = m.DatePicker.DateSelected.Value.Day;
+
+                dt = new DateTime(year, month, day, stTime / 100, stTime % 100, 0);
+
+                HighlightAppointment(dt, drName, apptType);
+            }
+
+            //Calendar c = sender as Calendar;
+            //DateSelected = c.SelectedDate;
+
+            //InputText.TextField.Text =
+            //    year.ToString() + "-" +
+            //    month.ToString() + "-" +
+            //    day.ToString();
+        }
+
+        
+
+        private void HighlightAppointment(DateTime dt, string drName, string apptType)
         {
             ResetHighlightedAppointment();
 
@@ -227,7 +296,7 @@ namespace Appointed.ViewModels
 
             Appointment a = AVM._appointmentLookup[key];
 
-            if (a.Type != "")
+            if (a.Type != "" || a.Colour == "SlateGray")
                 return;
 
             Appointment apptThatFollows;
@@ -257,7 +326,12 @@ namespace Appointed.ViewModels
                 ShiftView.Execute(diff.Days);
         }
 
-        // END COMMANDS ====================================================
+
+
+
+
+
+
 
 
 

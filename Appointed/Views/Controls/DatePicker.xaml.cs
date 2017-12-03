@@ -44,6 +44,8 @@ namespace Appointed.Views.Controls
 
         private void ShowCalendarButton_Click(object sender, RoutedEventArgs e)
         {
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
+
             Calendar calendar = new Calendar
             {
                 Margin = new Thickness(0, -3, 0, -3),
@@ -65,7 +67,7 @@ namespace Appointed.Views.Controls
             popup.IsOpen = true;
 
             calendar.SelectedDatesChanged += Calendar_SelectedDatesChanged;
-            calendar.SelectedDatesChanged += HighlightDate;
+            calendar.SelectedDatesChanged += DIVM.HighlightDate;
             calendar.Focus();
         }
 
@@ -127,62 +129,6 @@ namespace Appointed.Views.Controls
                 DateSelected = null;
                 input.BorderBrush = _textBorderBrush;
             }
-        }
-
-
-
-        private void HighlightDate(object sender, SelectionChangedEventArgs e)
-        {
-            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
-            Home h = App.Current.MainWindow as Home;
-            NewAppointmentSidebar n;
-            ModifyAppointmentSidebar m;
-
-            DateTime dt;
-
-            int year = DateSelected.Value.Year;
-            int month = DateSelected.Value.Month;
-            int day = DateSelected.Value.Day;
-            int stTime;
-
-            string drName;
-            string apptType;
-            string stTimeStr;
-
-            n = DIVM.GetSidebar<NewAppointmentSidebar>(h);
-            m = DIVM.GetSidebar<ModifyAppointmentSidebar>(h);
-            if (n != null)
-            {
-                drName = ((Doctor)(n.DoctorComboBox).SelectedItem).DoctorName;
-                apptType = n.ApptTypeComboBox.SelectedValue.ToString();
-                apptType = apptType.Substring(apptType.LastIndexOf(':') + 2);
-                stTimeStr = ((Time)(n.StartTime).SelectedItem).TimeString;
-                stTimeStr = stTimeStr.Substring(0, stTimeStr.IndexOf(':')) + stTimeStr.Substring(stTimeStr.IndexOf(':') + 1);
-                stTime = Int32.Parse(stTimeStr);
-                dt = new DateTime(year, month, day, stTime / 100, stTime % 100, 0);
-
-                DIVM.HighlightAppointment(dt, drName, apptType);
-            }
-            else if (m != null)
-            {
-                drName = ((Doctor)(m.DoctorComboBox).SelectedItem).DoctorName;
-                apptType = m.ApptTypeComboBox.SelectedValue.ToString();
-                apptType = apptType.Substring(apptType.LastIndexOf(':') + 2);
-                stTimeStr = ((Time)(m.StartTime).SelectedItem).TimeString;
-                stTimeStr = stTimeStr.Substring(0, stTimeStr.IndexOf(':')) + stTimeStr.Substring(stTimeStr.IndexOf(':') + 1);
-                stTime = Int32.Parse(stTimeStr);
-                dt = new DateTime(year, month, day, stTime / 100, stTime % 100, 0);
-
-                DIVM.HighlightAppointment(dt, drName, apptType);
-            }
-
-            Calendar c = sender as Calendar;
-            DateSelected = c.SelectedDate;
-
-            InputText.TextField.Text =
-                year.ToString() + "-" +
-                month.ToString() + "-" +
-                day.ToString();
         }
 
 
