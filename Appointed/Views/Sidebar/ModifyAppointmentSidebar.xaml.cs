@@ -35,10 +35,22 @@ namespace Appointed.Views.Sidebar
         }
 
 
-        void ModifyAppointmentSidebar_Loaded(object sender, RoutedEventArgs e)
+        private void ActiveDateChanged(object sender, EventArgs e)
         {
             DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
-            DatePicker.InputText.TextField.Text = DIVM.AVM._activeAppointment.DateTimeStr;
+
+            if (DIVM != null && DIVM.AVM._activeAppointment != null)
+            {
+                DatePicker.InputText.TextField.Text = DIVM.AVM._activeAppointment.DateTimeStr;
+            }
+        }
+
+
+
+        void ModifyAppointmentSidebar_Loaded(object sender, RoutedEventArgs e)
+        {
+            (this.DataContext as DayInformationViewModel)._activeDate.ActiveDateChanged += ActiveDateChanged;
+            ActiveDateChanged(null, null);
         }
 
 

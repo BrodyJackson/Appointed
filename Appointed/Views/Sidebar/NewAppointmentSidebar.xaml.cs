@@ -28,12 +28,14 @@ namespace Appointed.Views.Sidebar
             InitializeComponent();
 
             this.Loaded += new RoutedEventHandler(NewAppointmentSidebar_Loaded);
-        }
+
+         }
 
 
         void NewAppointmentSidebar_Loaded(object sender, RoutedEventArgs e)
         {
-            (this.DataContext as DayInformationViewModel)._activeDate.ActiveDateChanged += ActiveDateChanged;
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
+            DIVM._activeDate.ActiveDateChanged += ActiveDateChanged;
 
             ApptTypeComboBox.SelectionChanged += ComboBox_ApptTypeSelectionChanged;
 
@@ -51,6 +53,8 @@ namespace Appointed.Views.Sidebar
                 WaitlistDatePicker.InputText.TextField.Text = DIVM.AVM._activeAppointment.DateTimeStr;
             }
         }
+
+
 
         private void OnMouseLeftRelease_Discard(object sender, MouseButtonEventArgs e)
         {

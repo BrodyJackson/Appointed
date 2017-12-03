@@ -9,6 +9,9 @@ using Appointed.Events;
 using Appointed.Models;
 using Appointed.Commands;
 using Appointed.Classes;
+using System.Windows;
+using System.Windows.Media;
+using System.Windows.Controls;
 
 namespace Appointed.ViewModels
 {
@@ -94,30 +97,61 @@ namespace Appointed.ViewModels
             _activeDate.Year = _dim.YearAsInt;
             _activeDate.Month = _dim.MonthAsInt;
             _activeDate.Day = _dim.DayAsInt;
+            _activeDate.Time24Hr = 900;
 
 
             AVM.AppointmentMoved += OnAppointmentMoved;
-
-
             return;
         }
 
 
+        public DateTime GetDateTime()
+        {
+            return new DateTime(_dim.YearAsInt, _dim.MonthAsInt, _dim.DayAsInt);
+        }
 
+        public T FindParent<T>(DependencyObject child) where T : DependencyObject
+        {
+            DependencyObject parentObject = VisualTreeHelper.GetParent(child);
 
+            if (parentObject == null) return null;
 
+            T parent = parentObject as T;
+
+            if (parent != null)
+                return parent;
+            else
+                return FindParent<T>(parentObject);
+        }
+
+        public T GetSidebar<T>(Home h) where T : UserControl
+        {
+            var children = h.SidebarView.SidebarGridLayout.Children.OfType<T>();
+
+            if (children.Count() == 0)
+                return null;
+
+            return children.ElementAt(0);
+        }
 
         // COMMANDS ====================================================
         private void ChangeDaysInScope(int amount)
         {
+            //DateTime dimDT = new DateTime(_dim.YearAsInt, _dim.MonthAsInt, _dim.DayAsInt);
+            //DateTime actDT = new DateTime(_activeDate.Year, _activeDate.Month, _activeDate.Day);
+
             _dim.ShiftDay(amount);
             _dayCodes = _dim.DayCodes;
 
             InitDayInformation();
 
+            //TimeSpan t = actDT - dimDT;
+
             _activeDate.Year = _dim.YearAsInt;
             _activeDate.Month = _dim.MonthAsInt;
             _activeDate.Day = _dim.DayAsInt;
+
+            //_activeDate.addDays(t.Days);
 
             if (ScheduleShifted != null)
                 ScheduleShifted(this, new EventArgs());
@@ -184,6 +218,45 @@ namespace Appointed.ViewModels
             FreeAppointmentSlot(a);
         }
 
+        public void HighlightAppointment(DateTime dt, string drName, string apptType)
+        {
+            ResetHighlightedAppointment();
+
+            int drColumn = AVM.FindDrColumnForDrName(drName);
+            int key = dt.GetHashCode() + drColumn;
+
+            Appointment a = AVM._appointmentLookup[key];
+
+            if (a.Type != "")
+                return;
+
+            Appointment apptThatFollows;
+            if (apptType == "Consultation")
+            {
+                apptThatFollows = AVM.FindAppointmentThatFollows(a);
+
+                if (apptThatFollows.Type == "")
+                    apptThatFollows.Visibility = "Collapsed";
+
+                a.Height = "70";
+            }
+
+            a.BorderColour = "BlueViolet";
+            a.Opacity = "0.7";
+            a.StrokeThickness = "2";
+            a.Colour = "DodgerBlue";
+
+            AVM._highlightedAppointment = a;
+
+            DateTime dimDT = new DateTime(_dim.YearAsInt, _dim.MonthAsInt, _dim.DayAsInt, dt.Hour, dt.Minute, 0);
+            DateTime centerDT = dimDT.AddDays(1);
+
+            TimeSpan diff = dt - centerDT;
+
+            if (diff.Days > 1 || diff.Days < -1)
+                ShiftView.Execute(diff.Days);
+        }
+
         // END COMMANDS ====================================================
 
 
@@ -199,6 +272,29 @@ namespace Appointed.ViewModels
             return (_dim.GetDayString(day));
         }
 
+
+        private void ResetHighlightedAppointment()
+        {
+            if (AVM._highlightedAppointment == null)
+                return;
+
+            Appointment a;
+            
+            if (AVM._highlightedAppointment.Height == "70")
+            {
+                a = AVM.FindAppointmentThatFollows(AVM._highlightedAppointment);
+                a.Visibility = "Visible";
+
+                AVM._highlightedAppointment.Height = "35";
+            }
+
+            string colour = AVM.FindDrColourForDrName(AVM._highlightedAppointment.DoctorName);
+
+            AVM._highlightedAppointment.BorderColour = colour;
+            AVM._highlightedAppointment.Opacity = "0";
+            AVM._highlightedAppointment.StrokeThickness = "1";
+            AVM._highlightedAppointment.Colour = colour;
+        }
 
 
 
