@@ -100,6 +100,11 @@
             Grid.Row="3"
             Text="Grandmother"
             Grid.ColumnSpan="2" />
+        <Grid x:Name="Edit" HorizontalAlignment="Left" Height="86.84" Margin="0,6.5,0,0" VerticalAlignment="Top" Width="224.887" Grid.ColumnSpan="2" Grid.RowSpan="3" Grid.Column="1" Grid.Row="1" Visibility="Hidden">
+            <TextBox x:Name="Name" HorizontalAlignment="Left" Height="23.421" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="167.563" FontFamily="Yu Gothic Light" FontSize="16"/>
+            <TextBox x:Name="Phone" HorizontalAlignment="Left" Height="23.421" Margin="0,28.421,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="167.563" FontFamily="Yu Gothic Light" FontSize="16"/>
+            <TextBox x:Name="Relation" HorizontalAlignment="Left" Height="23.421" Margin="0,56.842,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="167.563" FontFamily="Yu Gothic Light" FontSize="16"/>
+        </Grid>
 
     </Grid>
 </UserControl>

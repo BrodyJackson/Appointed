@@ -23,26 +23,41 @@ namespace Appointed.Views.Sidebar.Widgets
     /// </summary>
     public partial class PatientEmergencyContactInfoView: UserControl
     {
+        Patient P;
+        Boolean editing;
         int ID;
         public PatientEmergencyContactInfoView()
         {
-            
+            P = (App.Current.MainWindow.DataContext as DayInformationViewModel).PVM.ActivePatient;
+            editing = false;
             InitializeComponent();
-
-            EditBtn.MouseLeftButtonUp += EditBtn_MouseLeftButtonUp;
-        }
-        public void StartUp(int ID)
-        {
-            this.ID = ID;
-            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
-            Patient P = DIVM.PVM.GetPatient(ID);
             ContactName.Text = P.EmergencyContact.EmergencyName;
             ContactPhone.Text = P.EmergencyContact.EmergencyPhone;
-            ContactRelation.Text = P.EmergencyContact.EmergencyRelation.ToString();
+            ContactRelation.Text = P.EmergencyContact.EmergencyRelation;
+            EditBtn.MouseLeftButtonUp += EditBtn_MouseLeftButtonUp;
         }
+
         private void EditBtn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            new EditPatientEmergencyContacts(ID).ShowDialog();
+            if (editing == false)
+            {
+                editing = true;
+                Name.Text = P.EmergencyContact.EmergencyName;
+                Phone.Text = P.EmergencyContact.EmergencyPhone;
+                Relation.Text = P.EmergencyContact.EmergencyRelation;
+                Edit.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                editing = false;
+                P.EmergencyContact.EmergencyName = Name.Text;
+                P.EmergencyContact.EmergencyPhone = Phone.Text;
+                P.EmergencyContact.EmergencyRelation = Relation.Text;
+                ContactName.Text = P.EmergencyContact.EmergencyName;
+                ContactPhone.Text = P.EmergencyContact.EmergencyPhone;
+                ContactRelation.Text = P.EmergencyContact.EmergencyRelation;
+                Edit.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

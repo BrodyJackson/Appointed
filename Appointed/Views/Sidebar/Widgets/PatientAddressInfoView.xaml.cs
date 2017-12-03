@@ -24,26 +24,44 @@ namespace Appointed.Views.Sidebar.Widgets
     public partial class PatientAddressInfoView : UserControl
     {
         int ID;
+        Patient P;
+        Boolean editing;
         public PatientAddressInfoView()
         {
+            editing = false;
             InitializeComponent();
+            P = (App.Current.MainWindow.DataContext as DayInformationViewModel).PVM.ActivePatient;
+            PatientStreetAddr.Text = P.Street;
+            PatientRegion.Text = P.City + P.Province.ToString();
+            PatientPostal.Text = P.PostalCode;
+ 
+            
 
             EditBtn.MouseLeftButtonUp += EditBtn_MouseLeftButtonUp;
 
         }
-        public void StartUp(int ID)
-        {
-            this.ID = ID;
-            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
-            Patient P = DIVM.PVM.GetPatient(ID);
-            PatientStreetAddr.Text = P.Address;
-            PatientRegion.Text = P.Province.ToString();
-            PatientPostal.Text = P.PostalCode;
-        }
 
         private void EditBtn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            new EditPatientAddress(ID).ShowDialog();
+            if (editing == false)
+            {
+                Address.Text = P.Street;
+                prov.SelectedIndex = (Patient.ProvinceEnumToNum(P.Province));
+                PostalC.Text = P.PostalCode;
+                City.Text = P.City;
+                edit.Visibility = Visibility.Visible;
+                editing = true;
+            }
+            else
+            {
+                P.Street = Address.Text;
+                P.Province = Patient.ProvinceStringToEnum(prov.Text);
+                PatientStreetAddr.Text = P.Street;
+                PatientRegion.Text = P.City + P.Province.ToString();
+                PatientPostal.Text = P.PostalCode;
+                edit.Visibility = Visibility.Hidden;
+                editing = false;
+            }
         }
     }
 }

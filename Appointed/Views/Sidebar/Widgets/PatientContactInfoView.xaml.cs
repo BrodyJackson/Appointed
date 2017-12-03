@@ -23,25 +23,45 @@ namespace Appointed.Views.Sidebar.Widgets
     /// </summary>
     public partial class PatientContactInfoView : UserControl
     {
-        int ID;
-        public PatientContactInfoView(int ID)
+        Patient P;
+
+        Boolean editing;
+        public PatientContactInfoView()
         {
-            this.ID = ID;
-            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
-            Patient P = DIVM.PVM.GetPatient(ID);
+            InitializeComponent();
+            editing = false;
+            P = (App.Current.MainWindow.DataContext as DayInformationViewModel).PVM.ActivePatient;
             PatientHomePhone.Text = P.Phone;
             PatientCellPhone.Text = P.Cell;
             PatientWorkPhone.Text = P.Cell;
             PatientEmail.Text = P.Email;
-
-            InitializeComponent();
-
             EditBtn.MouseLeftButtonUp += EditBtn_MouseLeftButtonUp;
         }
 
         private void EditBtn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            new EditPatientContactInfo(ID).ShowDialog();
+            if (editing == false)
+            {
+                editing = true;
+                //new EditPatientContactInfo(ID).ShowDialog();
+                HomeP.Text = P.Phone;
+                CellP.Text = P.Cell;
+                WorkP.Text = P.Business;
+                EmailE.Text = P.Email;
+                Edit.Visibility = Visibility.Visible;
+            }
+            else {
+                editing = false;
+                P.Phone = HomeP.Text;
+                P.Cell = CellP.Text;
+                P.Business = WorkP.Text;
+                P.Email = EmailE.Text;
+                PatientHomePhone.Text = P.Phone;
+                PatientCellPhone.Text = P.Cell;
+                PatientWorkPhone.Text = P.Business;
+                PatientEmail.Text = P.Email;
+                Edit.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

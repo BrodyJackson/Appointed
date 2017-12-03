@@ -8,34 +8,153 @@
     mc:Ignorable="d"
     d:DesignWidth="300"
     Height="110">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition
+    <Grid HorizontalAlignment="Left" Height="92.16" Margin="0,2,0,0" VerticalAlignment="Top" Width="300">
+        <Grid x:Name="Normal" Margin="0,0,0,-17.84">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
                 Width="*" />
-            <ColumnDefinition
+                <ColumnDefinition
                 Width="*" />
-            <ColumnDefinition
+                <ColumnDefinition
                 Width="auto" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition
                 Height="auto" />
-            <RowDefinition
+                <RowDefinition
                 Height="auto" />
-            <RowDefinition
+                <RowDefinition
                 Height="auto" />
-        </Grid.RowDefinitions>
+            </Grid.RowDefinitions>
 
-        <Border
+            <Border
             BorderThickness="1"
             BorderBrush="LightGray"
             Grid.ColumnSpan="3"
             Grid.RowSpan="3" />
 
+            <TextBlock
+            Style="{StaticResource text_HeadingLarge}"
+            Margin="4"
+            x:Name="PatientName"
+            Grid.Column="0"
+            Grid.Row="0"
+            Text="Ross, Michael, J."
+            TextWrapping="Wrap"
+            Grid.ColumnSpan="2" />
+            <TextBlock
+            Style="{StaticResource text_BlackMedium}"
+            x:Name="PatientID_Copy"
+            Margin="4,4.136,0,4.136"
+            Grid.Column="0"
+            Grid.Row="1"
+            Text="ID:"
+            TextWrapping="Wrap"
+            Grid.ColumnSpan="1"
+            Grid.RowSpan="1"/>
+
+            <TextBlock
+            Style="{StaticResource text_BlackMedium}"
+            x:Name="PatientID"
+            Margin="21.983,4.14,0,4.14"
+            Grid.Column="0"
+            Grid.Row="1"
+            TextWrapping="Wrap"
+            Grid.ColumnSpan="1"
+            Grid.RowSpan="1" Text="55555-555"/>
+
+            <TextBlock
+            Style="{StaticResource text_BlackMedium}"
+            x:Name="PatientSexN"
+            Margin="4"
+            Grid.Column="1"
+            Grid.Row="1"
+            Text="Sex:"
+            TextWrapping="Wrap"
+            Grid.ColumnSpan="2" />
+            <TextBlock
+            Style="{StaticResource text_BlackMedium}"
+            x:Name="PatientSex"
+            Margin="30.316,4.13,0,4.13"
+            Grid.Column="1"
+            Grid.Row="1"
+            Text="Female"
+            TextWrapping="Wrap"
+    />
+            <TextBlock
+            Style="{StaticResource text_BlackMedium}"
+            x:Name="PatientBirthday_Copy"
+            Margin="4,4.277,0,4.277"
+            Grid.Column="0"
+            Grid.Row="2"
+            Text="Birthdate:"
+            TextWrapping="Wrap"
+            Grid.ColumnSpan="2" />
+
+            <TextBlock
+            Style="{StaticResource text_BlackMedium}"
+            x:Name="PatientBirthday"
+            Margin="72.823,4.351,0,4.351"
+            Grid.Column="0"
+            Grid.Row="2"
+            Text="1987-09-22"
+            TextWrapping="Wrap"
+            Grid.ColumnSpan="2" />
+
+        </Grid>
+        <Grid x:Name="Edit" HorizontalAlignment="Left" Height="92.16" Margin="0,2,0,-2" VerticalAlignment="Top" Width="300" Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="271*"/>
+                <ColumnDefinition Width="30*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="HID" HorizontalAlignment="Left" Height="20.587" Margin="24.172,37.44,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="88.101" FontFamily="Yu Gothic UI Light" FontSize="16" RenderTransformOrigin="0.5,0.5"/>
+            <TextBox x:Name="BirthD" HorizontalAlignment="Left" Height="20.587" Margin="67.718,66.889,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="89.45" FontFamily="Yu Gothic UI Light" FontSize="16" RenderTransformOrigin="0.5,0.5"/>
+            <ComboBox
+                    x:Name="sex"
+                    Margin="193.485,64.986,10,4.684"
+                    SelectedIndex="0"
+                    VerticalContentAlignment="Center">
+                <ComboBoxItem
+                        Content="Male" />
+                <ComboBoxItem
+                        Content="Female" />
+                <ComboBoxItem
+                        Content="Other" />
+            </ComboBox>
+            <TextBox x:Name="LName" HorizontalAlignment="Left" Height="21.797" Margin="140.93,36.23,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="96.815" FontFamily="Yu Gothic UI Light" FontSize="16"/>
+            <TextBlock HorizontalAlignment="Left" Height="18.878" Margin="0,7.735,0,0" TextWrapping="Wrap" Text="F:" VerticalAlignment="Top" Width="13.021" Foreground="Red" FontFamily="Yu Gothic UI" FontSize="16"/>
+            <TextBlock HorizontalAlignment="Left" Height="18.878" Margin="119.812,7.081,0,0" TextWrapping="Wrap" Text="M:" VerticalAlignment="Top" Width="16.118" Foreground="Red" FontFamily="Yu Gothic UI" FontSize="14"/>
+            <TextBlock HorizontalAlignment="Left" Height="19.532" Margin="127.641,37.44,0,0" TextWrapping="Wrap" Text="L:" VerticalAlignment="Top" Width="18.802" FontFamily="Yu Gothic UI Light" FontSize="16" Foreground="Red"/>
+            <TextBox x:Name="MName" HorizontalAlignment="Left" Height="21.797" Margin="140.93,6.186,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="96.815" FontFamily="Yu Gothic UI Light" FontSize="16"/>
+            <TextBox x:Name="FName1" HorizontalAlignment="Left" Height="21.797" Margin="13.021,7.081,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="99.252" FontFamily="Yu Gothic UI Light" FontSize="16"/>
+            <TextBlock
+                Style="{StaticResource text_BlackMedium}"
+                x:Name="PatientSexN_Copy"
+                Margin="162.168,66.196,0,4.684"
+                Text="Sex:"
+                TextWrapping="Wrap"
+    />
+            <TextBlock
+                Style="{StaticResource text_BlackMedium}"
+                x:Name="PatientBirthday_Copy1"
+                Margin="4,68.511,0,2.369"
+                Grid.Column="0"
+                Text="Birthdate:"
+                TextWrapping="Wrap"
+    />
+            <TextBlock
+                Style="{StaticResource text_BlackMedium}"
+                x:Name="PatientID_Copy1"
+                Margin="4,38.74,0,32.14"
+                Grid.Column="0"
+                Text="ID:"
+                TextWrapping="Wrap"
+                Grid.ColumnSpan="1"
+                Grid.RowSpan="1"/>
+        </Grid>
         <Image
-            Name="EditBtn"
-            Margin="0,2,2,0"
-            Grid.Column="2"
+            x:Name="EditBtn"
+            Margin="0,2,31,0"
             Grid.Row="0"
             Width="16"
             Height="16"
@@ -44,48 +163,5 @@
             VerticalAlignment="Top"
             Source="/Appointed;component/Assets/EditIcon.png"
             ToolTip="Edit Patient Information"/>
-
-        <TextBlock
-            Style="{StaticResource text_HeadingLarge}"
-            Margin="4"
-            Name="PatientName"
-            Grid.Column="0"
-            Grid.Row="0"
-            Text="Ross, Michael, J."
-            TextWrapping="Wrap"
-            Grid.ColumnSpan="2" />
-
-        <TextBlock
-            Style="{StaticResource text_BlackMedium}"
-            Name="PatientID"
-            Margin="4"
-            Grid.Column="0"
-            Grid.Row="1"
-            Text="ID: 55555-555"
-            TextWrapping="Wrap"
-            Grid.ColumnSpan="1"
-            Grid.RowSpan="1">
-        </TextBlock>
-
-        <TextBlock
-            Style="{StaticResource text_BlackMedium}"
-            Name="PatientSex"
-            Margin="4"
-            Grid.Column="1"
-            Grid.Row="1"
-            Text="Sex: Female"
-            TextWrapping="Wrap"
-            Grid.ColumnSpan="2" />
-
-        <TextBlock
-            Style="{StaticResource text_BlackMedium}"
-            Name="PatientBirthday"
-            Margin="4"
-            Grid.Column="0"
-            Grid.Row="2"
-            Text="Birthdate: 1987-09-22"
-            TextWrapping="Wrap"
-            Grid.ColumnSpan="3" />
-
     </Grid>
 </UserControl>

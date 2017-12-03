@@ -23,23 +23,21 @@ namespace Appointed.Views.Sidebar.Widgets
     /// </summary>
     public partial class PatientNotesView : UserControl
     {
-
+        Patient P;
+        Boolean editing;
         public PatientNotesView()
         { 
-            
             InitializeComponent();
-
+            P = (App.Current.MainWindow.DataContext as DayInformationViewModel).PVM.ActivePatient;
+            editing = false;
+            Comments.Text = P.Notes;
             EditBtn.MouseLeftButtonUp += EditBtn_MouseLeftButtonUp;
         }
-        public void StartUp(int ID)
-        {
-            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
-            Patient P = DIVM.PVM.GetPatient(ID);
-            //Get this done
-            Comments.Text = P.Address;
-        }
+
         private void EditBtn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            P.Notes = Comments.Text;
+            Comments.Text = P.Notes;
             
         }
     }

@@ -6,8 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Appointed.Views.Sidebar.Widgets"
     mc:Ignorable="d"
-    d:DesignHeight="100"
-    d:DesignWidth="300">
+    d:DesignWidth="300" Height="118.147">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -34,7 +33,7 @@
             Grid.ColumnSpan="3" />
 
         <Image
-            Name="EditBtn"
+            x:Name="EditBtn"
             Margin="0,2,2,0"
             Grid.Column="2"
             Grid.Row="0"
@@ -57,15 +56,15 @@
 
         <TextBlock
             Style="{StaticResource text_BlackMedium}"
-            Name="PatientStreetAddr"
-            Margin="4"
+            x:Name="PatientStreetAddr"
+            Margin="4,2.652,0,5.347"
             Grid.Column="0"
             Grid.Row="1"
             Text="570 - 11th Avenue SW"
-            Grid.ColumnSpan="3" />
+            Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
         <TextBlock
             Style="{StaticResource text_BlackMedium}"
-            Name="PatientRegion"
+            x:Name="PatientRegion"
             Margin="4"
             Grid.Column="0"
             Grid.Row="2"
@@ -74,12 +73,49 @@
 
         <TextBlock
             Style="{StaticResource text_BlackMedium}"
-            Name="PatientPostal"
+            x:Name="PatientPostal"
             Margin="4"
             Grid.Column="1"
             Grid.Row="2"
-            Text="T3H 5T5"
-            Grid.ColumnSpan="1" />
+            Grid.ColumnSpan="1" ><Run Text="T3H 5T5"/></TextBlock>
+        <Grid HorizontalAlignment="Left" Height="58.56" x:Name="edit" VerticalAlignment="Top" Width="297.115" Grid.ColumnSpan="3" Margin="2.885,0,0,0" Grid.Row="1" Grid.RowSpan="2" Visibility="Hidden">
+            <TextBox x:Name="Address" HorizontalAlignment="Left" Height="20.911" Margin="0,3.969,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="164.242" FontFamily="Yu Gothic UI Light" FontSize="16"/>
+            <TextBox x:Name="PostalC" HorizontalAlignment="Left" Height="20.911" Margin="124.375,34.221,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="65.608" FontFamily="Yu Gothic UI Light" FontSize="16"/>
+            <ComboBox
+                        x:Name="prov"
+                        Margin="180.878,3.969,45.206,33.108"
+                        SelectedIndex="0"
+                        VerticalContentAlignment="Center">
+                <ComboBoxItem
+                            Content="Alberta" />
+                <ComboBoxItem
+                            Content="British Columbia" />
+                <ComboBoxItem
+                            Content="Manitoba" />
+                <ComboBoxItem
+                            Content="New Brunswick" />
+                <ComboBoxItem
+                            Content="Newfoundland and Labrador" />
+                <ComboBoxItem
+                            Content="Northwest Territories" />
+                <ComboBoxItem
+                            Content="Nova Scotia" />
+                <ComboBoxItem
+                            Content="Nunavut" />
+                <ComboBoxItem
+                            Content="Ontario" />
+                <ComboBoxItem
+                            Content="Prince Edward Island" />
+                <ComboBoxItem
+                            Content="Quebec" />
+                <ComboBoxItem
+                            Content="Saskatchewan" />
+                <ComboBoxItem
+                            Content="Yukon" />
+            </ComboBox>
+            <TextBox x:Name="City" HorizontalAlignment="Left" Height="20.911" Margin="0,34.221,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="89.209" FontFamily="Yu Gothic UI Light" FontSize="16"/>
+
+        </Grid>
 
     </Grid>
 </UserControl>
