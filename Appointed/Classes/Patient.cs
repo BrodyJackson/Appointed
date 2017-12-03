@@ -264,8 +264,46 @@ namespace Appointed.Classes
             //if all else fails, assume alberta
             return PROVINCE.AB;
         }
+        public static String ProvinceEnumToString(PROVINCE prov)
+        {
+            if (prov == PROVINCE.AB) return "Alberta";
+            if (prov == PROVINCE.BC) return "British Columbia";
+            if (prov == PROVINCE.MB) return "Manitoba";
+            if (prov == PROVINCE.NB) return "New Brunswick";
+            if (prov == PROVINCE.NL) return "Newfoundland and Labrador";
+            if (prov == PROVINCE.NS) return "Nova Scotia";
+            if (prov == PROVINCE.NT) return "Northwest Territories";
+            if (prov == PROVINCE.NU) return "Nunavut";
+            if (prov == PROVINCE.ON) return "Ontario";
+            if (prov == PROVINCE.PE) return "Prince Edward Island";
+            if (prov == PROVINCE.QC) return "Quebec";
+            if (prov == PROVINCE.SK) return "Saskatchewan";
+            if (prov == PROVINCE.YT) return "Yukon";
 
-		public EmergencyContact EmergencyContact
+            //if all else fails, assume alberta
+            return "Alberta";
+        }
+        public static int ProvinceEnumToNum(PROVINCE prov)
+        {
+            if (prov == PROVINCE.AB) return 0;
+            if (prov == PROVINCE.BC) return 1;
+            if (prov == PROVINCE.MB) return 2;
+            if (prov == PROVINCE.NB) return 3;
+            if (prov == PROVINCE.NL) return 4;
+            if (prov == PROVINCE.NS) return 5;
+            if (prov == PROVINCE.NT) return 6;
+            if (prov == PROVINCE.NU) return 7;
+            if (prov == PROVINCE.ON) return 8;
+            if (prov == PROVINCE.PE) return 9;
+            if (prov == PROVINCE.QC) return 10;
+            if (prov == PROVINCE.SK) return 11;
+            if (prov == PROVINCE.YT) return 12;
+
+            //if all else fails, assume alberta
+            return 0;
+        }
+
+        public EmergencyContact EmergencyContact
 		{
 			get { return _emergencyContact; }
 
