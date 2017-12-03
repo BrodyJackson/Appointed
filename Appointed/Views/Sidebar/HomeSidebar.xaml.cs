@@ -55,7 +55,7 @@ namespace Appointed.Views
             DateTime selectedDT = (DateTime)(JumpCalendar.Calendar.SelectedDate);
 
             TimeSpan diff = selectedDT - activeDT;
-
+            
             ShiftScheduleView(diff.Days - 1);
         }
 

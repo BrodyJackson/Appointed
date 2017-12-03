@@ -308,9 +308,11 @@ namespace Appointed.Models
             int month = _month;
             int year = _year;
 
-            int daysInMonth;
+            int daysInMonth = _myCal.GetDaysInMonth(year, month);
 
-            if (day <= 0)
+           
+
+            while (day <= 0)
             {
                 month--;
 
@@ -321,10 +323,10 @@ namespace Appointed.Models
                 }
 
                 daysInMonth = _myCal.GetDaysInMonth(year, month);
-
                 day = daysInMonth + day;
             }
-            else if (day > _numberOfDaysInMonth)
+
+            while (day > daysInMonth)
             {
                 month++;
 
@@ -334,7 +336,8 @@ namespace Appointed.Models
                     month = 1;
                 }
 
-                day = day - _numberOfDaysInMonth;
+                day = day - daysInMonth;
+                daysInMonth = _myCal.GetDaysInMonth(year, month);
             }
 
             _day = day;

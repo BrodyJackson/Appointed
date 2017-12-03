@@ -39,9 +39,9 @@ namespace Appointed.Views.Sidebar
 
             ApptTypeComboBox.SelectionChanged += ComboBox_ApptTypeSelectionChanged;
 
-            StartTime.SelectionChanged += DIVM.HighlightDate;
-            DoctorComboBox.SelectionChanged += DIVM.HighlightDate;
-            ApptTypeComboBox.SelectionChanged += DIVM.HighlightDate;
+            StartTime.SelectionChanged += DIVM.ChangeHighlight;
+            DoctorComboBox.SelectionChanged += DIVM.ChangeHighlight;
+            ApptTypeComboBox.SelectionChanged += DIVM.ChangeHighlight;
 
             ActiveDateChanged(null, null);
         }

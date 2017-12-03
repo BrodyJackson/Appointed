@@ -40,9 +40,9 @@ namespace Appointed.Views.Sidebar
             DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
             DIVM._activeDate.ActiveDateChanged += ActiveDateChanged;
 
-            StartTime.SelectionChanged += DIVM.HighlightDate;
-            DoctorComboBox.SelectionChanged += DIVM.HighlightDate;
-            ApptTypeComboBox.SelectionChanged += DIVM.HighlightDate;
+            StartTime.SelectionChanged += DIVM.ChangeHighlight;
+            DoctorComboBox.SelectionChanged += DIVM.ChangeHighlight;
+            ApptTypeComboBox.SelectionChanged += DIVM.ChangeHighlight;
 
             ActiveDateChanged(null, null);
         }

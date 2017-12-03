@@ -67,7 +67,7 @@ namespace Appointed.Views.Controls
             popup.IsOpen = true;
 
             calendar.SelectedDatesChanged += Calendar_SelectedDatesChanged;
-            calendar.SelectedDatesChanged += DIVM.HighlightDate;
+            calendar.SelectedDatesChanged += DIVM.ChangeHighlight;
             calendar.Focus();
         }
 

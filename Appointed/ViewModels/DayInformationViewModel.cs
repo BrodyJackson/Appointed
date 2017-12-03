@@ -222,7 +222,7 @@ namespace Appointed.ViewModels
         // END COMMANDS ====================================================
 
 
-        public void HighlightDate(object sender, EventArgs e)
+        public void ChangeHighlight(object sender, EventArgs e)
         {
             ResetHighlightedAppointment();
 
@@ -232,9 +232,9 @@ namespace Appointed.ViewModels
 
             DateTime dt;
 
-            int year;// = DateSelected.Value.Year;
-            int month;// = DateSelected.Value.Month;
-            int day;// = DateSelected.Value.Day;
+            int year;
+            int month;
+            int day;
             int stTime;
 
             string drName;
@@ -277,17 +277,8 @@ namespace Appointed.ViewModels
 
                 HighlightAppointment(dt, drName, apptType);
             }
-
-            //Calendar c = sender as Calendar;
-            //DateSelected = c.SelectedDate;
-
-            //InputText.TextField.Text =
-            //    year.ToString() + "-" +
-            //    month.ToString() + "-" +
-            //    day.ToString();
         }
-
-        
+                
 
         private void HighlightAppointment(DateTime dt, string drName, string apptType)
         {
