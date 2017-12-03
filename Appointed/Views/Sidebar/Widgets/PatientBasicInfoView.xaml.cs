@@ -33,7 +33,7 @@ namespace Appointed.Views.Sidebar.Widgets
             
            
             InitializeComponent();
-            PatientName.Text = P.FirstName + " " + P.LastName;
+            PatientName.Text = P.LastName + ", " + P.FirstName + ", " + P.MiddleName;
             PatientID.Text = P.GetHealthIdAsString();
             PatientSex.Text = P.GetSexAsString();
             PatientBirthday.Text = P.BirthDate.ToShortDateString();

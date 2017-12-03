@@ -32,7 +32,7 @@ namespace Appointed.Views.Sidebar.Widgets
             InitializeComponent();
             P = (App.Current.MainWindow.DataContext as DayInformationViewModel).PVM.ActivePatient;
             PatientStreetAddr.Text = P.Street;
-            PatientRegion.Text = P.City + P.Province.ToString();
+            PatientRegion.Text = P.City + ", "+ P.Province.ToString();
             PatientPostal.Text = P.PostalCode;
  
             
