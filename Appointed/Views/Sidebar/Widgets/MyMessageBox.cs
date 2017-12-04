@@ -14,7 +14,7 @@ using System.Windows.Media;
 namespace Appointed.Views.Sidebar.Widgets
 {
 
-    // For single button messages with no action taken on the user's choice
+    // For single button messages  - informative messages
     // MyMessageBox msgBox = new MyMessageBox();
     // msgBox.Show
     // (
@@ -24,16 +24,16 @@ namespace Appointed.Views.Sidebar.Widgets
     // );
 
 
-
+    // For two button messages - choices or confirmations
     // An example of an event handler "OnMouseLeftRelease_Discard" using a message box to request user confirmation.
-    // The handler "OnDiscardConfirmation" is subscribed to the "msgBox.MessageBoxResult" event.
+    // The handler "OnChoiceMade" is subscribed to the "msgBox.MessageBoxResult" event.
     // When the user makes a choice, the event is raised and their choice is forwarded in a MessageBoxEventArgs object.
 
     // private void OnMouseLeftRelease_Discard(object sender, MouseButtonEventArgs e)
     // {
     //    MyMessageBox msgBox = new MyMessageBox();
     //
-    //    msgBox.MessageBoxResult += OnDiscardConfirmation;
+    //    msgBox.MessageBoxResult += OnChoiceMade;
     //
     //    msgBox.Show
     //        (
@@ -44,7 +44,7 @@ namespace Appointed.Views.Sidebar.Widgets
     //        );
     // }
 
-    // private void OnDiscardConfirmation(object sender, MessageBoxEventArgs e)
+    // private void OnChoiceMade(object sender, MessageBoxEventArgs e)
     // {
     //    MyMessageBox.Result r = e.result;
     //
@@ -79,7 +79,6 @@ namespace Appointed.Views.Sidebar.Widgets
         public MyMessageBox()
         {
         }
-
         
 
         // Two Button Popup

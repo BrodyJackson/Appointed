@@ -12,25 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Appointed.Views.Dialogs;
 
-namespace Appointed.Views.Sidebar.Widgets
+namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
 {
     /// <summary>
-    /// Interaction logic for PatientEmergencyContactInfo.xaml
+    /// Interaction logic for PatientUpcomingApptView.xaml
     /// </summary>
-    public partial class PatientEmergencyContactInfoView: UserControl
+    public partial class PatientUpcomingApptView : UserControl
     {
-        public PatientEmergencyContactInfoView()
+        public PatientUpcomingApptView()
         {
             InitializeComponent();
-
-            EditBtn.MouseLeftButtonUp += EditBtn_MouseLeftButtonUp;
-        }
-
-        private void EditBtn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            new EditPatientEmergencyContacts().ShowDialog();
         }
     }
 }

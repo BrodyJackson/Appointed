@@ -8,12 +8,8 @@
              d:DesignHeight="200" d:DesignWidth="400"
              Background="White"
              BorderBrush="Black"
-             BorderThickness="2"
+             BorderThickness="3"
              >
-
-
-
-
 
     <DockPanel
         Margin="12"
@@ -32,18 +28,15 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-
-
             <TextBlock
                 x:Name="Title"
-                Style="{StaticResource text_HeadingMedium}"
+                Style="{StaticResource text_HeadingLarge}"
                 Grid.Row="0"
                 Grid.Column="0"
                 HorizontalAlignment="Center"
                 Text="Title"
                 >
             </TextBlock>
-
 
             <TextBlock
                 x:Name="Message"
@@ -96,17 +89,7 @@
                 Height="30"
             />
         </Grid>
-
-
-
-
-
-
     </DockPanel>
-
-
-
-
 
 
 </UserControl>

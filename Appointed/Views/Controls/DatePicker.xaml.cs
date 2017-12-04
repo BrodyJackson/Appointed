@@ -24,6 +24,8 @@ namespace Appointed.Views.Controls
     /// </summary>
     public partial class DatePicker : UserControl
     {
+        public event EventHandler<RoutedEventArgs> SelectedDateChanged;
+
         public DateTime? DateSelected { get; set; }
 
         private Brush _textBorderBrush;
@@ -100,6 +102,8 @@ namespace Appointed.Views.Controls
 
             (c.Parent as Popup).IsOpen = false;
             InputText.TextField.Focus();
+
+            SelectedDateChanged?.Invoke(this, null);
         }
 
         private void DateTextInputChanged(object sender, TextChangedEventArgs e)

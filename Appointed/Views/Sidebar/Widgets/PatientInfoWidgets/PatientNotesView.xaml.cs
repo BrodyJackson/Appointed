@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Appointed.Views.Dialogs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,16 +14,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Appointed.Views.Sidebar.Widgets
+namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
 {
     /// <summary>
-    /// Interaction logic for PatientUpcomingApptView.xaml
+    /// Interaction logic for PatientNotesView.xaml
     /// </summary>
-    public partial class PatientUpcomingApptView : UserControl
+    public partial class PatientNotesView : UserControl
     {
-        public PatientUpcomingApptView()
+        public PatientNotesView()
         {
             InitializeComponent();
+        }
+
+        private void EditBtn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            
         }
     }
 }
