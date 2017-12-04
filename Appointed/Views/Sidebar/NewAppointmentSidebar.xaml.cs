@@ -6,12 +6,10 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Appointed.Classes;
 using Appointed.ViewModels;
+using Appointed.Views.Sidebar.Widgets;
 
 namespace Appointed.Views.Sidebar
 {
-    /// <summary>
-    /// Interaction logic for UserControl1.xaml
-    /// </summary>
     public partial class NewAppointmentSidebar : UserControl
     {
         public NewAppointmentSidebar()
@@ -35,13 +33,12 @@ namespace Appointed.Views.Sidebar
 
             DatePicker.OnDateChosen += DatePicker_OnDateChosen;
 
-            this.Loaded += new RoutedEventHandler(NewAppointmentSidebar_Loaded);
+            this.Loaded += NewAppointmentSidebar_Loaded;
 
             CommentBox.GotFocus += (s, e) => { App.AllowArrowKeyCalendarNavigation = false; };
             CommentBox.LostFocus += (s, e) => { App.AllowArrowKeyCalendarNavigation = true; };
 
             ThreeDayView tdv = (App.Current.MainWindow as Home).ThreeDayView;
-
             tdv.DayOne.DrColumn0.OnEmptyApptClick += EmptySlotClick;
             tdv.DayOne.DrColumn1.OnEmptyApptClick += EmptySlotClick;
             tdv.DayOne.DrColumn2.OnEmptyApptClick += EmptySlotClick;
@@ -54,6 +51,22 @@ namespace Appointed.Views.Sidebar
             tdv.DayThree.DrColumn1.OnEmptyApptClick += EmptySlotClick;
             tdv.DayThree.DrColumn2.OnEmptyApptClick += EmptySlotClick;
 
+        }
+
+        void NewAppointmentSidebar_Loaded(object sender, RoutedEventArgs e)
+        {
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
+
+            ApptTypeComboBox.SelectionChanged += ComboBox_ApptTypeSelectionChanged;
+
+            //Clear selected index so its not equal to whatever the last active appt was set to
+            StartTime.SelectedIndex = -1;
+            EndTime.Text = String.Empty;
+
+            //DIVM._activeDate.ActiveDateChanged += ActiveDateChanged;
+            StartTime.SelectionChanged += DIVM.ChangeHighlight;
+            DoctorComboBox.SelectionChanged += DIVM.ChangeHighlight;
+            ApptTypeComboBox.SelectionChanged += DIVM.ChangeHighlight;
         }
 
         private void EmptySlotClick(object sender, DoctorColumnView.ApptClickEventArgs e)
@@ -83,6 +96,18 @@ namespace Appointed.Views.Sidebar
 
             //TODO: Highlight appt slot
 
+        }
+
+        // Decision confirmation logic
+        private void OnDiscardConfirmation(object sender, MessageBoxEventArgs e)
+        {
+            MyMessageBox.Result r = e.result;
+
+            if (r == MyMessageBox.Result.Yes)
+            {
+                Home h = App.Current.MainWindow as Home;
+                h.SidebarView.SetSidebarView(h.SidebarView.GetPreviousSidebar(), false);
+            }
         }
 
         private void DatePicker_OnCalendarLoaded(object sender, EventArgs e)
@@ -139,23 +164,22 @@ namespace Appointed.Views.Sidebar
             RemDays.Visibility = Visibility.Visible;
         }
 
-        void NewAppointmentSidebar_Loaded(object sender, RoutedEventArgs e)
-        {
-            ApptTypeComboBox.SelectionChanged += ComboBox_ApptTypeSelectionChanged;
-
-            //Clear selected index so its not equal to whatever the last active appt was set to
-            StartTime.SelectedIndex = -1;
-            EndTime.Text = String.Empty;
-        }
 
         private void OnMouseLeftRelease_Discard(object sender, MouseButtonEventArgs e)
         {
-            if (MessageBox.Show("Are you sure you wish to discard the appointment?", "Discard Appointment Booking", MessageBoxButton.YesNo, MessageBoxImage.Asterisk, MessageBoxResult.Yes) == MessageBoxResult.Yes)
-            {
-                Home h = App.Current.MainWindow as Home;
-                h.SidebarView.SetSidebarView(h.SidebarView.GetPreviousSidebar(), false);
-            }
+            MyMessageBox msgBox = new MyMessageBox();
+
+            msgBox.MessageBoxResult += OnDiscardConfirmation;
+
+            msgBox.Show
+                (
+                    "Are you sure you wish to discard your changes?",
+                    "Confirm Selection",
+                    MyMessageBox.Buton.Yes,
+                    MyMessageBox.Buton.No
+                );
         }
+
 
         //need to add a function so that when the sidebar loads, it takes the value that is passed in as the active patient
 
@@ -239,11 +263,13 @@ namespace Appointed.Views.Sidebar
 
                 if ((targetAppointment.Type != "") || (type == "Consultation" && apptThatFollowsTarget.Type != ""))
                 {
-                    MessageBox.Show(
-                        drName + " is Unavaliable " + dateString + " at " + (StartTime.SelectedItem as Time).TimeString,
-                        "Unable to Schedule Appointment",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Asterisk);
+                    MyMessageBox msgBox = new MyMessageBox();
+                    msgBox.Show
+                        (
+                            drName + " is Unavaliable " + dateString + " at " + (StartTime.SelectedItem as Time).TimeString,
+                            "Unable to Create Appointment",
+                            MyMessageBox.Buton.Ok
+                        );
 
                     return;
                 }
@@ -251,18 +277,20 @@ namespace Appointed.Views.Sidebar
                 if ((!DIVM.AVM.DoctorsOnShift.ElementAt(drColumn).IsAvailable(Int32.Parse(stTime))) ||
                         (!DIVM.AVM.DoctorsOnShift.ElementAt(drColumn).IsAvailable(Int32.Parse(endTime))))
                 {
-                    MessageBox.Show(
-                         drName + " is Unavaliable " + dateString + " at " + (StartTime.SelectedItem as Time).TimeString,
-                        "Unable to Schedule Appointment",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Asterisk);
-
+                    MyMessageBox msgBox = new MyMessageBox();
+                    msgBox.Show
+                        (
+                            drName + " is Unavaliable " + dateString + " at " + (StartTime.SelectedItem as Time).TimeString,
+                            "Unable to Create Appointment",
+                            MyMessageBox.Buton.Ok
+                        );
                     return;
                 }
 
 
             }
 
+            DIVM.ResetHighlightedAppointment();
 
             Appointment _newAppointment = DIVM.AVM._appointmentLookup[key];
 

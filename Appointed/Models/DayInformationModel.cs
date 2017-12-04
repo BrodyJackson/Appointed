@@ -308,7 +308,7 @@ namespace Appointed.Models
             int month = _month;
             int year = _year;
 
-            int daysInMonth;
+            int daysInMonth = _myCal.GetDaysInMonth(year, month);
 
             //I added this while loop to solve some exceptions being thrown when navigating significant spans of time at once.
             // if it causes issues, then we will need to rethink this
@@ -325,7 +325,6 @@ namespace Appointed.Models
                     }
 
                     daysInMonth = _myCal.GetDaysInMonth(year, month);
-
                     day = daysInMonth + day;
                 }
                 else if (day > _numberOfDaysInMonth)
@@ -337,7 +336,6 @@ namespace Appointed.Models
                         year++;
                         month = 1;
                     }
-
                     day = day - _numberOfDaysInMonth;
                 }
             }

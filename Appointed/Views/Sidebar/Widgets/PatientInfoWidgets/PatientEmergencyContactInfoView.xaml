@@ -1,9 +1,10 @@
-﻿<UserControl x:Class="Appointed.Views.Sidebar.Widgets.PatientEmergencyContactInfoView"
+﻿<UserControl x:Class="Appointed.Views.Sidebar.Widgets.PatientInfoWidgets.PatientEmergencyContactInfoView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Appointed.Views.Sidebar.Widgets"
+             xmlns:local="clr-namespace:Appointed.Views.Sidebar.Widgets.PatientInfoWidgets"
+             xmlns:controls="clr-namespace:Appointed.Views.Controls"
     mc:Ignorable="d"
     d:DesignHeight="145"
     d:DesignWidth="300">
@@ -33,19 +34,6 @@
             Grid.RowSpan="4"
             Grid.ColumnSpan="3" />
 
-        <Image
-            Name="EditBtn"
-            Margin="0,2,2,0"
-            Grid.Column="2"
-            Grid.Row="0"
-            Width="16"
-            Height="16"
-            Cursor="Hand"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top"
-            Source="/Appointed;component/Assets/EditIcon.png"
-            ToolTip="Edit Emergency Contact Information" />
-
         <TextBlock
             Style="{StaticResource text_HeadingLarge}"
             Margin="4"
@@ -53,6 +41,7 @@
             Grid.Row="0"
             Text="Emergency Contact"
             Grid.ColumnSpan="2" />
+
 
         <TextBlock
             Style="{StaticResource text_BlackMedium}"
@@ -62,13 +51,34 @@
             Text="Name:"
             Grid.ColumnSpan="1" />
         <TextBlock
+            Cursor="Pen"
             Style="{StaticResource text_BlackMedium}"
-            Name="ContactName"
+            x:Name="ContactName"
             Margin="0,4"
             Grid.Column="1"
             Grid.Row="1"
             Text="Rose Ross"
-            Grid.ColumnSpan="2" />
+            Grid.ColumnSpan="2" 
+            PreviewMouseLeftButtonUp="OnClickInputText"
+            />
+        <controls:InputText
+            x:Name="ContactNameInput"
+            Hint="Name"
+            Mask="NONE"
+            Margin="0,0,4,0"
+            HintForground="Gray"
+            Grid.Column="1"
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch"
+            Visibility="Hidden"
+            LostFocus="ContactNameInput_LostFocus"
+            />
+
+
+
+
         <TextBlock
             Style="{StaticResource text_BlackMedium}"
             Margin="4"
@@ -77,13 +87,33 @@
             Text="Phone:"
             Grid.ColumnSpan="1" />
         <TextBlock
+            Cursor="Pen"
             Style="{StaticResource text_BlackMedium}"
-            Name="ContactPhone"
+            x:Name="ContactPhone"
             Margin="0,4"
             Grid.Column="1"
             Grid.Row="2"
             Text="(587) 403-6372"
-            Grid.ColumnSpan="2" />
+            Grid.ColumnSpan="2" 
+            PreviewMouseLeftButtonUp="OnClickInputText"
+            />
+        <controls:InputText
+            x:Name="ContactPhoneInput"
+            Hint="(555) 555-5555"
+            Mask="PHONENUMBER"
+            Margin="0,0,4,0"
+            HintForground="Gray"
+            Grid.Column="1"
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch"
+            Visibility="Hidden"
+            LostFocus="ContactPhoneInput_LostFocus"
+            />
+
+
+
 
         <TextBlock
             Style="{StaticResource text_BlackMedium}"
@@ -93,13 +123,32 @@
             Text="Relation:"
             Grid.ColumnSpan="1" />
         <TextBlock
+            Cursor="Pen"
             Style="{StaticResource text_BlackMedium}"
-            Name="ContactRelation"
-            Margin="0,4,4,0"
+            x:Name="ContactRelation"
+            Margin="0,4"
             Grid.Column="1"
             Grid.Row="3"
             Text="Grandmother"
-            Grid.ColumnSpan="2" />
+            Grid.ColumnSpan="2" 
+            PreviewMouseLeftButtonUp="OnClickInputText"
+            />
+        <controls:InputText
+            x:Name="ContactRelationInput"
+            Hint="Mother"
+            Mask="NONE"
+            Margin="0,0,4,0"
+            HintForground="Gray"
+            Grid.Column="1"
+            Grid.Row="3"
+            Grid.ColumnSpan="2"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch"
+            Visibility="Hidden"
+            LostFocus="ContactRelationInput_LostFocus"
+            />
 
+        
+        
     </Grid>
 </UserControl>

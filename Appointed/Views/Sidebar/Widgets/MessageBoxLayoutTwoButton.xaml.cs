@@ -1,5 +1,4 @@
-﻿using Appointed.Views.Dialogs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,21 +16,13 @@ using System.Windows.Shapes;
 namespace Appointed.Views.Sidebar.Widgets
 {
     /// <summary>
-    /// Interaction logic for PatientAddressInfoView.xaml
+    /// Interaction logic for MessageBoxLayout.xaml
     /// </summary>
-    public partial class PatientAddressInfoView : UserControl
+    public partial class MessageBoxLayoutTwoButton : UserControl
     {
-        public PatientAddressInfoView()
+        public MessageBoxLayoutTwoButton()
         {
             InitializeComponent();
-
-            EditBtn.MouseLeftButtonUp += EditBtn_MouseLeftButtonUp;
-
-        }
-
-        private void EditBtn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            new EditPatientAddress().ShowDialog();
         }
     }
 }

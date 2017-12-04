@@ -54,7 +54,6 @@ namespace Appointed.Views
         private void OnMouseLeftRelease_Modify(object sender, MouseButtonEventArgs e)
         {
             Home h = App.Current.MainWindow as Home;
-
             h.SidebarView.SetSidebarView(new ModifyAppointmentSidebar());
         }
 
@@ -106,6 +105,9 @@ namespace Appointed.Views
             appt.Patient = "";
             appt.Type = "";
             appt.Waitlisted = false;
+
+            Home h = App.Current.MainWindow as Home;
+            h.SidebarView.SetSidebarView(new HomeSidebar());
         }
 
         private void SaveNotesBtn_Click(object sender, RoutedEventArgs e)

@@ -22,6 +22,7 @@
 
         <TextBlock
             Style="{StaticResource text_BlackMedium}"
+            FontSize="13"
             Name="Date"
             Margin="4"
             Grid.Column="0"
@@ -33,6 +34,7 @@
 
         <TextBlock
             Style="{StaticResource text_BlackMedium}"
+            FontSize="12"
             Name="Doctor"
             Margin="4"
             Grid.Column="1"
@@ -44,6 +46,7 @@
 
         <TextBlock
             Style="{StaticResource text_BlackMedium}"
+            FontSize="13"
             Name="Type"
             Margin="4"
             Grid.Column="2"

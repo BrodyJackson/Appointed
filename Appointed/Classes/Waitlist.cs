@@ -18,7 +18,7 @@ namespace Appointed.Classes
 
         
         // Searches the waitlist to determine if an appointment is waiting for the slot Appointment 'a' occupies.
-        //      If Appointment 'a' was not being waited for by any other appointments, it returns 'a'.
+        //      If Appointment 'a' was not the head of any waitlist, it returns 'a'.
         //      If Appointment 'a' was associated with a queue but no elements were found in the queue, it returns null.
         //      Otherwise it returns the first appointment in line waiting for the time slot Appointment 'a' occupies.
         // The idea is to call this before deleting an appointment, where the appointment you are about to delete is
@@ -34,7 +34,7 @@ namespace Appointed.Classes
 
             int key = a.DateTime.GetHashCode() + DIVM.AVM.FindDrColumnForDrName(a.DoctorName);
 
-            Appointment b = DIVM.AVM._appointmentLookup[1461292986];
+            Appointment b = DIVM.AVM._appointmentLookup[key];
 
             if (waitlist.ContainsKey(key))
             {
@@ -58,7 +58,7 @@ namespace Appointed.Classes
 
 
         // Add Appointment 'apptToAdd' to the waitlist for the appointment slot identified by the 'dateDesired' and the 'nameOfDocDesired'.
-        // If 'nameOfDoc' is invalid it returns -1 and does not modify the waitlist.
+        // If 'nameOfDocDesired' is invalid it returns -1 and does not modify the waitlist.
         // 'apptToAdd' should have it's DateTime and ID set according to the slot it currently occupies, not the slot
         // it wishes to wait for.
         // Returns the zero based waitlist position of this Appointment for this slot.
@@ -93,7 +93,7 @@ namespace Appointed.Classes
                     Appointment a = Q.Value.ElementAt(i);
                     if (a.ID == apptToRemove.ID)
                     {
-                         Q.Value.RemoveAt(i);
+                        Q.Value.RemoveAt(i);
                         return;
                     }
                 }

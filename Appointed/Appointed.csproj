@@ -65,6 +65,7 @@
     <Compile Include="Classes\Date.cs" />
     <Compile Include="Classes\DayTemplate.cs" />
     <Compile Include="Classes\Doctor.cs" />
+    <Compile Include="Classes\MessageBoxEventArgs.cs" />
     <Compile Include="Classes\TextMasks.cs" />
     <Compile Include="Classes\Time.cs" />
     <Compile Include="Classes\Waitlist.cs" />
@@ -164,25 +165,32 @@
     <Compile Include="Views\Sidebar\SidebarFrameView.xaml.cs">
       <DependentUpon>SidebarFrameView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Sidebar\Widgets\PatientAddressInfoView.xaml.cs">
+    <Compile Include="Views\Sidebar\Widgets\MessageBoxLayoutOneButton.xaml.cs">
+      <DependentUpon>MessageBoxLayoutOneButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sidebar\Widgets\MessageBoxLayoutTwoButton.xaml.cs">
+      <DependentUpon>MessageBoxLayoutTwoButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\MyMessageBox.cs" />
+    <Compile Include="Views\Sidebar\Widgets\PatientInfoWidgets\PatientAddressInfoView.xaml.cs">
       <DependentUpon>PatientAddressInfoView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Sidebar\Widgets\PatientApptHistoryView.xaml.cs">
+    <Compile Include="Views\Sidebar\Widgets\PatientInfoWidgets\PatientApptHistoryView.xaml.cs">
       <DependentUpon>PatientApptHistoryView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Sidebar\Widgets\PatientBasicInfoView.xaml.cs">
+    <Compile Include="Views\Sidebar\Widgets\PatientInfoWidgets\PatientBasicInfoView.xaml.cs">
       <DependentUpon>PatientBasicInfoView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Sidebar\Widgets\PatientContactInfoView.xaml.cs">
+    <Compile Include="Views\Sidebar\Widgets\PatientInfoWidgets\PatientContactInfoView.xaml.cs">
       <DependentUpon>PatientContactInfoView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Sidebar\Widgets\PatientEmergencyContactInfoView.xaml.cs">
+    <Compile Include="Views\Sidebar\Widgets\PatientInfoWidgets\PatientEmergencyContactInfoView.xaml.cs">
       <DependentUpon>PatientEmergencyContactInfoView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Sidebar\Widgets\PatientNotesView.xaml.cs">
+    <Compile Include="Views\Sidebar\Widgets\PatientInfoWidgets\PatientNotesView.xaml.cs">
       <DependentUpon>PatientNotesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Sidebar\Widgets\PatientUpcomingApptView.xaml.cs">
+    <Compile Include="Views\Sidebar\Widgets\PatientInfoWidgets\PatientUpcomingApptView.xaml.cs">
       <DependentUpon>PatientUpcomingApptView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Schedule\SingleDayView.xaml.cs">
@@ -326,31 +334,39 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Sidebar\Widgets\PatientAddressInfoView.xaml">
+    <Page Include="Views\Sidebar\Widgets\MessageBoxLayoutOneButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Sidebar\Widgets\PatientApptHistoryView.xaml">
+    <Page Include="Views\Sidebar\Widgets\MessageBoxLayoutTwoButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Sidebar\Widgets\PatientBasicInfoView.xaml">
+    <Page Include="Views\Sidebar\Widgets\PatientInfoWidgets\PatientAddressInfoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Sidebar\Widgets\PatientContactInfoView.xaml">
+    <Page Include="Views\Sidebar\Widgets\PatientInfoWidgets\PatientApptHistoryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Sidebar\Widgets\PatientEmergencyContactInfoView.xaml">
+    <Page Include="Views\Sidebar\Widgets\PatientInfoWidgets\PatientBasicInfoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Sidebar\Widgets\PatientNotesView.xaml">
+    <Page Include="Views\Sidebar\Widgets\PatientInfoWidgets\PatientContactInfoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Sidebar\Widgets\PatientUpcomingApptView.xaml">
+    <Page Include="Views\Sidebar\Widgets\PatientInfoWidgets\PatientEmergencyContactInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\Widgets\PatientInfoWidgets\PatientNotesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\Widgets\PatientInfoWidgets\PatientUpcomingApptView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Appointed.ViewModels;
 
 namespace Appointed.Views
 {
@@ -77,6 +78,8 @@ namespace Appointed.Views
 
         private void SetStandardQuickNavButtons()
         {
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
+
             Button homeButton = new Button
             {
                 Content = new Image()
@@ -104,11 +107,17 @@ namespace Appointed.Views
 
             backButton.Click += (object s, RoutedEventArgs args) =>
             {
+                if (!GetConfirmation())
+                    return;
+                DIVM.ResetHighlightedAppointment();   
                 SetSidebarView(GetPreviousSidebar(), false);
             };
 
             homeButton.Click += (object s, RoutedEventArgs args) =>
             {
+                if (!GetConfirmation())
+                    return;
+                DIVM.ResetHighlightedAppointment();
                 SetSidebarView(new HomeSidebar());
             };
         }
@@ -186,6 +195,25 @@ namespace Appointed.Views
         {
             return _rightQuickNavButton;
         }
+
+
+        private bool GetConfirmation()
+        {
+            MessageBoxResult result =
+               MessageBox.Show
+               (
+                   "Are you sure you wish to discard your changes?",
+                   "Confirm Selection",
+                   MessageBoxButton.YesNo,
+                   MessageBoxImage.Asterisk
+               );
+
+            if (result == MessageBoxResult.No || result == MessageBoxResult.None)
+                return false;
+
+            return true;
+        }
+
 
     }
 

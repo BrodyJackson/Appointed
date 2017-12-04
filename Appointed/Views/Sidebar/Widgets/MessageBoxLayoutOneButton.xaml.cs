@@ -12,25 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Appointed.Views.Dialogs;
 
 namespace Appointed.Views.Sidebar.Widgets
 {
     /// <summary>
-    /// Interaction logic for PatientEmergencyContactInfo.xaml
+    /// Interaction logic for MessageBoxLayoutOneButton.xaml
     /// </summary>
-    public partial class PatientEmergencyContactInfoView: UserControl
+    public partial class MessageBoxLayoutOneButton : UserControl
     {
-        public PatientEmergencyContactInfoView()
+        public MessageBoxLayoutOneButton()
         {
             InitializeComponent();
-
-            EditBtn.MouseLeftButtonUp += EditBtn_MouseLeftButtonUp;
-        }
-
-        private void EditBtn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            new EditPatientEmergencyContacts().ShowDialog();
         }
     }
 }

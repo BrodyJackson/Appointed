@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Appointed.ViewModels;
 using Appointed.Classes;
 using System.Windows.Media.Animation;
+using Appointed.Views.Sidebar;
 
 namespace Appointed.Views
 
@@ -173,7 +174,7 @@ namespace Appointed.Views
             Rectangle rectangle = parentGrid.Children.OfType<Rectangle>().ElementAt(0);
             TextBlock textBlock = parentGrid.Children.OfType<TextBlock>().ElementAt(0);
 
-            rectangle.Opacity = 0.5;
+            rectangle.Opacity = 0.4;
             rectangle.RadiusX = 4;
             rectangle.RadiusY = 4;
             rectangle.StrokeThickness = 1;
@@ -193,18 +194,7 @@ namespace Appointed.Views
 
             Appointment appt = DIVM.AVM._appointmentLookup[Int32.Parse(apptSlotID)];
 
-
-            //string bindingCode = "1" + "5" + "12" + "2017";
-
-            //List <Appointment> appts = DIVM.AVM._drScheduleMap[Int32.Parse(bindingCode)];
-
-
-            //            Application.Current.MainWindow.OpacityMask = Brushes.Black;
-            //            Application.Current.MainWindow.Opacity = 0.2;
-            //            Application.Current.MainWindow.IsHitTestVisible = false;
-
-
-            //            DIVM.AVM._activeAppointment = new Appointment(appt);
+            Home home = App.Current.MainWindow as Home;
 
             DIVM.AVM._activeAppointment.Colour = appt.Colour;
             DIVM.AVM._activeAppointment.Comments = appt.Comments;
@@ -365,8 +355,30 @@ namespace Appointed.Views
             sourceAppointment.Type = "";
             sourceAppointment.Waitlisted = false;
 
+            
+            DIVM.AVM._activeAppointment.Colour = targetAppointment.Colour;
+            DIVM.AVM._activeAppointment.Comments = targetAppointment.Comments;
+            DIVM.AVM._activeAppointment.Cursor = targetAppointment.Cursor;
+            DIVM.AVM._activeAppointment.DateTime = targetAppointment.DateTime;
+            DIVM.AVM._activeAppointment.DoctorName = targetAppointment.DoctorName;
+            DIVM.AVM._activeAppointment.EndTime = targetAppointment.EndTime;
+            DIVM.AVM._activeAppointment.Height = targetAppointment.Height;
+            DIVM.AVM._activeAppointment.ID = targetAppointment.ID;
+            DIVM.AVM._activeAppointment.Margin = targetAppointment.Margin;
+            DIVM.AVM._activeAppointment.Missed = targetAppointment.Missed;
+            DIVM.AVM._activeAppointment.Arrived = targetAppointment.Arrived;
+            DIVM.AVM._activeAppointment.Opacity = targetAppointment.Opacity;
+            DIVM.AVM._activeAppointment.Patient = targetAppointment.Patient;
+            DIVM.AVM._activeAppointment.RowSpan = targetAppointment.RowSpan;
+            DIVM.AVM._activeAppointment.StartTime = targetAppointment.StartTime;
+            DIVM.AVM._activeAppointment.Type = targetAppointment.Type;
+            DIVM.AVM._activeAppointment.Waitlisted = targetAppointment.Waitlisted;
+            DIVM.AVM._activeAppointment.Visibility = targetAppointment.Visibility;
 
-
+            DIVM._activeDate.Day = targetAppointment.DateTime.Value.Day;
+            DIVM._activeDate.Month = targetAppointment.DateTime.Value.Month;
+            DIVM._activeDate.Year = targetAppointment.DateTime.Value.Year;
+            DIVM._activeDate.Time24Hr = targetAppointment.StartTime;
         }
 
 
