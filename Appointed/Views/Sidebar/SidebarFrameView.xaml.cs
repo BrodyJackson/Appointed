@@ -104,11 +104,14 @@ namespace Appointed.Views
 
             backButton.Click += (object s, RoutedEventArgs args) =>
             {
+                //TODO confirm navigation
+
                 SetSidebarView(GetPreviousSidebar(), false);
             };
 
             homeButton.Click += (object s, RoutedEventArgs args) =>
             {
+                //TODO Confirm navigation
                 SetSidebarView(new HomeSidebar());
             };
         }

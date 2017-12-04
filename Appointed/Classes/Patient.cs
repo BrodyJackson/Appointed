@@ -77,6 +77,11 @@ namespace Appointed.Classes
             _upcomingAppointments.Add(key);
         }
 
+        public void RemoveUpcommingAppointmentKey(int key)
+        {
+            _upcomingAppointments.Remove(key);
+        }
+
         public List<int> GetUpcomingAppointmentKeys()
         {
             return _upcomingAppointments;

@@ -106,6 +106,12 @@ namespace Appointed.Views
             appt.Patient = "";
             appt.Type = "";
             appt.Waitlisted = false;
+
+            appt.PatientObj.RemoveUpcommingAppointmentKey(Int32.Parse(appt.ID));
+
+            Home h = (App.Current.MainWindow as Home);
+            h.SidebarView.SetSidebarView(h.SidebarView.GetPreviousSidebar());
+
         }
 
         private void SaveNotesBtn_Click(object sender, RoutedEventArgs e)

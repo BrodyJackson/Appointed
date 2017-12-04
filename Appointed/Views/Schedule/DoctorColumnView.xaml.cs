@@ -40,7 +40,7 @@ namespace Appointed.Views
             // to ensure the entire view is loaded before this set of instructions is executed.
             this.Loaded += new RoutedEventHandler(DoctorColumnView_Loaded);
         }
- 
+
 
 
         void DoctorColumnView_Loaded(object sender, RoutedEventArgs e)
@@ -190,9 +190,14 @@ namespace Appointed.Views
             Rectangle apptSlot = (Rectangle)sender;
             string apptSlotID = apptSlot.Tag.ToString();
 
+            Home h = App.Current.MainWindow as Home;
 
             Appointment appt = DIVM.AVM._appointmentLookup[Int32.Parse(apptSlotID)];
 
+            if(h.SidebarView.GetSidebarView() is AppointmentDetailsSidebar && appt.Type == "" )
+            {
+                return;
+            }
 
             //string bindingCode = "1" + "5" + "12" + "2017";
 
@@ -235,16 +240,14 @@ namespace Appointed.Views
              so while it would seem more logical not to do all this stuff if we click an empty slot, 
              a lot of things rely on it so dont change this ordering :| */
 
-            if (appt.Type == "") //This is a free appt slot so raise event
+            if (appt.Type == "" && !(h.SidebarView.GetSidebarView() is AppointmentDetailsSidebar)) //This is a free appt slot so raise event
             {
-                OnEmptyApptClick?.Invoke(this, new ApptClickEventArgs() { Date = appt.DateTime.Value });
+                OnEmptyApptClick?.Invoke(sender, new ApptClickEventArgs() { Date = appt.DateTime.Value });
                 return;
             }
 
-            Home h = App.Current.MainWindow as Home;
-
             //Check if we are making a new appt or modifying one, if so, don't change the view, probably a miss click on a booked appt instead of a blank one
-            if (h.SidebarView.GetSidebarView() is Sidebar.NewAppointmentSidebar || h.SidebarView.GetSidebarView() is Sidebar.ModifyAppointmentSidebar)
+            if ((h.SidebarView.GetSidebarView() is AppointmentDetailsSidebar) || h.SidebarView.GetSidebarView() is Sidebar.NewAppointmentSidebar || h.SidebarView.GetSidebarView() is Sidebar.ModifyAppointmentSidebar)
             {
                 return;
             }
@@ -261,14 +264,14 @@ namespace Appointed.Views
         // Used to detect a click and drag combination
         private void OnMouseMoveAppointmentSlot(object sender, MouseEventArgs e)
         {
-            Rectangle apptSlot = (Rectangle) sender;
+            Rectangle apptSlot = (Rectangle)sender;
 
             if (apptSlot != null && e.LeftButton == MouseButtonState.Pressed)
             {
                 DragDrop.DoDragDrop(apptSlot, apptSlot.Tag.ToString(), DragDropEffects.All);
             }
         }
-        
+
         // If there was data from the source appt slot and the target is not itself, show drag icon near mouse pointer
         private void OnDragEnterAppointmentSlot(object sender, DragEventArgs e)
         {

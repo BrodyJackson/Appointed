@@ -60,7 +60,7 @@ namespace Appointed.Models
             _dayStringNumeric = _day.ToString();
 
 
-            SetDaysInScope();            
+            SetDaysInScope();
         }
 
 
@@ -105,7 +105,7 @@ namespace Appointed.Models
         public int MonthAsInt { get { return _month; } }
         public int YearAsInt { get { return _year; } }
 
-        
+
         private void GetMonthString()
         {
             switch (_month)
@@ -308,38 +308,36 @@ namespace Appointed.Models
             int month = _month;
             int year = _year;
 
-            int daysInMonth;
+            int daysInMonth = _myCal.GetDaysInMonth(year, month);
 
-            //I added this while loop to solve some exceptions being thrown when navigating significant spans of time at once.
-            // if it causes issues, then we will need to rethink this
-            while (Math.Abs(day) > _numberOfDaysInMonth || day <= 0)
+
+
+            while (day <= 0)
             {
-                if (day <= 0)
+                month--;
+
+                if (month < 1)
                 {
-                    month--;
-
-                    if (month < 1)
-                    {
-                        year--;
-                        month = 12;
-                    }
-
-                    daysInMonth = _myCal.GetDaysInMonth(year, month);
-
-                    day = daysInMonth + day;
+                    year--;
+                    month = 12;
                 }
-                else if (day > _numberOfDaysInMonth)
+
+                daysInMonth = _myCal.GetDaysInMonth(year, month);
+                day = daysInMonth + day;
+            }
+
+            while (day > daysInMonth)
+            {
+                month++;
+
+                if (month > 12)
                 {
-                    month++;
-
-                    if (month > 12)
-                    {
-                        year++;
-                        month = 1;
-                    }
-
-                    day = day - _numberOfDaysInMonth;
+                    year++;
+                    month = 1;
                 }
+
+                day = day - daysInMonth;
+                daysInMonth = _myCal.GetDaysInMonth(year, month);
             }
 
             _day = day;
@@ -393,7 +391,7 @@ namespace Appointed.Models
 
 
 
-     
+
         public void GetNumberOfDaysInMonth()
         {
             _numberOfDaysInMonth = DateTime.DaysInMonth(_year, _month);

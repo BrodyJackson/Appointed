@@ -6,6 +6,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Appointed.Classes;
 using Appointed.ViewModels;
+using System.Windows.Shapes;
+using System.Windows.Media;
 
 namespace Appointed.Views.Sidebar
 {
@@ -309,7 +311,7 @@ namespace Appointed.Views.Sidebar
             if (_newAppointment.Type == "Consultation")
                 apptThatFollowsTarget.Visibility = "Collapsed";
 
-
+            _newAppointment.PatientObj = DIVM.PVM.ActivePatient;
             DIVM.PVM.ActivePatient.AddUpcommingAppointment(key);
             DIVM.AVM._activeAppointment = new Appointment(_newAppointment);
 

@@ -56,6 +56,7 @@ namespace Appointed.Classes
 
     public class Appointment : ObservableObject
     {
+        public Patient PatientObj { get; set; }
         DateTime? _dateTime;
         string _doctorName;
         string _type;
@@ -94,6 +95,7 @@ namespace Appointed.Classes
         // If not done, bindings will not resolve.
         public Appointment(Appointment toCopy)
         {
+            this.PatientObj = toCopy.PatientObj;
             this.Colour = toCopy.Colour;
             this.Comments = toCopy.Comments;
             this.Cursor = toCopy.Cursor;
