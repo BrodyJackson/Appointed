@@ -65,6 +65,7 @@
     <Compile Include="Classes\Date.cs" />
     <Compile Include="Classes\DayTemplate.cs" />
     <Compile Include="Classes\Doctor.cs" />
+    <Compile Include="Classes\MessageBoxEventArgs.cs" />
     <Compile Include="Classes\TextMasks.cs" />
     <Compile Include="Classes\Time.cs" />
     <Compile Include="Classes\Waitlist.cs" />
@@ -158,6 +159,13 @@
     <Compile Include="Views\Sidebar\SidebarFrameView.xaml.cs">
       <DependentUpon>SidebarFrameView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Sidebar\Widgets\MessageBoxLayoutOneButton.xaml.cs">
+      <DependentUpon>MessageBoxLayoutOneButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sidebar\Widgets\MessageBoxLayoutTwoButton.xaml.cs">
+      <DependentUpon>MessageBoxLayoutTwoButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sidebar\Widgets\MyMessageBox.cs" />
     <Compile Include="Views\Sidebar\Widgets\PatientAddressInfoView.xaml.cs">
       <DependentUpon>PatientAddressInfoView.xaml</DependentUpon>
     </Compile>
@@ -309,6 +317,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Sidebar\SidebarFrameView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\Widgets\MessageBoxLayoutOneButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sidebar\Widgets\MessageBoxLayoutTwoButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

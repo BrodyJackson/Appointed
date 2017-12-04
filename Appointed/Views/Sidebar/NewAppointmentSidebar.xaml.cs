@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Appointed.Classes;
 using Appointed.ViewModels;
+using Appointed.Views.Sidebar.Widgets;
 
 namespace Appointed.Views.Sidebar
 {
@@ -60,23 +61,33 @@ namespace Appointed.Views.Sidebar
 
 
 
+        // Decision confirmation logic
+        private void OnDiscardConfirmation(object sender, MessageBoxEventArgs e)
+        {
+            MyMessageBox.Result r = e.result;
+
+            if (r == MyMessageBox.Result.Yes)
+            {
+                Home h = App.Current.MainWindow as Home;
+                h.SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
+            }
+        }
+
         private void OnMouseLeftRelease_Discard(object sender, MouseButtonEventArgs e)
         {
-            MessageBoxResult result =
-             MessageBox.Show
-             (
-                 "Are you sure you wish to discard your changes?",
-                 "Confirm Selection",
-                 MessageBoxButton.YesNo,
-                 MessageBoxImage.Asterisk
-             );
+            MyMessageBox msgBox = new MyMessageBox();
 
-            if (result == MessageBoxResult.No || result == MessageBoxResult.None)
-                return;
+            msgBox.MessageBoxResult += OnDiscardConfirmation;
 
-            Home h = App.Current.MainWindow as Home;
-            h.SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
+            msgBox.Show
+                (
+                    "Are you sure you wish to discard your changes?",
+                    "Confirm Selection",
+                    MyMessageBox.Button.Yes,
+                    MyMessageBox.Button.No
+                );
         }
+
 
         //need to add a function so that when the sidebar loads, it takes the value that is passed in as the active patient
 
@@ -160,11 +171,13 @@ namespace Appointed.Views.Sidebar
 
                 if ((targetAppointment.Type != "") || (type == "Consultation" && apptThatFollowsTarget.Type != ""))
                 {
-                    MessageBox.Show(
-                        "The Time Slot Specified Is Taken!",
-                        "Unable to Modify Appointment",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Asterisk);
+                    MyMessageBox msgBox = new MyMessageBox();
+                    msgBox.Show
+                        (
+                            "The time slot specified is taken!",
+                            "Unable to Create Appointment",
+                            MyMessageBox.Button.Ok
+                        );
 
                     return;
                 }
@@ -172,11 +185,13 @@ namespace Appointed.Views.Sidebar
                 if ((!DIVM.AVM.DoctorsOnShift.ElementAt(drColumn).IsAvailable(Int32.Parse(stTime))) ||
                         (!DIVM.AVM.DoctorsOnShift.ElementAt(drColumn).IsAvailable(Int32.Parse(endTime))))
                 {
-                    MessageBox.Show(
-                        "The Doctor Specified Is Unavaliable At That Time!",
-                        "Unable to Modify Appointment",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Asterisk);
+                    MyMessageBox msgBox = new MyMessageBox();
+                    msgBox.Show
+                        (
+                            "The doctor specified is unavailable at that time!",
+                            "Unable to Create Appointment",
+                            MyMessageBox.Button.Ok
+                        );
 
                     return;
                 }

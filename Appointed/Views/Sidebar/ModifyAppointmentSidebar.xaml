@@ -453,6 +453,7 @@
                 PreviewMouseLeftButtonUp="OnMouseLeftRelease_Save"/>
 
             <Button
+                x:Name="DiscardBtn"
                 Grid.Row="0"
                 Grid.Column="1"
                 Content="Discard"
