@@ -1,24 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Appointed.Views;
-using Appointed.Views.Sidebar;
-using Appointed.Views.Dialogs;
+﻿using Appointed.Classes;
 using Appointed.ViewModels;
-using Appointed.Classes;
+using Appointed.Views;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Input;
 
 namespace Appointed
 {
@@ -94,8 +82,6 @@ namespace Appointed
             }
         }
 
-
-
         void ShiftScheduleView(int amount)
         {
             DayInformationViewModel DIVM = (DayInformationViewModel)this.DataContext;
@@ -104,15 +90,12 @@ namespace Appointed
                 DIVM.ShiftView.Execute(amount);
         }
 
-
         private void ShowHomeSidebar()
         {
             HomeSidebar homeSidebar = new HomeSidebar();
 
             SidebarView.SetSidebarView(homeSidebar);
         }
-
-
 
         void HomeView_Loaded(object sender, RoutedEventArgs e)
         {
@@ -121,8 +104,6 @@ namespace Appointed
             DIVM.ApptFilterChangedDIVM += new EventHandler<EventArgs>(OnApptFilterChanged);
             DIVM.DoctorFilterChangedDIVM += new EventHandler<EventArgs>(OnDocFilterChanged);
         }
-
-
 
         void OnApptFilterChanged(Object sender, EventArgs e)
         {
@@ -146,7 +127,6 @@ namespace Appointed
                 }
             }
         }
-
 
         void OnDocFilterChanged(Object sender, EventArgs e)
         {
@@ -184,7 +164,5 @@ namespace Appointed
                 }
             }
         }
-
-
     }
 }
