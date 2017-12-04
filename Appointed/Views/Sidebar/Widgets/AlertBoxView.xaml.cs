@@ -131,18 +131,25 @@ namespace Appointed.Views.Sidebar
 
         private void OnRemoveAlert(object sender, EventArgs e)
         {
-            MessageBoxResult result =
-                MessageBox.Show
+            MyMessageBox msgBox = new MyMessageBox();
+
+            msgBox.MessageBoxResult += OnRemoveAlertConfirmation;
+
+            msgBox.Show
                 (
-                    "Are you sure you wish to remove this appointment from the waitlist?",
+                    "Deleting this item will remove the appointment from the waitlist.\nWould you like to proceed?",
                     "Confirm Selection",
-                    MessageBoxButton.YesNo,
-                    MessageBoxImage.Asterisk
+                    MyMessageBox.Buton.Yes,
+                    MyMessageBox.Buton.No
                 );
+        }
+        
+        private void OnRemoveAlertConfirmation(object sender, MessageBoxEventArgs e)
+        {
+            MyMessageBox.Result r = e.result;
 
-            if (result == MessageBoxResult.No || result == MessageBoxResult.None)
+            if (r == MyMessageBox.Result.No)
                 return;
-
 
             DayInformationViewModel DIVM = App.Current.MainWindow.DataContext as DayInformationViewModel;
 
@@ -154,7 +161,6 @@ namespace Appointed.Views.Sidebar
 
             Appointment apptToRemove = DIVM.AVM._appointmentLookup[a.WLE.Key];
             apptToRemove.Waitlisted = false;
-            //DIVM.WaitList.RemoveAppointment(apptToRemove);
 
             Appointment freeApptSlot = DIVM.AVM._appointmentLookup[key];
             DIVM.FreeAppointmentSlot(freeApptSlot);
@@ -162,6 +168,8 @@ namespace Appointed.Views.Sidebar
             Home home = App.Current.MainWindow as Home;
             home.SidebarView.SetSidebarView(new HomeSidebar());
         }
+        
+
 
 
         public void AddAlert(Alert a)
