@@ -13,7 +13,8 @@
 
     <DockPanel
         Margin="12"
-        LastChildFill="False">
+        LastChildFill="False"
+     >
 
         <Grid
             DockPanel.Dock="Top"

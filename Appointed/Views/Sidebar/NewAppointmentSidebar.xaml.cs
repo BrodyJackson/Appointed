@@ -83,8 +83,8 @@ namespace Appointed.Views.Sidebar
                 (
                     "Are you sure you wish to discard your changes?",
                     "Confirm Selection",
-                    MyMessageBox.Button.Yes,
-                    MyMessageBox.Button.No
+                    MyMessageBox.Buton.Yes,
+                    MyMessageBox.Buton.No
                 );
         }
 
@@ -176,7 +176,7 @@ namespace Appointed.Views.Sidebar
                         (
                             "The time slot specified is taken!",
                             "Unable to Create Appointment",
-                            MyMessageBox.Button.Ok
+                            MyMessageBox.Buton.Ok
                         );
 
                     return;
@@ -190,7 +190,7 @@ namespace Appointed.Views.Sidebar
                         (
                             "The doctor specified is unavailable at that time!",
                             "Unable to Create Appointment",
-                            MyMessageBox.Button.Ok
+                            MyMessageBox.Buton.Ok
                         );
 
                     return;

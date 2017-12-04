@@ -1,4 +1,5 @@
 ﻿using Appointed.Classes;
+using Appointed.Views.Sidebar.Widgets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace Appointed.Views.Sidebar.Widgets
+namespace Appointed.Classes
 {
 
     // For single button messages  - informative messages
@@ -59,18 +60,18 @@ namespace Appointed.Views.Sidebar.Widgets
     public class MyMessageBox
     {
         // An event that is raised when a message box button is clicked.
-        // It provides MessageBoxEventArgs which contain a member of the Result enumeration.
+        // It provides an object of class MessageBoxEventArgs which contains a member of the Result enumeration.
         public event EventHandler<MessageBoxEventArgs> MessageBoxResult;
 
         private Popup popup;
 
-        private Button leftBtn;
-        private Button rightBtn;
+        private Buton leftBtn;
+        private Buton rightBtn;
 
         private Result r = Result.NotSelected;
 
         public enum Result { Yes, No, Ok, Cancel, Save, Discard, NotSelected };
-        public enum Button { Yes, No, Ok, Cancel, Save, Discard };
+        public enum Buton { Yes, No, Ok, Cancel, Save, Discard };
 
 
         double opacity = 0.3;
@@ -82,7 +83,7 @@ namespace Appointed.Views.Sidebar.Widgets
         
 
         // Two Button Popup
-        public void Show(string mssg, string title, Button left, Button right)
+        public void Show(string mssg, string title, Buton left, Buton right)
         {
             MessageBoxLayoutTwoButton m = new MessageBoxLayoutTwoButton();
 
@@ -109,15 +110,15 @@ namespace Appointed.Views.Sidebar.Widgets
             popup.IsOpen = true;
             popup.BringIntoView();
 
-            m.RightButton.Click += OnRightButtonClick;
-            m.LeftButton.Click += OnLeftButtonClick;
+            m.RightButton.Click += OnButtonClick;
+            m.LeftButton.Click += OnButtonClick;
         }
 
         
 
 
         // One Button Popup
-        public void Show(string mssg, string title, Button btn)
+        public void Show(string mssg, string title, Buton btn)
         {
             MessageBoxLayoutOneButton m = new MessageBoxLayoutOneButton();
 
@@ -142,19 +143,20 @@ namespace Appointed.Views.Sidebar.Widgets
             popup.IsOpen = true;
             popup.BringIntoView();
 
-            m.Button.Click += OnLeftButtonClick;
+            m.Button.Click += OnButtonClick;
         }
 
 
 
-
-        
-
-
-        // Private delegates
-        private void OnRightButtonClick(object sender, RoutedEventArgs e)
+        private void OnButtonClick(object sender, RoutedEventArgs e)
         {
-            r = getResult(rightBtn);
+            Button b = sender as Button;
+
+            if (b.Name == "LeftButton" || b.Name == "Button")
+                r = getResult(leftBtn);
+            else if (b.Name == "RightButton")
+                r = getResult(rightBtn);
+
             MessageBoxResult?.Invoke(this, new MessageBoxEventArgs { result = r });
 
             popup.StaysOpen = false;
@@ -166,44 +168,28 @@ namespace Appointed.Views.Sidebar.Widgets
         }
 
 
-        private void OnLeftButtonClick(object sender, RoutedEventArgs e)
-        {
-            r = getResult(leftBtn);
-            MessageBoxResult?.Invoke(this, new MessageBoxEventArgs { result = r });
-
-            popup.StaysOpen = false;
-            popup.IsOpen = false;
-
-            Application.Current.MainWindow.OpacityMask = null;
-            Application.Current.MainWindow.Opacity = 1.0;
-            Application.Current.MainWindow.IsHitTestVisible = true;
-        }
-
-
-
-
-        private Result getResult(Button b)
+        private Result getResult(Buton b)
         {
             Result r;
 
             switch (b)
             {
-                case Button.Yes:
+                case Buton.Yes:
                     r = Result.Yes;
                     break;
-                case Button.No:
+                case Buton.No:
                     r = Result.No;
                     break;
-                case Button.Ok:
+                case Buton.Ok:
                     r = Result.Ok;
                     break;
-                case Button.Cancel:
+                case Buton.Cancel:
                     r = Result.Cancel;
                     break;
-                case Button.Save:
+                case Buton.Save:
                     r = Result.Save;
                     break;
-                case Button.Discard:
+                case Buton.Discard:
                     r = Result.Discard;
                     break;
                 default:
@@ -215,28 +201,28 @@ namespace Appointed.Views.Sidebar.Widgets
         }
 
         
-        private string getContent(Button b)
+        private string getContent(Buton b)
         {
             string content;
 
             switch (b)
             {
-                case Button.Yes:
+                case Buton.Yes:
                     content = "Yes";
                     break;
-                case Button.No:
+                case Buton.No:
                     content = "No";
                     break;
-                case Button.Ok:
+                case Buton.Ok:
                     content = "Ok";
                     break;
-                case Button.Cancel:
+                case Buton.Cancel:
                     content = "Cancel";
                     break;
-                case Button.Save:
+                case Buton.Save:
                     content = "Save";
                     break;
-                case Button.Discard:
+                case Buton.Discard:
                     content = "Discard";
                     break;
                 default:

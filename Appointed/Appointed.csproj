@@ -165,7 +165,7 @@
     <Compile Include="Views\Sidebar\Widgets\MessageBoxLayoutTwoButton.xaml.cs">
       <DependentUpon>MessageBoxLayoutTwoButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Sidebar\Widgets\MyMessageBox.cs" />
+    <Compile Include="Classes\MyMessageBox.cs" />
     <Compile Include="Views\Sidebar\Widgets\PatientInfoWidgets\PatientAddressInfoView.xaml.cs">
       <DependentUpon>PatientAddressInfoView.xaml</DependentUpon>
     </Compile>
