@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Appointed.ViewModels;
+using Appointed.Classes;
 
 namespace Appointed.Views
 {
@@ -77,6 +79,8 @@ namespace Appointed.Views
 
         private void SetStandardQuickNavButtons()
         {
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
+
             Button homeButton = new Button
             {
                 Content = new Image()
@@ -104,15 +108,12 @@ namespace Appointed.Views
 
             backButton.Click += (object s, RoutedEventArgs args) =>
             {
-                //TODO confirm navigation
-
-                SetSidebarView(GetPreviousSidebar(), false);
+                GetConfirmation(false);
             };
 
             homeButton.Click += (object s, RoutedEventArgs args) =>
             {
-                //TODO Confirm navigation
-                SetSidebarView(new HomeSidebar());
+                GetConfirmation(true);
             };
         }
 
@@ -188,6 +189,51 @@ namespace Appointed.Views
         public Button GetRightQuickNavButton()
         {
             return _rightQuickNavButton;
+        }
+
+
+        private void GetConfirmation(bool goHome)
+        {
+            MyMessageBox msgBox = new MyMessageBox();
+
+            if (goHome)
+                msgBox.MessageBoxResult += OnHomeConfirmation;
+            else
+                msgBox.MessageBoxResult += OnBackConfirmation;
+
+            msgBox.Show
+                (
+                    "Are you sure you wish to discard your changes?",
+                    "Confirm Selection",
+                    MyMessageBox.Buton.Yes,
+                    MyMessageBox.Buton.No
+                );
+
+            return;
+        }
+
+        private void OnHomeConfirmation(object sender, MessageBoxEventArgs e)
+        {
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
+            MyMessageBox.Result r = e.result;
+
+            if (r == MyMessageBox.Result.Yes)
+            {
+                DIVM.ResetHighlightedAppointment();
+                SetSidebarView(new HomeSidebar());
+            }
+        }
+
+        private void OnBackConfirmation(object sender, MessageBoxEventArgs e)
+        {
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
+            MyMessageBox.Result r = e.result;
+
+            if (r == MyMessageBox.Result.Yes)
+            {
+                DIVM.ResetHighlightedAppointment();
+                SetSidebarView(GetPreviousSidebar(), false);
+            }
         }
 
     }

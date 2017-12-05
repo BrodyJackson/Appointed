@@ -54,8 +54,6 @@ namespace Appointed.Views
 
                 DateTime activeDT = new DateTime(DIVM._activeDate.Year, DIVM._activeDate.Month, DIVM._activeDate.Day);
 
-                //DateTime selectedDT = (sender as Calendar).SelectedDate.Value;
-
                 TimeSpan diff = (sender as Calendar).SelectedDate.Value - activeDT;
 
                 ShiftScheduleView(diff.Days - 1);
@@ -68,6 +66,7 @@ namespace Appointed.Views
                 //Handle event so that no other listeners attempt to do something with a null date
                 e.Handled = true;
             }
+
         }
 
 

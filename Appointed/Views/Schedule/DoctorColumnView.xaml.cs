@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Appointed.ViewModels;
 using Appointed.Classes;
 using System.Windows.Media.Animation;
+using Appointed.Views.Sidebar;
 
 namespace Appointed.Views
 
@@ -173,7 +174,7 @@ namespace Appointed.Views
             Rectangle rectangle = parentGrid.Children.OfType<Rectangle>().ElementAt(0);
             TextBlock textBlock = parentGrid.Children.OfType<TextBlock>().ElementAt(0);
 
-            rectangle.Opacity = 0.5;
+            rectangle.Opacity = 0.4;
             rectangle.RadiusX = 4;
             rectangle.RadiusY = 4;
             rectangle.StrokeThickness = 1;
@@ -199,17 +200,22 @@ namespace Appointed.Views
                 return;
             }
 
-            //string bindingCode = "1" + "5" + "12" + "2017";
-
-            //List <Appointment> appts = DIVM.AVM._drScheduleMap[Int32.Parse(bindingCode)];
+            Home home = App.Current.MainWindow as Home;
 
 
-            //            Application.Current.MainWindow.OpacityMask = Brushes.Black;
-            //            Application.Current.MainWindow.Opacity = 0.2;
-            //            Application.Current.MainWindow.IsHitTestVisible = false;
+            //if (home.SidebarView.SidebarGridLayout.Children.OfType<AppointmentDetailsSidebar>().Count() == 1 && appt.Type == "")
+            //    return;
 
+            if (home.SidebarView.SidebarGridLayout.Children.OfType<NewAppointmentSidebar>().Count() == 1 && appt.Type != "")
+                return;
 
-            //            DIVM.AVM._activeAppointment = new Appointment(appt);
+            //if (home.SidebarView.SidebarGridLayout.Children.OfType<ModifyAppointmentSidebar>().Count() == 1)
+            //    return;
+
+            DIVM._activeDate.Day = appt.DateTime.Value.Day;
+            DIVM._activeDate.Month = appt.DateTime.Value.Month;
+            DIVM._activeDate.Year = appt.DateTime.Value.Year;
+            DIVM._activeDate.Time24Hr = appt.StartTime;
 
             DIVM.AVM._activeAppointment.Colour = appt.Colour;
             DIVM.AVM._activeAppointment.Comments = appt.Comments;
@@ -230,6 +236,7 @@ namespace Appointed.Views
             DIVM.AVM._activeAppointment.Waitlisted = appt.Waitlisted;
             DIVM.AVM._activeAppointment.Visibility = appt.Visibility;
 
+
             DIVM._activeDate.Day = appt.DateTime.Value.Day;
             DIVM._activeDate.Month = appt.DateTime.Value.Month;
             DIVM._activeDate.Year = appt.DateTime.Value.Year;
@@ -243,8 +250,10 @@ namespace Appointed.Views
             if (appt.Type == "" && !(h.SidebarView.GetSidebarView() is AppointmentDetailsSidebar)) //This is a free appt slot so raise event
             {
                 OnEmptyApptClick?.Invoke(sender, new ApptClickEventArgs() { Date = appt.DateTime.Value });
-                return;
             }
+       
+            if (appt.Type == "")
+                return;
 
             //Check if we are making a new appt or modifying one, if so, don't change the view, probably a miss click on a booked appt instead of a blank one
             if ((h.SidebarView.GetSidebarView() is AppointmentDetailsSidebar) || h.SidebarView.GetSidebarView() is Sidebar.NewAppointmentSidebar || h.SidebarView.GetSidebarView() is Sidebar.ModifyAppointmentSidebar)
@@ -368,16 +377,32 @@ namespace Appointed.Views
             sourceAppointment.Type = "";
             sourceAppointment.Waitlisted = false;
 
+            
+            DIVM.AVM._activeAppointment.Colour = targetAppointment.Colour;
+            DIVM.AVM._activeAppointment.Comments = targetAppointment.Comments;
+            DIVM.AVM._activeAppointment.Cursor = targetAppointment.Cursor;
+            DIVM.AVM._activeAppointment.DateTime = targetAppointment.DateTime;
+            DIVM.AVM._activeAppointment.DoctorName = targetAppointment.DoctorName;
+            DIVM.AVM._activeAppointment.EndTime = targetAppointment.EndTime;
+            DIVM.AVM._activeAppointment.Height = targetAppointment.Height;
+            DIVM.AVM._activeAppointment.ID = targetAppointment.ID;
+            DIVM.AVM._activeAppointment.Margin = targetAppointment.Margin;
+            DIVM.AVM._activeAppointment.Missed = targetAppointment.Missed;
+            DIVM.AVM._activeAppointment.Arrived = targetAppointment.Arrived;
+            DIVM.AVM._activeAppointment.Opacity = targetAppointment.Opacity;
+            DIVM.AVM._activeAppointment.Patient = targetAppointment.Patient;
+            DIVM.AVM._activeAppointment.RowSpan = targetAppointment.RowSpan;
+            DIVM.AVM._activeAppointment.StartTime = targetAppointment.StartTime;
+            DIVM.AVM._activeAppointment.Type = targetAppointment.Type;
+            DIVM.AVM._activeAppointment.Waitlisted = targetAppointment.Waitlisted;
+            DIVM.AVM._activeAppointment.Visibility = targetAppointment.Visibility;
 
-
+            DIVM._activeDate.Day = targetAppointment.DateTime.Value.Day;
+            DIVM._activeDate.Month = targetAppointment.DateTime.Value.Month;
+            DIVM._activeDate.Year = targetAppointment.DateTime.Value.Year;
+            DIVM._activeDate.Time24Hr = targetAppointment.StartTime;
         }
-
-
-
-
-
-
-
+        
 
     }
 }

@@ -522,6 +522,7 @@
                 SpellCheck.IsEnabled="True"
                 Cursor="Pen"
                 ToolTip="Click to edit Notes"
+<<<<<<< HEAD
                 TextWrapping="Wrap"/>-->
 
             </Grid>
@@ -555,7 +556,6 @@
                     Margin="4"
                     Style="{StaticResource checkBoxes}"
                     Content="Appointment Reminder" />
-
 
 
                 <TextBlock

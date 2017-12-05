@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Appointed.Events;
+using System.Globalization;
 
 namespace Appointed.Classes
 {
@@ -43,6 +44,7 @@ namespace Appointed.Classes
             {
                 _day = value;
                 RaisePropertyChangedEvent("Day");
+                RaisePropertyChangedEvent("DateTimeStr");
                 ActiveDateChanged?.Invoke(this, EventArgs.Empty);
             }
         }
@@ -56,6 +58,7 @@ namespace Appointed.Classes
             {
                 _month = value;
                 RaisePropertyChangedEvent("Month");
+                RaisePropertyChangedEvent("DateTimeStr");
                 ActiveDateChanged?.Invoke(this, EventArgs.Empty);
             }
         }
@@ -69,6 +72,7 @@ namespace Appointed.Classes
             {
                 _year = value;
                 RaisePropertyChangedEvent("Year");
+                RaisePropertyChangedEvent("DateTimeStr");
                 ActiveDateChanged?.Invoke(this, EventArgs.Empty);
             }
         }
@@ -98,5 +102,59 @@ namespace Appointed.Classes
         {
             return _year + "-" + (_month < 10 ? "0" + _month : _month.ToString()) + "-" + (_day < 10 ? "0" + _day : _day.ToString());
         }
+
+
+        public string DateTimeStr
+        {
+            get
+            {
+                string dTS = Year.ToString() + '-' + Month.ToString() + "-" + Day.ToString();
+                return dTS;
+            }
+        }
+
+
+        //public void addDays(int amount)
+        //{
+        //    int day = _day;
+        //    int month = _month;
+        //    int year = _year;
+
+        //    int daysInMonth = DateTime.DaysInMonth(year, month);
+
+        //    day += amount;
+
+        //    if (day <= 0)
+        //    {
+        //        month--;
+
+        //        if (month < 1)
+        //        {
+        //            year--;
+        //            month = 12;
+        //        }
+
+        //        // day is -ve so this is actually subtraction
+        //        day = daysInMonth + day;
+        //    }
+        //    else if (day > daysInMonth)
+        //    {
+        //        month++;
+
+        //        if (month > 12)
+        //        {
+        //            year++;
+        //            month = 1;
+        //        }
+
+        //        day = day - daysInMonth;
+        //    }
+
+        //    _day = day;
+        //    _month = month;
+        //    _year = year;
+        //}
+
+
     }
 }

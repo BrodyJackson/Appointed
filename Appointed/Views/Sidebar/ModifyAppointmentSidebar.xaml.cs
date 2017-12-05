@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Appointed.ViewModels;
 using Appointed.Classes;
-
+using Appointed.Views.Sidebar.Widgets;
 
 namespace Appointed.Views.Sidebar
 {
@@ -61,6 +61,53 @@ namespace Appointed.Views.Sidebar
             tdv.DayThree.DrColumn0.OnEmptyApptClick += EmptySlotClick;
             tdv.DayThree.DrColumn1.OnEmptyApptClick += EmptySlotClick;
             tdv.DayThree.DrColumn2.OnEmptyApptClick += EmptySlotClick;
+        }
+
+
+        private void Reminder_Checked(object sender, RoutedEventArgs e)
+        {
+            RemDaysLable.Visibility = Visibility.Visible;
+            RemTODLable.Visibility = Visibility.Visible;
+            RemType.Visibility = Visibility.Visible;
+            RemTypeLable.Visibility = Visibility.Visible;
+            RemTOD.Visibility = Visibility.Visible;
+            RemDays.Visibility = Visibility.Visible;
+        }
+
+        private void Reminder_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RemDaysLable.Visibility = Visibility.Collapsed;
+            RemTODLable.Visibility = Visibility.Collapsed;
+            RemType.Visibility = Visibility.Collapsed;
+            RemTypeLable.Visibility = Visibility.Collapsed;
+            RemTOD.Visibility = Visibility.Collapsed;
+            RemDays.Visibility = Visibility.Collapsed;
+        }
+
+
+
+        void ModifyAppointmentSidebar_Loaded(object sender, RoutedEventArgs e)
+        {
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
+            DatePicker.InputText.TextField.Text = DIVM.AVM._activeAppointment.DateTime.Value.ToString("yyyy-MM-dd");
+            PatientName.Text = DIVM.AVM._activeAppointment.Patient;
+            CurrentApptType.Text = DIVM.AVM._activeAppointment.Type;
+            CurrentApptDoc.Text = DIVM.AVM._activeAppointment.DoctorName;
+            CurrentApptTimespan.Text = DIVM.AVM._activeAppointment.StartTimeStr + " - " + DIVM.AVM._activeAppointment.EndTimeStr;
+            ReminderToggle.IsChecked = DIVM.AVM._activeAppointment.Reminder;
+            RemDays.SelectedIndex = DIVM.AVM._activeAppointment.RemDaysIndex;
+            RemTOD.SelectedIndex = DIVM.AVM._activeAppointment.RemTODIndex;
+            RemType.SelectedIndex = DIVM.AVM._activeAppointment.RemTypeIndex;
+            AddToWaitlistCheckBox.IsChecked = DIVM.AVM._activeAppointment.Waitlisted;
+            WaitlistDatePicker.InputText.TextField.Text = DIVM.WaitList.GetApptWaiting(DIVM.AVM._activeAppointment).DateTime.Value.ToString("yyyy-MM-dd");
+            WaitlistDoctorComboBox.SelectedIndex = DIVM.WaitList.GetApptWaiting(DIVM.AVM._activeAppointment).DrColumn;
+            WaitlistStartTime.SelectedIndex = DIVM.WaitList.GetApptWaiting(DIVM.AVM._activeAppointment).TimeIndex;
+
+            StartTime.SelectionChanged += DIVM.ChangeHighlight;
+            DoctorComboBox.SelectionChanged += DIVM.ChangeHighlight;
+            ApptTypeComboBox.SelectionChanged += DIVM.ChangeHighlight;
+
+            //ActiveDateChanged(null, null);
         }
 
         private void EmptySlotClick(object sender, DoctorColumnView.ApptClickEventArgs e)
@@ -121,65 +168,38 @@ namespace Appointed.Views.Sidebar
             if (DIVM.ShiftView.CanExecute(null))
                 DIVM.ShiftView.Execute(shiftAmt);
 
-            //TODO: Highlight appt slot
-
+            DIVM.ChangeHighlight(this, null);
         }
 
-        void ModifyAppointmentSidebar_Loaded(object sender, RoutedEventArgs e)
-        {
-            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
-            DatePicker.InputText.TextField.Text = DIVM.AVM._activeAppointment.DateTime.Value.ToString("yyyy-MM-dd");
-            PatientName.Text = DIVM.AVM._activeAppointment.Patient;
-            CurrentApptType.Text = DIVM.AVM._activeAppointment.Type;
-            CurrentApptDoc.Text = DIVM.AVM._activeAppointment.DoctorName;
-            CurrentApptTimespan.Text = DIVM.AVM._activeAppointment.StartTimeStr + " - " + DIVM.AVM._activeAppointment.EndTimeStr;
-            ReminderToggle.IsChecked = DIVM.AVM._activeAppointment.Reminder;
-            RemDays.SelectedIndex = DIVM.AVM._activeAppointment.RemDaysIndex;
-            RemTOD.SelectedIndex = DIVM.AVM._activeAppointment.RemTODIndex;
-            RemType.SelectedIndex = DIVM.AVM._activeAppointment.RemTypeIndex;
-            AddToWaitlistCheckBox.IsChecked = DIVM.AVM._activeAppointment.Waitlisted;            
-            WaitlistDatePicker.InputText.TextField.Text = DIVM.WaitList.GetApptWaiting(DIVM.AVM._activeAppointment).DateTime.Value.ToString("yyyy-MM-dd");
-            WaitlistDoctorComboBox.SelectedIndex = DIVM.WaitList.GetApptWaiting(DIVM.AVM._activeAppointment).DrColumn;
-            WaitlistStartTime.SelectedIndex = DIVM.WaitList.GetApptWaiting(DIVM.AVM._activeAppointment).TimeIndex;
-        }
 
+
+    
+        // Decision confirmation logic
         private void OnMouseLeftRelease_Discard(object sender, MouseButtonEventArgs e)
         {
-            MessageBoxResult result =
-                MessageBox.Show
+            MyMessageBox msgBox = new MyMessageBox();
+
+            msgBox.MessageBoxResult += OnDiscardConfirmation;
+
+            msgBox.Show
                 (
                     "Are you sure you wish to discard your changes?",
                     "Confirm Selection",
-                    MessageBoxButton.YesNo,
-                    MessageBoxImage.Asterisk
+                    MyMessageBox.Buton.Yes,
+                    MyMessageBox.Buton.No
                 );
-
-            if (result == MessageBoxResult.No || result == MessageBoxResult.None)
-                return;
-
-            Home h = App.Current.MainWindow as Home;
-            h.SidebarView.SetSidebarView(h.SidebarView.GetPreviousSidebar());
         }
-
-        private void Reminder_Checked(object sender, RoutedEventArgs e)
+        private void OnDiscardConfirmation(object sender, MessageBoxEventArgs e)
         {
-            RemDaysLable.Visibility = Visibility.Visible;
-            RemTODLable.Visibility = Visibility.Visible;
-            RemType.Visibility = Visibility.Visible;
-            RemTypeLable.Visibility = Visibility.Visible;
-            RemTOD.Visibility = Visibility.Visible;
-            RemDays.Visibility = Visibility.Visible;
-        }
+            MyMessageBox.Result r = e.result;
 
-        private void Reminder_Unchecked(object sender, RoutedEventArgs e)
-        {
-            RemDaysLable.Visibility = Visibility.Collapsed;
-            RemTODLable.Visibility = Visibility.Collapsed;
-            RemType.Visibility = Visibility.Collapsed;
-            RemTypeLable.Visibility = Visibility.Collapsed;
-            RemTOD.Visibility = Visibility.Collapsed;
-            RemDays.Visibility = Visibility.Collapsed;
+            if (r == MyMessageBox.Result.Yes)
+            {
+                Home h = App.Current.MainWindow as Home;
+                h.SidebarView.SetSidebarView(h.SidebarView.GetPreviousSidebar());
+            }
         }
+      
 
         private void ComboBox_StartTimeSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -208,10 +228,8 @@ namespace Appointed.Views.Sidebar
         {
             if (WaitlistStartTime.SelectedItem == null || ApptTypeComboBox.SelectedItem == null)
             {
-                Console.WriteLine("Gotcha: \n");
                 return;
             }
-
             if (((ApptTypeComboBox.SelectedItem as ComboBoxItem).Content as string) == "Standard")
             {
                 WaitlistEndTime.Text = DateTime.Parse((WaitlistStartTime.SelectedItem as Classes.Time).TimeString).AddMinutes(15).ToString("HH:mm").TrimStart('0');
@@ -221,8 +239,9 @@ namespace Appointed.Views.Sidebar
                 WaitlistEndTime.Text = DateTime.Parse((WaitlistStartTime.SelectedItem as Classes.Time).TimeString).AddMinutes(30).ToString("HH:mm").TrimStart('0');
             }
         }
-        
-        //TODO: Add in reminder and waitlist info to be saved
+
+
+
         private void OnMouseLeftRelease_Save(object sender, MouseButtonEventArgs e)
         {
             DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
@@ -233,7 +252,6 @@ namespace Appointed.Views.Sidebar
             // BEGIN PARSE DATA FROM SIDEBAR FIELDS
             string stTime = ((Time)StartTime.SelectedItem).TimeString;
             stTime = stTime.Substring(0, stTime.IndexOf(':')) + stTime.Substring(stTime.IndexOf(':') + 1);
-            //          string timeCmp = stTime;
 
             string endTime = EndTime.Text;
             endTime = endTime.Substring(0, endTime.IndexOf(':')) + endTime.Substring(endTime.IndexOf(':') + 1, 2);
@@ -268,28 +286,36 @@ namespace Appointed.Views.Sidebar
                 if ((targetAppointment.Type != "") ||
                     (type == "Consultation" && apptThatFollowsTarget.Type != "" && apptThatFollowsTarget != activeAppt))
                 {
-                    MessageBox.Show(
-                        "The Time Slot Specified Is Taken!",
-                        "Unable to Modify Appointment",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Asterisk);
-
+                    MyMessageBox msgBox = new MyMessageBox();
+                    msgBox.Show
+                        (
+                            "The time slot specified is taken!",
+                            "Unable to Modify Appointment",
+                            MyMessageBox.Buton.Ok
+                        );
+                    
                     return;
                 }
 
-                if ((!DIVM.AVM.DoctorsOnShift.ElementAt(drColumn).IsAvailable(Int32.Parse(stTime))) ||
-                        (!DIVM.AVM.DoctorsOnShift.ElementAt(drColumn).IsAvailable(Int32.Parse(endTime))))
+                int sTime = Int32.Parse(stTime); int eTime = Int32.Parse(endTime); if (eTime < sTime) eTime += 1200; 
+
+                if ((!DIVM.AVM.DoctorsOnShift.ElementAt(drColumn).IsAvailable(sTime)) ||
+                        (!DIVM.AVM.DoctorsOnShift.ElementAt(drColumn).IsAvailable(eTime)))
                 {
-                    MessageBox.Show(
-                        "The Doctor Specified Is Unavaliable At That Time!",
-                        "Unable to Modify Appointment",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Asterisk);
+                    MyMessageBox msgBox = new MyMessageBox();
+                    msgBox.Show
+                        (
+                            "The doctor specified is unavailable at that time!",
+                            "Unable to Modify Appointment",
+                            MyMessageBox.Buton.Ok
+                        );
 
                     return;
                 }
             }
 
+
+            DIVM.ResetHighlightedAppointment();
             DIVM._activeDate.HasChanged = false;
 
 
@@ -335,7 +361,6 @@ namespace Appointed.Views.Sidebar
             }
 
             DIVM.AVM._activeAppointment = new Appointment(targetAppointment);
-
 
             Home h = App.Current.MainWindow as Home;
             h.SidebarView.SetSidebarView(new AppointmentDetailsSidebar());

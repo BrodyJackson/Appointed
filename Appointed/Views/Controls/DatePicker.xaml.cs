@@ -1,4 +1,6 @@
-﻿using Appointed.ViewModels;
+﻿using Appointed.Classes;
+using Appointed.ViewModels;
+using Appointed.Views.Sidebar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +36,8 @@ namespace Appointed.Views.Controls
     /// </summary>
     public partial class DatePicker : UserControl
     {
+        public event EventHandler<RoutedEventArgs> SelectedDateChanged;
+
         public DateTime? DateSelected { get; set; }
 
         private Brush _textBorderBrush;
@@ -57,6 +61,8 @@ namespace Appointed.Views.Controls
 
         private void ShowCalendarButton_Click(object sender, RoutedEventArgs e)
         {
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
+
             Calendar calendar = new Calendar
             {
                 Margin = new Thickness(0, -3, 0, -3),
@@ -79,13 +85,13 @@ namespace Appointed.Views.Controls
             OnCalendarLoaded?.Invoke(calendar, null);
 
             calendar.SelectedDatesChanged += Calendar_SelectedDatesChanged;
+            calendar.SelectedDatesChanged += DIVM.ChangeHighlight;
             calendar.Focus();
         }
 
 
         private CustomPopupPlacement[] CustomPopupCallback(Size popupSize, Size targetSize, Point offset)
         {
-
             CustomPopupPlacement popupPlacement = new CustomPopupPlacement()
             {
                 Point = new Point(Math.Abs(popupSize.Width - targetSize.Width) / -2d, targetSize.Height)
@@ -114,9 +120,10 @@ namespace Appointed.Views.Controls
                 InputText.TextField.Focus();
 
                 OnDateChosen?.Invoke(this, new DateSelectedEventArgs(DateSelected.Value, true));
-
+                SelectedDateChanged?.Invoke(this, null);
             }
         }
+
 
         private void DateTextInputChanged(object sender, TextChangedEventArgs e)
         {
@@ -145,5 +152,8 @@ namespace Appointed.Views.Controls
                 input.BorderBrush = _textBorderBrush;
             }
         }
+
+
+
     }
 }

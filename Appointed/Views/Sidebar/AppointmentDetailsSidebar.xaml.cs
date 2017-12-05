@@ -54,7 +54,6 @@ namespace Appointed.Views
         private void OnMouseLeftRelease_Modify(object sender, MouseButtonEventArgs e)
         {
             Home h = App.Current.MainWindow as Home;
-
             h.SidebarView.SetSidebarView(new ModifyAppointmentSidebar());
         }
 
@@ -107,11 +106,11 @@ namespace Appointed.Views
             appt.Type = "";
             appt.Waitlisted = false;
 
-            appt.PatientObj.RemoveUpcommingAppointmentKey(Int32.Parse(appt.ID));
+            if (appt.PatientObj != null)
+                appt.PatientObj.RemoveUpcommingAppointmentKey(Int32.Parse(appt.ID));
 
             Home h = (App.Current.MainWindow as Home);
             h.SidebarView.SetSidebarView(h.SidebarView.GetPreviousSidebar());
-
         }
 
         private void SaveNotesBtn_Click(object sender, RoutedEventArgs e)

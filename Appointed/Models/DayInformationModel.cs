@@ -310,8 +310,6 @@ namespace Appointed.Models
 
             int daysInMonth = _myCal.GetDaysInMonth(year, month);
 
-
-
             while (day <= 0)
             {
                 month--;

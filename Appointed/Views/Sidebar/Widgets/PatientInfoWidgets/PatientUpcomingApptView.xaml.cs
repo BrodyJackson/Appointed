@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Appointed.Views.Sidebar.Widgets
+namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
 {
     /// <summary>
     /// Interaction logic for PatientUpcomingApptView.xaml
