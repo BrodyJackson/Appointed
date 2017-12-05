@@ -196,9 +196,19 @@ namespace Appointed.Views.Dialogs
         {
             if (forceClose) return true;
 
-            MessageBoxResult res = MessageBox.Show("Are you sure you wish to discard patient info?", "Discard New Patient", MessageBoxButton.YesNo, MessageBoxImage.None, MessageBoxResult.No);
+            MyMessageBox msg = new MyMessageBox();
+            msg.Show("Are you sure you wish to discard the new patient?", "Discard New Patient", MyMessageBox.Buton.Yes, MyMessageBox.Buton.No);
 
-            return res == MessageBoxResult.Yes ? true : false;
+            msg.MessageBoxResult += (s, e) =>
+            {
+                if (e.result == MyMessageBox.Result.Yes)
+                {
+                    forceClose = true;
+                    Close();
+                }
+            };
+
+            return false;
         }
 
         /// <summary>
@@ -221,7 +231,7 @@ namespace Appointed.Views.Dialogs
                     HealthID = int.Parse(new String(HealthID.TextField.Text.Where(x => Char.IsDigit(x)).ToArray())),
                     LastName = LastName.TextField.Text,
                     MiddleName = ExtractValue(MiddleNames),
-                    Phone = HomePhone.TextField.Text,
+                    Phone = ExtractValue(HomePhone),
                     PostalCode = PostalCode.TextField.Text,
                     Province = Patient.ProvinceStringToEnum(Province.Text),
                     Sex = Patient.SexStringToEnum(Sex.Text),

@@ -140,7 +140,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             {
                 PatientHomePhone.Text = field;
 
-                if (field != p.Phone && !(p.Phone == null && field == emptyFieldText))
+                if (field != p.Phone && !string.IsNullOrWhiteSpace(p.Phone))
                 {
                     PatientHomePhone.Foreground = Brushes.Blue;
                     HasChanges = true;
@@ -155,19 +155,21 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             }
             else
             {
-                PatientHomePhone.Text = p.Phone;
+                PatientHomePhone.Text = string.IsNullOrWhiteSpace(p.Phone) ? emptyFieldText : PatientHomePhone.Text;
                 HasHomePhone = (p.Phone != null && p.Phone != emptyFieldText);
             }
 
             if (!HasContactMethod)
             {
                 MyMessageBox msg = new MyMessageBox();
-                msg.Show("Patient must have at least one method of contact.\nContact method changes will not be saved!", "No Contact Methods", MyMessageBox.Buton.Ok, MyMessageBox.Buton.Cancel);
+                msg.Show("Patient must have at least one method of contact.\nContact method change will not be saved!", "No Contact Methods", MyMessageBox.Buton.Ok, MyMessageBox.Buton.Cancel);
 
                 msg.MessageBoxResult += (s, a) =>
                 {
                     if (a.result == MyMessageBox.Result.Cancel)
                     {
+                        PatientHomePhone.Visibility = Visibility.Hidden;
+                        PatientHomePhoneInput.Visibility = Visibility.Visible;
                         PatientHomePhoneInput.TextField.Focus();
                     }
                     else
@@ -196,7 +198,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             {
                 PatientCellPhone.Text = field;
 
-                if (field != p.Cell && !(p.Cell == null && field == emptyFieldText))
+                if (field != p.Cell && !string.IsNullOrWhiteSpace(p.Cell))
                 {
                     PatientCellPhone.Foreground = Brushes.Blue;
                     HasChanges = true;
@@ -211,19 +213,21 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             }
             else
             {
-                PatientCellPhone.Text = p.Cell;
+                PatientCellPhone.Text = string.IsNullOrWhiteSpace(p.Cell) ? emptyFieldText : PatientCellPhone.Text;
                 HasCellPhone = (p.Cell != null && p.Cell != emptyFieldText);
             }
 
             if (!HasContactMethod)
             {
                 MyMessageBox msg = new MyMessageBox();
-                msg.Show("Patient must have at least one method of contact.\nContact method changes will not be saved!", "No Contact Methods", MyMessageBox.Buton.Ok, MyMessageBox.Buton.Cancel);
+                msg.Show("Patient must have at least one method of contact.\nContact method change will not be saved!", "No Contact Methods", MyMessageBox.Buton.Ok, MyMessageBox.Buton.Cancel);
 
                 msg.MessageBoxResult += (s, a) =>
                 {
                     if (a.result == MyMessageBox.Result.Cancel)
                     {
+                        PatientCellPhone.Visibility = Visibility.Hidden;
+                        PatientCellPhoneInput.Visibility = Visibility.Visible;
                         PatientCellPhoneInput.TextField.Focus();
                     }
                     else
@@ -249,7 +253,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             {
                 PatientWorkPhone.Text = field;
 
-                if (field != p.Business && !(p.Business == null && field == emptyFieldText))
+                if (field != p.Business && !string.IsNullOrWhiteSpace(p.Business))
                 {
                     PatientWorkPhone.Foreground = Brushes.Blue;
                     HasChanges = true;
@@ -264,19 +268,21 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             }
             else
             {
-                PatientWorkPhone.Text = p.Business;
+                PatientWorkPhone.Text = string.IsNullOrWhiteSpace(p.Business) ? emptyFieldText : PatientWorkPhone.Text;
                 HasWorkPhone = field != emptyFieldText;
             }
 
             if (!HasContactMethod)
             {
                 MyMessageBox msg = new MyMessageBox();
-                msg.Show("Patient must have at least one method of contact.\nContact method changes will not be saved!", "No Contact Methods", MyMessageBox.Buton.Ok, MyMessageBox.Buton.Cancel);
+                msg.Show("Patient must have at least one method of contact.\nContact method change will not be saved!", "No Contact Methods", MyMessageBox.Buton.Ok, MyMessageBox.Buton.Cancel);
 
                 msg.MessageBoxResult += (s, a) =>
                 {
                     if (a.result == MyMessageBox.Result.Cancel)
                     {
+                        PatientWorkPhone.Visibility = Visibility.Hidden;
+                        PatientWorkPhoneInput.Visibility = Visibility.Visible;
                         PatientWorkPhoneInput.TextField.Focus();
                     }
                     else
@@ -317,7 +323,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             {
                 PatientEmail.Text = field;
 
-                if (field != p.Email && !(p.Email == null && field == emptyFieldText))
+                if (field != p.Email && !string.IsNullOrWhiteSpace(p.Email))
                 {
                     PatientEmail.Foreground = Brushes.Blue;
                     HasChanges = true;
@@ -328,23 +334,25 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                     HasChanges = false;
                 }
 
-                HasEmail = (p.Email != null && p.Email != emptyFieldText);
+                HasEmail = (p.Email != null && field != emptyFieldText);
             }
             else
             {
-                PatientEmail.Text = p.Email;
+                PatientEmail.Text = string.IsNullOrWhiteSpace(p.Email) ? emptyFieldText : PatientEmail.Text;
                 HasEmail = field != emptyFieldText;
             }
 
             if (!HasContactMethod)
             {
                 MyMessageBox msg = new MyMessageBox();
-                msg.Show("Patient must have at least one method of contact.\nContact method changes will not be saved!", "No Contact Methods", MyMessageBox.Buton.Ok, MyMessageBox.Buton.Cancel);
+                msg.Show("Patient must have at least one method of contact.\nContact method change will not be saved!", "No Contact Methods", MyMessageBox.Buton.Ok, MyMessageBox.Buton.Cancel);
 
                 msg.MessageBoxResult += (s, a) =>
                 {
                     if (a.result == MyMessageBox.Result.Cancel)
                     {
+                        PatientEmail.Visibility = Visibility.Hidden;
+                        PatientEmailInput.Visibility = Visibility.Visible;
                         PatientEmailInput.TextField.Focus();
                     }
                     else
