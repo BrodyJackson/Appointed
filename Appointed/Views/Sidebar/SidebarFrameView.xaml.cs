@@ -194,6 +194,14 @@ namespace Appointed.Views
 
         private void GetConfirmation(bool goHome)
         {
+            Home h = App.Current.MainWindow as Home;
+            
+            if (h.SidebarView.GetSidebarView() is AppointmentDetailsSidebar)
+            {
+                OnHomeConfirmation(this, new MessageBoxEventArgs { result = MyMessageBox.Result.Yes });
+                return;
+            }
+
             MyMessageBox msgBox = new MyMessageBox();
 
             if (goHome)
