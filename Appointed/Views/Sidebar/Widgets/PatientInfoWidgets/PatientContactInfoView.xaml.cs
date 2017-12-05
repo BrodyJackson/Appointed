@@ -16,6 +16,7 @@ using Appointed.Views.Dialogs;
 using Appointed.Classes;
 using Appointed.ViewModels;
 using Appointed.Views.Controls;
+using System.Net.Mail;
 
 namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
 {
@@ -24,19 +25,21 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
     /// </summary>
     public partial class PatientContactInfoView : UserControl
     {
-        string hint = "(555) 555 - 5555";
+        string emptyFieldText = "(None)";
         public bool HasChanges { get; set; }
 
-        public bool HomePhoneInvalid { get; set; }
-        public bool CellPhoneInvalid { get; set; }
-        public bool WorkPhoneInvalid { get; set; }
-        public bool EmailInvalid { get; set; }
-        public bool HasInvalid
-        {
-            get { return HomePhoneInvalid ? true : (CellPhoneInvalid ? true : (WorkPhoneInvalid ? true : (EmailInvalid ? true : false))); }
-            set { }
-        }
+        private bool HasHomePhone { get; set; }
+        private bool HasCellPhone { get; set; }
+        private bool HasWorkPhone { get; set; }
+        private bool HasEmail { get; set; }
 
+        public bool HasContactMethod
+        {
+            get
+            {
+                return HasHomePhone || HasCellPhone || HasWorkPhone || HasEmail;
+            }
+        }
 
         Patient p;
 
@@ -47,10 +50,10 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             this.Loaded += PatientContactInfoView_Loaded;
 
             HasChanges = false;
-            HomePhoneInvalid = false;
-            CellPhoneInvalid = false;
-            WorkPhoneInvalid = false;
-            EmailInvalid = false;
+            HasHomePhone = false;
+            HasCellPhone = false;
+            HasWorkPhone = false;
+            HasEmail = false;
         }
 
         private void PatientContactInfoView_Loaded(object sender, RoutedEventArgs e)
@@ -60,8 +63,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             if (p.Phone != null && p.Phone != "")
             {
                 PatientHomePhone.Text = p.Phone;
-                //if (p.Phone.Length != 23)
-                //    PatientHomePhoneInput.Mask = InputText.MASK.PHONENUMBER_WITHEXT;
+                HasHomePhone = true;
             }
             else
                 PatientHomePhone.Text = "(None)";
@@ -69,8 +71,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             if (p.Cell != null && p.Cell != "")
             {
                 PatientCellPhone.Text = p.Cell;
-                //if (p.Phone.Length == 23)
-                //    PatientCellPhoneInput.Mask = InputText.MASK.PHONENUMBER_WITHEXT;
+                HasCellPhone = true;
             }
             else
                 PatientCellPhone.Text = "(None)";
@@ -78,8 +79,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             if (p.Business != null && p.Business != "")
             {
                 PatientWorkPhone.Text = p.Phone;
-                //if (p.Phone.Length == 23)
-                //    PatientWorkPhoneInput.Mask = InputText.MASK.PHONENUMBER_WITHEXT;
+                HasWorkPhone = true;
             }
             else
                 PatientWorkPhone.Text = "(None)";
@@ -87,8 +87,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             if (p.Email != null && p.Email != "")
             {
                 PatientEmail.Text = p.Email;
-                //if (p.Phone.Length == 23)
-                //    PatientEmailInput.Mask = InputText.MASK.PHONENUMBER_WITHEXT;
+                HasEmail = true;
             }
             else
                 PatientEmail.Text = "(None)";
@@ -98,156 +97,278 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
         {
             TextBlock t = sender as TextBlock;
 
-            PatientWorkPhoneInput.Visibility = Visibility.Hidden;
-            PatientCellPhoneInput.Visibility = Visibility.Hidden;
-            PatientHomePhoneInput.Visibility = Visibility.Hidden;
-            PatientEmailInput.Visibility = Visibility.Hidden;
-
             if (t.Name == "PatientHomePhone")
             {
                 PatientHomePhoneInput.Visibility = Visibility.Visible;
+                PatientHomePhone.Visibility = Visibility.Hidden;
                 PatientHomePhoneInput.TextField.Text = PatientHomePhone.Text;
                 PatientHomePhoneInput.TextField.Focus();
             }
             else if (t.Name == "PatientCellPhone")
             {
                 PatientCellPhoneInput.Visibility = Visibility.Visible;
+                PatientCellPhone.Visibility = Visibility.Hidden;
                 PatientCellPhoneInput.TextField.Text = PatientCellPhone.Text;
                 PatientCellPhoneInput.TextField.Focus();
             }
             else if (t.Name == "PatientWorkPhone")
             {
                 PatientWorkPhoneInput.Visibility = Visibility.Visible;
+                PatientWorkPhone.Visibility = Visibility.Hidden;
                 PatientWorkPhoneInput.TextField.Text = PatientWorkPhone.Text;
                 PatientWorkPhoneInput.TextField.Focus();
             }
             else
             {
                 PatientEmailInput.Visibility = Visibility.Visible;
+                PatientEmail.Visibility = Visibility.Hidden;
                 PatientEmailInput.TextField.Text = PatientEmail.Text;
                 PatientEmailInput.TextField.Focus();
             }
         }
 
+        private bool IsPhoneNumberValid(InputText number)
+        {
+            return number.TextField.Text.Length >= 14 && number.TextField.Text != number.Hint;
+        }
+
         private void PatientHomePhoneInput_LostFocus(object sender, RoutedEventArgs e)
         {
             string field = PatientHomePhoneInput.TextField.Text;
-            field = field.Substring(1);
-            field = field.Substring(0, 3) + "-" + field.Substring(5);
 
-            if (field != hint && field != p.Phone)
+            if (IsPhoneNumberValid(PatientHomePhoneInput) || field == emptyFieldText)
             {
-                if (field.Length == 12 || field.Length == 16)
+                PatientHomePhone.Text = field;
+
+                if (field != p.Phone)
                 {
-                    PatientHomePhone.Text = PatientHomePhoneInput.TextField.Text;
                     PatientHomePhone.Foreground = Brushes.Blue;
                     HasChanges = true;
-                    HomePhoneInvalid = false;
-                    PatientHomePhoneInput.Visibility = Visibility.Hidden;
                 }
                 else
                 {
-                    PatientHomePhoneInput.TextField.BorderBrush = Brushes.Red;
-                    PatientHomePhoneInput.TextField.BorderThickness = new Thickness(1.0);
-                    HomePhoneInvalid = true;
+                    PatientHomePhone.Foreground = Brushes.Black;
+                    HasChanges = false;
                 }
-            }
-            else if (field == p.Phone)
-            {
-                PatientHomePhone.Text = p.Phone;
-                PatientHomePhone.Foreground = Brushes.Black;
+
+                PatientHomePhone.Visibility = Visibility.Visible;
                 PatientHomePhoneInput.Visibility = Visibility.Hidden;
+                HasHomePhone = true;
+            }
+            else
+            {
+                PatientHomePhoneInput.TextField.BorderBrush = Brushes.Red;
+                HasHomePhone = false;
+            }
+
+            if (field == emptyFieldText)
+                HasHomePhone = false;
+
+            if (!HasContactMethod)
+            {
+                MyMessageBox msg = new MyMessageBox();
+                msg.Show("Patient must have at least one method of contact.\nContact method changes will not be saved!", "No Contact Methods", MyMessageBox.Buton.Ok, MyMessageBox.Buton.Cancel);
+
+                msg.MessageBoxResult += (s, a) =>
+                {
+                    if (a.result == MyMessageBox.Result.Cancel)
+                    {
+                        PatientHomePhoneInput.TextField.Focus();
+                    }
+                    else
+                    {
+                        PatientHomePhone.Text = p.Phone;
+                        PatientHomePhone.Foreground = Brushes.Black;
+                        PatientHomePhone.Visibility = Visibility.Visible;
+                        PatientHomePhoneInput.Visibility = Visibility.Hidden;
+                        HasHomePhone = true;
+                    }
+                };
             }
         }
+
+
 
         private void PatientCellPhoneInput_LostFocus(object sender, RoutedEventArgs e)
         {
             string field = PatientCellPhoneInput.TextField.Text;
-            field = field.Substring(1);
-            field = field.Substring(0, 3) + "-" + field.Substring(5);
 
-            if (field != hint && field != p.Cell)
+            if (IsPhoneNumberValid(PatientCellPhoneInput) || field == emptyFieldText)
             {
-                if (field.Length == 12 || field.Length == 16)
+                PatientCellPhone.Text = field;
+
+                if (field != p.Cell)
                 {
-                    PatientCellPhone.Text = PatientCellPhoneInput.TextField.Text;
                     PatientCellPhone.Foreground = Brushes.Blue;
                     HasChanges = true;
-                    CellPhoneInvalid = false;
-                    PatientCellPhoneInput.Visibility = Visibility.Hidden;
                 }
                 else
                 {
-                    PatientCellPhoneInput.TextField.BorderBrush = Brushes.Red;
-                    PatientCellPhoneInput.TextField.BorderThickness = new Thickness(1.0);
-                    CellPhoneInvalid = true;
+                    PatientCellPhone.Foreground = Brushes.Black;
+                    HasChanges = false;
                 }
-            }
-            else if (field == p.Cell)
-            {
-                PatientCellPhone.Text = p.Cell;
-                PatientCellPhone.Foreground = Brushes.Black;
+
+                PatientCellPhone.Visibility = Visibility.Visible;
                 PatientCellPhoneInput.Visibility = Visibility.Hidden;
+                HasCellPhone = true;
+            }
+            else
+            {
+                PatientCellPhoneInput.TextField.BorderBrush = Brushes.Red;
+                HasCellPhone = false;
+            }
+
+            if (field == emptyFieldText)
+                HasCellPhone = false;
+
+            if (!HasContactMethod)
+            {
+                MyMessageBox msg = new MyMessageBox();
+                msg.Show("Patient must have at least one method of contact.\nContact method changes will not be saved!", "No Contact Methods", MyMessageBox.Buton.Ok, MyMessageBox.Buton.Cancel);
+
+                msg.MessageBoxResult += (s, a) =>
+                {
+                    if (a.result == MyMessageBox.Result.Cancel)
+                    {
+                        PatientCellPhoneInput.TextField.Focus();
+                    }
+                    else
+                    {
+                        PatientCellPhone.Text = p.Cell;
+                        PatientCellPhone.Foreground = Brushes.Black;
+                        PatientCellPhone.Visibility = Visibility.Visible;
+                        PatientCellPhoneInput.Visibility = Visibility.Hidden;
+                        HasCellPhone = true;
+                    }
+                };
             }
         }
 
         private void PatientWorkPhoneInput_LostFocus(object sender, RoutedEventArgs e)
         {
             string field = PatientWorkPhoneInput.TextField.Text;
-            field = field.Substring(1);
-            field = field.Substring(0, 3) + "-" + field.Substring(5);
 
-            if (field != hint && field != p.Business)
+            if (IsPhoneNumberValid(PatientWorkPhoneInput) || field == emptyFieldText)
             {
-                if (field.Length == 12 || field.Length == 16)
+                PatientWorkPhone.Text = field;
+
+                if (field != p.Business)
                 {
-                    PatientWorkPhone.Text = PatientWorkPhoneInput.TextField.Text;
                     PatientWorkPhone.Foreground = Brushes.Blue;
                     HasChanges = true;
-                    WorkPhoneInvalid = false;
-                    PatientWorkPhoneInput.Visibility = Visibility.Hidden;
                 }
                 else
                 {
-                    PatientWorkPhoneInput.TextField.BorderBrush = Brushes.Red;
-                    PatientWorkPhoneInput.TextField.BorderThickness = new Thickness(1.0);
-                    WorkPhoneInvalid = true;
+                    PatientWorkPhone.Foreground = Brushes.Black;
+                    HasChanges = false;
                 }
-            }
-            else if (field == p.Business)
-            {
-                PatientWorkPhone.Text = p.Business;
-                PatientWorkPhone.Foreground = Brushes.Black;
+
+                PatientWorkPhone.Visibility = Visibility.Visible;
                 PatientWorkPhoneInput.Visibility = Visibility.Hidden;
+                HasWorkPhone = true;
+            }
+            else
+            {
+                PatientWorkPhoneInput.TextField.BorderBrush = Brushes.Red;
+                HasWorkPhone = false;
+            }
+
+            if (field == emptyFieldText)
+                HasWorkPhone = false;
+
+            if (!HasContactMethod)
+            {
+                MyMessageBox msg = new MyMessageBox();
+                msg.Show("Patient must have at least one method of contact.\nContact method changes will not be saved!", "No Contact Methods", MyMessageBox.Buton.Ok, MyMessageBox.Buton.Cancel);
+
+                msg.MessageBoxResult += (s, a) =>
+                {
+                    if (a.result == MyMessageBox.Result.Cancel)
+                    {
+                        PatientWorkPhoneInput.TextField.Focus();
+                    }
+                    else
+                    {
+                        PatientWorkPhone.Text = p.Business;
+                        PatientWorkPhone.Foreground = Brushes.Black;
+                        PatientWorkPhone.Visibility = Visibility.Visible;
+                        PatientWorkPhoneInput.Visibility = Visibility.Hidden;
+                        HasWorkPhone = true;
+                    }
+                };
             }
         }
 
+
+        private bool IsEmailValid(InputText email)
+        {
+            try
+            {
+                new MailAddress(email.TextField.Text);
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
 
         private void PatientEmailInput_LostFocus(object sender, RoutedEventArgs e)
         {
             string field = PatientEmailInput.TextField.Text;
 
-            if (field != hint && field != p.Email)
+            if (IsEmailValid(PatientEmailInput) || field == emptyFieldText)
             {
-                if (field.Length > 0 && field.Contains("@") && field.Contains(".com"))
+                PatientEmail.Text = field;
+
+                if (field != p.Email)
                 {
-                    PatientEmail.Text = PatientEmailInput.TextField.Text;
                     PatientEmail.Foreground = Brushes.Blue;
                     HasChanges = true;
-                    EmailInvalid = true;
-                    PatientEmailInput.Visibility = Visibility.Hidden;
                 }
                 else
                 {
-                    PatientEmailInput.TextField.BorderBrush = Brushes.Red;
-                    PatientEmailInput.TextField.BorderThickness = new Thickness(1.0);
-                    EmailInvalid = true;
+                    PatientEmail.Foreground = Brushes.Black;
+                    HasChanges = false;
                 }
+
+                PatientEmail.Visibility = Visibility.Visible;
+                PatientEmailInput.Visibility = Visibility.Hidden;
+                HasEmail = true;
             }
-            else if (field == p.Email)
+            else
             {
-                PatientEmail.Text = p.Email;
-                PatientEmail.Foreground = Brushes.Black;
+                PatientEmailInput.TextField.BorderBrush = Brushes.Red;
+                HasEmail = false;
+            }
+
+            if (field == emptyFieldText)
+                HasEmail = false;
+
+            if (!HasContactMethod)
+            {
+                MyMessageBox msg = new MyMessageBox();
+                msg.Show("Patient must have at least one method of contact.\nContact method changes will not be saved!", "No Contact Methods", MyMessageBox.Buton.Ok, MyMessageBox.Buton.Cancel);
+
+                msg.MessageBoxResult += (s, a) =>
+                {
+                    if (a.result == MyMessageBox.Result.Cancel)
+                    {
+                        PatientEmailInput.TextField.Focus();
+                    }
+                    else
+                    {
+                        PatientEmail.Text = p.Email;
+                        PatientEmail.Foreground = Brushes.Black;
+                        PatientEmail.Visibility = Visibility.Visible;
+                        PatientEmailInput.Visibility = Visibility.Hidden;
+                        HasEmail = true;
+                    }
+                };
+            }
+            else
+            {
                 PatientEmailInput.Visibility = Visibility.Hidden;
             }
         }

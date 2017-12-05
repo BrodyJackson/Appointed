@@ -9,7 +9,6 @@
     mc:Ignorable="d"
     d:DesignHeight="700"
     d:DesignWidth="300"
-    Background="WhiteSmoke"
     >
     <Grid
         Margin="12">
