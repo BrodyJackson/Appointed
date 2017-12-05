@@ -34,6 +34,9 @@ namespace Appointed.Classes
 
             int key = a.DateTime.GetHashCode() + DIVM.AVM.FindDrColumnForDrName(a.DoctorName);
 
+            if (!DIVM.AVM._appointmentLookup.ContainsKey(key))
+                return a;
+
             Appointment b = DIVM.AVM._appointmentLookup[key];
 
             if (waitlist.ContainsKey(key))

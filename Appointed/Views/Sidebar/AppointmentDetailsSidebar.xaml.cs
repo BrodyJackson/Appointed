@@ -58,22 +58,28 @@ namespace Appointed.Views
         }
 
 
-
+        // Decision confirmation logic
         private void OnMouseLeftRelease_Delete(object sender, MouseButtonEventArgs e)
         {
-            MessageBoxResult result =
-                
-                MessageBox.Show
+            MyMessageBox msgBox = new MyMessageBox();
+
+            msgBox.MessageBoxResult += OnDeleteConfirmation;
+
+            msgBox.Show
                 (
                     "Are you sure you wish to delete this appointment?",
-                    "Confirm Selection",
-                    MessageBoxButton.YesNo,
-                    MessageBoxImage.Asterisk
+                    "Delete Appointment",
+                    MyMessageBox.Buton.Yes,
+                    MyMessageBox.Buton.No
                 );
+        }
+        private void OnDeleteConfirmation(object sender, MessageBoxEventArgs e)
+        {
+            Home h = App.Current.MainWindow as Home;
 
-            if (result == MessageBoxResult.No || result == MessageBoxResult.None)
+            MyMessageBox.Result r = e.result;
+            if (r == MyMessageBox.Result.No)
                 return;
-
 
             DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
             Appointment appt = DIVM.AVM._appointmentLookup[Int32.Parse(DIVM.AVM._activeAppointment.ID)];
@@ -109,8 +115,7 @@ namespace Appointed.Views
             if (appt.PatientObj != null)
                 appt.PatientObj.RemoveUpcommingAppointmentKey(Int32.Parse(appt.ID));
 
-            Home h = (App.Current.MainWindow as Home);
-            h.SidebarView.SetSidebarView(h.SidebarView.GetPreviousSidebar());
+            h.SidebarView.SetSidebarView(new HomeSidebar());
         }
 
         private void SaveNotesBtn_Click(object sender, RoutedEventArgs e)
