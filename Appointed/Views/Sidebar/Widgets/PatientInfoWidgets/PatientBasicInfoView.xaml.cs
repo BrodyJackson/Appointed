@@ -48,7 +48,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
 
         private void PatientBasicInfoView_Loaded(object sender, RoutedEventArgs e)
         {
-            PatientName.Text = patient.LastName + ", " + patient.FirstName + ", " + patient.MiddleName[0] + ".";
+            PatientName.Text = patient.LastName + ", " + patient.FirstName + (patient.MiddleName.Length > 0 ? ", " + patient.MiddleName[0] + "." : "");
             Fname = patient.FirstName;
             Mnames = patient.MiddleName;
             Lname = patient.LastName;

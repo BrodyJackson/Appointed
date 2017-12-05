@@ -68,7 +68,7 @@
             />
         <controls:InputText
             x:Name="PatientHomePhoneInput"
-            Hint="(555) 555-5555"
+            Hint="(None)"
             Mask="PHONENUMBER"
             Margin="0,0,4,0"
             HintForground="Gray"
@@ -105,7 +105,7 @@
             />
         <controls:InputText
             x:Name="PatientCellPhoneInput"
-            Hint="(555) 555-5555"
+            Hint="(None)"
             Mask="PHONENUMBER"
             Margin="0,0,4,0"
             HintForground="Gray"
@@ -143,8 +143,8 @@
             />
         <controls:InputText
             x:Name="PatientWorkPhoneInput"
-            Hint="(555) 555-5555"
-            Mask="PHONENUMBER"
+            Hint="(None)"
+            Mask="PHONENUMBER_WITHEXT"
             Margin="0,0,4,0"
             HintForground="Gray"
             Grid.Column="1"
@@ -172,7 +172,7 @@
             Cursor="Pen"
             Style="{StaticResource text_BlackMedium}"
             Name="PatientEmail"
-            Margin="0,4,4,0"
+            Margin="4"
             Grid.Column="1"
             Grid.Row="4"
             Text="mike.ross@psl.ca"
@@ -181,7 +181,7 @@
             />
         <controls:InputText
             x:Name="PatientEmailInput"
-            Hint="ragnar.lothbrok@neopets.com"
+            Hint="(None)"
             Mask="NONE"
             Margin="0,0,4,0"
             HintForground="Gray"
