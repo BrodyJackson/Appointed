@@ -132,11 +132,14 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
         private void PatientHomePhoneInput_LostFocus(object sender, RoutedEventArgs e)
         {
             string field = PatientHomePhoneInput.TextField.Text;
-            if (!field.Equals(hint, StringComparison.Ordinal) && !field.Equals(p.Phone, StringComparison.Ordinal))
+            field = field.Substring(1);
+            field = field.Substring(0, 3) + "-" + field.Substring(5);
+
+            if (field != hint && field != p.Phone)
             {
-                if (field.Length == 14 || field.Length == 23)
+                if (field.Length == 12 || field.Length == 21)
                 {
-                    PatientHomePhone.Text = field;
+                    PatientHomePhone.Text = PatientHomePhoneInput.TextField.Text;
                     PatientHomePhone.Foreground = Brushes.Blue;
                     HasChanges = true;
                     HomePhoneInvalid = false;
@@ -149,16 +152,21 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                     HomePhoneInvalid = true;
                 }
             }
+            else
+                PatientHomePhoneInput.Visibility = Visibility.Hidden;
         }
 
         private void PatientCellPhoneInput_LostFocus(object sender, RoutedEventArgs e)
         {
             string field = PatientCellPhoneInput.TextField.Text;
-            if ((string.Compare(field, hint, true) != 0) && string.Compare(field, p.Cell, true) != 0)
+            field = field.Substring(1);
+            field = field.Substring(0, 3) + "-" + field.Substring(5);
+
+            if (field != hint && field != p.Cell)
             {
-                if (field.Length == 14 || field.Length == 23)
+                if (field.Length == 12 || field.Length == 21)
                 {
-                    PatientCellPhone.Text = field;
+                    PatientCellPhone.Text = PatientCellPhoneInput.TextField.Text;
                     PatientCellPhone.Foreground = Brushes.Blue;
                     HasChanges = true;
                     CellPhoneInvalid = false;
@@ -171,16 +179,21 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                     CellPhoneInvalid = true;
                 }
             }
+            else
+                PatientCellPhoneInput.Visibility = Visibility.Hidden;
         }
 
         private void PatientWorkPhoneInput_LostFocus(object sender, RoutedEventArgs e)
         {
             string field = PatientWorkPhoneInput.TextField.Text;
-            if ((string.Compare(field, hint, true) != 0) && string.Compare(field, p.Business, true) != 0)
+            field = field.Substring(1);
+            field = field.Substring(0, 3) + "-" + field.Substring(5);
+
+            if (field != hint && field != p.Business)
             {
-                if (field.Length == 14 || field.Length == 23)
+                if (field.Length == 12 || field.Length == 21)
                 {
-                    PatientWorkPhone.Text = field;
+                    PatientWorkPhone.Text = PatientWorkPhoneInput.TextField.Text; ;
                     PatientWorkPhone.Foreground = Brushes.Blue;
                     HasChanges = true;
                     WorkPhoneInvalid = false;
@@ -193,17 +206,20 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                     WorkPhoneInvalid = true;
                 }
             }
+            else
+                PatientWorkPhoneInput.Visibility = Visibility.Hidden;
         }
 
 
         private void PatientEmailInput_LostFocus(object sender, RoutedEventArgs e)
         {
             string field = PatientEmailInput.TextField.Text;
-            if ((string.Compare(field, hint, true) != 0) && string.Compare(field, p.Email, true) != 0)
+
+            if (field != hint && field != p.Email)
             {
                 if (field.Length > 0 && field.Contains("@") && field.Contains(".com"))
                 {
-                    PatientEmail.Text = field;
+                    PatientEmail.Text = PatientEmailInput.TextField.Text;
                     PatientEmail.Foreground = Brushes.Blue;
                     HasChanges = true;
                     EmailInvalid = true;
@@ -216,6 +232,8 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                     EmailInvalid = true;
                 }
             }
+            else
+                PatientEmailInput.Visibility = Visibility.Hidden;
         }
 
 
