@@ -196,7 +196,9 @@ namespace Appointed.Views
         {
             Home h = App.Current.MainWindow as Home;
             
-            if (h.SidebarView.GetSidebarView() is AppointmentDetailsSidebar || h.SidebarView.GetSidebarView() is Sidebar.SearchResultsSidebar)
+            if (h.SidebarView.GetSidebarView() is AppointmentDetailsSidebar || 
+                h.SidebarView.GetSidebarView() is Sidebar.SearchResultsSidebar ||
+                (h.SidebarView.GetSidebarView() is Sidebar.PatientInfoSidebar && !(h.SidebarView.GetSidebarView() as Sidebar.PatientInfoSidebar).HasChanges()))
             {
                 OnHomeConfirmation(this, new MessageBoxEventArgs { result = MyMessageBox.Result.Yes });
                 return;

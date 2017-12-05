@@ -30,5 +30,14 @@ namespace Appointed.Views.Sidebar
             BasicInfo.patient = patient;
             AddrInfo.patient = patient;
         }
+
+        /// <summary>
+        /// Returns true if any editable paitent info widget has changes
+        /// </summary>
+        /// <returns></returns>
+        public bool HasChanges()
+        {
+            return BasicInfo.HasChanges || AddrInfo.HasChanges || ContactInfo.HasChanges || EmergInfo.HasChanges;
+        }
     }
 }
