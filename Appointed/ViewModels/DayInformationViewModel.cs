@@ -138,21 +138,14 @@ namespace Appointed.ViewModels
         // COMMANDS ====================================================
         private void ChangeDaysInScope(int amount)
         {
-            //DateTime dimDT = new DateTime(_dim.YearAsInt, _dim.MonthAsInt, _dim.DayAsInt);
-            //DateTime actDT = new DateTime(_activeDate.Year, _activeDate.Month, _activeDate.Day);
-
             _dim.ShiftDay(amount);
             _dayCodes = _dim.DayCodes;
 
             InitDayInformation();
 
-            //TimeSpan t = actDT - dimDT;
-
             _activeDate.Year = _dim.YearAsInt;
             _activeDate.Month = _dim.MonthAsInt;
             _activeDate.Day = _dim.DayAsInt;
-
-            //_activeDate.addDays(t.Days);
 
             if (ScheduleShifted != null)
                 ScheduleShifted(this, new EventArgs());
@@ -282,6 +275,9 @@ namespace Appointed.ViewModels
         {
             int drColumn = AVM.FindDrColumnForDrName(drName);
             int key = dt.GetHashCode() + drColumn;
+
+            if (!AVM._appointmentLookup.ContainsKey(key))
+                return;
 
             Appointment a = AVM._appointmentLookup[key];
 

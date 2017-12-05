@@ -204,10 +204,12 @@ namespace Appointed.Views
             if (home.SidebarView.SidebarGridLayout.Children.OfType<NewAppointmentSidebar>().Count() == 1 && appt.Type != "")
                 return;
 
-            DIVM._activeDate.Day = appt.DateTime.Value.Day;
-            DIVM._activeDate.Month = appt.DateTime.Value.Month;
-            DIVM._activeDate.Year = appt.DateTime.Value.Year;
-            DIVM._activeDate.Time24Hr = appt.StartTime;
+            //DIVM._activeDate.Day = appt.DateTime.Value.Day;
+            //DIVM._activeDate.Month = appt.DateTime.Value.Month;
+            //DIVM._activeDate.Year = appt.DateTime.Value.Year;
+            //DIVM._activeDate.Time24Hr = appt.StartTime;
+
+            DIVM._activeDate.SetDateAndTime(appt.DateTime.Value);
 
 
             if (!(h.SidebarView.GetSidebarView() is ModifyAppointmentSidebar) && appt.Type != "")
@@ -232,14 +234,6 @@ namespace Appointed.Views
             DIVM.AVM._activeAppointment.Margin = appt.Margin;
             DIVM.AVM._activeAppointment.StartTime = appt.StartTime;
             DIVM.AVM._activeAppointment.Visibility = appt.Visibility;
-
-
-
-
-            DIVM._activeDate.Day = appt.DateTime.Value.Day;
-            DIVM._activeDate.Month = appt.DateTime.Value.Month;
-            DIVM._activeDate.Year = appt.DateTime.Value.Year;
-            DIVM._activeDate.Time24Hr = appt.StartTime;
 
             /*
              It seems the order of all this matters quite a bit...

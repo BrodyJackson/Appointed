@@ -114,46 +114,22 @@ namespace Appointed.Classes
         }
 
 
-        //public void addDays(int amount)
-        //{
-        //    int day = _day;
-        //    int month = _month;
-        //    int year = _year;
+        public void SetDateAndTime(DateTime dt)
+        {
+            Year = dt.Year;
+            Month = dt.Month;
+            Day = dt.Day;
+            Time24Hr = (dt.Hour * 100) + dt.Minute;
+        }
 
-        //    int daysInMonth = DateTime.DaysInMonth(year, month);
 
-        //    day += amount;
+        public void SetDate(DateTime dt)
+        {
+            Year = dt.Year;
+            Month = dt.Month;
+            Day = dt.Day;
+        }
 
-        //    if (day <= 0)
-        //    {
-        //        month--;
-
-        //        if (month < 1)
-        //        {
-        //            year--;
-        //            month = 12;
-        //        }
-
-        //        // day is -ve so this is actually subtraction
-        //        day = daysInMonth + day;
-        //    }
-        //    else if (day > daysInMonth)
-        //    {
-        //        month++;
-
-        //        if (month > 12)
-        //        {
-        //            year++;
-        //            month = 1;
-        //        }
-
-        //        day = day - daysInMonth;
-        //    }
-
-        //    _day = day;
-        //    _month = month;
-        //    _year = year;
-        //}
 
 
     }
