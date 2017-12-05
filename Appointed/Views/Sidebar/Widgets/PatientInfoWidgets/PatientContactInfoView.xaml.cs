@@ -140,7 +140,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             {
                 PatientHomePhone.Text = field;
 
-                if (field != p.Phone)
+                if (field != p.Phone && !(p.Phone == null && field == emptyFieldText))
                 {
                     PatientHomePhone.Foreground = Brushes.Blue;
                     HasChanges = true;
@@ -151,18 +151,13 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                     HasChanges = false;
                 }
 
-                PatientHomePhone.Visibility = Visibility.Visible;
-                PatientHomePhoneInput.Visibility = Visibility.Hidden;
-                HasHomePhone = true;
+                HasHomePhone = field != emptyFieldText;
             }
             else
             {
-                PatientHomePhoneInput.TextField.BorderBrush = Brushes.Red;
-                HasHomePhone = false;
+                PatientHomePhone.Text = p.Phone;
+                HasHomePhone = (p.Phone != null && p.Phone != emptyFieldText);
             }
-
-            if (field == emptyFieldText)
-                HasHomePhone = false;
 
             if (!HasContactMethod)
             {
@@ -185,6 +180,10 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                     }
                 };
             }
+
+
+            PatientHomePhone.Visibility = Visibility.Visible;
+            PatientHomePhoneInput.Visibility = Visibility.Hidden;
         }
 
 
@@ -197,7 +196,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             {
                 PatientCellPhone.Text = field;
 
-                if (field != p.Cell)
+                if (field != p.Cell && !(p.Cell == null && field == emptyFieldText))
                 {
                     PatientCellPhone.Foreground = Brushes.Blue;
                     HasChanges = true;
@@ -208,18 +207,13 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                     HasChanges = false;
                 }
 
-                PatientCellPhone.Visibility = Visibility.Visible;
-                PatientCellPhoneInput.Visibility = Visibility.Hidden;
-                HasCellPhone = true;
+                HasCellPhone = field != emptyFieldText;
             }
             else
             {
-                PatientCellPhoneInput.TextField.BorderBrush = Brushes.Red;
-                HasCellPhone = false;
+                PatientCellPhone.Text = p.Cell;
+                HasCellPhone = (p.Cell != null && p.Cell != emptyFieldText);
             }
-
-            if (field == emptyFieldText)
-                HasCellPhone = false;
 
             if (!HasContactMethod)
             {
@@ -242,6 +236,9 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                     }
                 };
             }
+
+            PatientCellPhone.Visibility = Visibility.Visible;
+            PatientCellPhoneInput.Visibility = Visibility.Hidden;
         }
 
         private void PatientWorkPhoneInput_LostFocus(object sender, RoutedEventArgs e)
@@ -252,7 +249,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             {
                 PatientWorkPhone.Text = field;
 
-                if (field != p.Business)
+                if (field != p.Business && !(p.Business == null && field == emptyFieldText))
                 {
                     PatientWorkPhone.Foreground = Brushes.Blue;
                     HasChanges = true;
@@ -263,18 +260,13 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                     HasChanges = false;
                 }
 
-                PatientWorkPhone.Visibility = Visibility.Visible;
-                PatientWorkPhoneInput.Visibility = Visibility.Hidden;
-                HasWorkPhone = true;
+                HasWorkPhone = (p.Business != null && p.Business != emptyFieldText);
             }
             else
             {
-                PatientWorkPhoneInput.TextField.BorderBrush = Brushes.Red;
-                HasWorkPhone = false;
+                PatientWorkPhone.Text = p.Business;
+                HasWorkPhone = field != emptyFieldText;
             }
-
-            if (field == emptyFieldText)
-                HasWorkPhone = false;
 
             if (!HasContactMethod)
             {
@@ -297,6 +289,9 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                     }
                 };
             }
+
+            PatientWorkPhone.Visibility = Visibility.Visible;
+            PatientWorkPhoneInput.Visibility = Visibility.Hidden;
         }
 
 
@@ -322,7 +317,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             {
                 PatientEmail.Text = field;
 
-                if (field != p.Email)
+                if (field != p.Email && !(p.Email == null && field == emptyFieldText))
                 {
                     PatientEmail.Foreground = Brushes.Blue;
                     HasChanges = true;
@@ -333,18 +328,13 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                     HasChanges = false;
                 }
 
-                PatientEmail.Visibility = Visibility.Visible;
-                PatientEmailInput.Visibility = Visibility.Hidden;
-                HasEmail = true;
+                HasEmail = (p.Email != null && p.Email != emptyFieldText);
             }
             else
             {
-                PatientEmailInput.TextField.BorderBrush = Brushes.Red;
-                HasEmail = false;
+                PatientEmail.Text = p.Email;
+                HasEmail = field != emptyFieldText;
             }
-
-            if (field == emptyFieldText)
-                HasEmail = false;
 
             if (!HasContactMethod)
             {
@@ -367,10 +357,9 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                     }
                 };
             }
-            else
-            {
-                PatientEmailInput.Visibility = Visibility.Hidden;
-            }
+
+            PatientEmail.Visibility = Visibility.Visible;
+            PatientEmailInput.Visibility = Visibility.Hidden;
         }
 
 
