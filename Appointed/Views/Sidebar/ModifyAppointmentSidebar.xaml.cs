@@ -160,13 +160,14 @@ namespace Appointed.Views.Sidebar
 
             int shiftAmt = diff.Days;
 
-            if (e.ShouldShiftView)
-            {
-                shiftAmt -= 1;
-            }
+            //if (e.ShouldShiftView)
+            //{
+            //    shiftAmt -= 1;
 
-            if (DIVM.ShiftView.CanExecute(null))
-                DIVM.ShiftView.Execute(shiftAmt);
+            //    if (DIVM.ShiftView.CanExecute(null))
+            //        DIVM.ShiftView.Execute(shiftAmt);
+            //}
+
 
             if (Math.Abs(diff.Days) > 0)
             {
@@ -179,14 +180,14 @@ namespace Appointed.Views.Sidebar
                     dt = new DateTime(dt.Year, dt.Month, dt.Day, time / 100, time % 100, 0);
                     DIVM._activeDate.SetDateAndTime(dt);
                 }
-
-                DIVM.ChangeHighlight(this, null);
             }
+
+            DIVM.ChangeHighlight(this, null);
         }
 
 
 
-    
+
         // Decision confirmation logic
         private void OnMouseLeftRelease_Discard(object sender, MouseButtonEventArgs e)
         {

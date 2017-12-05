@@ -302,13 +302,13 @@ namespace Appointed.ViewModels
 
             AVM._highlightedAppointment = a;
 
-            //DateTime dimDT = new DateTime(_dim.YearAsInt, _dim.MonthAsInt, _dim.DayAsInt, dt.Hour, dt.Minute, 0);
-            //DateTime centerDT = dimDT.AddDays(1);
+            DateTime dimDT = new DateTime(_dim.YearAsInt, _dim.MonthAsInt, _dim.DayAsInt, dt.Hour, dt.Minute, 0);
+            DateTime centerDT = dimDT.AddDays(1);
 
-            //TimeSpan diff = dt - centerDT;
+            TimeSpan diff = dt - centerDT;
 
-            //if (diff.Days > 1 || diff.Days < -1)
-            //    ShiftView.Execute(diff.Days);
+            if (diff.Days > 1 || diff.Days < -1)
+                ShiftView.Execute(diff.Days);
         }
         
 

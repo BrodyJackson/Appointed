@@ -230,6 +230,7 @@ namespace Appointed.Views
             DIVM.AVM._activeAppointment.Cursor = appt.Cursor;
             DIVM.AVM._activeAppointment.DateTime = appt.DateTime;
             DIVM.AVM._activeAppointment.DoctorName = appt.DoctorName;
+
             DIVM.AVM._activeAppointment.EndTime = appt.EndTime;
             DIVM.AVM._activeAppointment.Margin = appt.Margin;
             DIVM.AVM._activeAppointment.StartTime = appt.StartTime;
