@@ -38,21 +38,25 @@
                 LastChildFill="False">
 
                 <Widgets:PatientBasicInfoView
+                    x:Name="BasicInfo"
                     DockPanel.Dock="Top"
                     Margin="0,4,0,0"
                     Height="auto" />
 
                 <Widgets:PatientAddressInfoView
+                    x:Name="AddrInfo"
                     DockPanel.Dock="Top"
                     Margin="0,4,0,0"
                     Height="auto" />
 
                 <Widgets:PatientContactInfoView
+                    x:Name="ContactInfo"
                     DockPanel.Dock="Top"
                     Margin="0,4,0,0"
                     Height="auto" />
 
                 <Widgets:PatientEmergencyContactInfoView
+                    x:Name="EmergInfo"
                     DockPanel.Dock="Top"
                     Margin="0,4,0,0"
                     Height="auto" />

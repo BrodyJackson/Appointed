@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Appointed.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,13 @@ namespace Appointed.Views.Sidebar
     /// </summary>
     public partial class PatientInfoSidebar : UserControl
     {
-        public PatientInfoSidebar()
+        public Patient Patient { get; private set; }
+
+        public PatientInfoSidebar(Patient patient)
         {
             InitializeComponent();
+            Patient = patient;
+            BasicInfo.patient = patient;
         }
     }
 }

@@ -80,7 +80,7 @@ namespace Appointed.Views.Sidebar.ListItems
         private void MoreInfoBtn_Click(object sender, RoutedEventArgs e)
         {
             (App.Current.MainWindow.DataContext as DayInformationViewModel).PVM.ActivePatient = patient;
-            (App.Current.MainWindow as Home).SidebarView.SetSidebarView(new PatientInfoSidebar());
+            (App.Current.MainWindow as Home).SidebarView.SetSidebarView(new PatientInfoSidebar(patient));
         }
 
         private void BookApptBtn_Click(object sender, RoutedEventArgs e)

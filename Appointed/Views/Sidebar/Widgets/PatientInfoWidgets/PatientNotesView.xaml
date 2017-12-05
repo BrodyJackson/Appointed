@@ -50,8 +50,9 @@
             FontFamily="Yu Gothic UI Light"
             Grid.ColumnSpan="1" />
         <TextBox 
+            IsTabStop="False"
             AcceptsReturn="True"
-            AcceptsTab="True"
+            AcceptsTab="False"
             FontSize="14"
             Margin="4"
             Grid.Column="0"
