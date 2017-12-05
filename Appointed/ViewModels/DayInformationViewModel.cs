@@ -290,7 +290,17 @@ namespace Appointed.ViewModels
                 if (apptThatFollows.Type == "")
                     apptThatFollows.Visibility = "Collapsed";
                 else
+                {
+                    MyMessageBox msgBox = new MyMessageBox();
+                    msgBox.Show
+                        (
+                            "The time slot you selected is taken!",
+                            "Select Appointment Slot",
+                            MyMessageBox.Buton.Ok
+                        );
+
                     return;
+                }
 
                 a.Height = "70";
             }

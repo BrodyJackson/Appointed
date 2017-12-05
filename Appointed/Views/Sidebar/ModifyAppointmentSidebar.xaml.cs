@@ -103,7 +103,7 @@ namespace Appointed.Views.Sidebar
             WaitlistDoctorComboBox.SelectedIndex = DIVM.WaitList.GetApptWaiting(DIVM.AVM._activeAppointment).DrColumn;
             WaitlistStartTime.SelectedIndex = DIVM.WaitList.GetApptWaiting(DIVM.AVM._activeAppointment).TimeIndex;
 
-            StartTime.SelectionChanged += DIVM.ChangeHighlight;
+            StartTime.SelectionChanged += StartTime_SelectionChanged;
             DoctorComboBox.SelectionChanged += DIVM.ChangeHighlight;
             ApptTypeComboBox.SelectionChanged += DIVM.ChangeHighlight;
 
@@ -160,15 +160,6 @@ namespace Appointed.Views.Sidebar
 
             int shiftAmt = diff.Days;
 
-            //if (e.ShouldShiftView)
-            //{
-            //    shiftAmt -= 1;
-
-            //    if (DIVM.ShiftView.CanExecute(null))
-            //        DIVM.ShiftView.Execute(shiftAmt);
-            //}
-
-
             if (Math.Abs(diff.Days) > 0)
             {
                 DateTime dt;
@@ -186,7 +177,22 @@ namespace Appointed.Views.Sidebar
         }
 
 
+        void StartTime_SelectionChanged(object sender, EventArgs e)
+        {
+            DayInformationViewModel DIVM = App.Current.MainWindow.DataContext as DayInformationViewModel;
+            DateTime dt;
 
+            if (DateTime.TryParse(DIVM._activeDate.DateTimeStr, out dt) && StartTime.SelectedItem != null)
+            {
+                string stTime = ((Time)StartTime.SelectedItem).TimeString;
+                stTime = stTime.Substring(0, stTime.IndexOf(':')) + stTime.Substring(stTime.IndexOf(':') + 1);
+                int time = Int32.Parse(stTime);
+                dt = new DateTime(dt.Year, dt.Month, dt.Day, time / 100, time % 100, 0);
+                DIVM._activeDate.SetDateAndTime(dt);
+            }
+
+            DIVM.ChangeHighlight(this, null);
+        }
 
         // Decision confirmation logic
         private void OnMouseLeftRelease_Discard(object sender, MouseButtonEventArgs e)

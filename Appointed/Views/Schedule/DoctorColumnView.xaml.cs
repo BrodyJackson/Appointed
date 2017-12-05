@@ -302,6 +302,9 @@ namespace Appointed.Views
             keyForSourceAppointment = (string)e.Data.GetData(DataFormats.StringFormat);
             sourceAppointment = DIVM.AVM._appointmentLookup[Int32.Parse(keyForSourceAppointment)];
 
+            if (sourceAppointment.Colour == "DodgerBlue")
+                return;
+
             keyForTargetAppointment = ((Rectangle)sender).Tag.ToString();
             targetAppointment = DIVM.AVM._appointmentLookup[Int32.Parse(keyForTargetAppointment)];
 

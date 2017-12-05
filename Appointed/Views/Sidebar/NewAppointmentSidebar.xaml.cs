@@ -61,10 +61,10 @@ namespace Appointed.Views.Sidebar
             tdv.DayThree.DrColumn1.OnEmptyApptClick += EmptySlotClick;
             tdv.DayThree.DrColumn2.OnEmptyApptClick += EmptySlotClick;
 
-            StartTime.SelectionChanged += DIVM.ChangeHighlight;
+
+            StartTime.SelectionChanged += StartTime_SelectionChanged;
             DoctorComboBox.SelectionChanged += DIVM.ChangeHighlight;
             ApptTypeComboBox.SelectionChanged += DIVM.ChangeHighlight;
-
         }
 
         private void EmptySlotClick(object sender, DoctorColumnView.ApptClickEventArgs e)
@@ -84,28 +84,14 @@ namespace Appointed.Views.Sidebar
 
             int shiftAmt = diff.Days;
 
-            //if (e.ShouldShiftView && Math.Abs(diff.Days) > 1)
-            //{
-            //    shiftAmt -= 1;
-
-            //    DatePicker.InputText.TextField.Text = DIVM._activeDate.DateTimeStr;
-            //    WaitlistDatePicker.InputText.TextField.Text = DIVM._activeDate.DateTimeStr;
-
-            //    if (DIVM.ShiftView.CanExecute(null))
-            //        DIVM.ShiftView.Execute(shiftAmt);
-            //}
-
-            if (Math.Abs(diff.Days) > 0)
+            DateTime dt;
+            if (DateTime.TryParse(DatePicker.InputText.TextField.Text, out dt) && StartTime.SelectedItem != null)
             {
-                DateTime dt;
-                if (DateTime.TryParse(DatePicker.InputText.TextField.Text, out dt))
-                {
-                    string stTime = ((Time)StartTime.SelectedItem).TimeString;
-                    stTime = stTime.Substring(0, stTime.IndexOf(':')) + stTime.Substring(stTime.IndexOf(':') + 1);
-                    int time = Int32.Parse(stTime);
-                    dt = new DateTime(dt.Year, dt.Month, dt.Day, time / 100, time%100, 0);
-                    DIVM._activeDate.SetDateAndTime(dt);
-                }
+                string stTime = ((Time)StartTime.SelectedItem).TimeString;
+                stTime = stTime.Substring(0, stTime.IndexOf(':')) + stTime.Substring(stTime.IndexOf(':') + 1);
+                int time = Int32.Parse(stTime);
+                dt = new DateTime(dt.Year, dt.Month, dt.Day, time / 100, time % 100, 0);
+                DIVM._activeDate.SetDateAndTime(dt);
             }
 
             DIVM.ChangeHighlight(this, null);
@@ -167,14 +153,23 @@ namespace Appointed.Views.Sidebar
             RemDays.Visibility = Visibility.Visible;
         }
 
-        //void NewAppointmentSidebar_Loaded(object sender, RoutedEventArgs e)
-        //{
-        //    ApptTypeComboBox.SelectionChanged += ComboBox_ApptTypeSelectionChanged;
 
-        //    //Clear selected index so its not equal to whatever the last active appt was set to
-        //    StartTime.SelectedIndex = -1;
-        //    EndTime.Text = String.Empty;
-        //}
+        void StartTime_SelectionChanged(object sender, EventArgs e)
+        {
+            DayInformationViewModel DIVM = App.Current.MainWindow.DataContext as DayInformationViewModel;
+
+            DateTime dt;
+            if (DateTime.TryParse(DIVM._activeDate.DateTimeStr, out dt) && StartTime.SelectedItem != null)
+            {
+                string stTime = ((Time)StartTime.SelectedItem).TimeString;
+                stTime = stTime.Substring(0, stTime.IndexOf(':')) + stTime.Substring(stTime.IndexOf(':') + 1);
+                int time = Int32.Parse(stTime);
+                dt = new DateTime(dt.Year, dt.Month, dt.Day, time / 100, time % 100, 0);
+                DIVM._activeDate.SetDateAndTime(dt);
+            }
+
+            DIVM.ChangeHighlight(this, null);
+        }
 
         private void OnMouseLeftRelease_Discard(object sender, MouseButtonEventArgs e)
         {
