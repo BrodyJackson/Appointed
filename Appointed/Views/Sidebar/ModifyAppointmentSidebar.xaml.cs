@@ -168,7 +168,20 @@ namespace Appointed.Views.Sidebar
             if (DIVM.ShiftView.CanExecute(null))
                 DIVM.ShiftView.Execute(shiftAmt);
 
-            DIVM.ChangeHighlight(this, null);
+            if (Math.Abs(diff.Days) > 0)
+            {
+                DateTime dt;
+                if (DateTime.TryParse(DatePicker.InputText.TextField.Text, out dt))
+                {
+                    string stTime = ((Time)StartTime.SelectedItem).TimeString;
+                    stTime = stTime.Substring(0, stTime.IndexOf(':')) + stTime.Substring(stTime.IndexOf(':') + 1);
+                    int time = Int32.Parse(stTime);
+                    dt = new DateTime(dt.Year, dt.Month, dt.Day, time / 100, time % 100, 0);
+                    DIVM._activeDate.SetDateAndTime(dt);
+                }
+
+                DIVM.ChangeHighlight(this, null);
+            }
         }
 
 

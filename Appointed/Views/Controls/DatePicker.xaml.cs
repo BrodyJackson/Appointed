@@ -85,7 +85,7 @@ namespace Appointed.Views.Controls
             OnCalendarLoaded?.Invoke(calendar, null);
 
             calendar.SelectedDatesChanged += Calendar_SelectedDatesChanged;
-            calendar.SelectedDatesChanged += DIVM.ChangeHighlight;
+            //calendar.SelectedDatesChanged += DIVM.ChangeHighlight;
             calendar.Focus();
         }
 

@@ -232,7 +232,6 @@ namespace Appointed.ViewModels
 
             string drName;
             string apptType;
-            string stTimeStr;
 
             n = GetSidebar<NewAppointmentSidebar>(h);
             m = GetSidebar<ModifyAppointmentSidebar>(h);
@@ -256,13 +255,12 @@ namespace Appointed.ViewModels
                 drName = ((Doctor)(m.DoctorComboBox).SelectedItem).DoctorName;
                 apptType = m.ApptTypeComboBox.SelectedValue.ToString();
                 apptType = apptType.Substring(apptType.LastIndexOf(':') + 2);
-                stTimeStr = ((Time)(m.StartTime).SelectedItem).TimeString;
-                stTimeStr = stTimeStr.Substring(0, stTimeStr.IndexOf(':')) + stTimeStr.Substring(stTimeStr.IndexOf(':') + 1);
-                stTime = Int32.Parse(stTimeStr);
+                stTime = _activeDate.Time24Hr;
 
-                year = m.DatePicker.DateSelected.Value.Year;
-                month = m.DatePicker.DateSelected.Value.Month;
-                day = m.DatePicker.DateSelected.Value.Day;
+                year = _activeDate.Year;
+                month = _activeDate.Month;
+                day = _activeDate.Day;
+
 
                 dt = new DateTime(year, month, day, stTime / 100, stTime % 100, 0);
 
@@ -291,6 +289,8 @@ namespace Appointed.ViewModels
 
                 if (apptThatFollows.Type == "")
                     apptThatFollows.Visibility = "Collapsed";
+                else
+                    return;
 
                 a.Height = "70";
             }
@@ -302,13 +302,13 @@ namespace Appointed.ViewModels
 
             AVM._highlightedAppointment = a;
 
-            DateTime dimDT = new DateTime(_dim.YearAsInt, _dim.MonthAsInt, _dim.DayAsInt, dt.Hour, dt.Minute, 0);
-            DateTime centerDT = dimDT.AddDays(1);
+            //DateTime dimDT = new DateTime(_dim.YearAsInt, _dim.MonthAsInt, _dim.DayAsInt, dt.Hour, dt.Minute, 0);
+            //DateTime centerDT = dimDT.AddDays(1);
 
-            TimeSpan diff = dt - centerDT;
+            //TimeSpan diff = dt - centerDT;
 
-            if (diff.Days > 1 || diff.Days < -1)
-                ShiftView.Execute(diff.Days);
+            //if (diff.Days > 1 || diff.Days < -1)
+            //    ShiftView.Execute(diff.Days);
         }
         
 

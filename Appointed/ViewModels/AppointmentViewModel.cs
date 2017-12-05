@@ -219,7 +219,6 @@ namespace Appointed.ViewModels
 
                         hashCode = listOfAppointments[k].DateTime.GetHashCode();
 
-
                         time += 15;
 
                         if (time % 100 >= 60)
