@@ -56,8 +56,6 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             PatientSex.Text = "Sex: " + patient.GetSexAsString();
             PatientID.Text = "ID: " + new HealthCareIDMask().FormatText(patient.HealthID.ToString());
             PatientBirthday.Text = "Birthdate: " + patient.BirthDate.ToString("yyyy-MM-dd");
-
-
         }
 
         private void SexInput_DropDownClosed(object sender, EventArgs e)
@@ -132,7 +130,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             string dateStr;
             DateTime dt = DateTime.Parse(PatientBirthdayDatePicker.InputText.TextField.Text);
 
-            if (dt != patient.BirthDate)
+            if (dt != patient.BirthDate && dt <= DateTime.Today)
             {
                 PatientBirthday.Foreground = Brushes.Blue;
                 dateStr = dt.ToString("yyyy-MM-dd");

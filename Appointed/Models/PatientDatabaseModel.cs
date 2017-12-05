@@ -78,9 +78,9 @@ namespace Appointed.Models
                 Province = Patient.PROVINCE.AB,
                 PostalCode = "T3A-333",
                 Street ="23 Ave",
-                Phone = "555-555-5555",
+                Phone = "555-555-5556",
                 Cell = "403-555-5655",
-                Email = "DonJuan@donjuan.com",
+                Email = "RagnaarLothbrock@neopets.com",
                 EmergencyContact = e
             };
 
@@ -96,9 +96,9 @@ namespace Appointed.Models
                 Province = Patient.PROVINCE.AB,
                 PostalCode = "T3A-333",
                 Street = "23 Ave",
-                Phone = "555-555-5555",
+                Phone = "555-555-5557",
                 Cell = "403-555-5655",
-                Email = "DonJuan@donjuan.com",
+                Email = "obiWan@donjuan.com",
                 EmergencyContact = e
             };
 
@@ -114,7 +114,7 @@ namespace Appointed.Models
                 Province = Patient.PROVINCE.AB,
                 PostalCode = "T3A-333",
                 Street = "23 Ave",
-                Phone = "555-555-5555",
+                Phone = "555-555-5558",
                 Cell = "403-555-5655",
                 Email = "DonJuan@donjuan.com",
                 EmergencyContact = e

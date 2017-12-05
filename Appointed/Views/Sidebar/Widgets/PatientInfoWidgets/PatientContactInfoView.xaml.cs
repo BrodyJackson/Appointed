@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Appointed.Views.Dialogs;
+using Appointed.Classes;
+using Appointed.ViewModels;
+using Appointed.Views.Controls;
 
 namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
 {
@@ -21,14 +24,84 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
     /// </summary>
     public partial class PatientContactInfoView : UserControl
     {
+        string hint = "(555) 555 - 5555";
+        public bool HasChanges { get; set; }
+
+        public bool HomePhoneInvalid { get; set; }
+        public bool CellPhoneInvalid { get; set; }
+        public bool WorkPhoneInvalid { get; set; }
+        public bool EmailInvalid { get; set; }
+        public bool HasInvalid
+        {
+            get { return HomePhoneInvalid ? true : (CellPhoneInvalid ? true : (WorkPhoneInvalid ? true : (EmailInvalid ? true : false))); }
+            set { }
+        }
+
+
+        Patient p;
+
         public PatientContactInfoView()
         {
             InitializeComponent();
+
+            this.Loaded += PatientContactInfoView_Loaded;
+
+            HasChanges = false;
+            HomePhoneInvalid = false;
+            CellPhoneInvalid = false;
+            WorkPhoneInvalid = false;
+            EmailInvalid = false;
+        }
+
+        private void PatientContactInfoView_Loaded(object sender, RoutedEventArgs e)
+        {
+            p = ((App.Current.MainWindow as Home).DataContext as DayInformationViewModel).PVM.ActivePatient;
+
+            if (p.Phone != null && p.Phone != "")
+            {
+                PatientHomePhone.Text = p.Phone;
+                if (p.Phone.Length == 23)
+                    PatientHomePhoneInput.Mask = InputText.MASK.PHONENUMBER_WITHEXT;
+            }
+            else
+                PatientHomePhone.Text = "(None)";
+
+            if (p.Cell != null && p.Cell != "")
+            {
+                PatientCellPhone.Text = p.Cell;
+                if (p.Phone.Length == 23)
+                    PatientCellPhoneInput.Mask = InputText.MASK.PHONENUMBER_WITHEXT;
+            }
+            else
+                PatientCellPhone.Text = "(None)";
+
+            if (p.Business != null && p.Business != "")
+            {
+                PatientWorkPhone.Text = p.Phone;
+                if (p.Phone.Length == 23)
+                    PatientWorkPhoneInput.Mask = InputText.MASK.PHONENUMBER_WITHEXT;
+            }
+            else
+                PatientWorkPhone.Text = "(None)";
+
+            if (p.Email != null && p.Email != "")
+            {
+                PatientEmail.Text = p.Email;
+                if (p.Phone.Length == 23)
+                    PatientEmailInput.Mask = InputText.MASK.PHONENUMBER_WITHEXT;
+            }
+            else
+                PatientEmail.Text = "(None)";
         }
 
         private void OnClickInputText(object sender, MouseButtonEventArgs e)
         {
             TextBlock t = sender as TextBlock;
+
+            PatientWorkPhoneInput.Visibility = Visibility.Hidden;
+            PatientCellPhoneInput.Visibility = Visibility.Hidden;
+            PatientHomePhoneInput.Visibility = Visibility.Hidden;
+            PatientEmailInput.Visibility = Visibility.Hidden;
 
             if (t.Name == "PatientHomePhone")
             {
@@ -56,40 +129,97 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             }
         }
 
-        private void PatientWorkPhoneInput_LostFocus(object sender, RoutedEventArgs e)
+        private void PatientHomePhoneInput_LostFocus(object sender, RoutedEventArgs e)
         {
-            string field = PatientWorkPhoneInput.TextField.Text;
-            if (field != "(555) 555 - 5555" && field != "")
-                PatientWorkPhone.Text = field;
-
-            PatientWorkPhoneInput.Visibility = Visibility.Hidden;
+            string field = PatientHomePhoneInput.TextField.Text;
+            if (!field.Equals(hint, StringComparison.Ordinal) && !field.Equals(p.Phone, StringComparison.Ordinal))
+            {
+                if (field.Length == 14 || field.Length == 23)
+                {
+                    PatientHomePhone.Text = field;
+                    PatientHomePhone.Foreground = Brushes.Blue;
+                    HasChanges = true;
+                    HomePhoneInvalid = false;
+                    PatientHomePhoneInput.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    PatientHomePhoneInput.TextField.BorderBrush = Brushes.Red;
+                    PatientHomePhoneInput.TextField.BorderThickness = new Thickness(1.0);
+                    HomePhoneInvalid = true;
+                }
+            }
         }
 
         private void PatientCellPhoneInput_LostFocus(object sender, RoutedEventArgs e)
         {
             string field = PatientCellPhoneInput.TextField.Text;
-            if (field != "(555) 555 - 5555" && field != "")
-                PatientCellPhone.Text = field;
-
-            PatientCellPhoneInput.Visibility = Visibility.Hidden;
+            if ((string.Compare(field, hint, true) != 0) && string.Compare(field, p.Cell, true) != 0)
+            {
+                if (field.Length == 14 || field.Length == 23)
+                {
+                    PatientCellPhone.Text = field;
+                    PatientCellPhone.Foreground = Brushes.Blue;
+                    HasChanges = true;
+                    CellPhoneInvalid = false;
+                    PatientCellPhoneInput.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    PatientCellPhoneInput.TextField.BorderBrush = Brushes.Red;
+                    PatientCellPhoneInput.TextField.BorderThickness = new Thickness(1.0);
+                    CellPhoneInvalid = true;
+                }
+            }
         }
 
-        private void PatientHomePhoneInput_LostFocus(object sender, RoutedEventArgs e)
+        private void PatientWorkPhoneInput_LostFocus(object sender, RoutedEventArgs e)
         {
-            string field = PatientHomePhoneInput.TextField.Text;
-            if (field != "(555) 555 - 5555" && field != "")
-                PatientHomePhone.Text = field;
-
-            PatientHomePhoneInput.Visibility = Visibility.Hidden;
+            string field = PatientWorkPhoneInput.TextField.Text;
+            if ((string.Compare(field, hint, true) != 0) && string.Compare(field, p.Business, true) != 0)
+            {
+                if (field.Length == 14 || field.Length == 23)
+                {
+                    PatientWorkPhone.Text = field;
+                    PatientWorkPhone.Foreground = Brushes.Blue;
+                    HasChanges = true;
+                    WorkPhoneInvalid = false;
+                    PatientWorkPhoneInput.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    PatientWorkPhoneInput.TextField.BorderBrush = Brushes.Red;
+                    PatientWorkPhoneInput.TextField.BorderThickness = new Thickness(1.0);
+                    WorkPhoneInvalid = true;
+                }
+            }
         }
+
 
         private void PatientEmailInput_LostFocus(object sender, RoutedEventArgs e)
         {
             string field = PatientEmailInput.TextField.Text;
-            if (field != "(555) 555 - 5555" && field != "")
-                PatientEmail.Text = field;
-
-            PatientEmailInput.Visibility = Visibility.Hidden;
+            if ((string.Compare(field, hint, true) != 0) && string.Compare(field, p.Email, true) != 0)
+            {
+                if (field.Length > 0 && field.Contains("@") && field.Contains(".com"))
+                {
+                    PatientEmail.Text = field;
+                    PatientEmail.Foreground = Brushes.Blue;
+                    HasChanges = true;
+                    EmailInvalid = true;
+                    PatientEmailInput.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    PatientEmailInput.TextField.BorderBrush = Brushes.Red;
+                    PatientEmailInput.TextField.BorderThickness = new Thickness(1.0);
+                    EmailInvalid = true;
+                }
+            }
         }
+
+
+
+
     }
 }
