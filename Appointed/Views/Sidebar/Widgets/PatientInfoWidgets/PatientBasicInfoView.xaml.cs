@@ -173,11 +173,11 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
         private void SexInput_LostFocus(object sender, RoutedEventArgs e)
         {
             var x = FocusManager.GetFocusedElement(App.Current.MainWindow) as ComboBoxItem;
-            if(x != null )
+            if (x != null)
             {
                 var y = x.Parent as ComboBox;
 
-                if(y != null && y.Name == "SexInput")
+                if (y != null && y.Name == "SexInput")
                     return;
             }
             else

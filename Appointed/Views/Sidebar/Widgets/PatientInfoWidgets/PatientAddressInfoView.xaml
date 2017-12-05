@@ -57,13 +57,12 @@
             Grid.Row="0"
             Text="Address"
             Grid.ColumnSpan="2"
-            PreviewMouseLeftButtonUp="OnClickInputText"
-            />
+            PreviewMouseLeftButtonUp="OnClickInputText" />
 
-     
-        
-        
-        
+
+
+
+
         <TextBlock
             Cursor="Pen"
             x:Name="PatientStreetAddress"
@@ -72,9 +71,8 @@
             Grid.Column="0"
             Grid.Row="1"
             Text="570 - 11th Avenue SW"
-            Grid.ColumnSpan="3" 
-            PreviewMouseLeftButtonUp="OnClickInputText"
-            />
+            Grid.ColumnSpan="3"
+            PreviewMouseLeftButtonUp="OnClickInputText" />
 
         <controls:InputText
             x:Name="PatientStreetAddressInput"
@@ -88,8 +86,7 @@
             VerticalAlignment="Stretch"
             HorizontalAlignment="Stretch"
             Visibility="Hidden"
-            LostFocus="PatientStreetAddressInput_LostFocus"
-            />
+            LostFocus="PatientStreetAddressInput_LostFocus" />
 
 
 
@@ -101,28 +98,66 @@
             Grid.Column="0"
             Grid.Row="2"
             Text="Okotoks, AB"
-            Grid.ColumnSpan="1" 
-            PreviewMouseLeftButtonUp="OnClickInputText"
-            />
+            Grid.ColumnSpan="1"
+            PreviewMouseLeftButtonUp="OnClickInputText" />
 
-        <controls:InputText
-            x:Name="PatientRegionInput"
-            Hint="City, Province"
-            Mask="NONE"
-            Margin="4,0,4,0"
-            HintForground="Gray"
+        <Grid
             Grid.Column="0"
             Grid.Row="2"
-            Grid.ColumnSpan="1"
-            VerticalAlignment="Stretch"
-            HorizontalAlignment="Stretch"
-            Visibility="Hidden"
-            LostFocus="PatientRegionInput_LostFocus"
-            />
+            Name="InputRegion"
+            Visibility="Hidden">
 
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    Width="*" />
+                <ColumnDefinition
+                    Width="*" />
+            </Grid.ColumnDefinitions>
 
+            <controls:InputText
+                Grid.Column="0"
+                x:Name="InputCity"
+                Hint="City"
+                Mask="NONE"
+                Margin="4,0,4,0"
+                HintForground="Gray"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch" />
 
+            <ComboBox
+                x:Name="InputProv"
+                Grid.Column="1"
+                Margin="4"
+                VerticalContentAlignment="Center">
+                <ComboBoxItem
+                    Content="AB" />
+                <ComboBoxItem
+                    Content="BC" />
+                <ComboBoxItem
+                    Content="MB" />
+                <ComboBoxItem
+                    Content="NB" />
+                <ComboBoxItem
+                    Content="NL" />
+                <ComboBoxItem
+                    Content="NT" />
+                <ComboBoxItem
+                    Content="NS" />
+                <ComboBoxItem
+                    Content="NU" />
+                <ComboBoxItem
+                    Content="ON" />
+                <ComboBoxItem
+                    Content="PE" />
+                <ComboBoxItem
+                    Content="QC" />
+                <ComboBoxItem
+                    Content="SK" />
+                <ComboBoxItem
+                    Content="YT" />
+            </ComboBox>
 
+        </Grid>
 
         <TextBlock
             Cursor="Pen"
@@ -132,9 +167,8 @@
             Grid.Row="2"
             Margin="4"
             Text="T3H 5T5"
-            Grid.ColumnSpan="1" 
-            PreviewMouseLeftButtonUp="OnClickInputText"
-        />
+            Grid.ColumnSpan="1"
+            PreviewMouseLeftButtonUp="OnClickInputText" />
         <controls:InputText
             x:Name="PatientPostalInput"
             Hint="A1B 2C3"
@@ -147,8 +181,7 @@
             VerticalAlignment="Stretch"
             HorizontalAlignment="Stretch"
             Visibility="Hidden"
-            LostFocus="PatientPostalInput_LostFocus"
-            />
+            LostFocus="PatientPostalInput_LostFocus" />
 
 
 

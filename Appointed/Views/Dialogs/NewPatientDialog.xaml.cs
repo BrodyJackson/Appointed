@@ -297,7 +297,7 @@ namespace Appointed.Views.Dialogs
                 LastName.MarkValid();
             }
 
-            if (!IsHealthcareIDValid() || HealthID.TextField.Text == HealthID.Hint)
+            if (!IsHealthcareIDValid() || HealthID.TextField.Text == HealthID.Hint || HealthID.TextField.Text.Length != 9)
             {
                 HealthID.MarkInvalid();
                 allValid = false;

@@ -28,6 +28,7 @@ namespace Appointed.Views.Sidebar
             InitializeComponent();
             Patient = patient;
             BasicInfo.patient = patient;
+            AddrInfo.patient = patient;
         }
     }
 }
