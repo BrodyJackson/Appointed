@@ -60,8 +60,8 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             if (p.Phone != null && p.Phone != "")
             {
                 PatientHomePhone.Text = p.Phone;
-                if (p.Phone.Length == 23)
-                    PatientHomePhoneInput.Mask = InputText.MASK.PHONENUMBER_WITHEXT;
+                //if (p.Phone.Length != 23)
+                //    PatientHomePhoneInput.Mask = InputText.MASK.PHONENUMBER_WITHEXT;
             }
             else
                 PatientHomePhone.Text = "(None)";
@@ -69,8 +69,8 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             if (p.Cell != null && p.Cell != "")
             {
                 PatientCellPhone.Text = p.Cell;
-                if (p.Phone.Length == 23)
-                    PatientCellPhoneInput.Mask = InputText.MASK.PHONENUMBER_WITHEXT;
+                //if (p.Phone.Length == 23)
+                //    PatientCellPhoneInput.Mask = InputText.MASK.PHONENUMBER_WITHEXT;
             }
             else
                 PatientCellPhone.Text = "(None)";
@@ -78,8 +78,8 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             if (p.Business != null && p.Business != "")
             {
                 PatientWorkPhone.Text = p.Phone;
-                if (p.Phone.Length == 23)
-                    PatientWorkPhoneInput.Mask = InputText.MASK.PHONENUMBER_WITHEXT;
+                //if (p.Phone.Length == 23)
+                //    PatientWorkPhoneInput.Mask = InputText.MASK.PHONENUMBER_WITHEXT;
             }
             else
                 PatientWorkPhone.Text = "(None)";
@@ -87,8 +87,8 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             if (p.Email != null && p.Email != "")
             {
                 PatientEmail.Text = p.Email;
-                if (p.Phone.Length == 23)
-                    PatientEmailInput.Mask = InputText.MASK.PHONENUMBER_WITHEXT;
+                //if (p.Phone.Length == 23)
+                //    PatientEmailInput.Mask = InputText.MASK.PHONENUMBER_WITHEXT;
             }
             else
                 PatientEmail.Text = "(None)";
@@ -137,7 +137,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
 
             if (field != hint && field != p.Phone)
             {
-                if (field.Length == 12 || field.Length == 21)
+                if (field.Length == 12 || field.Length == 16)
                 {
                     PatientHomePhone.Text = PatientHomePhoneInput.TextField.Text;
                     PatientHomePhone.Foreground = Brushes.Blue;
@@ -152,8 +152,12 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                     HomePhoneInvalid = true;
                 }
             }
-            else
+            else if (field == p.Phone)
+            {
+                PatientHomePhone.Text = p.Phone;
+                PatientHomePhone.Foreground = Brushes.Black;
                 PatientHomePhoneInput.Visibility = Visibility.Hidden;
+            }
         }
 
         private void PatientCellPhoneInput_LostFocus(object sender, RoutedEventArgs e)
@@ -164,7 +168,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
 
             if (field != hint && field != p.Cell)
             {
-                if (field.Length == 12 || field.Length == 21)
+                if (field.Length == 12 || field.Length == 16)
                 {
                     PatientCellPhone.Text = PatientCellPhoneInput.TextField.Text;
                     PatientCellPhone.Foreground = Brushes.Blue;
@@ -179,8 +183,12 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                     CellPhoneInvalid = true;
                 }
             }
-            else
+            else if (field == p.Cell)
+            {
+                PatientCellPhone.Text = p.Cell;
+                PatientCellPhone.Foreground = Brushes.Black;
                 PatientCellPhoneInput.Visibility = Visibility.Hidden;
+            }
         }
 
         private void PatientWorkPhoneInput_LostFocus(object sender, RoutedEventArgs e)
@@ -191,9 +199,9 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
 
             if (field != hint && field != p.Business)
             {
-                if (field.Length == 12 || field.Length == 21)
+                if (field.Length == 12 || field.Length == 16)
                 {
-                    PatientWorkPhone.Text = PatientWorkPhoneInput.TextField.Text; ;
+                    PatientWorkPhone.Text = PatientWorkPhoneInput.TextField.Text;
                     PatientWorkPhone.Foreground = Brushes.Blue;
                     HasChanges = true;
                     WorkPhoneInvalid = false;
@@ -206,8 +214,12 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                     WorkPhoneInvalid = true;
                 }
             }
-            else
+            else if (field == p.Business)
+            {
+                PatientWorkPhone.Text = p.Business;
+                PatientWorkPhone.Foreground = Brushes.Black;
                 PatientWorkPhoneInput.Visibility = Visibility.Hidden;
+            }
         }
 
 
@@ -232,8 +244,12 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                     EmailInvalid = true;
                 }
             }
-            else
+            else if (field == p.Email)
+            {
+                PatientEmail.Text = p.Email;
+                PatientEmail.Foreground = Brushes.Black;
                 PatientEmailInput.Visibility = Visibility.Hidden;
+            }
         }
 
 

@@ -69,7 +69,7 @@
         <controls:InputText
             x:Name="PatientHomePhoneInput"
             Hint="(555) 555-5555"
-            Mask="PHONENUMBER"
+            Mask="PHONENUMBER_WITHEXT"
             Margin="0,0,4,0"
             HintForground="Gray"
             Grid.Column="1"
@@ -106,7 +106,7 @@
         <controls:InputText
             x:Name="PatientCellPhoneInput"
             Hint="(555) 555-5555"
-            Mask="PHONENUMBER"
+            Mask="PHONENUMBER_WITHEXT"
             Margin="0,0,4,0"
             HintForground="Gray"
             Grid.Column="1"
@@ -144,7 +144,7 @@
         <controls:InputText
             x:Name="PatientWorkPhoneInput"
             Hint="(555) 555-5555"
-            Mask="PHONENUMBER"
+            Mask="PHONENUMBER_WITHEXT"
             Margin="0,0,4,0"
             HintForground="Gray"
             Grid.Column="1"

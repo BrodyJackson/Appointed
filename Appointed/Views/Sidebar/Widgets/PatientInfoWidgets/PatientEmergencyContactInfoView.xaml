@@ -100,7 +100,7 @@
         <controls:InputText
             x:Name="ContactPhoneInput"
             Hint="(555) 555-5555"
-            Mask="PHONENUMBER"
+            Mask="PHONENUMBER_WITHEXT"
             Margin="0,0,4,0"
             HintForground="Gray"
             Grid.Column="1"
@@ -135,7 +135,7 @@
             />
         <controls:InputText
             x:Name="ContactRelationInput"
-            Hint="Mother"
+            Hint="Relation"
             Mask="NONE"
             Margin="0,0,4,0"
             HintForground="Gray"
