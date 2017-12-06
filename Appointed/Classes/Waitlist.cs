@@ -28,7 +28,7 @@ namespace Appointed.Classes
         // be used as the key to find the appointment in the dictionary '_appointmentLookup' where the reference to the appointment that was
         // waiting can be retrieved and used directly to modify it's fields. Modifying the fields of the return value may not have any effect
         // on the appointment in the database.
-        public Appointment GetApptWaiting(Appointment a)
+        public Appointment DequeApptWaiting(Appointment a)
         {
             DayInformationViewModel DIVM = App.Current.MainWindow.DataContext as DayInformationViewModel;
 
@@ -50,6 +50,8 @@ namespace Appointed.Classes
                     b = waitlist[key].ElementAt(i);
 
                     waitlist[key].RemoveAt(i);
+                    if (waitlist[key].Count == 0)
+                        waitlist.Remove(key);
                     return b;
                 }
 
@@ -60,12 +62,41 @@ namespace Appointed.Classes
         }
 
 
+        public Appointment PeekApptWaiting(Appointment a)
+        {
+            DayInformationViewModel DIVM = App.Current.MainWindow.DataContext as DayInformationViewModel;
+
+            int key = a.DateTime.GetHashCode() + DIVM.AVM.FindDrColumnForDrName(a.DoctorName);
+
+            if (!DIVM.AVM._appointmentLookup.ContainsKey(key))
+                return a;
+
+            Appointment b = DIVM.AVM._appointmentLookup[key];
+
+            if (waitlist.ContainsKey(key))
+            {
+                int i = 0;
+                while (i < waitlist[key].Count && waitlist[key].ElementAt(i) == null)
+                    i++;
+
+                if (i < waitlist[key].Count)
+                {
+                    b = waitlist[key].ElementAt(i);
+                    return b;
+                }
+
+                return null;
+            }
+
+            return a;
+        }
+
         // Add Appointment 'apptToAdd' to the waitlist for the appointment slot identified by the 'dateDesired' and the 'nameOfDocDesired'.
         // If 'nameOfDocDesired' is invalid it returns -1 and does not modify the waitlist.
         // 'apptToAdd' should have it's DateTime and ID set according to the slot it currently occupies, not the slot
         // it wishes to wait for.
         // Returns the zero based waitlist position of this Appointment for this slot.
-        public int AddAppointment(Appointment apptToAdd, DateTime dateDesired, string nameOfDocDesired)
+        public int QueueAppointment(Appointment apptToAdd, DateTime dateDesired, string nameOfDocDesired)
         {
             DayInformationViewModel DIVM = App.Current.MainWindow.DataContext as DayInformationViewModel;
 
@@ -79,7 +110,7 @@ namespace Appointed.Classes
             else
                 waitlist[key] = new List<Appointment> { apptToAdd };
 
-            return (waitlist[key].Count - 1);
+            return (waitlist[key].Count);
         }
 
 
@@ -97,6 +128,8 @@ namespace Appointed.Classes
                     if (a.ID == apptToRemove.ID)
                     {
                         Q.Value.RemoveAt(i);
+                        if (Q.Value.Count == 0)
+                            waitlist.Remove(Q.Key);
                         return;
                     }
                 }

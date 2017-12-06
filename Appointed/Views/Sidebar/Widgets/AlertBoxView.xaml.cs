@@ -135,6 +135,8 @@ namespace Appointed.Views.Sidebar
 
             msgBox.MessageBoxResult += OnRemoveAlertConfirmation;
 
+            activeAlert = sender as Alert;
+
             msgBox.Show
                 (
                     "Deleting this item will remove the appointment from the waitlist.\nWould you like to proceed?",
@@ -153,7 +155,7 @@ namespace Appointed.Views.Sidebar
 
             DayInformationViewModel DIVM = App.Current.MainWindow.DataContext as DayInformationViewModel;
 
-            Alert a = sender as Alert;
+            Alert a = activeAlert;
             DIVM.SVM.RemoveAlert(a);
 
             int key = new DateTime(a.WLE.Date.Year, a.WLE.Date.Month, a.WLE.Date.Day, a.WLE.Date.Time24Hr / 100, a.WLE.Date.Time24Hr % 100, 0).GetHashCode();

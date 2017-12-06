@@ -87,7 +87,7 @@ namespace Appointed.Views
             // May need to call twice if the appt was a consultation.
             // Once for the appt that was following it and once the appt itself.
             DIVM.FreeAppointmentSlot(appt);
-
+            DIVM.WaitList.RemoveAppointment(appt);
 
             if (DIVM.AVM._activeAppointment.Type == "Consultation")
             {
@@ -117,7 +117,7 @@ namespace Appointed.Views
 
             appt.PatientObj = null;
 
-            h.SidebarView.SetSidebarView(h.SidebarView.GetPreviousSidebar(), false);
+            h.SidebarView.SetSidebarView(new HomeSidebar());
         }
 
         private void SaveNotesBtn_Click(object sender, RoutedEventArgs e)

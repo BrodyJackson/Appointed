@@ -171,7 +171,7 @@ namespace Appointed.ViewModels
 
         public void FreeAppointmentSlot(Appointment appt)
         {
-            Appointment a = WaitList.GetApptWaiting(appt);
+            Appointment a = WaitList.DequeApptWaiting(appt);
 
             if (a == null || a == appt)
                 return;

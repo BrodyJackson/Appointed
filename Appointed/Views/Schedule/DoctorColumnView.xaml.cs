@@ -216,6 +216,8 @@ namespace Appointed.Views
             {
                 //Why not do this?
                 //DIVM.AVM._activeAppointment = new Appointment(appt);
+                // I tried and things break. Especially now with the mixture of events and data bindings and
+                // degradation of the design due to rushing and unfamiliarity. 
 
                 DIVM.AVM._activeAppointment.Colour = appt.Colour;
                 DIVM.AVM._activeAppointment.Comments = appt.Comments;
@@ -228,6 +230,7 @@ namespace Appointed.Views
                 DIVM.AVM._activeAppointment.PatientObj = appt.PatientObj; 
                 DIVM.AVM._activeAppointment.Type = appt.Type;
                 DIVM.AVM._activeAppointment.Waitlisted = appt.Waitlisted;
+                DIVM.AVM._activeAppointment.WaitlistPos = appt.WaitlistPos;
                 DIVM.AVM._activeAppointment.RowSpan = appt.RowSpan;
             }
 

@@ -132,8 +132,6 @@ namespace Appointed.ViewModels
             };
 
 
-
-
             // Adding empty Days for each doctor in their schedule array where no corresponding fake appointments were made
             // Each column in the array is one day of appointments
             AddEmptyDaysToArray(_pearsonAppointmentListArray, 0);
@@ -413,7 +411,9 @@ namespace Appointed.ViewModels
                     doctorColumn = i;
             }
 
-            InsertAppointment(doctorColumn, appointment);
+            //InsertAppointment(doctorColumn, appointment);
+            InsertAppointment(doctorColumn, _appointmentLookup[key]);
+
 
             return true;
         }

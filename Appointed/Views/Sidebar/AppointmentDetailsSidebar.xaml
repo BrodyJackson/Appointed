@@ -204,7 +204,7 @@
 
 
                 <Button
-                    Name="AlertDeleteBtn"
+                    Name="SaveCommentsButton"
                     Grid.Column="2"
                     Grid.Row="0"
                     Margin="2"

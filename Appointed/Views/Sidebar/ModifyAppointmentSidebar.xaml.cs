@@ -122,15 +122,16 @@ namespace Appointed.Views.Sidebar
             RemTOD.SelectedIndex = DIVM.AVM._activeAppointment.RemTODIndex;
             RemType.SelectedIndex = DIVM.AVM._activeAppointment.RemTypeIndex;
             AddToWaitlistCheckBox.IsChecked = DIVM.AVM._activeAppointment.Waitlisted;
-            WaitlistDatePicker.InputText.TextField.Text = DIVM.WaitList.GetApptWaiting(DIVM.AVM._activeAppointment).DateTime.Value.ToString("yyyy-MM-dd");
-            WaitlistDoctorComboBox.SelectedIndex = DIVM.WaitList.GetApptWaiting(DIVM.AVM._activeAppointment).DrColumn;
-            WaitlistStartTime.SelectedIndex = DIVM.WaitList.GetApptWaiting(DIVM.AVM._activeAppointment).TimeIndex;
+            if (DIVM.WaitList.PeekApptWaiting(DIVM.AVM._activeAppointment) != null)
+            {
+                WaitlistDatePicker.InputText.TextField.Text = DIVM.WaitList.PeekApptWaiting(DIVM.AVM._activeAppointment).DateTime.Value.ToString("yyyy-MM-dd");
+                WaitlistDoctorComboBox.SelectedIndex = DIVM.WaitList.PeekApptWaiting(DIVM.AVM._activeAppointment).DrColumn;
+                WaitlistStartTime.SelectedIndex = DIVM.WaitList.PeekApptWaiting(DIVM.AVM._activeAppointment).TimeIndex;
+            }
 
             StartTime.SelectionChanged += StartTime_SelectionChanged;
             DoctorComboBox.SelectionChanged += DIVM.ChangeHighlight;
             ApptTypeComboBox.SelectionChanged += DIVM.ChangeHighlight;
-
-            //ActiveDateChanged(null, null);
         }
 
         private void EmptySlotClick(object sender, DoctorColumnView.ApptClickEventArgs e)
@@ -316,7 +317,6 @@ namespace Appointed.Views.Sidebar
             int day = Int32.Parse(dateString.Substring(dateString.LastIndexOf('-') + 1));
             // END PARSE DATA FROM SIDEBAR FIELDS
 
-
             // The hashcode of the DateTime + <DrColumn> form the key for appointment lookups.
             DateTime dt = new DateTime(year, month, day, time / 100, time % 100, 0);
             int drColumn = DIVM.AVM.FindDrColumnForDrName(drName);
@@ -376,11 +376,27 @@ namespace Appointed.Views.Sidebar
             targetAppointment.Opacity = activeAppt.Opacity;
             targetAppointment.PatientObj = activeAppt.PatientObj;
 
-            if (targetAppointment.Type == "Consultation")// && targetAppointment != activeAppt)
+            if (targetAppointment.Type == "Consultation")
                 apptThatFollowsTarget.Visibility = "Collapsed";
             else
                 apptThatFollowsTarget.Visibility = "Visible";
 
+
+            if ((bool)AddToWaitlistCheckBox.IsChecked)
+            {
+                dateString = WaitlistDatePicker.InputText.TextField.Text;
+
+                stTime = ((Time)WaitlistStartTime.SelectedItem).TimeString;
+                stTime = stTime.Substring(0, stTime.IndexOf(':')) + stTime.Substring(stTime.IndexOf(':') + 1);
+                time = Int32.Parse(stTime);
+
+                DateTime date = GetDateTime(time, dateString);
+
+                drName = ((Doctor)WaitlistDoctorComboBox.SelectedItem).DoctorName;
+
+                targetAppointment.WaitlistPos = DIVM.WaitList.QueueAppointment(targetAppointment, date, drName).ToString();
+                targetAppointment.Waitlisted = true;
+            }
 
 
 
@@ -410,5 +426,28 @@ namespace Appointed.Views.Sidebar
             h.SidebarView.SetSidebarView(new AppointmentDetailsSidebar());
         }
 
+
+
+
+
+        public DateTime GetDateTime(int startTime, string yearMonthDay)
+        {
+            int year = Int32.Parse(yearMonthDay.Substring(0, yearMonthDay.IndexOf('-')));
+
+            int firstInd = yearMonthDay.IndexOf('-') + 1;
+            int secondInd = yearMonthDay.LastIndexOf('-');
+            int month = Int32.Parse(yearMonthDay.Substring(firstInd, secondInd - firstInd));
+
+            int day = Int32.Parse(yearMonthDay.Substring(yearMonthDay.LastIndexOf('-') + 1));
+
+            return new DateTime(year, month, day, startTime / 100, startTime % 100, 0);
+        }
+
+        private void SaveNotesBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
+
+            DIVM.AVM._appointmentLookup[Int32.Parse(DIVM.AVM._activeAppointment.ID)].Comments = CommentBox.Text;
+        }
     }
 }
