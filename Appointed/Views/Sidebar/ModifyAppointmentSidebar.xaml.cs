@@ -118,9 +118,13 @@ namespace Appointed.Views.Sidebar
             CurrentApptDoc.Text = DIVM.AVM._activeAppointment.DoctorName;
             CurrentApptTimespan.Text = DIVM.AVM._activeAppointment.StartTimeStr + " - " + DIVM.AVM._activeAppointment.EndTimeStr;
             ReminderToggle.IsChecked = DIVM.AVM._activeAppointment.Reminder;
-            RemDays.SelectedIndex = DIVM.AVM._activeAppointment.RemDaysIndex;
-            RemTOD.SelectedIndex = DIVM.AVM._activeAppointment.RemTODIndex;
-            RemType.SelectedIndex = DIVM.AVM._activeAppointment.RemTypeIndex;
+            if (DIVM.AVM._activeAppointment.Reminder)
+            {
+                RemDays.SelectedIndex = DIVM.AVM._activeAppointment.RemDaysIndex;
+                RemTOD.SelectedIndex = DIVM.AVM._activeAppointment.RemTODIndex;
+                RemType.SelectedIndex = DIVM.AVM._activeAppointment.RemTypeIndex;
+            }
+
             AddToWaitlistCheckBox.IsChecked = DIVM.AVM._activeAppointment.Waitlisted;
             if (DIVM.WaitList.PeekApptWaiting(DIVM.AVM._activeAppointment) != null)
             {
@@ -228,7 +232,7 @@ namespace Appointed.Views.Sidebar
             msgBox.Show
                 (
                     "Are you sure you wish to discard your changes?",
-                    "Confirm Selection",
+                    "Discard Changes",
                     MyMessageBox.Buton.Yes,
                     MyMessageBox.Buton.No
                 );
@@ -367,9 +371,13 @@ namespace Appointed.Views.Sidebar
             targetAppointment.StartTime = Int32.Parse(stTime);
             targetAppointment.EndTime = Int32.Parse(endTime);
             targetAppointment.Reminder = ReminderToggle.IsChecked.Value;
-            targetAppointment.ReminderType = ((ComboBoxItem)RemType.SelectedItem).Content.ToString();
-            targetAppointment.ReminderTimeOfDay = ((ComboBoxItem)RemTOD.SelectedItem).Content.ToString();
-            targetAppointment.ReminderDays = ((ComboBoxItem)RemDays.SelectedItem).Content.ToString();
+            if (targetAppointment.Reminder)
+            {
+                targetAppointment.ReminderType = ((ComboBoxItem)RemType.SelectedItem).Content.ToString();
+                targetAppointment.ReminderTimeOfDay = ((ComboBoxItem)RemTOD.SelectedItem).Content.ToString();
+                targetAppointment.ReminderDays = ((ComboBoxItem)RemDays.SelectedItem).Content.ToString();
+            }
+
             targetAppointment.Comments = CommentBox.Text;
             targetAppointment.Height = (type == "Consultation" ? "70" : "35");
             targetAppointment.Patient = activeAppt.Patient;

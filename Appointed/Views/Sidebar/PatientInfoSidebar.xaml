@@ -66,6 +66,53 @@
                     Margin="0,4,0,0"
                     Height="auto" />
 
+                <Grid
+                    DockPanel.Dock="Top"
+                    Margin="0,20,0,0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Button
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Content="Save"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    MaxWidth="200"
+                    MinWidth="100"
+                    Height="30"
+                    PreviewMouseLeftButtonUp="OnMouseLeftRelease_Save" />
+
+                    <Button
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Content="Discard"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    MaxWidth="200"
+                    MinWidth="100"
+                    Height="30"
+                    PreviewMouseLeftButtonUp="OnMouseLeftRelease_Discard" />
+                </Grid>
+
+
+                <Separator
+                    Background="Gray" 
+                    Foreground="Gray" 
+                    BorderThickness="1" 
+                    Margin="15,10,15,40" 
+                    DockPanel.Dock="Top" 
+                    BorderBrush="Gray" 
+                    Height="2"/>
+
+
                 <Widgets:PatientUpcomingApptView
                     DockPanel.Dock="Top"
                     Margin="0,4,0,0"

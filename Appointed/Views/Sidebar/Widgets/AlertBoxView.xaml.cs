@@ -139,7 +139,7 @@ namespace Appointed.Views.Sidebar
 
             msgBox.Show
                 (
-                    "Deleting this item will remove the appointment from the waitlist.\nWould you like to proceed?",
+                    "Deleting this item will remove the appointment from the waitlist. Would you like to proceed?",
                     "Confirm Selection",
                     MyMessageBox.Buton.Yes,
                     MyMessageBox.Buton.No

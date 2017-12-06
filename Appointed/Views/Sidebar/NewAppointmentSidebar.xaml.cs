@@ -61,7 +61,13 @@ namespace Appointed.Views.Sidebar
             tdv.DayThree.DrColumn1.OnEmptyApptClick += EmptySlotClick;
             tdv.DayThree.DrColumn2.OnEmptyApptClick += EmptySlotClick;
 
+            DatePicker.InputText.TextField.Text = DIVM.AVM._activeAppointment.DateTime.Value.ToString("yyyy-MM-dd");
+            ReminderToggle.IsChecked = DIVM.AVM._activeAppointment.Reminder;
+            RemDays.SelectedIndex = DIVM.AVM._activeAppointment.RemDaysIndex;
+            RemTOD.SelectedIndex = DIVM.AVM._activeAppointment.RemTODIndex;
+            RemType.SelectedIndex = DIVM.AVM._activeAppointment.RemTypeIndex;
 
+            AddToWaitlistCheckBox.IsChecked = DIVM.AVM._activeAppointment.Waitlisted;
             if (DIVM.WaitList.PeekApptWaiting(DIVM.AVM._activeAppointment) != null)
             {
                 WaitlistDatePicker.InputText.TextField.Text = DIVM.WaitList.PeekApptWaiting(DIVM.AVM._activeAppointment).DateTime.Value.ToString("yyyy-MM-dd");
@@ -182,6 +188,18 @@ namespace Appointed.Views.Sidebar
             RemDaysLable.Visibility = Visibility.Visible;
             RemDays.Visibility = Visibility.Visible;
         }
+
+
+           //foreach (ComboBoxItem item in RemType.Items)
+           //         if (item.Content.ToString() == "Text")
+           //             RemType.Items.Remove(item);
+      
+           //foreach (ComboBoxItem item in RemType.Items)
+           //    if (item.Content.ToString() == "Phone")
+           //        RemType.Items.Remove(item);
+           //foreach (ComboBoxItem item in RemType.Items)
+           //    if (item.Content.ToString() == "Email")
+           //        RemType.Items.Remove(item);
 
 
         void StartTime_SelectionChanged(object sender, EventArgs e)
@@ -367,10 +385,15 @@ namespace Appointed.Views.Sidebar
             _newAppointment.Type = type;
             _newAppointment.StartTime = Int32.Parse(stTime);
             _newAppointment.EndTime = Int32.Parse(endTime);
+
             _newAppointment.Reminder = ReminderToggle.IsChecked.Value;
-            _newAppointment.ReminderType = ((ComboBoxItem)RemType.SelectedItem).Content.ToString();
-            _newAppointment.ReminderTimeOfDay = ((ComboBoxItem)RemTOD.SelectedItem).Content.ToString();
-            _newAppointment.ReminderDays = ((ComboBoxItem)RemDays.SelectedItem).Content.ToString();
+            if (_newAppointment.Reminder)
+            {
+                _newAppointment.ReminderType = ((ComboBoxItem)RemType.SelectedItem).Content.ToString();
+                _newAppointment.ReminderTimeOfDay = ((ComboBoxItem)RemTOD.SelectedItem).Content.ToString();
+                _newAppointment.ReminderDays = ((ComboBoxItem)RemDays.SelectedItem).Content.ToString();
+            }
+
             _newAppointment.Comments = CommentBox.Text;
             _newAppointment.Height = (type == "Consultation" ? "70" : "35");
             _newAppointment.Patient = DIVM.PVM.ActivePatient.FirstName + " " + DIVM.PVM.ActivePatient.LastName;
@@ -410,8 +433,12 @@ namespace Appointed.Views.Sidebar
             return new DateTime(year, month, day, startTime / 100, startTime % 100, 0);
         }
 
+        private void SaveNotesBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
 
-
+            DIVM.AVM._appointmentLookup[Int32.Parse(DIVM.AVM._activeAppointment.ID)].Comments = CommentBox.Text;
+        }
     }
 
 }

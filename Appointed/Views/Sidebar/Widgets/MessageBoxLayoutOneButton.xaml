@@ -43,6 +43,7 @@
                 x:Name="Message"
                 HorizontalAlignment="Center"
                 Style="{StaticResource text_BlackMedium}"
+                TextWrapping="Wrap"
                 Margin="4"
                 Grid.Column="0"
                 Grid.Row="2"

@@ -42,6 +42,7 @@
             <TextBlock
                 x:Name="Message"
                 HorizontalAlignment="Center"
+                TextWrapping="Wrap"
                 Style="{StaticResource text_BlackMedium}"
                 Margin="4"
                 Grid.Column="0"

@@ -73,6 +73,7 @@ namespace Appointed.Views
                     MyMessageBox.Buton.No
                 );
         }
+
         private void OnDeleteConfirmation(object sender, MessageBoxEventArgs e)
         {
             Home h = App.Current.MainWindow as Home;

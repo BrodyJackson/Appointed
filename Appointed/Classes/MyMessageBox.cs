@@ -150,6 +150,7 @@ namespace Appointed.Classes
 
         private void OnButtonClick(object sender, RoutedEventArgs e)
         {
+            e.Handled = true;
             Button b = sender as Button;
 
             if (b.Name == "LeftButton" || b.Name == "Button")

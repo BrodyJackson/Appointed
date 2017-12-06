@@ -59,6 +59,27 @@ namespace Appointed.Classes
             _pastAppointments = new List<int>();
         }
 
+
+        public Patient(Patient toCopy)
+        {
+            BirthDate = toCopy.BirthDate;
+            Business = toCopy.Business;
+            Cell = toCopy.Cell;
+            City = toCopy.City;
+            Email = toCopy.Email;
+            FirstName = toCopy.FirstName;
+            HealthID = toCopy.HealthID;
+            LastName = toCopy.LastName;
+            MiddleName = toCopy.MiddleName;
+            Phone = toCopy.Phone;
+            PostalCode = toCopy.PostalCode;
+            Province = toCopy.Province;
+            Sex = toCopy.Sex;
+            Street = toCopy.Street;
+            Notes = toCopy.Notes;
+            EmergencyContact = toCopy.EmergencyContact;
+        }
+
 		//Property methods
 
         public void MoveAppointmentToPast(int key)

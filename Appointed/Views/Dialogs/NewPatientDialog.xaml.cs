@@ -62,7 +62,7 @@ namespace Appointed.Views.Dialogs
                 if (SavePatient())
                 {
                     ExitAction = EXIT_ACTION.SAVEBOOK;
-                    (App.Current.MainWindow.DataContext as DayInformationViewModel).PVM.ActivePatient = _patient;
+                    (App.Current.MainWindow.DataContext as DayInformationViewModel).PVM.ActivePatient = new Patient(_patient);
                     (App.Current.MainWindow as Home).SidebarView.SetSidebarView(new NewAppointmentSidebar());
                     Close();
                 }

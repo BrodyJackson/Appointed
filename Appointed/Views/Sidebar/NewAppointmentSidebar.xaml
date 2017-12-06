@@ -11,8 +11,10 @@
     d:DesignWidth="300">
 
     <ScrollViewer
-        Margin="12"
-        VerticalScrollBarVisibility="Hidden">
+        VerticalScrollBarVisibility="Hidden"
+        CanContentScroll="True"
+        HorizontalAlignment="Stretch"
+        Margin="12">
         <DockPanel
             LastChildFill="False">
             <Grid
@@ -462,46 +464,78 @@
                     Grid.ColumnSpan="2" />
             </Grid>
 
-            <Grid
-                DockPanel.Dock="Top">
-                <Grid.RowDefinitions>
-                    <RowDefinition
-                        Height="auto" />
-                    <RowDefinition
-                        Height="auto" />
-                </Grid.RowDefinitions>
-
+            
+            
+            
+            <Grid DockPanel.Dock="Top">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition
-                        Width="auto" />
-                    <ColumnDefinition
-                        Width="*" />
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
+
+
                 <TextBlock
+                    Grid.Column="0"
+                    Style="{StaticResource text_OrangeRedMedium}"
+                    Text="Comments"
+                    Margin="10,0,10,0"
+                />
+
+
+                <Button
+                    Name="SaveCommentsButton"
+                    Grid.Column="2"
                     Grid.Row="0"
-                    Margin="4"
-                    Style="{StaticResource text_BlackMedium}"
-                    Text="Comments" />
+                    Margin="2"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Click="SaveNotesBtn_Click"
+                    BorderBrush="Transparent"
+                    Background="Transparent"
+                    Height="24"
+                    Width="24">
+                    <Image
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            SnapsToDevicePixels="True"
+                            Source="/Appointed;component/Assets/SaveIcon.jpg" />
+                </Button>
+            </Grid>
+
+
+            <ScrollViewer
+                MinHeight="125" 
+                CanContentScroll="True" 
+                BorderBrush="Black" 
+                BorderThickness="1" 
+                Background="Lavender" 
+                Margin="10,10,10,0"
+                VerticalScrollBarVisibility="Auto"
+                HorizontalScrollBarVisibility="Disabled"
+                DockPanel.Dock="Top"
+                MaxHeight="200"
+            >
 
                 <TextBox
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    Margin="4"
-                    VerticalAlignment="Stretch"
-                    HorizontalAlignment="Stretch"
                     x:Name="CommentBox"
-                    Background="{x:Null}"
-                    SpellCheck.IsEnabled="True"
-                    Cursor="Pen"
-                    ToolTip="Click to edit Notes"
+                    Text="{Binding AVM._activeAppointment.Comments}"
+                    AcceptsReturn="True"
+                    AcceptsTab="True"
+                    BorderBrush="SteelBlue" 
+                    Background="{x:Null}" 
+                    SpellCheck.IsEnabled="True" 
+                    Cursor="Pen" 
+                    ToolTip="Click to edit Comments"
                     TextWrapping="Wrap"
-                    VerticalScrollBarVisibility="Auto"
-                    MinHeight="75"
-                    MaxHeight="150" />
-                </Grid>
+                />
 
-                <Grid
+            </ScrollViewer>
+
+
+            
+            
+            
+            <Grid
                     DockPanel.Dock="Bottom"
                     Margin="0,0,0,0">
 
