@@ -37,7 +37,7 @@ namespace Appointed.Views
             Button checkIn = sender as Button;
 
             if (checkIn.Content.ToString() == "Check-In")
-            { 
+            {
                 DIVM.AVM._appointmentLookup[Int32.Parse(DIVM.AVM._activeAppointment.ID)].Arrived = true;
                 DIVM.AVM._activeAppointment.Arrived = true;
             }
@@ -99,8 +99,7 @@ namespace Appointed.Views
 
                 if (appt.EndTime % 100 > 60)
                     appt.EndTime -= 40;
-           }
-
+            }
 
             appt.Comments = "";
             appt.Height = "35";
@@ -112,10 +111,13 @@ namespace Appointed.Views
             appt.Type = "";
             appt.Waitlisted = false;
 
+
             if (appt.PatientObj != null)
                 appt.PatientObj.RemoveUpcommingAppointmentKey(Int32.Parse(appt.ID));
 
-            h.SidebarView.SetSidebarView(new HomeSidebar());
+            appt.PatientObj = null;
+
+            h.SidebarView.SetSidebarView(h.SidebarView.GetPreviousSidebar(), false);
         }
 
         private void SaveNotesBtn_Click(object sender, RoutedEventArgs e)

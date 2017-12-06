@@ -332,8 +332,8 @@ namespace Appointed.Views.Sidebar
                     MyMessageBox msgBox = new MyMessageBox();
                     msgBox.Show
                         (
-                            "The time slot specified is taken!",
-                            "Unable to Modify Appointment",
+                            "The time slot: " + (StartTime.SelectedItem as Time).TimeString + " - " + EndTime.Text + " is not free.",
+                            "Unable to Schedule Appointment",
                             MyMessageBox.Buton.Ok
                         );
 
@@ -348,8 +348,8 @@ namespace Appointed.Views.Sidebar
                     MyMessageBox msgBox = new MyMessageBox();
                     msgBox.Show
                         (
-                            "The doctor specified is unavailable at that time!", //TODO More specific error message
-                            "Unable to Modify Appointment",
+                             drName + " is Unavaliable " + dateString + " at " + (StartTime.SelectedItem as Time).TimeString,
+                            "Unable to Schedule Appointment",
                             MyMessageBox.Buton.Ok
                         );
 
