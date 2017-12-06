@@ -26,9 +26,6 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             InitializeComponent();
         }
 
-        private void EditBtn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            
-        }
+        
     }
 }

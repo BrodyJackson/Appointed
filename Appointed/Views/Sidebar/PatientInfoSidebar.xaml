@@ -61,6 +61,7 @@
                     Height="auto" />
 
                 <Widgets:PatientNotesView
+                    x:Name="Notes"
                     DockPanel.Dock="Top"
                     Margin="0,4,0,0"
                     Height="auto" />

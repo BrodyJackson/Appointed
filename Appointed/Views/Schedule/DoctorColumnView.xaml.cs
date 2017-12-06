@@ -214,6 +214,9 @@ namespace Appointed.Views
 
             if (!(h.SidebarView.GetSidebarView() is ModifyAppointmentSidebar) && appt.Type != "")
             {
+                //Why not do this?
+                //DIVM.AVM._activeAppointment = new Appointment(appt);
+
                 DIVM.AVM._activeAppointment.Colour = appt.Colour;
                 DIVM.AVM._activeAppointment.Comments = appt.Comments;
                 DIVM.AVM._activeAppointment.Height = appt.Height;
@@ -222,6 +225,7 @@ namespace Appointed.Views
                 DIVM.AVM._activeAppointment.Arrived = appt.Arrived;
                 DIVM.AVM._activeAppointment.Opacity = appt.Opacity;
                 DIVM.AVM._activeAppointment.Patient = appt.Patient;
+                DIVM.AVM._activeAppointment.PatientObj = appt.PatientObj; 
                 DIVM.AVM._activeAppointment.Type = appt.Type;
                 DIVM.AVM._activeAppointment.Waitlisted = appt.Waitlisted;
                 DIVM.AVM._activeAppointment.RowSpan = appt.RowSpan;

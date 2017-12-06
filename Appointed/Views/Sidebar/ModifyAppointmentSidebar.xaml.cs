@@ -71,26 +71,27 @@ namespace Appointed.Views.Sidebar
             RemType.Visibility = Visibility.Visible;
 
             DayInformationViewModel DIVM = (App.Current.MainWindow.DataContext as DayInformationViewModel);
-            //Only show type for which individual has contact method
-            ComboBoxItem[] items = new ComboBoxItem[3];
-            RemType.Items.CopyTo(items, 0);
-            
-            //Remove Text option
-            if (string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Cell))
-            {
-                RemType.Items.Remove(items[1]);
-            }
-            //Remove Phone
-            if (string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Phone) && string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Business) && string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Cell))
-            {
-                RemType.Items.Remove(items[2]);
-            }
-            //Remove Email
-            if (string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Email))
-            {
-                RemType.Items.Remove(items[0]);
-            }
+            if (DIVM.AVM._activeAppointment.PatientObj != null)
+            {//Only show type for which individual has contact method
+                ComboBoxItem[] items = new ComboBoxItem[3];
+                RemType.Items.CopyTo(items, 0);
 
+                //Remove Text option
+                if (string.IsNullOrWhiteSpace(DIVM.AVM._activeAppointment.PatientObj.Cell))
+                {
+                    RemType.Items.Remove(items[1]);
+                }
+                //Remove Phone
+                if (string.IsNullOrWhiteSpace(DIVM.AVM._activeAppointment.PatientObj.Phone) && string.IsNullOrWhiteSpace(DIVM.AVM._activeAppointment.PatientObj.Business) && string.IsNullOrWhiteSpace(DIVM.AVM._activeAppointment.PatientObj.Cell))
+                {
+                    RemType.Items.Remove(items[2]);
+                }
+                //Remove Email
+                if (string.IsNullOrWhiteSpace(DIVM.AVM._activeAppointment.PatientObj.Email))
+                {
+                    RemType.Items.Remove(items[0]);
+                }
+            }
             RemTypeLable.Visibility = Visibility.Visible;
             RemTOD.Visibility = Visibility.Visible;
             RemDays.Visibility = Visibility.Visible;
@@ -241,7 +242,7 @@ namespace Appointed.Views.Sidebar
                 h.SidebarView.SetSidebarView(h.SidebarView.GetPreviousSidebar());
             }
         }
-      
+
 
         private void ComboBox_StartTimeSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -335,11 +336,11 @@ namespace Appointed.Views.Sidebar
                             "Unable to Modify Appointment",
                             MyMessageBox.Buton.Ok
                         );
-                    
+
                     return;
                 }
 
-                int sTime = Int32.Parse(stTime); int eTime = Int32.Parse(endTime); if (eTime < sTime) eTime += 1200; 
+                int sTime = Int32.Parse(stTime); int eTime = Int32.Parse(endTime); if (eTime < sTime) eTime += 1200;
 
                 if ((!DIVM.AVM.DoctorsOnShift.ElementAt(drColumn).IsAvailable(sTime)) ||
                         (!DIVM.AVM.DoctorsOnShift.ElementAt(drColumn).IsAvailable(eTime)))
@@ -347,7 +348,7 @@ namespace Appointed.Views.Sidebar
                     MyMessageBox msgBox = new MyMessageBox();
                     msgBox.Show
                         (
-                            "The doctor specified is unavailable at that time!",
+                            "The doctor specified is unavailable at that time!", //TODO More specific error message
                             "Unable to Modify Appointment",
                             MyMessageBox.Buton.Ok
                         );
@@ -373,6 +374,7 @@ namespace Appointed.Views.Sidebar
             targetAppointment.Height = (type == "Consultation" ? "70" : "35");
             targetAppointment.Patient = activeAppt.Patient;
             targetAppointment.Opacity = activeAppt.Opacity;
+            targetAppointment.PatientObj = activeAppt.PatientObj;
 
             if (targetAppointment.Type == "Consultation")// && targetAppointment != activeAppt)
                 apptThatFollowsTarget.Visibility = "Collapsed";

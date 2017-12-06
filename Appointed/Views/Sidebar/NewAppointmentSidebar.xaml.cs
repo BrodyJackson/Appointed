@@ -366,6 +366,7 @@ namespace Appointed.Views.Sidebar
             _newAppointment.Comments = CommentBox.Text;
             _newAppointment.Height = (type == "Consultation" ? "70" : "35");
             _newAppointment.Patient = DIVM.PVM.ActivePatient.FirstName + " " + DIVM.PVM.ActivePatient.LastName;
+            _newAppointment.PatientObj = DIVM.PVM.ActivePatient;
             //I tried to make this update to the active patient value that will be set by search bar
             _newAppointment.Opacity = "0.4";
             _newAppointment.Visibility = "Visible";
