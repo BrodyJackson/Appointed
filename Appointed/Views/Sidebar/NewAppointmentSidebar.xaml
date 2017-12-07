@@ -470,36 +470,13 @@
             <Grid DockPanel.Dock="Top">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-
-
                 <TextBlock
                     Grid.Column="0"
                     Style="{StaticResource text_OrangeRedMedium}"
                     Text="Comments"
                     Margin="10,0,10,0"
                 />
-
-
-                <Button
-                    Name="SaveCommentsButton"
-                    Grid.Column="2"
-                    Grid.Row="0"
-                    Margin="2"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Top"
-                    Click="SaveNotesBtn_Click"
-                    BorderBrush="Transparent"
-                    Background="Transparent"
-                    Height="24"
-                    Width="24">
-                    <Image
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            SnapsToDevicePixels="True"
-                            Source="/Appointed;component/Assets/SaveIcon.jpg" />
-                </Button>
             </Grid>
 
 

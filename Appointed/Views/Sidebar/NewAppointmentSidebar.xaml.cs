@@ -66,6 +66,7 @@ namespace Appointed.Views.Sidebar
             RemDays.SelectedIndex = DIVM.AVM._activeAppointment.RemDaysIndex;
             RemTOD.SelectedIndex = DIVM.AVM._activeAppointment.RemTODIndex;
             RemType.SelectedIndex = DIVM.AVM._activeAppointment.RemTypeIndex;
+            StartTime.SelectedIndex = 0;
 
             AddToWaitlistCheckBox.IsChecked = DIVM.AVM._activeAppointment.Waitlisted;
             if (DIVM.WaitList.PeekApptWaiting(DIVM.AVM._activeAppointment) != null)
@@ -293,6 +294,18 @@ namespace Appointed.Views.Sidebar
 
         private void OnMouseLeftRelease_Save(object sender, MouseButtonEventArgs e)
         {
+            if (!ValidateFields())
+            {
+                MyMessageBox msgBox = new MyMessageBox();
+                msgBox.Show
+                    (
+                        "The date provided is not valid.",
+                        "Unable to Schedule Appointment",
+                        MyMessageBox.Buton.Ok
+                    );
+                return;
+            }                
+
             DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
             //don't think I need active appointment, will make when done gettting values from boxes
             Appointment targetAppointment = null;
@@ -419,6 +432,14 @@ namespace Appointed.Views.Sidebar
                 DIVM.ShiftView.Execute(diff.Days);
         }
 
+        private bool ValidateFields()
+        {
+            DateTime dt;
+            if (!DateTime.TryParse(DatePicker.InputText.TextField.Text, out dt))
+                return false;
+
+            return true;
+        }
 
         public DateTime GetDateTime(int startTime, string yearMonthDay)
         {
