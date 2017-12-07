@@ -105,6 +105,9 @@ namespace Appointed.Classes
 
             int key = dateDesired.GetHashCode() + DIVM.AVM.FindDrColumnForDrName(nameOfDocDesired);
 
+            if (DIVM.AVM._appointmentLookup[key].Type == "")
+                return -1;
+
             if (waitlist.ContainsKey(key) && waitlist[key] != null)
                 waitlist[key].Add(apptToAdd);
             else

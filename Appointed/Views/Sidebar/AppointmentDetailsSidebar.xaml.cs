@@ -88,7 +88,12 @@ namespace Appointed.Views
             // May need to call twice if the appt was a consultation.
             // Once for the appt that was following it and once the appt itself.
             DIVM.FreeAppointmentSlot(appt);
-            DIVM.WaitList.RemoveAppointment(appt);
+
+            if (DIVM.SVM.WaitlistAlerts.ContainsKey(Int32.Parse(appt.ID)))
+            {
+                DIVM.SVM.WaitlistAlerts.Remove(Int32.Parse(appt.ID));
+            }
+            
 
             if (DIVM.AVM._activeAppointment.Type == "Consultation")
             {

@@ -125,6 +125,9 @@ namespace Appointed.Views.Sidebar
                 RemType.SelectedIndex = DIVM.AVM._activeAppointment.RemTypeIndex;
             }
 
+            int timeIndex = DIVM.AVM._highlightedAppointment.TimeIndex;
+            StartTime.SelectedIndex = timeIndex;
+
             AddToWaitlistCheckBox.IsChecked = DIVM.AVM._activeAppointment.Waitlisted;
             if (DIVM.WaitList.PeekApptWaiting(DIVM.AVM._activeAppointment) != null)
             {
@@ -414,10 +417,24 @@ namespace Appointed.Views.Sidebar
 
                 drName = ((Doctor)WaitlistDoctorComboBox.SelectedItem).DoctorName;
 
-                targetAppointment.WaitlistPos = DIVM.WaitList.QueueAppointment(targetAppointment, date, drName).ToString();
-                targetAppointment.Waitlisted = true;
+                int pos = DIVM.WaitList.QueueAppointment(targetAppointment, date, drName);
+                if (pos == -1)
+                {
+                    MyMessageBox msgBox = new MyMessageBox();
+                    msgBox.MessageBoxResult += OnDiscardConfirmation;
+                    msgBox.Show
+                        (
+                            "The slot you waitlisted for is free. Try booking there instead.",
+                            "Waitlist Appointment",
+                            MyMessageBox.Buton.Ok
+                        );
+                }
+                else
+                {
+                    targetAppointment.WaitlistPos = pos.ToString();
+                    targetAppointment.Waitlisted = true;
+                }
             }
-
 
 
             if (activeAppt.Type == "Consultation" && targetAppointment != activeAppt)
@@ -453,7 +470,7 @@ namespace Appointed.Views.Sidebar
             if (!DateTime.TryParse(DatePicker.InputText.TextField.Text, out dt))
                 return false;
 
-            if (!DateTime.TryParse(WaitlistDatePicker.InputText.TextField.Text, out dt))
+            if ((bool)AddToWaitlistCheckBox.IsChecked && !DateTime.TryParse(WaitlistDatePicker.InputText.TextField.Text, out dt))
                 return false;
 
             return true;

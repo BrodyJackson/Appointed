@@ -66,7 +66,9 @@ namespace Appointed.Views.Sidebar
             RemDays.SelectedIndex = DIVM.AVM._activeAppointment.RemDaysIndex;
             RemTOD.SelectedIndex = DIVM.AVM._activeAppointment.RemTODIndex;
             RemType.SelectedIndex = DIVM.AVM._activeAppointment.RemTypeIndex;
-            StartTime.SelectedIndex = 0;
+
+            int timeIndex = DIVM.AVM._highlightedAppointment.TimeIndex;
+            StartTime.SelectedIndex = timeIndex;
 
             AddToWaitlistCheckBox.IsChecked = DIVM.AVM._activeAppointment.Waitlisted;
             if (DIVM.WaitList.PeekApptWaiting(DIVM.AVM._activeAppointment) != null)
@@ -382,17 +384,29 @@ namespace Appointed.Views.Sidebar
             if ((bool)AddToWaitlistCheckBox.IsChecked)
             {
                 dateString = WaitlistDatePicker.InputText.TextField.Text;
-
                 stTime = ((Time)WaitlistStartTime.SelectedItem).TimeString;
                 stTime = stTime.Substring(0, stTime.IndexOf(':')) + stTime.Substring(stTime.IndexOf(':') + 1);
                 time = Int32.Parse(stTime);
-
                 DateTime date = GetDateTime(time, dateString);
-
                 drName = ((Doctor)WaitlistDoctorComboBox.SelectedItem).DoctorName;
 
-                _newAppointment.WaitlistPos = DIVM.WaitList.QueueAppointment(_newAppointment, date, drName).ToString();
-                _newAppointment.Waitlisted = true;
+                int pos = DIVM.WaitList.QueueAppointment(_newAppointment, date, drName);
+                if (pos == -1)
+                {
+                    MyMessageBox msgBox = new MyMessageBox();
+                    msgBox.MessageBoxResult += OnDiscardConfirmation;
+                    msgBox.Show
+                        (
+                            "The slot you waitlisted for is free. Try booking there instead.",
+                            "Waitlist Appointment",
+                            MyMessageBox.Buton.Ok
+                        );
+                }
+                else
+                {
+                    _newAppointment.WaitlistPos = pos.ToString();
+                    _newAppointment.Waitlisted = true;
+                }
             }
 
             _newAppointment.Type = type;
@@ -410,7 +424,6 @@ namespace Appointed.Views.Sidebar
             _newAppointment.Comments = CommentBox.Text;
             _newAppointment.Height = (type == "Consultation" ? "70" : "35");
             _newAppointment.Patient = DIVM.PVM.ActivePatient.FirstName + " " + DIVM.PVM.ActivePatient.LastName;
-            //I tried to make this update to the active patient value that will be set by search bar
             _newAppointment.Opacity = "0.4";
             _newAppointment.Visibility = "Visible";
 
@@ -432,13 +445,18 @@ namespace Appointed.Views.Sidebar
                 DIVM.ShiftView.Execute(diff.Days);
         }
 
+
+
+
+
+
         private bool ValidateFields()
         {
             DateTime dt;
             if (!DateTime.TryParse(DatePicker.InputText.TextField.Text, out dt))
                 return false;
 
-            if (!DateTime.TryParse(WaitlistDatePicker.InputText.TextField.Text, out dt))
+            if ((bool)AddToWaitlistCheckBox.IsChecked && !DateTime.TryParse(WaitlistDatePicker.InputText.TextField.Text, out dt))
                 return false;
 
             return true;
