@@ -149,6 +149,9 @@ namespace Appointed.Views.Sidebar
 
             DatePicker.CalendarBlackoutDates.AddDatesInPast();
             DatePicker.CalendarBlackoutDates.Add(new CalendarDateRange(DIVM.AVM.BeginningOfAllTime.AddDays(DIVM.AVM.NumOfDaysPopulated), DateTime.MaxValue));
+
+            WaitlistDatePicker.CalendarBlackoutDates.AddDatesInPast();
+            WaitlistDatePicker.CalendarBlackoutDates.Add(new CalendarDateRange(DIVM.AVM.BeginningOfAllTime.AddDays(DIVM.AVM.NumOfDaysPopulated), DateTime.MaxValue));
         }
 
         private void EmptySlotClick(object sender, DoctorColumnView.ApptClickEventArgs e)
