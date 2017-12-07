@@ -292,6 +292,18 @@ namespace Appointed.Views.Sidebar
 
         private void OnMouseLeftRelease_Save(object sender, MouseButtonEventArgs e)
         {
+            if (!ValidateFields())
+            {
+                MyMessageBox msgBox = new MyMessageBox();
+                msgBox.Show
+                    (
+                        "The date provided is not valid.",
+                        "Unable to Schedule Appointment",
+                        MyMessageBox.Buton.Ok
+                    );
+                return;
+            }
+
             DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
             Appointment activeAppt = DIVM.AVM._appointmentLookup[Int32.Parse(DIVM.AVM._activeAppointment.ID)];
             Appointment targetAppointment = null;
@@ -435,8 +447,17 @@ namespace Appointed.Views.Sidebar
         }
 
 
+        private bool ValidateFields()
+        {
+            DateTime dt;
+            if (!DateTime.TryParse(DatePicker.InputText.TextField.Text, out dt))
+                return false;
 
+            if (!DateTime.TryParse(WaitlistDatePicker.InputText.TextField.Text, out dt))
+                return false;
 
+            return true;
+        }
 
         public DateTime GetDateTime(int startTime, string yearMonthDay)
         {

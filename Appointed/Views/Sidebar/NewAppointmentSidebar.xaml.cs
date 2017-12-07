@@ -438,6 +438,9 @@ namespace Appointed.Views.Sidebar
             if (!DateTime.TryParse(DatePicker.InputText.TextField.Text, out dt))
                 return false;
 
+            if (!DateTime.TryParse(WaitlistDatePicker.InputText.TextField.Text, out dt))
+                return false;
+
             return true;
         }
 
