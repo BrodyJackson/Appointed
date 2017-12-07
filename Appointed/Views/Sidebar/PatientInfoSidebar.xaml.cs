@@ -53,8 +53,6 @@ namespace Appointed.Views.Sidebar
 
         private void PatientInfoSidebarLoaded(object sender, RoutedEventArgs e)
         {
-            Notes.CommentBox.Text = Patient.Notes;
-
             PopulateUpcomingAppointments();
         }
 

@@ -95,6 +95,9 @@ namespace Appointed.Classes
 
         public void AddUpcommingAppointment(int key)
         {
+            if (_upcomingAppointments == null)
+                _upcomingAppointments = new List<int>();
+
             _upcomingAppointments.Add(key);
         }
 
