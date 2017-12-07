@@ -35,6 +35,7 @@
                 Style="{StaticResource text_HeadingLarge}"
                 Grid.Row="0"
                 Grid.Column="0"
+                TextAlignment="Center"
                 HorizontalAlignment="Center"
                 Text="Title"
                 >
@@ -44,6 +45,7 @@
                 x:Name="Message"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
+                TextAlignment="Center"
                 Style="{StaticResource text_BlackMedium}"
                 TextWrapping="Wrap"
                 Margin="4"

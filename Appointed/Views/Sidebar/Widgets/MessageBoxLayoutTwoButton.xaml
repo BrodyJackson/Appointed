@@ -29,13 +29,14 @@
                 <RowDefinition Height="*" MinHeight="30" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-
             <TextBlock
+
                 x:Name="Title"
                 Style="{StaticResource text_HeadingLarge}"
                 Grid.Row="0"
                 Grid.Column="0"
                 HorizontalAlignment="Center"
+                TextAlignment="Center"
                 Text="Title"
                 >
             </TextBlock>
@@ -45,6 +46,7 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 TextWrapping="Wrap"
+                TextAlignment="Center"
                 Style="{StaticResource text_BlackMedium}"
                 Margin="4"
                 Grid.Column="0"
