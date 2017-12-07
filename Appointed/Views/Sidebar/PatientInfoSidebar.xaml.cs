@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Appointed.ViewModels;
+using Appointed.Views.Sidebar.ListItems;
 
 namespace Appointed.Views.Sidebar
 {
@@ -34,6 +35,8 @@ namespace Appointed.Views.Sidebar
             ContactInfo.patient = patient;
             EmergInfo.patient = patient;
             Notes.patient = patient;
+
+            this.Loaded += PatientInfoSidebarLoaded;
         }
 
         /// <summary>
@@ -45,14 +48,43 @@ namespace Appointed.Views.Sidebar
             return BasicInfo.HasChanges || AddrInfo.HasChanges || ContactInfo.HasChanges || EmergInfo.HasChanges || Notes.HasChanges;
         }
 
+
+
+
+        private void PatientInfoSidebarLoaded(object sender, RoutedEventArgs e)
+        {
+            Notes.CommentBox.Text = Patient.Notes;
+
+            PopulateUpcomingAppointments();
+        }
+
+
+        private void PopulateUpcomingAppointments()
+        {
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
+            Appointment a;
+            ApptHistoryDetail hist;
+
+            foreach (int key in Patient.GetUpcomingAppointmentKeys())
+            {
+                a = DIVM.AVM._appointmentLookup[key];
+
+                hist = new ApptHistoryDetail();
+                hist.Date.Text = a.DateTimeStr;
+                hist.Doctor.Text = a.DoctorName;
+                hist.Type.Text = a.Type;
+
+                UpcomingAppts.PastApptList.Children.Add(hist);
+            }
+        }
+
+
         private void OnMouseLeftRelease_Discard(object sender, MouseButtonEventArgs e)
         {
             if (HasChanges())
             {
                 MyMessageBox msgBox = new MyMessageBox();
-
                 msgBox.MessageBoxResult += OnDiscardDecisionMade;
-
                 msgBox.Show
                     (
                         "Are you sure you wish to discard your changes?",
@@ -78,9 +110,7 @@ namespace Appointed.Views.Sidebar
                 h.SidebarView.SetSidebarView(h.SidebarView.GetPreviousSidebar());
             }
         }
-
-
-
+        
 
         private void OnMouseLeftRelease_Save(object sender, MouseButtonEventArgs e)
         {

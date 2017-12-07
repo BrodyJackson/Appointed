@@ -83,7 +83,7 @@
                 VerticalAlignment="Stretch">
 
                 <!--Insert ApptHistoryDetails here-->
-                <ListItems:ApptHistoryDetail />
+                <!--<ListItems:ApptHistoryDetail />-->
 
 
 
