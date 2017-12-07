@@ -117,6 +117,7 @@ namespace Appointed.Views.Sidebar
             if (!HasChanges())
             {
                 h.SidebarView.SetSidebarView(h.SidebarView.GetPreviousSidebar());
+                return;
             }
 
             DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
