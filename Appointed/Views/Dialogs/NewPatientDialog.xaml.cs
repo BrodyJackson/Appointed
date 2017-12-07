@@ -500,6 +500,13 @@ namespace Appointed.Views.Dialogs
                 ContactMethodReqText.Visibility = Visibility.Collapsed;
             }
 
+            DateTime dt = DateTime.Parse(Birthdate.InputText.TextField.Text);
+            if (dt > DateTime.Today)
+            {
+                Birthdate.InputText.MarkInvalid();
+                allValid = false;
+            }
+
             return allValid;
         }
     }
