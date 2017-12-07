@@ -18,7 +18,7 @@ namespace Appointed.Views.Sidebar
         public NewAppointmentSidebar()
         {
             InitializeComponent();
-
+            DayInformationViewModel DIVM = App.Current.MainWindow.DataContext as DayInformationViewModel;
             //Hide/Show the options
             ReminderToggle.Checked += ReminderToggle_Checked;
             ReminderToggle.Unchecked += ReminderToggle_Unchecked;
@@ -88,6 +88,9 @@ namespace Appointed.Views.Sidebar
             StartTime.SelectionChanged += StartTime_SelectionChanged;
             DoctorComboBox.SelectionChanged += DIVM.ChangeHighlight;
             ApptTypeComboBox.SelectionChanged += DIVM.ChangeHighlight;
+
+            DatePicker.CalendarBlackoutDates.AddDatesInPast();
+            DatePicker.CalendarBlackoutDates.Add(new CalendarDateRange(DIVM.AVM.BeginningOfAllTime.AddDays(DIVM.AVM.NumOfDaysPopulated), DateTime.MaxValue));
         }
 
         private void EmptySlotClick(object sender, DoctorColumnView.ApptClickEventArgs e)

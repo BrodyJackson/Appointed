@@ -47,6 +47,7 @@ namespace Appointed.Views.Sidebar
             WaitlistDatePicker.OnCalendarLoaded += DatePicker_OnCalendarLoaded;
 
             DatePicker.OnDateChosen += DatePicker_OnDateChosen;
+            
 
             ThreeDayView tdv = (App.Current.MainWindow as Home).ThreeDayView;
 
@@ -145,6 +146,9 @@ namespace Appointed.Views.Sidebar
             StartTime.SelectionChanged += StartTime_SelectionChanged;
             DoctorComboBox.SelectionChanged += DIVM.ChangeHighlight;
             ApptTypeComboBox.SelectionChanged += DIVM.ChangeHighlight;
+
+            DatePicker.CalendarBlackoutDates.AddDatesInPast();
+            DatePicker.CalendarBlackoutDates.Add(new CalendarDateRange(DIVM.AVM.BeginningOfAllTime.AddDays(DIVM.AVM.NumOfDaysPopulated), DateTime.MaxValue));
         }
 
         private void EmptySlotClick(object sender, DoctorColumnView.ApptClickEventArgs e)

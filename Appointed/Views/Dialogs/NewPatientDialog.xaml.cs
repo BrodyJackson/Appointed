@@ -46,6 +46,10 @@ namespace Appointed.Views.Dialogs
             ContactRelation.TextField.TextChanged += ContactRelation_Changed;
             ContactPhone.TextField.TextChanged += ContactPhone_Changed;
 
+            Birthdate.OnCalendarLoaded += (s, e) => { (s as Calendar).BlackoutDates.Add(new CalendarDateRange(DateTime.Today.AddDays(1), DateTime.MaxValue)); };
+
+            Loaded += NewPatientDialog_Loaded;
+
             Closing += NewPatientDialog_Closing;
 
             DiscardBtn.Click += (object sender, RoutedEventArgs e) => { Close(); };
@@ -68,6 +72,12 @@ namespace Appointed.Views.Dialogs
                     Close();
                 }
             };
+        }
+
+        private void NewPatientDialog_Loaded(object sender, RoutedEventArgs e)
+        {
+            Birthdate.CalendarBlackoutDates.Add(new CalendarDateRange(DateTime.Today.AddDays(1), DateTime.MaxValue));
+
         }
 
         #region InputTextChanged Handlers

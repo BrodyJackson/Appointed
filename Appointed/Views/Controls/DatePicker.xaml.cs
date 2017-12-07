@@ -45,9 +45,13 @@ namespace Appointed.Views.Controls
         public event EventHandler OnCalendarLoaded;
         public event EventHandler<DateSelectedEventArgs> OnDateChosen;
 
+        public CalendarBlackoutDatesCollection CalendarBlackoutDates { get; set; }
+
         public DatePicker()
         {
             InitializeComponent();
+
+            CalendarBlackoutDates = new CalendarBlackoutDatesCollection(new Calendar());
 
             _textBorderBrush = InputText.TextField.BorderBrush;
 
@@ -134,11 +138,19 @@ namespace Appointed.Views.Controls
                 DateTime date;
                 if (input.Text.Length == 10 && DateTime.TryParse(input.Text, out date))
                 {
-                    DateSelected = new DateTime(date.Year, date.Month, date.Day);
-                    input.BorderBrush = _textBorderBrush;
+                    if (!CalendarBlackoutDates.Contains(date))
+                    {
+                        DateSelected = new DateTime(date.Year, date.Month, date.Day);
+                        input.BorderBrush = _textBorderBrush;
 
-                    if (DateSelected.HasValue)
-                        OnDateChosen?.Invoke(input, new DateSelectedEventArgs(DateSelected.Value, false));
+                        if (DateSelected.HasValue)
+                            OnDateChosen?.Invoke(input, new DateSelectedEventArgs(DateSelected.Value, false));
+                    }
+                    else
+                    {
+                        DateSelected = null;
+                        input.BorderBrush = Brushes.Red;
+                    }
                 }
                 else
                 {
