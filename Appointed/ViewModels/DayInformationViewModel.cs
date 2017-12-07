@@ -280,9 +280,10 @@ namespace Appointed.ViewModels
 
             Appointment a = AVM._appointmentLookup[key];
 
-            if(GetSidebar<NewAppointmentSidebar>(h) == null)
-                if (a.ID == AVM._activeAppointment.ID || a.Patient == AVM._activeAppointment.Patient)
-                    return;
+//            if (GetSidebar<NewAppointmentSidebar>(h) == null)
+
+            if (a.ID == AVM._activeAppointment.ID || a.Patient == AVM._activeAppointment.Patient && (a.Patient != ""))
+                return;
 
             if (a.Type != "" || a.Colour == "SlateGray")
             {
