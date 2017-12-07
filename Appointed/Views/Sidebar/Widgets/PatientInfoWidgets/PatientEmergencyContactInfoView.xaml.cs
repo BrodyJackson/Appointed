@@ -35,7 +35,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             set { }
         }
 
-        Patient p;
+        public Patient patient;
 
 
         public PatientEmergencyContactInfoView()
@@ -53,20 +53,20 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
 
         private void PatientEmergencyContactInfoView_Loaded(object sender, RoutedEventArgs e)
         {
-            p = ((App.Current.MainWindow as Home).DataContext as DayInformationViewModel).PVM.ActivePatient;
+            patient = ((App.Current.MainWindow as Home).DataContext as DayInformationViewModel).PVM.ActivePatient;
 
-            if (p.EmergencyContact.EmergencyPhone != null && p.EmergencyContact.EmergencyPhone != "")
-                ContactPhone.Text = p.EmergencyContact.EmergencyPhone;
+            if (patient.EmergencyContact.EmergencyPhone != null && patient.EmergencyContact.EmergencyPhone != "")
+                ContactPhone.Text = patient.EmergencyContact.EmergencyPhone;
             else
                 ContactPhone.Text = "(None)";
 
-            if (p.EmergencyContact.EmergencyName != null && p.EmergencyContact.EmergencyName != "")
-                ContactName.Text = p.EmergencyContact.EmergencyName;
+            if (patient.EmergencyContact.EmergencyName != null && patient.EmergencyContact.EmergencyName != "")
+                ContactName.Text = patient.EmergencyContact.EmergencyName;
             else
                 ContactName.Text = "(None)";
 
-            if (p.EmergencyContact.EmergencyRelation != null && p.EmergencyContact.EmergencyRelation != "")
-                ContactRelation.Text = p.EmergencyContact.EmergencyRelation;
+            if (patient.EmergencyContact.EmergencyRelation != null && patient.EmergencyContact.EmergencyRelation != "")
+                ContactRelation.Text = patient.EmergencyContact.EmergencyRelation;
             else
                 ContactRelation.Text = "(None)";
         }
@@ -110,7 +110,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
         {
             string field = ContactNameInput.TextField.Text;
 
-            if (field != p.EmergencyContact.EmergencyName)
+            if (field != patient.EmergencyContact.EmergencyName)
             {
                 if (field != "Name" && field != "")
                 {
@@ -127,9 +127,9 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                     ContactNameInvalid = true;
                 }
             }
-            else if (field == p.EmergencyContact.EmergencyName)
+            else if (field == patient.EmergencyContact.EmergencyName)
             {
-                ContactName.Text = p.EmergencyContact.EmergencyName;
+                ContactName.Text = patient.EmergencyContact.EmergencyName;
                 ContactName.Foreground = Brushes.Black;
                 ContactNameInput.Visibility = Visibility.Hidden;
             }
@@ -142,7 +142,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             field = field.Substring(1);
             field = field.Substring(0, 3) + "-" + field.Substring(5);
 
-            if (field != "(555) 555-5555" && field != p.EmergencyContact.EmergencyPhone)
+            if (field != "(555) 555-5555" && field != patient.EmergencyContact.EmergencyPhone)
             {
                 if (field.Length == 12 || field.Length == 16)
                 {
@@ -159,9 +159,9 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                     ContactPhoneInvalid = true;
                 }
             }
-            else if (field == p.EmergencyContact.EmergencyPhone)
+            else if (field == patient.EmergencyContact.EmergencyPhone)
             {
-                ContactPhone.Text = p.EmergencyContact.EmergencyPhone;
+                ContactPhone.Text = patient.EmergencyContact.EmergencyPhone;
                 ContactPhone.Foreground = Brushes.Black;
                 ContactPhoneInput.Visibility = Visibility.Hidden;
             }
@@ -173,7 +173,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
         {
             string field = ContactRelationInput.TextField.Text;
 
-            if (field != p.EmergencyContact.EmergencyRelation)
+            if (field != patient.EmergencyContact.EmergencyRelation)
             {
                 if (field != "Relation" && field != "")
                 {
@@ -190,9 +190,9 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                     ContactRelationInvalid = true;
                 }
             }
-            else if (field == p.EmergencyContact.EmergencyRelation)
+            else if (field == patient.EmergencyContact.EmergencyRelation)
             {
-                ContactRelation.Text = p.EmergencyContact.EmergencyRelation;
+                ContactRelation.Text = patient.EmergencyContact.EmergencyRelation;
                 ContactRelation.Foreground = Brushes.Black;
                 ContactRelationInput.Visibility = Visibility.Hidden;
             }

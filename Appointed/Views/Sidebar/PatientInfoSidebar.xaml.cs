@@ -28,8 +28,12 @@ namespace Appointed.Views.Sidebar
         {
             InitializeComponent();
             Patient = patient;
+
             BasicInfo.patient = patient;
             AddrInfo.patient = patient;
+            ContactInfo.patient = patient;
+            EmergInfo.patient = patient;
+            Notes.patient = patient;
         }
 
         /// <summary>
@@ -38,7 +42,7 @@ namespace Appointed.Views.Sidebar
         /// <returns></returns>
         public bool HasChanges()
         {
-            return BasicInfo.HasChanges || AddrInfo.HasChanges || ContactInfo.HasChanges || EmergInfo.HasChanges;
+            return BasicInfo.HasChanges || AddrInfo.HasChanges || ContactInfo.HasChanges || EmergInfo.HasChanges || Notes.HasChanges;
         }
 
         private void OnMouseLeftRelease_Discard(object sender, MouseButtonEventArgs e)
@@ -80,94 +84,68 @@ namespace Appointed.Views.Sidebar
 
         private void OnMouseLeftRelease_Save(object sender, MouseButtonEventArgs e)
         {
+            Home h = App.Current.MainWindow as Home;
+
             if (!HasChanges())
             {
-                Home h = App.Current.MainWindow as Home;
                 h.SidebarView.SetSidebarView(h.SidebarView.GetPreviousSidebar());
             }
 
             DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
             Patient p = DIVM.PVM.ActivePatient;
+            string workString;
 
             if (BasicInfo.HasChanges)
             {
-                string workString;
                 workString = BasicInfo.PatientName.Text;
                 int fNameLen = workString.LastIndexOf(",") - (workString.IndexOf(',') + 2);
                 p.FirstName = workString.Substring(workString.IndexOf(',') + 2, fNameLen);
                 p.LastName = workString.Substring(0, workString.IndexOf(","));
                 p.MiddleName = workString.Substring(workString.LastIndexOf(",") + 2);
 
-                p.HealthID = Int32.Parse(BasicInfo.PatientID.Text);
-                p.Sex = (BasicInfo.SexInput.SelectedIndex == 0 ? Patient.SEX.MALE :
-                        (BasicInfo.SexInput.SelectedIndex == 1 ? Patient.SEX.FEMALE : Patient.SEX.OTHER));
-                p.BirthDate = DateTime.Parse(BasicInfo.PatientBirthday.Text);
-            }
-            else if (AddrInfo.HasChanges)
-            {
-            }
-            else if (ContactInfo.HasChanges)
-            {
-            }
-            else
-            { 
+                workString = BasicInfo.PatientID.Text;
+                workString = workString.Substring(workString.IndexOf(":") + 2, 5) + workString.Substring(workString.Length - 3, 3);
+                p.HealthID = Int32.Parse(workString);
+
+                workString = BasicInfo.PatientSex.Text;
+                workString = workString.Substring(workString.IndexOf(":") + 2);
+                p.Sex = Patient.SexStringToEnum(workString);
+
+                workString = BasicInfo.PatientBirthday.Text;
+                workString = workString.Substring(workString.IndexOf(":") + 2);
+                p.BirthDate = DateTime.Parse(workString);
             }
 
+            if (AddrInfo.HasChanges)
+            {
+                p.Street = AddrInfo.PatientStreetAddress.Text;
+
+                workString = AddrInfo.PatientRegion.Text;
+                p.City = workString.Substring(0, workString.IndexOf(","));
+                workString = workString.Substring(workString.IndexOf(",") + 2);
+                p.Province = Patient.ProvinceStringToEnum(workString);
+                p.PostalCode = AddrInfo.PatientPostal.Text;
+            }
+
+            if (ContactInfo.HasChanges)
+            {            
+                p.Phone = ContactInfo.PatientHomePhone.Text;
+                p.Cell = ContactInfo.PatientCellPhone.Text;
+                p.Business =ContactInfo.PatientWorkPhone.Text;
+                p.Email = ContactInfo.PatientEmail.Text;
+            }
+
+            if (EmergInfo.HasChanges)
+            {
+                p.EmergencyContact.EmergencyName =EmergInfo.ContactName.Text;
+                p.EmergencyContact.EmergencyRelation = EmergInfo.ContactRelation.Text;                
+                p.EmergencyContact.EmergencyPhone = EmergInfo.ContactPhone.Text;
+            }
+
+            p.Notes = Notes.CommentBox.Text;
+
+            h.SidebarView.SetSidebarView(h.SidebarView.GetPreviousSidebar());
         }
-
-
-        //<Widgets:PatientBasicInfoView
-        //        x:Name="BasicInfo"
-        //        DockPanel.Dock="Top"
-        //        Margin="0,4,0,0"
-        //        Height="auto" />
-
-        //    <Widgets:PatientAddressInfoView
-        //        x:Name="AddrInfo"
-        //        DockPanel.Dock="Top"
-        //        Margin="0,4,0,0"
-        //        Height="auto" />
-
-        //    <Widgets:PatientContactInfoView
-        //        x:Name="ContactInfo"
-        //        DockPanel.Dock="Top"
-        //        Margin="0,4,0,0"
-        //        Height="auto" />
-
-        //    <Widgets:PatientEmergencyContactInfoView
-        //        x:Name="EmergInfo"
-        //        DockPanel.Dock="Top"
-        //        Margin="0,4,0,0"
-        //        Height="auto" />
-
-        //    <Widgets:PatientNotesView
-        //        x:Name="Notes"
-        //        DockPanel.Dock="Top"
-        //        Margin="0,4,0,0"
-        //        Height="auto" />
-
-        //    <Widgets:PatientUpcomingApptView
-        //        DockPanel.Dock="Top"
-        //        Margin= "0,4,0,0"
-        //        MaxHeight= "150"
-        //        MinHeight= "150"
-        //        Height= "auto" />
-
-        //    < Widgets:PatientApptHistoryView
-        //        DockPanel.Dock= "Top"
-        //        Margin= "0,4,0,0"
-        //        MaxHeight= "300"
-        //        MinHeight= "300"
-        //        Height= "auto" />
-
-
-
-
-
-
-
-
-
 
     }
 }

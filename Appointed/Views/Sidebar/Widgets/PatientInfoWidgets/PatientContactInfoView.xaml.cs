@@ -41,7 +41,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             }
         }
 
-        Patient p;
+        public Patient patient;
 
         public PatientContactInfoView()
         {
@@ -58,35 +58,35 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
 
         private void PatientContactInfoView_Loaded(object sender, RoutedEventArgs e)
         {
-            p = ((App.Current.MainWindow as Home).DataContext as DayInformationViewModel).PVM.ActivePatient;
+            patient = ((App.Current.MainWindow as Home).DataContext as DayInformationViewModel).PVM.ActivePatient;
 
-            if (p.Phone != null && p.Phone != "")
+            if (patient.Phone != null && patient.Phone != "")
             {
-                PatientHomePhone.Text = p.Phone;
+                PatientHomePhone.Text = patient.Phone;
                 HasHomePhone = true;
             }
             else
                 PatientHomePhone.Text = "(None)";
 
-            if (p.Cell != null && p.Cell != "")
+            if (patient.Cell != null && patient.Cell != "")
             {
-                PatientCellPhone.Text = p.Cell;
+                PatientCellPhone.Text = patient.Cell;
                 HasCellPhone = true;
             }
             else
                 PatientCellPhone.Text = "(None)";
 
-            if (p.Business != null && p.Business != "")
+            if (patient.Business != null && patient.Business != "")
             {
-                PatientWorkPhone.Text = p.Phone;
+                PatientWorkPhone.Text = patient.Phone;
                 HasWorkPhone = true;
             }
             else
                 PatientWorkPhone.Text = "(None)";
 
-            if (p.Email != null && p.Email != "")
+            if (patient.Email != null && patient.Email != "")
             {
-                PatientEmail.Text = p.Email;
+                PatientEmail.Text = patient.Email;
                 HasEmail = true;
             }
             else
@@ -140,7 +140,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             {
                 PatientHomePhone.Text = field;
 
-                if (field != p.Phone && !string.IsNullOrWhiteSpace(p.Phone))
+                if (field != patient.Phone && !string.IsNullOrWhiteSpace(patient.Phone))
                 {
                     PatientHomePhone.Foreground = Brushes.Blue;
                     HasChanges = true;
@@ -155,8 +155,8 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             }
             else
             {
-                PatientHomePhone.Text = string.IsNullOrWhiteSpace(p.Phone) ? emptyFieldText : PatientHomePhone.Text;
-                HasHomePhone = (p.Phone != null && p.Phone != emptyFieldText);
+                PatientHomePhone.Text = string.IsNullOrWhiteSpace(patient.Phone) ? emptyFieldText : PatientHomePhone.Text;
+                HasHomePhone = (patient.Phone != null && patient.Phone != emptyFieldText);
             }
 
             if (!HasContactMethod)
@@ -174,7 +174,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                     }
                     else
                     {
-                        PatientHomePhone.Text = p.Phone;
+                        PatientHomePhone.Text = patient.Phone;
                         PatientHomePhone.Foreground = Brushes.Black;
                         PatientHomePhone.Visibility = Visibility.Visible;
                         PatientHomePhoneInput.Visibility = Visibility.Hidden;
@@ -198,7 +198,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             {
                 PatientCellPhone.Text = field;
 
-                if (field != p.Cell && !string.IsNullOrWhiteSpace(p.Cell))
+                if (field != patient.Cell && !string.IsNullOrWhiteSpace(patient.Cell))
                 {
                     PatientCellPhone.Foreground = Brushes.Blue;
                     HasChanges = true;
@@ -213,8 +213,8 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             }
             else
             {
-                PatientCellPhone.Text = string.IsNullOrWhiteSpace(p.Cell) ? emptyFieldText : PatientCellPhone.Text;
-                HasCellPhone = (p.Cell != null && p.Cell != emptyFieldText);
+                PatientCellPhone.Text = string.IsNullOrWhiteSpace(patient.Cell) ? emptyFieldText : PatientCellPhone.Text;
+                HasCellPhone = (patient.Cell != null && patient.Cell != emptyFieldText);
             }
 
             if (!HasContactMethod)
@@ -232,7 +232,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                     }
                     else
                     {
-                        PatientCellPhone.Text = p.Cell;
+                        PatientCellPhone.Text = patient.Cell;
                         PatientCellPhone.Foreground = Brushes.Black;
                         PatientCellPhone.Visibility = Visibility.Visible;
                         PatientCellPhoneInput.Visibility = Visibility.Hidden;
@@ -253,7 +253,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             {
                 PatientWorkPhone.Text = field;
 
-                if (field != p.Business && !string.IsNullOrWhiteSpace(p.Business))
+                if (field != patient.Business && !string.IsNullOrWhiteSpace(patient.Business))
                 {
                     PatientWorkPhone.Foreground = Brushes.Blue;
                     HasChanges = true;
@@ -264,11 +264,11 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                     HasChanges = false;
                 }
 
-                HasWorkPhone = (p.Business != null && p.Business != emptyFieldText);
+                HasWorkPhone = (patient.Business != null && patient.Business != emptyFieldText);
             }
             else
             {
-                PatientWorkPhone.Text = string.IsNullOrWhiteSpace(p.Business) ? emptyFieldText : PatientWorkPhone.Text;
+                PatientWorkPhone.Text = string.IsNullOrWhiteSpace(patient.Business) ? emptyFieldText : PatientWorkPhone.Text;
                 HasWorkPhone = field != emptyFieldText;
             }
 
@@ -287,7 +287,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                     }
                     else
                     {
-                        PatientWorkPhone.Text = p.Business;
+                        PatientWorkPhone.Text = patient.Business;
                         PatientWorkPhone.Foreground = Brushes.Black;
                         PatientWorkPhone.Visibility = Visibility.Visible;
                         PatientWorkPhoneInput.Visibility = Visibility.Hidden;
@@ -323,7 +323,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             {
                 PatientEmail.Text = field;
 
-                if (field != p.Email && !string.IsNullOrWhiteSpace(p.Email))
+                if (field != patient.Email && !string.IsNullOrWhiteSpace(patient.Email))
                 {
                     PatientEmail.Foreground = Brushes.Blue;
                     HasChanges = true;
@@ -334,11 +334,11 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                     HasChanges = false;
                 }
 
-                HasEmail = (p.Email != null && field != emptyFieldText);
+                HasEmail = (patient.Email != null && field != emptyFieldText);
             }
             else
             {
-                PatientEmail.Text = string.IsNullOrWhiteSpace(p.Email) ? emptyFieldText : PatientEmail.Text;
+                PatientEmail.Text = string.IsNullOrWhiteSpace(patient.Email) ? emptyFieldText : PatientEmail.Text;
                 HasEmail = field != emptyFieldText;
             }
 
@@ -357,7 +357,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                     }
                     else
                     {
-                        PatientEmail.Text = p.Email;
+                        PatientEmail.Text = patient.Email;
                         PatientEmail.Foreground = Brushes.Black;
                         PatientEmail.Visibility = Visibility.Visible;
                         PatientEmailInput.Visibility = Visibility.Hidden;

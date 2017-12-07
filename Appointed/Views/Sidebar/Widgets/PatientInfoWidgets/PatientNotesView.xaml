@@ -8,67 +8,72 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="300">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition
-                Width="*" />
-            <ColumnDefinition
-                Width="auto" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition
-                Height="auto" />
-            <RowDefinition
-                Height="*" />
-        </Grid.RowDefinitions>
 
-        <Border
-            BorderThickness="1"
-            BorderBrush="LightGray"
-            Grid.ColumnSpan="2"
-            Grid.RowSpan="2" />
+    <DockPanel>
 
-        <!--<Image
-            Name="EditBtn"
-            Margin="0,2,2,0"
-            Grid.Column="1"
-            Grid.Row="0"
-            Width="16"
-            Height="16"
-            Cursor="Hand"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top"
-            Source="/Appointed;component/Assets/EditIcon.png"
-            ToolTip="Edit Patient Notes" />-->
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-        <TextBlock
-            Style="{StaticResource text_HeadingLarge}"
-            Margin="4"
-            Grid.Column="0"
-            Grid.Row="0"
-            Text="Notes"
-            FontFamily="Yu Gothic UI Light"
-            Grid.ColumnSpan="1" />
-        <TextBox 
-            IsTabStop="False"
-            AcceptsReturn="True"
-            AcceptsTab="False"
-            FontSize="14"
-            Margin="4"
-            Grid.Column="0"
-            Grid.Row="1"
-            Grid.ColumnSpan="2"
-            VerticalScrollBarVisibility="Auto"
-            Background="Lavender"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Top"
-            MaxHeight="200"
-            MinHeight="200"
-            Foreground="#444444"
-            Text="Always prefers early morning appts."
+
+            <TextBlock
+                Grid.Column="0"
+                Style="{StaticResource text_OrangeRedMedium}"
+                Text="Comments"
+                Margin="10,0,10,0"
             />
 
+            <Button
+                Name="SaveCommentsButton"
+                Grid.Column="2"
+                Grid.Row="0"
+                Margin="2"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Click="SaveNotesBtn_Click"
+                BorderBrush="Transparent"
+                Background="Transparent"
+                Height="24"
+                Width="24">
+                   
+                <Image
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    SnapsToDevicePixels="True"
+                    Source="/Appointed;component/Assets/SaveIcon.jpg" />
+            </Button>
+        </Grid>
 
 
-    </Grid>
+
+        <ScrollViewer
+            MinHeight="125" 
+            CanContentScroll="True" 
+            BorderBrush="Black" 
+            BorderThickness="1" 
+            Background="Lavender" 
+            Margin="10,10,10,0"
+            VerticalScrollBarVisibility="Auto"
+            DockPanel.Dock="Top"
+            MaxHeight="200">
+
+            <TextBox
+                x:Name="CommentBox"
+                Text="{Binding AVM._activeAppointment.Comments}"
+                AcceptsReturn="True"
+                AcceptsTab="True"
+                BorderBrush="SteelBlue" 
+                Background="{x:Null}" 
+                SpellCheck.IsEnabled="True" 
+                Cursor="Pen" 
+                ToolTip="Click to edit Comments"
+                TextWrapping="Wrap"
+                LostFocus="CommentBoxLostFocus"
+            />
+
+        </ScrollViewer>
+    </DockPanel>
+
 </UserControl>

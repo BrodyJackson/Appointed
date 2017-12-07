@@ -299,19 +299,19 @@ namespace Appointed.Classes
 
         public static PROVINCE ProvinceStringToEnum(string prov)
         {
-            if (prov == "Alberta") return PROVINCE.AB;
-            if (prov == "British Columbia") return PROVINCE.BC;
-            if (prov == "Manitoba") return PROVINCE.MB;
-            if (prov == "New Brunswick") return PROVINCE.NB;
-            if (prov == "Newfoundland and Labrador") return PROVINCE.NL;
-            if (prov == "Nova Scotia") return PROVINCE.NS;
-            if (prov == "Northwest Territories") return PROVINCE.NT;
-            if (prov == "Nunavut") return PROVINCE.NU;
-            if (prov == "Ontario") return PROVINCE.ON;
-            if (prov == "Prince Edward Island") return PROVINCE.PE;
-            if (prov == "Quebec") return PROVINCE.QC;
-            if (prov == "Saskatchewan") return PROVINCE.SK;
-            if (prov == "Yukon") return PROVINCE.YT;
+            if (prov == "AB") return PROVINCE.AB;
+            if (prov == "BC") return PROVINCE.BC;
+            if (prov == "MB") return PROVINCE.MB;
+            if (prov == "NB") return PROVINCE.NB;
+            if (prov == "NL") return PROVINCE.NL;
+            if (prov == "NS") return PROVINCE.NS;
+            if (prov == "NT") return PROVINCE.NT;
+            if (prov == "NU") return PROVINCE.NU;
+            if (prov == "ON") return PROVINCE.ON;
+            if (prov == "PE") return PROVINCE.PE;
+            if (prov == "QC") return PROVINCE.QC;
+            if (prov == "SK") return PROVINCE.SK;
+            if (prov == "YT") return PROVINCE.YT;
 
             //if all else fails, assume alberta
             return PROVINCE.AB;
