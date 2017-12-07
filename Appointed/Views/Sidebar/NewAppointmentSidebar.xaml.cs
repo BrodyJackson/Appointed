@@ -436,9 +436,12 @@ namespace Appointed.Views.Sidebar
             if (_newAppointment.Type == "Consultation")
                 apptThatFollowsTarget.Visibility = "Collapsed";
 
-            _newAppointment.PatientObj = DIVM.PVM.ActivePatient;
             DIVM.PVM.ActivePatient.AddUpcommingAppointment(key);
             DIVM.AVM._activeAppointment = new Appointment(_newAppointment);
+
+            _newAppointment.PatientObj = DIVM.PVM.ActivePatient;
+
+            DIVM.PVM.GetPatientDatabaseModel().GetPatientDictionary()[DIVM.PVM.ActivePatient.HealthID] = DIVM.PVM.ActivePatient;
 
             Home h = App.Current.MainWindow as Home;
             h.SidebarView.SetSidebarView(new AppointmentDetailsSidebar(), false);

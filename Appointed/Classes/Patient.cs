@@ -78,6 +78,12 @@ namespace Appointed.Classes
             Street = toCopy.Street;
             Notes = toCopy.Notes;
             EmergencyContact = toCopy.EmergencyContact;
+
+            _upcomingAppointments = new List<int>();
+            _upcomingAppointments.AddRange(toCopy._upcomingAppointments);
+            _pastAppointments = new List<int>();
+            _pastAppointments.AddRange(toCopy._pastAppointments);
+
         }
 
 		//Property methods
