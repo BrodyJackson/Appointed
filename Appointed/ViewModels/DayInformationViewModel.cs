@@ -271,6 +271,7 @@ namespace Appointed.ViewModels
 
         private void HighlightAppointment(DateTime dt, string drName, string apptType)
         {
+            Home h = App.Current.MainWindow as Home;
             int drColumn = AVM.FindDrColumnForDrName(drName);
             int key = dt.GetHashCode() + drColumn;
 
@@ -279,8 +280,9 @@ namespace Appointed.ViewModels
 
             Appointment a = AVM._appointmentLookup[key];
 
-            if (a.ID == AVM._activeAppointment.ID || a.Patient == AVM._activeAppointment.Patient)
-                return;
+            if(GetSidebar<NewAppointmentSidebar>(h) == null)
+                if (a.ID == AVM._activeAppointment.ID || a.Patient == AVM._activeAppointment.Patient)
+                    return;
 
             if (a.Type != "" || a.Colour == "SlateGray")
             {
