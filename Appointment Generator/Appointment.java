@@ -1,6 +1,7 @@
 //This class generates appointments for Appointed
-//Takes in doctor name as an argument
-
+//Takes in doctor name as a mandatory argument
+//Takes in two optional arguments, number of empty cells at the beginning and number of empty cells at the end
+//If optional arguments aren't provided, number of empty cells based on doctor
 import java.io.*;
 import java.util.*;
 
@@ -9,12 +10,21 @@ public class Appointment
 	
 	//Constants
 	final static int MAX_HOUR = 12;									//How many hours we generate the appointments for
-	final static int MAX_SLOT = 4;										//How many slots there are per hour
+	final static int MAX_SLOT = 4;									//How many slots there are per hour
+	//Number of empty cells at the beginning/end of the day for each doctor
+	final static int START_EMPTY_CELLS_PEARSON = 4;					//Number of empty cells at the beginning of the day for Dr. Pearson
+	final static int END_EMPTY_CELLS_PEARSON = 8;					//Number of empty cells at the end of the day for Dr. Pearson
+	final static int START_EMPTY_CELLS_SPECTRE = 2;					//Number of empty cells at the beginning of the day for Dr. Spectre
+	final static int END_EMPTY_CELLS_SPECTRE = 6;					//Number of empty cells at the end of the day for Dr. Spectre
+	final static int START_EMPTY_CELLS_PAULSON = 6;					//Number of empty cells at the beginning of the day for Dr. Paulson
+	final static int END_EMPTY_CELLS_PAULSON = 10;					//Number of empty cells at the end of the day for Dr. Paulson
 	
 	
 	public static void main(String[] args)
 	{	
-		//Initialize the doctor name
+		int startEmptySlots = 0;
+		int endEmptySlots = 0;
+		//Initialize the doctor name, color and number of empty cells
 		final String docName;
 		try
 		{
@@ -32,19 +42,45 @@ public class Appointment
 		if (docName.equals("Dr. Pearson"))
 		{
 			color = "DarkTurquoise";
+			startEmptySlots = START_EMPTY_CELLS_PEARSON;
+			endEmptySlots = END_EMPTY_CELLS_PEARSON;
 		}
 		else if (docName.equals("Dr. Specter"))
 		{
 			color = "Violet";
+			startEmptySlots = START_EMPTY_CELLS_SPECTRE;
+			endEmptySlots = END_EMPTY_CELLS_SPECTRE;
 		}
 		else if (docName.equals("Dr. Paulsen"))
 		{
 			color = "Orange";
+			startEmptySlots = START_EMPTY_CELLS_PAULSON;
+			endEmptySlots = END_EMPTY_CELLS_PAULSON;
 		}
 		else
 		{
 			System.out.println("Error, invalid doctor name!");
 			System.exit(1);
+		}
+		
+		//If number of empty cells at beginning and end was entered as an argument, initialize those.
+		if (args.length > 1)
+		{
+			try
+			{
+				startEmptySlots = Integer.parseInt(args[1]);
+				endEmptySlots = Integer.parseInt(args[2]);
+				if ((startEmptySlots+endEmptySlots) > (MAX_HOUR*MAX_SLOT))
+				{
+					System.out.println("Error, too many empty cells!");
+					System.exit(3);
+				}
+			}
+			catch (Exception e)
+			{
+				System.out.println("Incorrect usage!");
+				System.exit(4);
+			}
 		}
 		
 		//Create the appointments and write
@@ -56,7 +92,8 @@ public class Appointment
 		{
 			writer = new PrintWriter("Appointments.txt");								//Create (overwrite) the file
 			String patient;																//Patient name
-			AppointmentGenerator appointmentGen = new AppointmentGenerator();			//Object that generates appointments
+			int numSlots = MAX_HOUR*MAX_SLOT;											//Number of slots
+			AppointmentGenerator appointmentGen = new AppointmentGenerator(startEmptySlots, endEmptySlots, numSlots);			//Object that generates appointments
 			
 			for (int hour = 1; hour <= MAX_HOUR; hour++)
 			{

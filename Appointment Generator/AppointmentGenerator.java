@@ -21,27 +21,61 @@ public class AppointmentGenerator
 	boolean lastAppointment;			//If this is the last appointment, we don't want to set any appointment that takes longer than one slot
 	Random rnd;							//A random number generator
 	ArrayList<String> patientList;		//List of possible patients
+	int startEmptySlots;				//Number of empty cells at the beginning
+	int endEmptySlots;					//Number of empty cells at the end
+	int numSlots;						//Total number of appointment slots this day
+	int appointmentCounter;				//Number of appointments generated so far
 	
-	public AppointmentGenerator()
+	public AppointmentGenerator(int new_startEmptySlots, int new_endEmptySlots, int new_numSlots)
 	{
-		skipNextSlot = false;				//Initialize to false
-		lastAppointment = false;			//Initialize to false
-		rnd = new Random();					//Initialize generator
-		patientList = getPatientList();		//List of possible patients
+		skipNextSlot = false;								//Initialize to false
+		lastAppointment = false;							//Initialize to false
+		rnd = new Random();									//Initialize generator
+		patientList = getPatientList();						//List of possible patients
+		startEmptySlots = new_startEmptySlots;				//How many empty cells in the beginning
+		endEmptySlots = new_endEmptySlots;					//How many empty cells at the end
+		numSlots = new_numSlots;							//Number of appointment slots
+		appointmentCounter = 0;								//No appointments generated so far
 	}
 	
 	//Returns a line of C# code to make an appointment as a String
 	public String makeAppointment(String docName, String color)
 	{
+		// if (appointmentCounter < startEmptySlots)
+		// {
+			// appointmentCounter++;
+			// return "\"\"	// Empty start appointment " + Integer.toString(appointmentCounter);
+		// }
+		
+		// if (appointmentCounter >= (numSlots - endEmptySlots))
+		// {
+			// appointmentCounter++;
+			// return "\"\"	// Empty end appointment " + Integer.toString(appointmentCounter - (numSlots - endEmptySlots));
+		// }
+		
 		String patient = patientList.get(rnd.nextInt(patientList.size()));				//Get a random patient
 		
-		String appointmentType = getAppointmentType();
-		// String[] appointmentTypeSplit = appointmentType.split("-");
-		// String type = appointmentTypeSplit[0];
-		// int length = Integer.parseInt(appointmentTypeSplit[1]);
-		String type = appointmentType.substring(0,appointmentType.length() - 1);									//Everything except last character
-		String lastCharacter = appointmentType.substring(appointmentType.length()-1,appointmentType.length());		//Only last character, which is the length
-		int length = Integer.parseInt(lastCharacter);																//Convert length from String to int
+		String type;																	//What kind of appointment is it?
+		int length;																		//How many time slots does it occupy
+		
+		if (appointmentCounter < startEmptySlots)										//Is it too early for this doctor to have appointments?
+		{
+			type = NO_APPOINTMENT;
+			length = 1;
+		}
+		
+		else if (appointmentCounter >= (numSlots - endEmptySlots))						//Is it too late for this doctor to have appointments?
+		{
+			type = NO_APPOINTMENT;
+			length = 1;
+		}
+		else
+		{
+			String appointmentType = getAppointmentType();
+			type = appointmentType.substring(0,appointmentType.length() - 1);											//Everything except last character
+			String lastCharacter = appointmentType.substring(appointmentType.length()-1,appointmentType.length());		//Only last character, which is the length
+			length = Integer.parseInt(lastCharacter);																	//Convert length from String to int
+		}
 
 		String docNameString = "\"" + docName + "\"";
 		String colorString = "\"" + color + "\"";
@@ -53,17 +87,19 @@ public class AppointmentGenerator
 		String rowspanString = "\"" + Integer.toString(length) + "\"";
 		
 		String opacityString;
-		if (type != NO_APPOINTMENT)
+		if (type.equals(NO_APPOINTMENT))
 		{
-			opacityString = "\"" + Double.toString(APPOINTMENT_CELL_OPACITY) + "\"";
+			opacityString = "\"0\"";
 		}
 		else
 		{
-			opacityString = "\"0\"";
+			opacityString = "\"" + Double.toString(APPOINTMENT_CELL_OPACITY) + "\"";
 		}
 		
 		String appointment = "new Appointment ( ){ DateTime = DateTime.Today, Type = " + typeString + ", Height = " + heightString + ", Margin = " + marginString + ", Patient = " + patientString + ", DoctorName = " + docNameString + ", Colour = " + colorString + ", Visibility = \"Visible\", Cursor = \"Hand\", RowSpan = " + rowspanString + ", Opacity = " + opacityString + " },";
 		
+		appointmentCounter++;
+
 		return appointment;
 	}
 	

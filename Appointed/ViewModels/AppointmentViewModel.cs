@@ -133,6 +133,7 @@ namespace Appointed.ViewModels
             _pearsonAppointmentListArray[52] = _adm._pearsonDecember052017;
             _pearsonAppointmentListArray[62] = _adm._pearsonDecember152017;
             _pearsonAppointmentListArray[63] = _adm._pearsonDecember162017;
+            _pearsonAppointmentListArray[64] = _adm._pearsonDecember172017;
 
             _specterAppointmentListArray[20] = _adm._specterNovember032017;
             _specterAppointmentListArray[21] = _adm._specterNovember042017;
@@ -143,6 +144,7 @@ namespace Appointed.ViewModels
             _specterAppointmentListArray[52] = _adm._specterDecember052017;
             _specterAppointmentListArray[62] = _adm._specterDecember152017;
             _specterAppointmentListArray[63] = _adm._specterDecember162017;
+            _specterAppointmentListArray[64] = _adm._specterDecember172017;
 
             _paulsenAppointmentListArray[20] = _adm._paulsenNovember032017;
             _paulsenAppointmentListArray[21] = _adm._paulsenNovember042017;
@@ -153,6 +155,7 @@ namespace Appointed.ViewModels
             _paulsenAppointmentListArray[52] = _adm._paulsenDecember052017;
             _paulsenAppointmentListArray[62] = _adm._paulsenDecember152017;
             _paulsenAppointmentListArray[63] = _adm._paulsenDecember162017;
+            _paulsenAppointmentListArray[64] = _adm._paulsenDecember172017;
 
 
 
