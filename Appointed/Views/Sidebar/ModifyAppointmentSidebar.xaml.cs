@@ -127,10 +127,11 @@ namespace Appointed.Views.Sidebar
             }
 
             int timeIndex = -1;
-            if (DIVM.AVM._highlightedAppointment != null)
-                timeIndex = DIVM.AVM._highlightedAppointment.TimeIndex;
-            else if (DIVM.AVM._activeAppointment != null)
+            if (DIVM.AVM._activeAppointment != null)
                 timeIndex = DIVM.AVM._activeAppointment.TimeIndex;
+            else if (DIVM.AVM._highlightedAppointment != null)
+                timeIndex = DIVM.AVM._highlightedAppointment.TimeIndex;
+            
             if (timeIndex < 1 || timeIndex > 48)
                 timeIndex = 8;
             StartTime.SelectedIndex = timeIndex;
