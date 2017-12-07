@@ -67,7 +67,13 @@ namespace Appointed.Views.Sidebar
             RemTOD.SelectedIndex = DIVM.AVM._activeAppointment.RemTODIndex;
             RemType.SelectedIndex = DIVM.AVM._activeAppointment.RemTypeIndex;
 
-            int timeIndex = DIVM.AVM._highlightedAppointment.TimeIndex;
+            int timeIndex = -1;
+            if (DIVM.AVM._highlightedAppointment != null)
+                timeIndex = DIVM.AVM._highlightedAppointment.TimeIndex;
+            else if (DIVM.AVM._activeAppointment != null)
+                timeIndex = DIVM.AVM._activeAppointment.TimeIndex;
+            if (timeIndex < 1 || timeIndex > 48)
+                timeIndex = 8;
             StartTime.SelectedIndex = timeIndex;
 
             AddToWaitlistCheckBox.IsChecked = DIVM.AVM._activeAppointment.Waitlisted;
@@ -391,7 +397,7 @@ namespace Appointed.Views.Sidebar
                 drName = ((Doctor)WaitlistDoctorComboBox.SelectedItem).DoctorName;
 
                 int pos = DIVM.WaitList.QueueAppointment(_newAppointment, date, drName);
-                if (pos == -1)
+                if (pos == -2)
                 {
                     MyMessageBox msgBox = new MyMessageBox();
                     msgBox.MessageBoxResult += OnDiscardConfirmation;

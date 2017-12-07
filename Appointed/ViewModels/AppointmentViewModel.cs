@@ -501,7 +501,7 @@ namespace Appointed.ViewModels
 
 
 
-        public void RescheduleAppointment(Alert a)
+        public bool RescheduleAppointment(Alert a)
         {
             Appointment apptToRelocate = _appointmentLookup[a.WLE.Key];
             Appointment apptThatFollows = null;
@@ -516,15 +516,15 @@ namespace Appointed.ViewModels
                 apptThatFollows = FindAppointmentThatFollows(relocationTarget);
                 if (apptThatFollows.Type != "")
                 {
-                    MessageBox.Show
-                    (
-                        "Cannot reschedule consultation, only 15 minutes available in desired slot.",
-                        "Oops",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Asterisk
-                    );
+                    MyMessageBox msgBox = new MyMessageBox();
+                    msgBox.Show
+                        (
+                            "Cannot reschedule consultation, only 15 minutes available in desired slot.",
+                            "Unable To Reschedule",
+                            MyMessageBox.Buton.Ok
+                        );
 
-                    return;
+                    return false;
                 }
 
                 apptThatFollows.Visibility = "Collapsed";
@@ -585,6 +585,8 @@ namespace Appointed.ViewModels
                        Key = Int32.Parse(apptToRelocate.ID)
                    }
                );
+
+            return true;
         }
 
 

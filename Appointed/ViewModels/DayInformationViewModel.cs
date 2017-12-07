@@ -279,8 +279,23 @@ namespace Appointed.ViewModels
 
             Appointment a = AVM._appointmentLookup[key];
 
-            if (a.Type != "" || a.Colour == "SlateGray")
+            if (a.ID == AVM._activeAppointment.ID || a.Patient == AVM._activeAppointment.Patient)
                 return;
+
+            if (a.Type != "" || a.Colour == "SlateGray")
+            {
+                if (App.Current.MainWindow.Opacity == 1.0)
+                {
+                    MyMessageBox msgBox = new MyMessageBox();
+                    msgBox.Show
+                        (
+                            "The time slot you selected is taken!",
+                            "Select Appointment Slot",
+                            MyMessageBox.Buton.Ok
+                        );
+                }
+                return;
+            }
 
             Appointment apptThatFollows;
             if (apptType == "Consultation")

@@ -9,6 +9,7 @@
              Background="White"
              BorderBrush="Black"
              BorderThickness="3"
+             MaxWidth="600"
              >
     
     <DockPanel
@@ -42,6 +43,7 @@
             <TextBlock
                 x:Name="Message"
                 HorizontalAlignment="Center"
+                VerticalAlignment="Center"
                 Style="{StaticResource text_BlackMedium}"
                 TextWrapping="Wrap"
                 Margin="4"

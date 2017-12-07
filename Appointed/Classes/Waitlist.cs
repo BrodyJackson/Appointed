@@ -93,20 +93,36 @@ namespace Appointed.Classes
 
         // Add Appointment 'apptToAdd' to the waitlist for the appointment slot identified by the 'dateDesired' and the 'nameOfDocDesired'.
         // If 'nameOfDocDesired' is invalid it returns -1 and does not modify the waitlist.
+        // If 
         // 'apptToAdd' should have it's DateTime and ID set according to the slot it currently occupies, not the slot
         // it wishes to wait for.
         // Returns the zero based waitlist position of this Appointment for this slot.
         public int QueueAppointment(Appointment apptToAdd, DateTime dateDesired, string nameOfDocDesired)
         {
             DayInformationViewModel DIVM = App.Current.MainWindow.DataContext as DayInformationViewModel;
+            Appointment apptInTheWay;
 
             if (DIVM.AVM.DoctorsOnShift.All(x => x.DoctorName != nameOfDocDesired))
                 return -1;
 
             int key = dateDesired.GetHashCode() + DIVM.AVM.FindDrColumnForDrName(nameOfDocDesired);
 
-            if (DIVM.AVM._appointmentLookup[key].Type == "")
-                return -1;
+            apptInTheWay = DIVM.AVM._appointmentLookup[key];
+            if (apptInTheWay.Type == "")
+                return -2;
+
+            if (apptToAdd.Type == "Consultation")
+                if (DIVM.AVM.FindAppointmentThatFollows(apptInTheWay).Type != "")
+                {
+                    MyMessageBox msgBox = new MyMessageBox();
+                    msgBox.Show
+                        (
+                            "The appointment you are trying to add to the waitlist is 30 minutes long and two appointments are occupying the slot. This functionality hasn't been implemented yet.",
+                            "Unable To Waitlist",
+                            MyMessageBox.Buton.Ok
+                        );
+                    return -3;
+                }
 
             if (waitlist.ContainsKey(key) && waitlist[key] != null)
                 waitlist[key].Add(apptToAdd);

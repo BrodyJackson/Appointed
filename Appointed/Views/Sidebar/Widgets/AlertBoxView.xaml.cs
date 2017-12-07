@@ -74,13 +74,14 @@ namespace Appointed.Views.Sidebar
             activeAlert = a;
 
             Appointment apptToReschedule = DIVM.AVM._appointmentLookup[a.WLE.Key];
+            DateTime dt = new DateTime(a.WLE.Date.Year, a.WLE.Date.Month, a.WLE.Date.Day);
 
-            string currDay = DIVM.GetDayString(apptToReschedule.DateTime.Value.Day);
+            string currDay = apptToReschedule.DateTime.Value.DayOfWeek.ToString();
             string currMonth = DIVM.GetMonthString(apptToReschedule.DateTime.Value.Month);
             string currYear = apptToReschedule.DateTime.Value.Year.ToString();
             string currStart = apptToReschedule.StartTimeStr;
 
-            string newDay = DIVM.GetDayString(a.WLE.Date.Day);
+            string newDay = dt.DayOfWeek.ToString();
             string newMonth = DIVM.GetMonthString(a.WLE.Date.Month);
             string newYear = a.WLE.Date.Year.ToString();
             string newStart = a.WLE.Date.Time24Hr.ToString();
@@ -120,8 +121,9 @@ namespace Appointed.Views.Sidebar
         {
             DayInformationViewModel DIVM = App.Current.MainWindow.DataContext as DayInformationViewModel;
 
-            DIVM.AVM.RescheduleAppointment(activeAlert);
-            DIVM.SVM.RemoveAlert(activeAlert);
+            bool rescheduled = DIVM.AVM.RescheduleAppointment(activeAlert);
+            if (rescheduled)
+                DIVM.SVM.RemoveAlert(activeAlert);
 
             Home home = App.Current.MainWindow as Home;
             home.SidebarView.SetSidebarView(new HomeSidebar());

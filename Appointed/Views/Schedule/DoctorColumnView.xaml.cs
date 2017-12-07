@@ -217,7 +217,7 @@ namespace Appointed.Views
                 //Why not do this?
                 //DIVM.AVM._activeAppointment = new Appointment(appt);
                 // I tried and things break. Especially now with the mixture of events and data bindings and
-                // degradation of the design due to rushing and unfamiliarity. 
+                // overall degradation of the design. 
 
                 DIVM.AVM._activeAppointment.Colour = appt.Colour;
                 DIVM.AVM._activeAppointment.Comments = appt.Comments;
@@ -309,7 +309,7 @@ namespace Appointed.Views
             keyForSourceAppointment = (string)e.Data.GetData(DataFormats.StringFormat);
             sourceAppointment = DIVM.AVM._appointmentLookup[Int32.Parse(keyForSourceAppointment)];
 
-            if (sourceAppointment.Colour == "DodgerBlue")
+            if (sourceAppointment.Colour == "DodgerBlue" || sourceAppointment.Type == "")
                 return;
 
             keyForTargetAppointment = ((Rectangle)sender).Tag.ToString();
