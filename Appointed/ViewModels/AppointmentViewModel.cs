@@ -147,8 +147,15 @@ namespace Appointed.ViewModels
             _pearsonAppointmentListArray[24] = _adm._pearsonNovember072017;
             _pearsonAppointmentListArray[25] = _adm._pearsonNovember082017;
             _pearsonAppointmentListArray[52] = _adm._pearsonDecember052017;
+            _pearsonAppointmentListArray[57] = _adm._pearsonDecember102017;
+            _pearsonAppointmentListArray[58] = _adm._pearsonDecember112017;
+            _pearsonAppointmentListArray[59] = _adm._pearsonDecember122017;
+            _pearsonAppointmentListArray[60] = _adm._pearsonDecember132017;
+            _pearsonAppointmentListArray[61] = _adm._pearsonDecember142017;
             _pearsonAppointmentListArray[62] = _adm._pearsonDecember152017;
             _pearsonAppointmentListArray[63] = _adm._pearsonDecember162017;
+            _pearsonAppointmentListArray[65] = _adm._pearsonDecember182017;
+            _pearsonAppointmentListArray[66] = _adm._pearsonDecember192017;
 
             _specterAppointmentListArray[20] = _adm._specterNovember032017;
             _specterAppointmentListArray[21] = _adm._specterNovember042017;
@@ -157,8 +164,15 @@ namespace Appointed.ViewModels
             _specterAppointmentListArray[24] = _adm._specterNovember072017;
             _specterAppointmentListArray[25] = _adm._specterNovember082017;
             _specterAppointmentListArray[52] = _adm._specterDecember052017;
+            _specterAppointmentListArray[57] = _adm._specterDecember102017;
+            _specterAppointmentListArray[58] = _adm._specterDecember112017;
+            _specterAppointmentListArray[59] = _adm._specterDecember122017;
+            _specterAppointmentListArray[60] = _adm._specterDecember132017;
+            _specterAppointmentListArray[61] = _adm._specterDecember142017;
             _specterAppointmentListArray[62] = _adm._specterDecember152017;
             _specterAppointmentListArray[63] = _adm._specterDecember162017;
+            _specterAppointmentListArray[64] = _adm._specterDecember172017;
+            _specterAppointmentListArray[66] = _adm._specterDecember192017;
 
             _paulsenAppointmentListArray[20] = _adm._paulsenNovember032017;
             _paulsenAppointmentListArray[21] = _adm._paulsenNovember042017;
@@ -167,8 +181,17 @@ namespace Appointed.ViewModels
             _paulsenAppointmentListArray[24] = _adm._paulsenNovember072017;
             _paulsenAppointmentListArray[25] = _adm._paulsenNovember082017;
             _paulsenAppointmentListArray[52] = _adm._paulsenDecember052017;
+            _paulsenAppointmentListArray[57] = _adm._paulsenDecember102017;
+            _paulsenAppointmentListArray[58] = _adm._paulsenDecember112017;
+            _paulsenAppointmentListArray[59] = _adm._paulsenDecember122017;
+            _paulsenAppointmentListArray[60] = _adm._paulsenDecember132017;
+            _paulsenAppointmentListArray[61] = _adm._paulsenDecember142017;
             _paulsenAppointmentListArray[62] = _adm._paulsenDecember152017;
             _paulsenAppointmentListArray[63] = _adm._paulsenDecember162017;
+            _paulsenAppointmentListArray[62] = _adm._paulsenDecember152017;
+            _paulsenAppointmentListArray[63] = _adm._paulsenDecember162017;
+            _paulsenAppointmentListArray[64] = _adm._paulsenDecember172017;
+            _paulsenAppointmentListArray[65] = _adm._paulsenDecember182017;
 
 
 
@@ -290,7 +313,7 @@ namespace Appointed.ViewModels
                 listOfAppointmentsArray[i].AddRange(emptyDay.Select(a => new Appointment(a)));
             }
 
-            for (int i = 53; i < 62; i++)
+            for (int i = 53; i < 57; i++)
             {
                 listOfAppointmentsArray[i] = new List<Appointment>();
                 listOfAppointmentsArray[i].AddRange(emptyDay.Select(a => new Appointment(a)));
