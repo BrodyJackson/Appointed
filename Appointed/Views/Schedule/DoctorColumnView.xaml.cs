@@ -350,6 +350,7 @@ namespace Appointed.Views
                 targetAppointment.EndTime = targetAppointment.StartTime + 30;
             }
 
+            DIVM.FreeAppointmentSlot(sourceAppointment);
 
             if (targetAppointment.EndTime % 100 >= 60)
                 targetAppointment.EndTime += 40;
