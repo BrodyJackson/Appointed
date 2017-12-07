@@ -200,7 +200,11 @@ namespace Appointed.Views
                 h.SidebarView.GetSidebarView() is Sidebar.SearchResultsSidebar ||
                 (h.SidebarView.GetSidebarView() is Sidebar.PatientInfoSidebar && !(h.SidebarView.GetSidebarView() as Sidebar.PatientInfoSidebar).HasChanges()))
             {
-                OnHomeConfirmation(this, new MessageBoxEventArgs { result = MyMessageBox.Result.Yes });
+                if (goHome)
+                    OnHomeConfirmation(this, new MessageBoxEventArgs { result = MyMessageBox.Result.Yes });
+                else
+                    OnBackConfirmation(this, new MessageBoxEventArgs { result = MyMessageBox.Result.Yes });
+
                 return;
             }
 

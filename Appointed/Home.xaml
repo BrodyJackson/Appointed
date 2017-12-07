@@ -15,7 +15,8 @@
     Left="0"
     Top="0"
     WindowState="Maximized"
-    SizeToContent="Manual">
+    SizeToContent="Manual"
+    Icon="Assets/CalendarIcon.png">
 
     <Window.DataContext>
         <ViewModels:DayInformationViewModel />
