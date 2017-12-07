@@ -544,9 +544,12 @@ namespace Appointed.ViewModels
             relocationTarget.Visibility = "Visible";
             AddAppointmentDeep(relocationTarget, keyTarget);
 
-            relocationTarget.PatientObj = apptToRelocate.PatientObj;
-            relocationTarget.PatientObj.RemoveUpcommingAppointmentKey(a.WLE.Key);
-            relocationTarget.PatientObj.AddUpcommingAppointment(keyTarget);
+            if (relocationTarget.PatientObj != null)
+            {
+                relocationTarget.PatientObj = apptToRelocate.PatientObj;
+                relocationTarget.PatientObj.RemoveUpcommingAppointmentKey(a.WLE.Key);
+                relocationTarget.PatientObj.AddUpcommingAppointment(keyTarget);
+            }
 
             // apptToRelocate becomes empty placeholder appointment.
             if (apptToRelocate.Type == "Consultation")
