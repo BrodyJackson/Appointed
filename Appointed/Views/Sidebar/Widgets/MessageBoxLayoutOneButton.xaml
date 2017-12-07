@@ -32,7 +32,7 @@
 
             <TextBlock
                 x:Name="Title"
-                Style="{StaticResource text_HeadingMedium}"
+                Style="{StaticResource text_HeadingLarge}"
                 Grid.Row="0"
                 Grid.Column="0"
                 HorizontalAlignment="Center"

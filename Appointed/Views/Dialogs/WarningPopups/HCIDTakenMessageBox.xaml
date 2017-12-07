@@ -12,8 +12,9 @@
     ShowInTaskbar="False"
     Topmost="True"
     ResizeMode="NoResize"
-    WindowStyle="SingleBorderWindow"
-    Title="Invalid Healthcare ID"
+    WindowStyle="None"
+    BorderBrush="Black"
+    BorderThickness="3"
     Icon="/Appointed;component/Assets/InfoIcon.png">
     <Grid
         Margin="8">
@@ -26,11 +27,23 @@
                 Height="auto" />
             <RowDefinition
                 Height="auto" />
+            <RowDefinition
+                Height="auto" />
         </Grid.RowDefinitions>
 
         <TextBlock
-            Name="Message"
+            Name="Title"
             Grid.Row="0"
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Stretch"
+            Margin="4"
+            Text="Invalid Healthcare ID"
+            Style="{StaticResource text_HeadingLarge}"
+            TextAlignment="Center" />
+        
+        <TextBlock
+            Name="Message"
+            Grid.Row="1"
             Grid.ColumnSpan="2"
             HorizontalAlignment="Stretch"
             Margin="4"
@@ -42,7 +55,7 @@
             Margin="4"
             Padding="2"
             HorizontalAlignment="Stretch"
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.Column="0"
             Content="Search ID" />
 
@@ -51,7 +64,7 @@
             Margin="4"
             Padding="2"
             HorizontalAlignment="Stretch"
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.Column="1"
             Content="Change Healthcare ID" />
 

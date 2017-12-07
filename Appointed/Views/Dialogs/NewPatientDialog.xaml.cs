@@ -3,6 +3,7 @@ using Appointed.ViewModels;
 using Appointed.Views.Controls;
 using Appointed.Views.Sidebar;
 using System;
+using System.Windows.Media;
 using System.Linq;
 using System.Net.Mail;
 using System.Windows;
@@ -133,11 +134,39 @@ namespace Appointed.Views.Dialogs
             {
                 HealthID.MarkInvalid();
                 WarningPopups.HCIDTakenMessageBox msgBox = new WarningPopups.HCIDTakenMessageBox();
-                msgBox.Message.Text = "A patient already exists with the Healthcare ID '" + HealthID.TextField.Text + "'! \nWould you like to Search for this patient instead of \ncreating a new one, or change the Healthcare ID?";
+                msgBox.Message.Text = "A patient already exists with the Healthcare ID '" + HealthID.TextField.Text + "'!\n\nWould you like to discard entered information and\nSearch for this patient instead of creating a new one, or change the Healthcare ID?";
                 msgBox.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-                msgBox.SearchBtn.Click += (s, v) => { msgBox.Close(); (App.Current.MainWindow as Home).SidebarView.SetSidebarView(new SearchResultsSidebar(HealthID.TextField.Text)); forceClose = true; Close(); };
-                msgBox.NewIDBtn.Click += (s, v) => { msgBox.Close(); };
-                msgBox.Closed += (s, v) => { HealthID.TextField.Focus(); };
+                msgBox.SearchBtn.Click += (s, v) =>
+                {
+
+                    Application.Current.MainWindow.OpacityMask = null;
+                    Application.Current.MainWindow.Opacity = 1.0;
+                    Application.Current.MainWindow.IsHitTestVisible = true;
+
+                    msgBox.Close();
+                    (App.Current.MainWindow as Home).SidebarView.SetSidebarView(new SearchResultsSidebar(HealthID.TextField.Text));
+                    forceClose = true;
+                    Close();
+                };
+                msgBox.NewIDBtn.Click += (s, v) =>
+                {
+                    Application.Current.MainWindow.OpacityMask = null;
+                    Application.Current.MainWindow.Opacity = 1.0;
+                    Application.Current.MainWindow.IsHitTestVisible = true;
+                    msgBox.Close();
+                };
+                msgBox.Closed += (s, v) =>
+                {
+                    Application.Current.MainWindow.OpacityMask = null;
+                    Application.Current.MainWindow.Opacity = 1.0;
+                    Application.Current.MainWindow.IsHitTestVisible = true;
+
+                    HealthID.TextField.Focus();
+                };
+
+                Application.Current.MainWindow.OpacityMask = Brushes.Black;
+                Application.Current.MainWindow.Opacity = 0.3;
+                Application.Current.MainWindow.IsHitTestVisible = false;
                 msgBox.ShowDialog();
             }
             else
@@ -256,11 +285,15 @@ namespace Appointed.Views.Dialogs
             }
             else
             {
-                WarningPopups.InvalidNewPatientDialog msgBox = new WarningPopups.InvalidNewPatientDialog();
-                msgBox.Message.TextAlignment = TextAlignment.Center;
-                msgBox.Message.Text = "Unable to create a new patient!\nPlease ensure all highlighted fields are completed correctly.";
-                msgBox.OkBtn.Click += (s, v) => { msgBox.Close(); };
-                msgBox.ShowDialog();
+                //WarningPopups.InvalidNewPatientDialog msgBox = new WarningPopups.InvalidNewPatientDialog();
+                //msgBox.Message.TextAlignment = TextAlignment.Center;
+                //msgBox.Message.Text = "Unable to create a new patient!\nPlease ensure all highlighted fields are completed correctly.";
+                //msgBox.OkBtn.Click += (s, v) => { msgBox.Close(); };
+                //msgBox.ShowDialog();
+
+                MyMessageBox msg = new MyMessageBox();
+                msg.Show("Unable to create a new patient!\n\nPlease ensure all highlighted fields are completed correctly.", "Unable to Create Patient", MyMessageBox.Buton.Ok);
+
             }
 
             return false;
@@ -365,7 +398,7 @@ namespace Appointed.Views.Dialogs
                 HomePhone.MarkInvalid();
                 allValid = false;
             }
-            else if(HomePhone.TextField.Text == HomePhone.Hint)
+            else if (HomePhone.TextField.Text == HomePhone.Hint)
             {
                 HomePhone.MarkValid();
             }
@@ -381,7 +414,7 @@ namespace Appointed.Views.Dialogs
                 BusinessPhone.MarkInvalid();
                 allValid = false;
             }
-            else if(BusinessPhone.TextField.Text == BusinessPhone.Hint)
+            else if (BusinessPhone.TextField.Text == BusinessPhone.Hint)
             {
                 BusinessPhone.MarkValid();
             }
@@ -397,7 +430,7 @@ namespace Appointed.Views.Dialogs
                 CellPhone.MarkInvalid();
                 allValid = false;
             }
-            else if(CellPhone.TextField.Text == CellPhone.Hint)
+            else if (CellPhone.TextField.Text == CellPhone.Hint)
             {
                 CellPhone.MarkValid();
             }
