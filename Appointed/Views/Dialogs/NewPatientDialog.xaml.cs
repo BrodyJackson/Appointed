@@ -77,6 +77,9 @@ namespace Appointed.Views.Dialogs
         private void NewPatientDialog_Loaded(object sender, RoutedEventArgs e)
         {
             Birthdate.CalendarBlackoutDates.Add(new CalendarDateRange(DateTime.Today.AddDays(1), DateTime.MaxValue));
+
+            FirstName.TextField.Focus();
+
         }
 
         #region InputTextChanged Handlers
