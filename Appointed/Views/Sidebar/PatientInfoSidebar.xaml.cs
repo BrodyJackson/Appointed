@@ -67,12 +67,15 @@ namespace Appointed.Views.Sidebar
             {
                 a = DIVM.AVM._appointmentLookup[key];
 
-                hist = new ApptHistoryDetail();
-                hist.Date.Text = a.DateTimeStr;
-                hist.Doctor.Text = a.DoctorName;
-                hist.Type.Text = a.Type;
+                if (a.DateTime >= DateTime.Today)
+                {
+                    hist = new ApptHistoryDetail();
+                    hist.Date.Text = a.DateTimeStr;
+                    hist.Doctor.Text = a.DoctorName;
+                    hist.Type.Text = a.Type;
 
-                UpcomingAppts.PastApptList.Children.Add(hist);
+                    UpcomingAppts.PastApptList.Children.Add(hist);
+                }
             }
         }
 

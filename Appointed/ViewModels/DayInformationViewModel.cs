@@ -238,7 +238,9 @@ namespace Appointed.ViewModels
                     if (pName == appointmentEntry.Value.Patient)
                     {
                         appointmentEntry.Value.PatientObj = patientEntry.Value;
-                        patientEntry.Value.AddUpcommingAppointment(Int32.Parse(appointmentEntry.Value.ID));
+
+                        if (appointmentEntry.Value.DateTime >= DateTime.Today)
+                            patientEntry.Value.AddUpcommingAppointment(Int32.Parse(appointmentEntry.Value.ID));
                     }
                 }
             }

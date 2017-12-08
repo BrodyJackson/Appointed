@@ -124,6 +124,8 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
         {
             string field = PatientPostalInput.TextField.Text;
 
+            field = field.Insert(3, "-");
+            field = field.Remove(4, 1);
             if(field != PatientPostalInput.Hint && field != patient.PostalCode && field.Length == 7)
             {
                 PatientPostal.Text = field;
