@@ -473,7 +473,8 @@ namespace Appointed.Views.Sidebar
             if (activeAppt.Type == "Consultation" && targetAppointment != activeAppt)
             {
                 Appointment apptThatFollowsActive = DIVM.AVM.FindAppointmentThatFollows(activeAppt);
-                apptThatFollowsActive.Visibility = "Visible";
+                if(apptThatFollowsActive != null)
+                    apptThatFollowsActive.Visibility = "Visible";
             }
 
             if (targetAppointment != activeAppt)

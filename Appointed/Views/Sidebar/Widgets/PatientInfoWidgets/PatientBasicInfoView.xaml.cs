@@ -38,12 +38,19 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
 
             Loaded += PatientBasicInfoView_Loaded;
 
+            PatientBirthdayDatePicker.OnCalendarLoaded += PatientBirthdayDatePicker_OnCalendarLoaded;
             PatientBirthdayDatePicker.SelectedDateChanged += PBDayDatePickerDateSelected;
             PatientBirthdayDatePicker.InputText.TextField.LostFocus += PBDayDatePickerLostKeyboardFocus;
             SexInput.DropDownClosed += SexInput_DropDownClosed;
             SexInput.LostFocus += SexInput_LostFocus;
 
             HasChanges = false;
+        }
+
+        private void PatientBirthdayDatePicker_OnCalendarLoaded(object sender, EventArgs e)
+        {
+            (sender as Calendar).BlackoutDates.Add(new CalendarDateRange(DateTime.Today.AddDays(1), DateTime.MaxValue));
+            (sender as Calendar).BlackoutDates.Add(new CalendarDateRange(DateTime.MinValue, new DateTime(1880, 1, 1)));
         }
 
         private void PatientBasicInfoView_Loaded(object sender, RoutedEventArgs e)
@@ -56,6 +63,9 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
             PatientSex.Text = "Sex: " + patient.GetSexAsString();
             PatientID.Text = "ID: " + new HealthCareIDMask().FormatText(patient.HealthID.ToString());
             PatientBirthday.Text = "Birthdate: " + patient.BirthDate.ToString("yyyy-MM-dd");
+
+            PatientBirthdayDatePicker.CalendarBlackoutDates.Add(new CalendarDateRange(DateTime.Today.AddDays(1), DateTime.MaxValue));
+            PatientBirthdayDatePicker.CalendarBlackoutDates.Add(new CalendarDateRange(DateTime.MinValue, new DateTime(1880, 1, 1)));
         }
 
         private void SexInput_DropDownClosed(object sender, EventArgs e)
