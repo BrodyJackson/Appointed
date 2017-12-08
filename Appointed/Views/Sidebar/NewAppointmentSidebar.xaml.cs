@@ -72,10 +72,6 @@ namespace Appointed.Views.Sidebar
             tdv.DayThree.DrColumn2.OnEmptyApptClick += EmptySlotClick;
 
             DatePicker.InputText.TextField.Text = DIVM.AVM._activeAppointment.DateTime.Value.ToString("yyyy-MM-dd");
-            ReminderToggle.IsChecked = true;
-            RemDays.SelectedIndex = 1;
-            RemTOD.SelectedIndex = 0;
-            RemType.SelectedIndex = 0;
 
             int timeIndex = -1;
             if (DIVM.AVM._highlightedAppointment != null)
@@ -116,6 +112,11 @@ namespace Appointed.Views.Sidebar
             //Remove Email
             if (string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Email) || DIVM.PVM.ActivePatient.Email == "(None)")
                 RemType.Items.Remove(items[0]);
+
+            ReminderToggle.IsChecked = true;
+            RemDays.SelectedIndex = 1;
+            RemTOD.SelectedIndex = 0;
+            RemType.SelectedIndex = 0;
 
             StartTime.SelectionChanged += StartTime_SelectionChanged;
             DoctorComboBox.SelectionChanged += DIVM.ChangeHighlight;
@@ -437,9 +438,12 @@ namespace Appointed.Views.Sidebar
             _newAppointment.Reminder = ReminderToggle.IsChecked.Value;
             if (_newAppointment.Reminder)
             {
-                _newAppointment.ReminderType = ((ComboBoxItem)RemType.SelectedItem).Content.ToString();
-                _newAppointment.ReminderTimeOfDay = ((ComboBoxItem)RemTOD.SelectedItem).Content.ToString();
-                _newAppointment.ReminderDays = ((ComboBoxItem)RemDays.SelectedItem).Content.ToString();
+                if (_newAppointment.ReminderType != null)
+                {
+                    _newAppointment.ReminderType = ((ComboBoxItem)RemType.SelectedItem).Content.ToString();
+                    _newAppointment.ReminderTimeOfDay = ((ComboBoxItem)RemTOD.SelectedItem).Content.ToString();
+                    _newAppointment.ReminderDays = ((ComboBoxItem)RemDays.SelectedItem).Content.ToString();
+                }
             }
 
             _newAppointment.Comments = CommentBox.Text;
