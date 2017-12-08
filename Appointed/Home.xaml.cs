@@ -29,7 +29,7 @@ namespace Appointed
                 new KeyEventHandler(Key_Up), true
             );
 
-            DispatcherTimer d = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, OnTimeInterval, this.Dispatcher);
+            DispatcherTimer d = new DispatcherTimer(new TimeSpan(0, 0, 15), DispatcherPriority.Normal, OnTimeInterval, this.Dispatcher);
 
             ShowHomeSidebar();
 
