@@ -219,15 +219,6 @@ namespace Appointed.Views.Sidebar
             }
 
             DIVM.ChangeHighlight(this, null);
-
-            if (DIVM.AVM._highlightedAppointment != null)
-            {
-                int amount = DIVM.AVM._highlightedAppointment.StartTime;
-                amount -= 700;
-                amount = ((amount / 100) * 4) + ((amount % 100) / 15);
-              
-                (App.Current.MainWindow as Home).ThreeDayView.ScrollSchedule(amount);
-            }
         }
 
 
@@ -246,16 +237,6 @@ namespace Appointed.Views.Sidebar
             }
 
             DIVM.ChangeHighlight(this, null);
-
-            if (DIVM.AVM._highlightedAppointment != null)
-            {
-                int amount = DIVM.AVM._highlightedAppointment.StartTime;
-                amount -= 700;
-                amount = ((amount / 100) * 4) + ((amount % 100) / 15);
-            
-                (App.Current.MainWindow as Home).ThreeDayView.ScrollSchedule(amount);
-            }
-
         }
 
         // Decision confirmation logic
