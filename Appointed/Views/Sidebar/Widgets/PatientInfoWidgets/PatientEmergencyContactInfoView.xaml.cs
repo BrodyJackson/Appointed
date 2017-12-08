@@ -86,18 +86,21 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
 
             if (t.Name == "ContactName")
             {
+                ContactName.Visibility = Visibility.Hidden;
                 ContactNameInput.Visibility = Visibility.Visible;
                 ContactNameInput.TextField.Text = ContactName.Text;
                 ContactNameInput.TextField.Focus();
             }
             else if (t.Name == "ContactPhone")
             {
+                ContactPhone.Visibility = Visibility.Hidden;
                 ContactPhoneInput.Visibility = Visibility.Visible;
                 ContactPhoneInput.TextField.Text = ContactPhone.Text;
                 ContactPhoneInput.TextField.Focus();
             }
             else
             {
+                ContactRelation.Visibility = Visibility.Hidden;
                 ContactRelationInput.Visibility = Visibility.Visible;
                 ContactRelationInput.TextField.Text = ContactRelation.Text;
                 ContactRelationInput.TextField.Focus();
@@ -118,13 +121,15 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                     ContactName.Foreground = Brushes.Blue;
                     HasChanges = true;
                     ContactNameInvalid = false;
+                    ContactName.Visibility = Visibility.Visible;
                     ContactNameInput.Visibility = Visibility.Hidden;
                 }
                 else
                 {
-                    ContactNameInput.TextField.BorderBrush = Brushes.Red;
-                    ContactNameInput.TextField.BorderThickness = new Thickness(1.0);
-                    ContactNameInvalid = true;
+                    ContactName.Text = patient.EmergencyContact.EmergencyName;
+                    ContactName.Foreground = Brushes.Black;
+                    ContactNameInput.Visibility = Visibility.Hidden;
+                    ContactName.Visibility = Visibility.Visible;
                 }
             }
             else if (field == patient.EmergencyContact.EmergencyName)
@@ -132,6 +137,14 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                 ContactName.Text = patient.EmergencyContact.EmergencyName;
                 ContactName.Foreground = Brushes.Black;
                 ContactNameInput.Visibility = Visibility.Hidden;
+                ContactName.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ContactName.Text = patient.EmergencyContact.EmergencyName;
+                ContactName.Foreground = Brushes.Black;
+                ContactNameInput.Visibility = Visibility.Hidden;
+                ContactName.Visibility = Visibility.Visible;
             }
         }
 
@@ -139,24 +152,24 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
         private void ContactPhoneInput_LostFocus(object sender, RoutedEventArgs e)
         {
             string field = ContactPhoneInput.TextField.Text;
-            field = field.Substring(1);
-            field = field.Substring(0, 3) + "-" + field.Substring(5);
 
             if (field != "(555) 555-5555" && field != patient.EmergencyContact.EmergencyPhone)
             {
-                if (field.Length == 12 || field.Length == 16)
+                if (field.Length >= 14)
                 {
                     ContactPhone.Text = ContactPhoneInput.TextField.Text;
                     ContactPhone.Foreground = Brushes.Blue;
                     HasChanges = true;
                     ContactPhoneInvalid = false;
                     ContactPhoneInput.Visibility = Visibility.Hidden;
+                    ContactPhone.Visibility = Visibility.Visible;
                 }
                 else
                 {
-                    ContactPhoneInput.TextField.BorderBrush = Brushes.Red;
-                    ContactPhoneInput.TextField.BorderThickness = new Thickness(1.0);
-                    ContactPhoneInvalid = true;
+                    ContactPhone.Text = patient.EmergencyContact.EmergencyPhone;
+                    ContactPhone.Foreground = Brushes.Black;
+                    ContactPhoneInput.Visibility = Visibility.Hidden;
+                    ContactPhone.Visibility = Visibility.Visible;
                 }
             }
             else if (field == patient.EmergencyContact.EmergencyPhone)
@@ -164,6 +177,14 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                 ContactPhone.Text = patient.EmergencyContact.EmergencyPhone;
                 ContactPhone.Foreground = Brushes.Black;
                 ContactPhoneInput.Visibility = Visibility.Hidden;
+                ContactPhone.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ContactPhone.Text = patient.EmergencyContact.EmergencyPhone;
+                ContactPhone.Foreground = Brushes.Black;
+                ContactPhoneInput.Visibility = Visibility.Hidden;
+                ContactPhone.Visibility = Visibility.Visible;
             }
         }
 
@@ -182,12 +203,14 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                     HasChanges = true;
                     ContactRelationInvalid = false;
                     ContactRelationInput.Visibility = Visibility.Hidden;
+                    ContactRelation.Visibility = Visibility.Visible;
                 }
                 else
                 {
-                    ContactRelationInput.TextField.BorderBrush = Brushes.Red;
-                    ContactRelationInput.TextField.BorderThickness = new Thickness(1.0);
-                    ContactRelationInvalid = true;
+                    ContactRelation.Text = patient.EmergencyContact.EmergencyRelation;
+                    ContactRelation.Foreground = Brushes.Black;
+                    ContactRelationInput.Visibility = Visibility.Hidden;
+                    ContactRelation.Visibility = Visibility.Visible;
                 }
             }
             else if (field == patient.EmergencyContact.EmergencyRelation)
@@ -195,6 +218,7 @@ namespace Appointed.Views.Sidebar.Widgets.PatientInfoWidgets
                 ContactRelation.Text = patient.EmergencyContact.EmergencyRelation;
                 ContactRelation.Foreground = Brushes.Black;
                 ContactRelationInput.Visibility = Visibility.Hidden;
+                ContactRelation.Visibility = Visibility.Visible;
             }
         }
 

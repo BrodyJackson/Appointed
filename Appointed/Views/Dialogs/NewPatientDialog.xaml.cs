@@ -46,7 +46,11 @@ namespace Appointed.Views.Dialogs
             ContactRelation.TextField.TextChanged += ContactRelation_Changed;
             ContactPhone.TextField.TextChanged += ContactPhone_Changed;
 
-            Birthdate.OnCalendarLoaded += (s, e) => { (s as Calendar).BlackoutDates.Add(new CalendarDateRange(DateTime.Today.AddDays(1), DateTime.MaxValue)); };
+            Birthdate.OnCalendarLoaded += (s, e) =>
+            {
+                (s as Calendar).BlackoutDates.Add(new CalendarDateRange(DateTime.Today.AddDays(1), DateTime.MaxValue));
+                (s as Calendar).BlackoutDates.Add(new CalendarDateRange(DateTime.MinValue, new DateTime(1880,1,1)));
+            };
 
             Loaded += NewPatientDialog_Loaded;
 
@@ -77,6 +81,7 @@ namespace Appointed.Views.Dialogs
         private void NewPatientDialog_Loaded(object sender, RoutedEventArgs e)
         {
             Birthdate.CalendarBlackoutDates.Add(new CalendarDateRange(DateTime.Today.AddDays(1), DateTime.MaxValue));
+            Birthdate.CalendarBlackoutDates.Add(new CalendarDateRange(DateTime.MinValue, new DateTime(1880, 1, 1)));
 
             FirstName.TextField.Focus();
 
