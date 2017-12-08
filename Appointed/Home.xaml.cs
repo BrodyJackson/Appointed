@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace Appointed
 {
@@ -15,6 +16,8 @@ namespace Appointed
     /// </summary>
     public partial class Home : Window
     {
+        int randomKey;
+
         public Home()
         {
             InitializeComponent();
@@ -26,9 +29,42 @@ namespace Appointed
                 new KeyEventHandler(Key_Up), true
             );
 
+            DispatcherTimer d = new DispatcherTimer(new TimeSpan(0, 0, 15), DispatcherPriority.Normal, OnTimeInterval, this.Dispatcher);
+
             ShowHomeSidebar();
 
             this.Loaded += new RoutedEventHandler(HomeView_Loaded);
+
+            randomKey = 0;
+        }
+
+        private void OnTimeInterval(object sender, EventArgs e)
+        {
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
+
+            if (randomKey != 0)
+            {
+                DIVM.AVM._appointmentLookup[randomKey].Colour = DIVM.AVM.FindDrColourForDrName(DIVM.AVM._appointmentLookup[randomKey].DoctorName);
+                DIVM.AVM._appointmentLookup[randomKey].Opacity = "0.5";
+            }
+
+            Random r = new Random();
+            int num = r.Next(21);                           // Less than 21 + 6 keeps it in top portion of view
+
+            num += 6;                                       // Avoid grayed out appts
+            num = ((num / 4) * 100) + ((num % 4) * 15);     // num / 4 is num hrs to skip, slots % 4 is num 15 minute intervals
+            num += 700;                                     // Days start at 700
+
+            int num2 = r.Next(1,4);                         // Random Dr. Column
+
+            DateTime dt = new DateTime(DIVM.YearAsInt, DIVM.MonthAsInt, DIVM.DayAsInt + num2, num/100, num%100, 0);
+
+            int key = dt.GetHashCode() + num2;
+
+            DIVM.AVM._appointmentLookup[key].Colour = "Purple";
+            DIVM.AVM._appointmentLookup[key].Opacity = "1.0";
+
+            randomKey = key;
         }
 
         private void Key_Up(object sender, KeyEventArgs e)
