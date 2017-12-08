@@ -95,6 +95,20 @@ namespace Appointed.Views.Sidebar
             WaitlistDatePicker.CalendarBlackoutDates.AddDatesInPast();
             WaitlistDatePicker.CalendarBlackoutDates.Add(new CalendarDateRange(DIVM.AVM.BeginningOfAllTime.AddDays(DIVM.AVM.NumOfDaysPopulated), DateTime.MaxValue));
 
+            ComboBoxItem[] items = new ComboBoxItem[3];
+            RemType.Items.CopyTo(items, 0);
+
+            //Remove Text option
+            if (string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Cell))
+                RemType.Items.Remove(items[1]);
+    
+            //Remove Phone
+            if (string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Phone) && string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Business) && string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Cell))
+                RemType.Items.Remove(items[2]);
+          
+            //Remove Email
+            if (string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Email))
+                RemType.Items.Remove(items[0]);
         }
 
         private void EmptySlotClick(object sender, DoctorColumnView.ApptClickEventArgs e)
@@ -178,31 +192,12 @@ namespace Appointed.Views.Sidebar
             RemTypeLable.Visibility = Visibility.Visible;
             RemType.Visibility = Visibility.Visible;
 
-            DayInformationViewModel DIVM = (App.Current.MainWindow.DataContext as DayInformationViewModel);
-            //Only show type for which individual has contact method
-            ComboBoxItem[] items = new ComboBoxItem[3];
-            RemType.Items.CopyTo(items, 0);
-
-            //Remove Text option
-            if (string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Cell))
-            {
-                RemType.Items.Remove(items[1]);
-            }
-            //Remove Phone
-            if (string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Phone) && string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Business) && string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Cell))
-            {
-                RemType.Items.Remove(items[2]);
-            }
-            //Remove Email
-            if (string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Email))
-            {
-                RemType.Items.Remove(items[0]);
-            }
-
             RemTODLable.Visibility = Visibility.Visible;
             RemTOD.Visibility = Visibility.Visible;
             RemDaysLable.Visibility = Visibility.Visible;
             RemDays.Visibility = Visibility.Visible;
+
+            RemType.SelectedIndex = 0;
         }
 
 

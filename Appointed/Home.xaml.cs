@@ -29,7 +29,7 @@ namespace Appointed
                 new KeyEventHandler(Key_Up), true
             );
 
-            DispatcherTimer d = new DispatcherTimer(new TimeSpan(0, 0, 15), DispatcherPriority.Normal, OnTimeInterval, this.Dispatcher);
+            DispatcherTimer d = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, OnTimeInterval, this.Dispatcher);
 
             ShowHomeSidebar();
 
@@ -67,14 +67,44 @@ namespace Appointed
 
             if (DIVM.AVM._appointmentLookup.ContainsKey(key))
             {
-                if (DIVM.AVM._appointmentLookup[key].ID != DIVM.AVM._activeAppointment.ID)
-                    if (DIVM.AVM._appointmentLookup[key].ID != DIVM.AVM._highlightedAppointment.ID)
-                    {
-                        DIVM.AVM._appointmentLookup[key].Colour = "Purple";
-                        DIVM.AVM._appointmentLookup[key].Opacity = "1.0";
+                if (DIVM.AVM._activeAppointment == null && DIVM.AVM._highlightedAppointment == null)
+                {
+                    DIVM.AVM._appointmentLookup[key].Colour = "Purple";
+                    DIVM.AVM._appointmentLookup[key].Opacity = "1.0";
 
-                        randomKey = key;
+                    randomKey = key;
+                }
+                else
+                {
+                    if (DIVM.AVM._activeAppointment != null && DIVM.AVM._highlightedAppointment != null)
+                    {
+                        if (DIVM.AVM._appointmentLookup[key].ID != DIVM.AVM._activeAppointment.ID)
+                            if (DIVM.AVM._appointmentLookup[key].ID != DIVM.AVM._highlightedAppointment.ID)
+                            {
+                                DIVM.AVM._appointmentLookup[key].Colour = "Purple";
+                                DIVM.AVM._appointmentLookup[key].Opacity = "1.0";
+                                randomKey = key;
+                            }
                     }
+                    else if (DIVM.AVM._activeAppointment != null)
+                    {
+                        if (DIVM.AVM._appointmentLookup[key].ID != DIVM.AVM._activeAppointment.ID)
+                        {
+                            DIVM.AVM._appointmentLookup[key].Colour = "Purple";
+                            DIVM.AVM._appointmentLookup[key].Opacity = "1.0";
+                            randomKey = key;
+                        }
+                    }
+                    else
+                    {
+                        if (DIVM.AVM._appointmentLookup[key].ID != DIVM.AVM._highlightedAppointment.ID)
+                        {
+                            DIVM.AVM._appointmentLookup[key].Colour = "Purple";
+                            DIVM.AVM._appointmentLookup[key].Opacity = "1.0";
+                            randomKey = key;
+                        }
+                    }
+                }    
             }
         }
 
