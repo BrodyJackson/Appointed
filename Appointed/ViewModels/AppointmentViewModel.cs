@@ -29,6 +29,8 @@ namespace Appointed.ViewModels
 
         public Appointment _activeAppointment { get; set; }
         public Appointment _highlightedAppointment { get; set; }
+        public Appointment _nextAppointment { get; set; }
+
 
         // Mapping of numeric codes in format <position><month><day><year> where position is the column they are in (starting at 1)
         //      and month, day and year are the date in integer format ie 31/1/2017 is mapped as 3112017.
@@ -83,6 +85,7 @@ namespace Appointed.ViewModels
 
         public AppointmentViewModel()
         {
+            _nextAppointment = new Appointment();
 
             _activeAppointment = new Appointment() { DateTime = DateTime.Today.AddDays(1) };
 

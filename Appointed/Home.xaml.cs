@@ -29,7 +29,7 @@ namespace Appointed
                 new KeyEventHandler(Key_Up), true
             );
 
-            DispatcherTimer d = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, OnTimeInterval, this.Dispatcher);
+            DispatcherTimer d = new DispatcherTimer(new TimeSpan(0, 0, 15), DispatcherPriority.Normal, OnTimeInterval, this.Dispatcher);
 
             ShowHomeSidebar();
 
@@ -272,8 +272,10 @@ namespace Appointed
         {
             DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
 
-            DIVM.AVM._activeAppointment.Colour = DIVM.AVM.FindDrColourForDrName(DIVM.AVM._activeAppointment.DoctorName);
-            DIVM.AVM._activeAppointment.Opacity = "0.5";
+            DIVM.AVM._nextAppointment.Colour = DIVM.AVM.FindDrColourForDrName(DIVM.AVM._nextAppointment.DoctorName);
+            DIVM.AVM._nextAppointment.Opacity = "0.5";
+
+            DIVM.AVM._nextAppointment = new Appointment();
         }
     }
 }

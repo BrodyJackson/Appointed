@@ -54,14 +54,14 @@ namespace Appointed.Views
             Console.WriteLine("Extent: " + scrollViewersOfGrid.ElementAt(0).ExtentHeight);
             Console.WriteLine("Offset: " + offset);
 
-            //if (amount < offset || amount > (offset + height))
-            //{
-            foreach (ScrollViewer scroller in scrollViewersOfGrid)
+            if (amount < offset || amount > (offset + height))
             {
-                scroller.ScrollToVerticalOffset(0.0);
-                scroller.ScrollToVerticalOffset(((double)amount / 2.0) + 145.0);
+                foreach (ScrollViewer scroller in scrollViewersOfGrid)
+                {
+                    scroller.ScrollToVerticalOffset(0.0);
+                    scroller.ScrollToVerticalOffset(((double)amount + 145.0) / 2.0);
+                }
             }
-            //}
         }
 
 

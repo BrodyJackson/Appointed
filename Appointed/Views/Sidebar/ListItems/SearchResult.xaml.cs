@@ -35,9 +35,31 @@ namespace Appointed.Views.Sidebar.ListItems
                 PatientID.Text = new HealthCareIDMask().FormatText(patient.HealthID.ToString());
                 PatientSex.Text = "Sex: " + patient.GetSexAsString();
                 PatientBirthday.Text = "Birthdate: " + patient.BirthDate.ToShortDateString();
+
+                AbbreviatePatientName();
             }
         }
 
+
+        private void AbbreviatePatientName()
+        {
+            string abbreviatedName = PatientName.Text;
+            int whiteSpaceIndex;
+
+            if (PatientName.Text.Length > 18)
+            {
+                whiteSpaceIndex = PatientName.Text.IndexOf(' ');
+                abbreviatedName = PatientName.Text.ElementAt(0).ToString() + "." + PatientName.Text.Substring(whiteSpaceIndex);
+            }
+
+            if (abbreviatedName.Length > 18)
+            {
+                whiteSpaceIndex = abbreviatedName.IndexOf(' ');
+                abbreviatedName = abbreviatedName.Substring(0, whiteSpaceIndex) + " " + abbreviatedName.Substring(whiteSpaceIndex + 1, 8) + "..";
+            }
+
+            PatientName.Text = abbreviatedName;
+        }
 
         public SearchResult(Patient p)
         {
@@ -56,7 +78,6 @@ namespace Appointed.Views.Sidebar.ListItems
             {
                 NextApptBtn.IsEnabled = false;
             }
-
         }
 
         private void NextApptBtn_Click(object sender, RoutedEventArgs e)
@@ -86,7 +107,7 @@ namespace Appointed.Views.Sidebar.ListItems
 
                 nextAppt.Colour = "Red";
                 nextAppt.Opacity = "1.0";
-                DIVM.AVM._activeAppointment = nextAppt;
+                DIVM.AVM._nextAppointment = nextAppt;
             }
 
         }
