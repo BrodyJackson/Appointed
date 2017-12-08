@@ -67,46 +67,72 @@ namespace Appointed
 
             if (DIVM.AVM._appointmentLookup.ContainsKey(key))
             {
-                if (DIVM.AVM._activeAppointment == null && DIVM.AVM._highlightedAppointment == null)
+                if (DIVM.AVM._activeAppointment != null || DIVM.AVM._highlightedAppointment != null)
                 {
-                    DIVM.AVM._appointmentLookup[key].Colour = "Purple";
-                    DIVM.AVM._appointmentLookup[key].Opacity = "1.0";
-
-                    randomKey = key;
-                }
-                else
-                {
-                    if (DIVM.AVM._activeAppointment != null && DIVM.AVM._highlightedAppointment != null)
+                    if (DIVM.AVM._activeAppointment != null)
                     {
-                        if (DIVM.AVM._appointmentLookup[key].ID != DIVM.AVM._activeAppointment.ID)
-                            if (DIVM.AVM._appointmentLookup[key].ID != DIVM.AVM._highlightedAppointment.ID)
-                            {
-                                DIVM.AVM._appointmentLookup[key].Colour = "Purple";
-                                DIVM.AVM._appointmentLookup[key].Opacity = "1.0";
-                                randomKey = key;
-                            }
-                    }
-                    else if (DIVM.AVM._activeAppointment != null)
-                    {
-                        if (DIVM.AVM._appointmentLookup[key].ID != DIVM.AVM._activeAppointment.ID)
-                        {
-                            DIVM.AVM._appointmentLookup[key].Colour = "Purple";
-                            DIVM.AVM._appointmentLookup[key].Opacity = "1.0";
-                            randomKey = key;
-                        }
+                        if (DIVM.AVM._appointmentLookup[key].ID == DIVM.AVM._activeAppointment.ID)
+                            return;
                     }
                     else
                     {
-                        if (DIVM.AVM._appointmentLookup[key].ID != DIVM.AVM._highlightedAppointment.ID)
-                        {
-                            DIVM.AVM._appointmentLookup[key].Colour = "Purple";
-                            DIVM.AVM._appointmentLookup[key].Opacity = "1.0";
-                            randomKey = key;
-                        }
+                        if (DIVM.AVM._appointmentLookup[key].ID == DIVM.AVM._highlightedAppointment.ID)
+                            return;
                     }
-                }    
+                }
+
+                DIVM.AVM._appointmentLookup[key].Colour = "Purple";
+                DIVM.AVM._appointmentLookup[key].Opacity = "1.0";
+                randomKey = key;
             }
+
         }
+
+
+        //if (DIVM.AVM._appointmentLookup.ContainsKey(key))
+        //{
+        //    if (DIVM.AVM._activeAppointment == null && DIVM.AVM._highlightedAppointment == null)
+        //    {
+        //        DIVM.AVM._appointmentLookup[key].Colour = "Purple";
+        //        DIVM.AVM._appointmentLookup[key].Opacity = "1.0";
+
+        //        randomKey = key;
+        //    }
+        //    else
+        //    {
+        //        if (DIVM.AVM._activeAppointment != null && DIVM.AVM._highlightedAppointment != null)
+        //        {
+        //            if (DIVM.AVM._appointmentLookup[key].ID != DIVM.AVM._activeAppointment.ID)
+        //            {
+        //                if (DIVM.AVM._appointmentLookup[key].ID != DIVM.AVM._highlightedAppointment.ID)
+        //                {
+        //                    DIVM.AVM._appointmentLookup[key].Colour = "Purple";
+        //                    DIVM.AVM._appointmentLookup[key].Opacity = "1.0";
+        //                    randomKey = key;
+        //                }
+        //            }
+        //        }
+        //        else if (DIVM.AVM._activeAppointment != null)
+        //        {
+        //            if (DIVM.AVM._appointmentLookup[key].ID != DIVM.AVM._activeAppointment.ID)
+        //            {
+        //                DIVM.AVM._appointmentLookup[key].Colour = "Purple";
+        //                DIVM.AVM._appointmentLookup[key].Opacity = "1.0";
+        //                randomKey = key;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            if (DIVM.AVM._appointmentLookup[key].ID != DIVM.AVM._highlightedAppointment.ID)
+        //            {
+        //                DIVM.AVM._appointmentLookup[key].Colour = "Purple";
+        //                DIVM.AVM._appointmentLookup[key].Opacity = "1.0";
+        //                randomKey = key;
+        //            }
+        //        }
+        //    }    
+        //}
+
 
         private void Key_Up(object sender, KeyEventArgs e)
         {
