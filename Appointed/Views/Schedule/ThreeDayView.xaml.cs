@@ -34,27 +34,36 @@ namespace Appointed.Views
             foreach (ScrollViewer scroller in scrollViewersOfGrid)
             {
                 scroller.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta);
-               // Console.WriteLine("FOUND CHILD SCROLL VIEWER: \n");
             }
-
         }
 
 
-
-
-/*
-        private void OnThreeDayViewHorizontalScroll(object sender, MouseWheelEventArgs e)
+        public void ScrollSchedule(int amount)
         {
-            ScrollViewer sv = this.DayOneScroller;
-            sv.ScrollToHorizontalOffset(sv.HorizontalOffset - e.Delta);
+            ScrollViewer sv = DayOneScroller;
+            var scrollViewersOfGrid = ((Grid)sv.Parent).Children.OfType<ScrollViewer>();
 
-            sv = this.DayTwoScroller;
-            sv.ScrollToHorizontalOffset(sv.HorizontalOffset - e.Delta);
-
-            sv = this.DayThreeScroller;
-            sv.ScrollToHorizontalOffset(sv.HorizontalOffset - e.Delta);
+            foreach (ScrollViewer scroller in scrollViewersOfGrid)
+            {
+                scroller.ScrollToVerticalOffset(amount * 17.5);
+            }
         }
-*/
+
+
+
+        /*
+                private void OnThreeDayViewHorizontalScroll(object sender, MouseWheelEventArgs e)
+                {
+                    ScrollViewer sv = this.DayOneScroller;
+                    sv.ScrollToHorizontalOffset(sv.HorizontalOffset - e.Delta);
+
+                    sv = this.DayTwoScroller;
+                    sv.ScrollToHorizontalOffset(sv.HorizontalOffset - e.Delta);
+
+                    sv = this.DayThreeScroller;
+                    sv.ScrollToHorizontalOffset(sv.HorizontalOffset - e.Delta);
+                }
+        */
 
         private void OnNextMonth(object sender, MouseButtonEventArgs e)
         {

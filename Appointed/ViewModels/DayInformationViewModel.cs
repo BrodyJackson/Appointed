@@ -371,6 +371,12 @@ namespace Appointed.ViewModels
 
             if (diff.Days > 1 || diff.Days < -1)
                 ShiftView.Execute(diff.Days);
+
+            //int amount = AVM._highlightedAppointment.StartTime;
+            //amount -= 700;
+            //amount = ((amount / 100) * 4) + ((amount % 100) / 15);
+
+            //h.ThreeDayView.ScrollSchedule(amount);
         }
         
 

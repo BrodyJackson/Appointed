@@ -164,5 +164,13 @@ namespace Appointed
                 }
             }
         }
+
+        private void OnMouseDownWindow(object sender, MouseButtonEventArgs e)
+        {
+            DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
+
+            DIVM.AVM._activeAppointment.Colour = DIVM.AVM.FindDrColourForDrName(DIVM.AVM._activeAppointment.DoctorName);
+            DIVM.AVM._activeAppointment.Opacity = "0.5";
+        }
     }
 }

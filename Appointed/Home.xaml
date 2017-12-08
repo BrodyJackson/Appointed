@@ -27,7 +27,9 @@
          Second Row is for the day/month title for each day being displayed.
          Third Row is for main working views (ThreeDayView and SideBarView). -->
     <Grid
-        Margin="5">
+        Margin="5"
+        PreviewMouseLeftButtonDown="OnMouseDownWindow"
+        >
         <Grid.RowDefinitions>
             <RowDefinition
                 Height="10" />

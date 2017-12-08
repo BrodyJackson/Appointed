@@ -77,6 +77,16 @@ namespace Appointed.Views.Sidebar.ListItems
                 if (Math.Abs(diff.Days) > 0)
                     if (DIVM.ShiftView.CanExecute(null))
                         DIVM.ShiftView.Execute(diff.Days);
+
+                int amount = nextAppt.StartTime;
+                amount -= 700;
+                amount = ((amount / 100) * 4) + ((amount % 100) / 15);
+
+                (App.Current.MainWindow as Home).ThreeDayView.ScrollSchedule(amount);
+
+                nextAppt.Colour = "Red";
+                nextAppt.Opacity = "1.0";
+                DIVM.AVM._activeAppointment = nextAppt;
             }
 
         }

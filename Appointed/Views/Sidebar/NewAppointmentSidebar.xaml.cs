@@ -459,6 +459,12 @@ namespace Appointed.Views.Sidebar
 
             if (DIVM.ShiftView.CanExecute(null))
                 DIVM.ShiftView.Execute(diff.Days);
+
+            int amount = _newAppointment.StartTime;
+            amount -= 700;
+            amount = ((amount / 100) * 4) + ((amount % 100) / 15);
+
+            h.ThreeDayView.ScrollSchedule(amount);
         }
 
 
