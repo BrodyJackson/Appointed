@@ -43,10 +43,25 @@ namespace Appointed.Views
             ScrollViewer sv = DayOneScroller;
             var scrollViewersOfGrid = ((Grid)sv.Parent).Children.OfType<ScrollViewer>();
 
+            double offset = scrollViewersOfGrid.ElementAt(0).VerticalOffset;
+            double height = scrollViewersOfGrid.ElementAt(0).ActualHeight;
+            double extent = scrollViewersOfGrid.ElementAt(0).ExtentHeight;
+
+            amount *= 35;
+
+            Console.WriteLine("Amount: " + amount);
+            Console.WriteLine("Actual: " + scrollViewersOfGrid.ElementAt(0).ActualHeight);
+            Console.WriteLine("Extent: " + scrollViewersOfGrid.ElementAt(0).ExtentHeight);
+            Console.WriteLine("Offset: " + offset);
+
+            //if (amount < offset || amount > (offset + height))
+            //{
             foreach (ScrollViewer scroller in scrollViewersOfGrid)
             {
-                scroller.ScrollToVerticalOffset(amount * 17.5);
+                scroller.ScrollToVerticalOffset(0.0);
+                scroller.ScrollToVerticalOffset(((double)amount / 2.0) + 145.0);
             }
+            //}
         }
 
 
