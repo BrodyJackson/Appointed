@@ -78,29 +78,6 @@ namespace Appointed.Views.Sidebar
             RemDaysLable.Visibility = Visibility.Visible;
             RemTODLable.Visibility = Visibility.Visible;
             RemType.Visibility = Visibility.Visible;
-
-            DayInformationViewModel DIVM = (App.Current.MainWindow.DataContext as DayInformationViewModel);
-            if (DIVM.AVM._activeAppointment.PatientObj != null)
-            {//Only show type for which individual has contact method
-                ComboBoxItem[] items = new ComboBoxItem[3];
-                RemType.Items.CopyTo(items, 0);
-
-                //Remove Text option
-                if (string.IsNullOrWhiteSpace(DIVM.AVM._activeAppointment.PatientObj.Cell))
-                {
-                    RemType.Items.Remove(items[1]);
-                }
-                //Remove Phone
-                if (string.IsNullOrWhiteSpace(DIVM.AVM._activeAppointment.PatientObj.Phone) && string.IsNullOrWhiteSpace(DIVM.AVM._activeAppointment.PatientObj.Business) && string.IsNullOrWhiteSpace(DIVM.AVM._activeAppointment.PatientObj.Cell))
-                {
-                    RemType.Items.Remove(items[2]);
-                }
-                //Remove Email
-                if (string.IsNullOrWhiteSpace(DIVM.AVM._activeAppointment.PatientObj.Email))
-                {
-                    RemType.Items.Remove(items[0]);
-                }
-            }
             RemTypeLable.Visibility = Visibility.Visible;
             RemTOD.Visibility = Visibility.Visible;
             RemDays.Visibility = Visibility.Visible;
@@ -126,13 +103,6 @@ namespace Appointed.Views.Sidebar
             CurrentApptType.Text = DIVM.AVM._activeAppointment.Type;
             CurrentApptDoc.Text = DIVM.AVM._activeAppointment.DoctorName;
             CurrentApptTimespan.Text = DIVM.AVM._activeAppointment.StartTimeStr + " - " + DIVM.AVM._activeAppointment.EndTimeStr;
-            ReminderToggle.IsChecked = DIVM.AVM._activeAppointment.Reminder;
-            if (DIVM.AVM._activeAppointment.Reminder)
-            {
-                RemDays.SelectedIndex = DIVM.AVM._activeAppointment.RemDaysIndex;
-                RemTOD.SelectedIndex = DIVM.AVM._activeAppointment.RemTODIndex;
-                RemType.SelectedIndex = DIVM.AVM._activeAppointment.RemTypeIndex;
-            }
 
             int timeIndex = -1;
             if (DIVM.AVM._activeAppointment != null)
@@ -161,6 +131,34 @@ namespace Appointed.Views.Sidebar
 
             WaitlistDatePicker.CalendarBlackoutDates.AddDatesInPast();
             WaitlistDatePicker.CalendarBlackoutDates.Add(new CalendarDateRange(DIVM.AVM.BeginningOfAllTime.AddDays(DIVM.AVM.NumOfDaysPopulated), DateTime.MaxValue));
+
+            if (DIVM.AVM._activeAppointment.PatientObj != null)
+            {//Only show type for which individual has contact method
+                ComboBoxItem[] items = new ComboBoxItem[3];
+                RemType.Items.CopyTo(items, 0);
+
+                //Remove Text option
+                if (string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Cell) || DIVM.PVM.ActivePatient.Cell == "(None)")
+                    RemType.Items.Remove(items[1]);
+
+                //Remove Phone
+                if ((string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Phone) || DIVM.PVM.ActivePatient.Phone == "(None)") &&
+                    (string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Business) || DIVM.PVM.ActivePatient.Business == "(None)") &&
+                    (string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Cell) || DIVM.PVM.ActivePatient.Cell == "(None)"))
+                    RemType.Items.Remove(items[2]);
+
+                //Remove Email
+                if (string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Email) || DIVM.PVM.ActivePatient.Email == "(None)")
+                    RemType.Items.Remove(items[0]);
+            }
+
+            ReminderToggle.IsChecked = DIVM.AVM._activeAppointment.Reminder;
+            if (DIVM.AVM._activeAppointment.Reminder)
+            {
+                RemDays.SelectedIndex = DIVM.AVM._activeAppointment.RemDaysIndex;
+                RemTOD.SelectedIndex = DIVM.AVM._activeAppointment.RemTODIndex;
+                RemType.SelectedIndex = DIVM.AVM._activeAppointment.RemTypeIndex;
+            }
 
             _ready = true;
         }

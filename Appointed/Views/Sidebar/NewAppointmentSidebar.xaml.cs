@@ -50,7 +50,7 @@ namespace Appointed.Views.Sidebar
             CommentBox.LostFocus += (s, e) => { App.AllowArrowKeyCalendarNavigation = true; };
 
             this.Loaded += NewAppointmentSidebar_Loaded;
-         }
+        }
 
 
 
@@ -72,10 +72,10 @@ namespace Appointed.Views.Sidebar
             tdv.DayThree.DrColumn2.OnEmptyApptClick += EmptySlotClick;
 
             DatePicker.InputText.TextField.Text = DIVM.AVM._activeAppointment.DateTime.Value.ToString("yyyy-MM-dd");
-            ReminderToggle.IsChecked = DIVM.AVM._activeAppointment.Reminder;
-            RemDays.SelectedIndex = DIVM.AVM._activeAppointment.RemDaysIndex;
-            RemTOD.SelectedIndex = DIVM.AVM._activeAppointment.RemTODIndex;
-            RemType.SelectedIndex = DIVM.AVM._activeAppointment.RemTypeIndex;
+            ReminderToggle.IsChecked = true;
+            RemDays.SelectedIndex = 1;
+            RemTOD.SelectedIndex = 0;
+            RemType.SelectedIndex = 0;
 
             int timeIndex = -1;
             if (DIVM.AVM._highlightedAppointment != null)
@@ -104,15 +104,17 @@ namespace Appointed.Views.Sidebar
             RemType.Items.CopyTo(items, 0);
 
             //Remove Text option
-            if (string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Cell))
+            if (string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Cell) || DIVM.PVM.ActivePatient.Cell == "(None)" )
                 RemType.Items.Remove(items[1]);
-    
+
             //Remove Phone
-            if (string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Phone) && string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Business) && string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Cell))
+            if ((string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Phone) || DIVM.PVM.ActivePatient.Phone == "(None)") && 
+                (string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Business) || DIVM.PVM.ActivePatient.Business == "(None)") &&
+                (string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Cell) || DIVM.PVM.ActivePatient.Cell == "(None)"))
                 RemType.Items.Remove(items[2]);
-          
+
             //Remove Email
-            if (string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Email))
+            if (string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Email) || DIVM.PVM.ActivePatient.Email == "(None)")
                 RemType.Items.Remove(items[0]);
 
             StartTime.SelectionChanged += StartTime_SelectionChanged;
@@ -212,16 +214,16 @@ namespace Appointed.Views.Sidebar
         }
 
 
-           //foreach (ComboBoxItem item in RemType.Items)
-           //         if (item.Content.ToString() == "Text")
-           //             RemType.Items.Remove(item);
-      
-           //foreach (ComboBoxItem item in RemType.Items)
-           //    if (item.Content.ToString() == "Phone")
-           //        RemType.Items.Remove(item);
-           //foreach (ComboBoxItem item in RemType.Items)
-           //    if (item.Content.ToString() == "Email")
-           //        RemType.Items.Remove(item);
+        //foreach (ComboBoxItem item in RemType.Items)
+        //         if (item.Content.ToString() == "Text")
+        //             RemType.Items.Remove(item);
+
+        //foreach (ComboBoxItem item in RemType.Items)
+        //    if (item.Content.ToString() == "Phone")
+        //        RemType.Items.Remove(item);
+        //foreach (ComboBoxItem item in RemType.Items)
+        //    if (item.Content.ToString() == "Email")
+        //        RemType.Items.Remove(item);
 
 
         void StartTime_SelectionChanged(object sender, EventArgs e)
@@ -325,7 +327,7 @@ namespace Appointed.Views.Sidebar
                         MyMessageBox.Buton.Ok
                     );
                 return;
-            }                
+            }
 
             DayInformationViewModel DIVM = this.DataContext as DayInformationViewModel;
             //don't think I need active appointment, will make when done gettting values from boxes
