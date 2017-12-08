@@ -45,7 +45,7 @@ namespace Appointed
             if (randomKey != 0)
             {
                 DIVM.AVM._appointmentLookup[randomKey].Colour = DIVM.AVM.FindDrColourForDrName(DIVM.AVM._appointmentLookup[randomKey].DoctorName);
-                DIVM.AVM._appointmentLookup[randomKey].Opacity = "0.5";
+                DIVM.AVM._appointmentLookup[randomKey].Opacity = DIVM.AVM._appointmentLookup[randomKey].Type == "" ? "0.0" : "0.5";
             }
 
             Random r = new Random();
