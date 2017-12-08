@@ -117,7 +117,7 @@ namespace Appointed.Classes
                     MyMessageBox msgBox = new MyMessageBox();
                     msgBox.Show
                         (
-                            "The appointment you are trying to add to the waitlist is 30 minutes long and two appointments are occupying the slot. This functionality hasn't been implemented yet.",
+                            "The appointment you are trying to add to the waitlist is 30 minutes long and two appointments are occupying the slot.\nThis functionality hasn't been implemented yet.",
                             "Unable To Waitlist",
                             MyMessageBox.Buton.Ok
                         );
