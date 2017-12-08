@@ -84,6 +84,8 @@ namespace Appointed.ViewModels
             PVM = new PatientViewModel();
             SVM = new SidebarViewModel();
 
+            LinkPatientsAndAppointments();
+
             _numAppointmentsPerDay = AVM._numAppointmentsPerDay;
 
         
@@ -213,6 +215,34 @@ namespace Appointed.ViewModels
         }
 
         // END COMMANDS ====================================================
+
+
+
+
+        public void LinkPatientsAndAppointments()
+        {
+            Dictionary<int, Patient> patients = PVM.GetPatientDatabaseModel().GetPatientDictionary();
+
+            foreach (KeyValuePair<int, Patient> patientEntry in patients)
+            {
+                foreach (KeyValuePair<int, Appointment> appointmentEntry in AVM._appointmentLookup)
+                {
+                    string pName;
+                    pName = patientEntry.Value.FirstName + " ";
+
+                    if (patientEntry.Value.MiddleName != "" && patientEntry.Value.MiddleName != null)
+                        pName += patientEntry.Value.MiddleName + " ";
+
+                    pName += patientEntry.Value.LastName;
+
+                    if (pName == appointmentEntry.Value.Patient)
+                    {
+                        appointmentEntry.Value.PatientObj = patientEntry.Value;
+                        patientEntry.Value.AddUpcommingAppointment(Int32.Parse(appointmentEntry.Value.ID));
+                    }
+                }
+            }
+        }
 
 
         public void ChangeHighlight(object sender, EventArgs e)
