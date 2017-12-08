@@ -280,7 +280,8 @@ namespace Appointed.ViewModels
 
                 dt = new DateTime(year, month, day, stTime / 100, stTime % 100, 0);
 
-                HighlightAppointment(dt, drName, apptType);
+                if (n.Ready)
+                    HighlightAppointment(dt, drName, apptType);
             }
             else if (m != null)
             {
@@ -296,7 +297,8 @@ namespace Appointed.ViewModels
 
                 dt = new DateTime(year, month, day, stTime / 100, stTime % 100, 0);
 
-                HighlightAppointment(dt, drName, apptType);
+                if (m.Ready)
+                    HighlightAppointment(dt, drName, apptType);
             }
         }
                 
@@ -318,13 +320,13 @@ namespace Appointed.ViewModels
                 return;
 
             if (a.Type != "" || a.Colour == "SlateGray")
-            {
+            {                
                 if (App.Current.MainWindow.Opacity == 1.0)
                 {
                     MyMessageBox msgBox = new MyMessageBox();
                     msgBox.Show
                         (
-                            "The time slot you selected is taken!",
+                            "The time slot you selected is unavailable!",
                             "Select Appointment Slot",
                             MyMessageBox.Buton.Ok
                         );

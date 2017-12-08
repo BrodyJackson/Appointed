@@ -15,8 +15,18 @@ namespace Appointed.Views.Sidebar
     /// </summary>
     public partial class NewAppointmentSidebar : UserControl
     {
+        private bool _ready;
+
+        public bool Ready
+        {
+            get { return _ready; }
+        }
+
+
         public NewAppointmentSidebar()
         {
+            _ready = false;
+
             InitializeComponent();
             DayInformationViewModel DIVM = App.Current.MainWindow.DataContext as DayInformationViewModel;
             //Hide/Show the options
@@ -84,11 +94,6 @@ namespace Appointed.Views.Sidebar
                 WaitlistStartTime.SelectedIndex = DIVM.WaitList.PeekApptWaiting(DIVM.AVM._activeAppointment).TimeIndex;
             }
 
-
-            StartTime.SelectionChanged += StartTime_SelectionChanged;
-            DoctorComboBox.SelectionChanged += DIVM.ChangeHighlight;
-            ApptTypeComboBox.SelectionChanged += DIVM.ChangeHighlight;
-
             DatePicker.CalendarBlackoutDates.AddDatesInPast();
             DatePicker.CalendarBlackoutDates.Add(new CalendarDateRange(DIVM.AVM.BeginningOfAllTime.AddDays(DIVM.AVM.NumOfDaysPopulated), DateTime.MaxValue));
 
@@ -109,6 +114,12 @@ namespace Appointed.Views.Sidebar
             //Remove Email
             if (string.IsNullOrWhiteSpace(DIVM.PVM.ActivePatient.Email))
                 RemType.Items.Remove(items[0]);
+
+            StartTime.SelectionChanged += StartTime_SelectionChanged;
+            DoctorComboBox.SelectionChanged += DIVM.ChangeHighlight;
+            ApptTypeComboBox.SelectionChanged += DIVM.ChangeHighlight;
+
+            _ready = true;
         }
 
         private void EmptySlotClick(object sender, DoctorColumnView.ApptClickEventArgs e)

@@ -22,9 +22,17 @@ namespace Appointed.Views.Sidebar
     /// </summary>
     public partial class ModifyAppointmentSidebar : UserControl
     {
+        private bool _ready;
+
+        public bool Ready
+        {
+            get { return _ready; }
+        }
 
         public ModifyAppointmentSidebar()
         {
+            _ready = false;
+
             InitializeComponent();
 
             DayInformationViewModel DIVM = App.Current.MainWindow.DataContext as DayInformationViewModel;
@@ -153,6 +161,8 @@ namespace Appointed.Views.Sidebar
 
             WaitlistDatePicker.CalendarBlackoutDates.AddDatesInPast();
             WaitlistDatePicker.CalendarBlackoutDates.Add(new CalendarDateRange(DIVM.AVM.BeginningOfAllTime.AddDays(DIVM.AVM.NumOfDaysPopulated), DateTime.MaxValue));
+
+            _ready = true;
         }
 
         private void EmptySlotClick(object sender, DoctorColumnView.ApptClickEventArgs e)
