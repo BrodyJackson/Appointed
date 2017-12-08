@@ -473,7 +473,28 @@ namespace Appointed.Views.Sidebar
             if (activeAppt.Type == "Consultation" && targetAppointment != activeAppt)
             {
                 Appointment apptThatFollowsActive = DIVM.AVM.FindAppointmentThatFollows(activeAppt);
-                apptThatFollowsActive.Visibility = "Visible";
+
+                if (apptThatFollowsActive != null)
+                    apptThatFollowsActive.Visibility = "Visible";
+                else
+                {
+                    int drCol = DIVM.AVM.FindDrColumnForDrName(activeAppt.DoctorName);
+                    string bindingCode = 
+                        (drCol + 1).ToString() + 
+                        activeAppt.DateTime.Value.Day.ToString() + 
+                        activeAppt.DateTime.Value.Month.ToString() + 
+                        activeAppt.DateTime.Value.Year.ToString();
+
+                    List<Appointment> LOA = DIVM.AVM._drScheduleMap[Int32.Parse(bindingCode)];
+
+                    for (int i = 0; i < LOA.Count; i++)
+                    {
+                        if (LOA.ElementAt(i).Visibility == "Collapsed")
+                            if (i > 0)
+                                if (LOA.ElementAt(i - 1).Type != "Consultation")
+                                    LOA.ElementAt(i).Visibility = "Visible";
+                    }
+                }
             }
 
             if (targetAppointment != activeAppt)
