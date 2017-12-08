@@ -49,15 +49,19 @@ namespace Appointed
             }
 
             Random r = new Random();
-            int num = r.Next(21);                           // Less than 21 + 6 keeps it in top portion of view
+            int num = r.Next(15);                           // Less than 21 + 6 keeps it in top portion of view
 
             num += 6;                                       // Avoid grayed out appts
             num = ((num / 4) * 100) + ((num % 4) * 15);     // num / 4 is num hrs to skip, slots % 4 is num 15 minute intervals
             num += 700;                                     // Days start at 700
 
-            int num2 = r.Next(1,4);                         // Random Dr. Column
+            int num2 = r.Next(0,3);                         // Random Dr. Column
 
-            DateTime dt = new DateTime(DIVM.YearAsInt, DIVM.MonthAsInt, DIVM.DayAsInt, num/100, num%100, 0);
+            int daysInMonth = DateTime.DaysInMonth(DIVM.YearAsInt, DIVM.MonthAsInt);
+            int dayToUse = (DIVM.DayAsInt + num2);
+            dayToUse = dayToUse <= daysInMonth ? dayToUse : daysInMonth;
+            dayToUse = dayToUse > 0 ? dayToUse : DIVM.DayAsInt;
+            DateTime dt = new DateTime(DIVM.YearAsInt, DIVM.MonthAsInt, dayToUse, num/100, num%100, 0);
 
             int key = dt.GetHashCode() + num2;
 
