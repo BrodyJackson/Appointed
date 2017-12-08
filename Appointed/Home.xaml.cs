@@ -67,10 +67,14 @@ namespace Appointed
 
             if (DIVM.AVM._appointmentLookup.ContainsKey(key))
             {
-                DIVM.AVM._appointmentLookup[key].Colour = "Purple";
-                DIVM.AVM._appointmentLookup[key].Opacity = "1.0";
+                if (DIVM.AVM._appointmentLookup[key].ID != DIVM.AVM._activeAppointment.ID)
+                    if (DIVM.AVM._appointmentLookup[key].ID != DIVM.AVM._highlightedAppointment.ID)
+                    {
+                        DIVM.AVM._appointmentLookup[key].Colour = "Purple";
+                        DIVM.AVM._appointmentLookup[key].Opacity = "1.0";
 
-                randomKey = key;
+                        randomKey = key;
+                    }
             }
         }
 
