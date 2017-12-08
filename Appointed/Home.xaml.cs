@@ -29,7 +29,7 @@ namespace Appointed
                 new KeyEventHandler(Key_Up), true
             );
 
-            DispatcherTimer d = new DispatcherTimer(new TimeSpan(0, 0, 15), DispatcherPriority.Normal, OnTimeInterval, this.Dispatcher);
+            DispatcherTimer d = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, OnTimeInterval, this.Dispatcher);
 
             ShowHomeSidebar();
 
@@ -57,14 +57,17 @@ namespace Appointed
 
             int num2 = r.Next(1,4);                         // Random Dr. Column
 
-            DateTime dt = new DateTime(DIVM.YearAsInt, DIVM.MonthAsInt, DIVM.DayAsInt + num2, num/100, num%100, 0);
+            DateTime dt = new DateTime(DIVM.YearAsInt, DIVM.MonthAsInt, DIVM.DayAsInt, num/100, num%100, 0);
 
             int key = dt.GetHashCode() + num2;
 
-            DIVM.AVM._appointmentLookup[key].Colour = "Purple";
-            DIVM.AVM._appointmentLookup[key].Opacity = "1.0";
+            if (DIVM.AVM._appointmentLookup.ContainsKey(key))
+            {
+                DIVM.AVM._appointmentLookup[key].Colour = "Purple";
+                DIVM.AVM._appointmentLookup[key].Opacity = "1.0";
 
-            randomKey = key;
+                randomKey = key;
+            }
         }
 
         private void Key_Up(object sender, KeyEventArgs e)
