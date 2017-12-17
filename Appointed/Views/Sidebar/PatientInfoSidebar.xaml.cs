@@ -129,9 +129,12 @@ namespace Appointed.Views.Sidebar
 
             if (BasicInfo.HasChanges)
             {
-                p.FirstName = BasicInfo.FNameInput.TextField.Text;
-                p.LastName = BasicInfo.MNameInput.TextField.Text;
-                p.MiddleName = BasicInfo.LNameInput.TextField.Text;
+                if (BasicInfo.FNameInput.TextField.Text != "First Name")
+                    p.FirstName = BasicInfo.FNameInput.TextField.Text;
+                if (BasicInfo.MNameInput.TextField.Text != "Middle Name(s)")
+                    p.LastName = BasicInfo.LNameInput.TextField.Text;
+                if (BasicInfo.LNameInput.TextField.Text != "Last Name")
+                    p.MiddleName = BasicInfo.MNameInput.TextField.Text;
 
                 workString = BasicInfo.PatientID.Text;
                 workString = workString.Substring(workString.IndexOf(":") + 2, 5) + workString.Substring(workString.Length - 3, 3);

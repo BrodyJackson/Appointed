@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Appointed.Views.Dialogs"
         mc:Ignorable="d"
-        Title="Edit Credentials" Height="400" Width="400"
+        Title="Edit Credentials" Height="410" Width="400"
         
         
         xmlns:Controls="clr-namespace:Appointed.Views.Controls"
@@ -52,7 +52,7 @@
             </Grid.RowDefinitions>
 
 
-            <!--<Rectangle 
+            <Rectangle 
                 Grid.Row="0"
                 Grid.Column="0"
                 Grid.ColumnSpan="6"
@@ -60,13 +60,13 @@
                 <Rectangle.Fill>
                     <SolidColorBrush Color="DodgerBlue" Opacity="0.65"/>
                 </Rectangle.Fill>
-            </Rectangle>-->
+            </Rectangle>
 
 
 
 
             <TextBlock
-                Style="{StaticResource text_HeadingLarge}"
+                Style="{StaticResource text_WhiteXLarge}"
                 Grid.Row="0"
                 Grid.Column="0"
                 Grid.ColumnSpan="6"
@@ -260,7 +260,7 @@
             </Grid.RowDefinitions>
 
             <Button 
-
+                Style="{StaticResource button_BlueWithWhiteForeground}"
                 Grid.Row="0"
                 Grid.Column="0"
                 Content="Save"
@@ -272,7 +272,7 @@
             />
 
             <Button
-
+                Style="{StaticResource button_BlueWithWhiteForeground}"
                 Grid.Row="0"
                 Grid.Column="1"
                 Content="Discard"

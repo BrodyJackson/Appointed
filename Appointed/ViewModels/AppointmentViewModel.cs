@@ -20,7 +20,10 @@ namespace Appointed.ViewModels
 
 
         private AppointmentDatabaseModel _adm;
-        private int _numDaysPopulated = 300; //Cant go above like 360 cause then the hash overlaps
+
+        // January 11 and November 01 have the same binding code when the database is populated.
+        // Can go no higher than 382 days without a fix.
+        private int _numDaysPopulated = 300;
 
         public int NumOfDaysPopulated
         {
@@ -280,9 +283,12 @@ namespace Appointed.ViewModels
  
                         _appointmentLookup.Add(hashCode + i, listOfAppointments[k]);
                     }
+                    Console.WriteLine(date);
 
                     bindingCode = (i + 1).ToString() + date.Day.ToString() + date.Month.ToString() + date.Year.ToString();
                     _drScheduleMap.Add(Int32.Parse(bindingCode), listOfAppointments);
+                    if (bindingCode == "11112018")
+                        Console.WriteLine(date);
                 }
             }
         }
